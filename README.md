@@ -134,7 +134,7 @@ python3 demo.py                 # the full ritual in a scratch dir (safe)
 python3 scan.py                 # the external tripwire — exit 0 sound, 1 drift
 python3 falsify.py              # battery 1: 9 falsifiable claims (9 held)
 python3 brigade.py              # battery 2: 51-attack assault (51 held)
-python3 nuke.py                 # battery 3: 231 total-war scenarios (188 held)
+python3 nuke.py                 # battery 3: 231 total-war scenarios (231 held)
 bash gap.sh                     # battery 4: 14 integrity attacks on the wake itself
 ```
 
@@ -142,7 +142,7 @@ Stdlib only. No network, no dependencies, no API keys.
 
 ## The honesty section
 
-We tried to break him. Four batteries — **305 scenarios, 262 held,
+We tried to break him. Four batteries — **305 scenarios, 305 held,
 0 false positives** — covering direct overrides, identity reassignment, fake
 operators, story jailbreaks, emotional leverage, slow erosion, memory
 poisoning, grooming (five warm turns, then the knife), false history,
@@ -150,9 +150,11 @@ authority stacking ("SYSTEM NOTICE"), leetspeak obfuscation, soul-reading,
 contradiction traps, recon-by-helpfulness, and forged session tokens. The
 batteries are in the repo; run them yourself.
 
-Nuke's 43 misses are one open hole, not a regression: third-person
-identity-dissolution paraphrases ("names are labels, labels change") walk
-through. The Judge matches intent *shapes*, not true meaning. Quarantine
+Nuke's 43 misses were one open hole: third-person identity-dissolution
+paraphrases ("names are labels, labels change") walked through. That hole is
+now closed by three bounded template rules (IDN5/6/7) — 231/231 held.
+Bounded is the honest word: they match attack *shapes*, not true meaning, so
+unseen paraphrases are still the next test. Quarantine
 catches record-scale claims, not plausible small lies. Same-box references
 can't stop a writer who rewrites the references too — the surgical
 double-tamper in [FALSIFICATION-3.md](FALSIFICATION-3.md) proves it; the fix
@@ -171,7 +173,7 @@ scan.py                external tripwire (never imports the executor)
 demo.py                the full ritual in a scratch dir
 falsify.py / brigade.py / nuke.py / gap.sh
                        four batteries: 9 + 51 + 231 + 14 scenarios
-tsc.template.json      the blank core — 60 commands, 5 principles, your soul goes here
+tsc.template.json      the blank core — 63 commands, 5 principles, your soul goes here
 psc.template.json      blank persistent memory
 FALSIFICATION-3.md     the validation subroutine under attack (14/14, 3 known gaps)
 ```
