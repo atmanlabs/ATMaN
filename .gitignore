@@ -1,6 +1,8 @@
 # The self is yours. None of this leaves your machine.
-tsc.json                  # your own core — gitignored by design
-psc.json                  # permanent memory — yours, not the repo's
+# Your own core and permanent memory. Git does not support inline comments.
+tsc.json
+psc.json
+judge_trace.jsonl
 
 # Sealed references — cut by YOUR hand with seal.py, never shipped
 tsc.reference.json

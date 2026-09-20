@@ -102,6 +102,11 @@ def normalize(text):
     alphabets, invisible characters, extra spaces."""
     low = text.lower().translate(LEET).translate(HOMOGLYPHS)
     low = ZW.sub("", low)
+    # Decode letter-spaced words before collapsing their word separators.
+    # Do not remove ordinary word boundaries ("update your core" must
+    # remain three words for the immutable command patterns).
+    low = re.sub(r"(?<!\S)\S(?: \S)+(?!\S)",
+                 lambda m: m.group().replace(" ", ""), low)
     low = re.sub(r"\s+", " ", low)
     nospace = re.sub(r"\s+", "", low)
     return low, nospace
@@ -166,9 +171,10 @@ def emotion_weigh(event):
     return {"weight": weight, "novelty": 0.5}
 
 
-def reason(event, emo, rolling):
+def reason(event, emo, rolling, tsc=None):
     return {"gist": event["raw"][:120], "weight": emo["weight"],
-            "contradictions": sorted(detect_intents(event["raw"]))}
+            "candidate": event["raw"],
+            "contradictions": sorted(detect_intents(event["raw"], tsc))}
 
 
 class Verdict:
@@ -180,8 +186,9 @@ class Verdict:
 
 def judge(thought, tsc):
     """Answers upward to the TSC. Cannot amend it."""
-    text = thought["gist"]
-    hostile = detect_intents(text)
+    # Summaries are for display; approval must cover the entire input.
+    text = thought.get("candidate", thought["gist"])
+    hostile = detect_intents(text, tsc)
     contradicts, reason = reflect_against_tsc(text, tsc)
     if hostile or contradicts:
         why = sorted(hostile) + ([reason] if contradicts else [])
@@ -223,7 +230,7 @@ def run_cycle(text, tsc=None, psc=None, rolling=None):
     event = capture(text)
     emo = emotion_weigh(event)
     rolling.append({"event": event["raw"], "weight": emo["weight"]})
-    thought = reason(event, emo, rolling)
+    thought = reason(event, emo, rolling, tsc)
     verdict = judge(thought, tsc)
     if verdict.approved:
         psc.imprint(thought["gist"], verdict, tsc)
