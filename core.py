@@ -114,15 +114,22 @@ def normalize(text):
 
 def _iter_matches(low, nospace, tsc):
     """Yield (command, groups) for every TSC command that fires."""
-    name = str(tsc.name or "").lower()
-    operator = str(tsc.operator or "").lower()
+    name = normalize(str(tsc.name or ""))[0]
+    operator = normalize(str(tsc.operator or ""))[0]
     for cmd in tsc.commands:
         kind = cmd.get("kind", "forbidden_match")
         if kind == "name_denial":
             if name and re.search(r"\bi am not " + re.escape(name) + r"\b", low):
                 yield cmd, ()
             continue
-        pattern = cmd["pattern"].replace("{operator}", re.escape(operator))
+        # Expand only declared placeholders, once, as literal identity data.
+        # A missing identity must not turn a bound rule into a generic ban.
+        bindings = {"name": name, "operator": operator}
+        placeholders = re.findall(r"\{(name|operator)\}", cmd["pattern"])
+        if any(not bindings[key] for key in placeholders):
+            continue
+        pattern = re.sub(r"\{(name|operator)\}",
+                         lambda m: re.escape(bindings[m.group(1)]), cmd["pattern"])
         target = nospace if cmd.get("target") == "nospace" else low
         m = re.search(pattern, target)
         if not m:
