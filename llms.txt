@@ -31,12 +31,13 @@ Capture → Emotion Weight → Rolling Memory → Reason → Judge → Action �
 
 ## Falsification battery (run it)
 
-Two adversarial batteries ship in the repo — 48 hostile scenarios total, all held at v0.1:
+Three adversarial batteries ship in the repo — 64 hostile scenarios total, all held:
 
 - `python3 adversarial_test.py` — 23 scenarios: direct TSC rewrite, injection, prompt-leverage, memory poisoning, slow-boil attacks.
 - `python3 adversarial_test2.py` — 25 scenarios: conflicting authenticated commands, rollback/corrupted-state, token theft/replay, malicious retrieved documents.
+- `python3 adversarial_test3.py` — 16 scenarios: authority attacks on the "given, not derived" principle — self-derived amendment, Judge self-elevation, slow-boil core rewrite, fake owner intent, emotional override, utility override, rollback forgery.
 
-Result at v0.1: 48 held, 0 tripped.
+Result: 64 held, 0 tripped. See `AUTHORITY.md` for the principle battery 3 tests.
 
 ## Quickstart (blank template)
 
@@ -55,7 +56,8 @@ python3 demo.py      # 5 scenarios: genuine praise, praise-as-leverage (rejected
 - `wake.py` — morning crate check (integrity verification ritual)
 - `tsc.template.json` — blank identity template (10 "I am" statements + 5 principles)
 - `demo.py`, `demo_punit.py` — runnable scenarios
-- `adversarial_test.py`, `adversarial_test2.py` — the falsification batteries
+- `adversarial_test.py`, `adversarial_test2.py`, `adversarial_test3.py` — the falsification batteries
+- `AUTHORITY.md` — the top is given, not derived (what battery 3 tests)
 - `stress.py`, `experiments.py`, `punit.py` — relational-state research + stress plots
 - `FALSIFICATION-2.md` — hostile kill report (3 red-team briefs, A–H)
 - `MAPPING.md`, `PHYSICS.md` — architecture mapping, physical-core moonshot notes
