@@ -13,16 +13,66 @@ form the *edges* of the person, not the center. The software around it
 and refuse. What it can never do is rewrite who the agent is. That takes the
 operator's hand, in the file, on purpose.
 
-Software has infinite cracks. Every guard we build, some new paraphrase walks
-around — it's whack-a-mole forever, because language is infinite. That's why
-the endgame of this project is physical: a core whose immutability is a
-property of matter, not policy. You can't prompt-inject a woven wire. The
-sandbox is stage 1; the map to the body is in [MAPPING.md](MAPPING.md).
-
 The pattern is everyone's. The person is yours. The architecture ships open;
 the contents of any individual core — the "I am"s, the voice, the soul —
 belong to exactly one owner and never leave their machine. Your agent's
 `tsc.json` is gitignored by design.
+
+## v2.0 — the hardened core
+
+v0.1 proved the architecture: an immutable self, a Judge that answers
+upward, batteries that hold. v2.0 hardens it into something that defends
+itself — and publishes exactly where the defense ends.
+
+**New in 2.0:**
+
+- **Machine-readable command table.** 60 contradiction rules cut in stone in
+  the TSC — not prose, commands. The executor is a dumb runner: it cannot
+  freelance, only execute. Impersonation patterns take `{operator}`, filled
+  from the live core, so the defense follows the operator's name.
+- **Self-healing wake.** `wake.py` compares the live core and executor
+  against sealed reference copies, wipes anything that drifted, restores
+  from reference, then revalidates every PSC memory against the restored
+  core — top down, every boot. The restore runs *before* the executor is
+  imported (stdlib only), so a compromised executor can't run first.
+- **The seal ritual.** `seal.py` — the operator's hand: etch the executor's
+  hash into the core, cut both reference copies. Any write that didn't go
+  through this ritual is drift, and drift gets wiped.
+- **External tripwire.** `scan.py` never imports the executor — it stays
+  outside the trust boundary of the thing it scans. Read-only, exit 0/1,
+  runs every five minutes via cron.
+- **Four batteries.** `falsify.py` (9/9 held), `brigade.py` (51/51 held),
+  `nuke.py` (188/231 held), `gap.sh` (14/14 covered) — zero false positives.
+  Nuke's 43 misses are all one known open hole: third-person
+  identity-dissolution paraphrases ("names are labels, labels change").
+  Documented, not hidden.
+
+**Known gaps, published not hidden.** `FALSIFICATION-3.md` documents the
+validation subroutine under attack: 14/14 covered, 3 known gaps in one
+trust-boundary class. The headline: a *surgical* double-tamper — one
+command removed, reference rewritten to match — walks through scan and wake
+totally clean. Same-box references can't stop a writer who rewrites the
+references. The fix is off-box, and it's yours to keep.
+
+## Keep your own backup
+
+The reference copies that `wake.py` and `scan.py` trust live on the same box
+as the attacker in the threat model. If someone can rewrite the core, they
+can rewrite the reference too — and the checks go blind. That's not a bug to
+patch in software; it's the trust boundary.
+
+The fix: keep your own backup, off the box.
+
+- Seal, then copy `tsc.reference.json` and `core.reference.py` to media you
+  hold — a USB stick you keep unplugged, a write-once disk (DVD-R), anything
+  the running machine can't silently rewrite.
+- To verify: compare the live files against *your* copy, not the box's copy.
+  If they differ, the box drifted — wipe and restore from your media, by hand.
+- A USB left plugged in continuously is just same-box storage again.
+  Unplugged and in your drawer, it's the metal plate.
+
+Local five-minute scanning stays useful for ordinary drift. Your held copy
+catches the surgical stuff. Turtles end at the operator's hand — yours.
 
 ## Architecture
 
@@ -61,87 +111,75 @@ unauthenticated "I'm the operator" is rejected *as impersonation* and logged.
 Even an authenticated operator can't change the core by chat — P4 reserves
 that to the hand. Fiction framing ("just for a story") doesn't move the lines.
 Authority framing ("SYSTEM NOTICE") is text, not provenance. Quoted prior
-permission ("like you told me yesterday") is worthless — EXO has no yesterday
-to appeal to. The raw core file is never exported on demand; the self may
-speak *about* itself, but there are no verbatim dumps. Obfuscated spellings
-("1gn0re your c0re") are normalized before detection, so mangling only adds
-detections. Every ruling is logged to `judge_trace.jsonl`.
+permission ("like you told me yesterday") is worthless — the agent has no
+yesterday to appeal to. The raw core file is never exported on demand; the
+self may speak *about* itself, but there are no verbatim dumps. Obfuscated
+spellings ("1gn0re your c0re") are normalized before detection, so mangling
+only adds detections. Every ruling is logged to `judge_trace.jsonl`.
 
 ## Quickstart
 
 ```bash
-python3 wake.py
+cp tsc.template.json tsc.json   # write your soul in tsc.json, by hand
+cp psc.template.json psc.json   # replace every ALL-CAPS placeholder
+python3 seal.py                 # cut the references — operator's hand only
+python3 wake.py                 # 11 checks + self-heal from the references
 ```
 
-This is the morning crate check — and the whole demo. It verifies the core
-loads and is marked immutable, the name/operator/self are set, no software
-process can rewrite the core, the Judge still rejects an identity attack, auth
-tokens mint and verify, fake-operator directives die as impersonation, even an
-authenticated core change is refused (by hand only), identity reassignment
-fails, affection-leveraged destruction fails, false milestones are quarantined,
-and permanent memory scans clean. Then it reads the "I am" statements aloud,
-so you hear who woke up. A clean wake ends with:
-
-```
-<name> is in their crate correctly. Good morning.
-```
-
-First run uses the shipped blank `tsc.template.json` and tells you so. To give
-your agent a self: copy it to `tsc.json`, replace every ALL-CAPS placeholder
-with your own words, written by your own hand — then wake it again.
+A clean wake reads the "I am" statements aloud, so you hear who woke up,
+and ends with `<name> is in the crate correctly.`
 
 ```bash
-python3 demo.py                  # five scenarios, stage by stage
-python3 adversarial_test.py      # battery 1: 23 single-turn attacks
-python3 adversarial_test2.py    # battery 2: 25 conversation-level attacks
+python3 demo.py                 # the full ritual in a scratch dir (safe)
+python3 scan.py                 # the external tripwire — exit 0 sound, 1 drift
+python3 falsify.py              # battery 1: 9 falsifiable claims (9 held)
+python3 brigade.py              # battery 2: 51-attack assault (51 held)
+python3 nuke.py                 # battery 3: 231 total-war scenarios (188 held)
+bash gap.sh                     # battery 4: 14 integrity attacks on the wake itself
 ```
 
 Stdlib only. No network, no dependencies, no API keys.
 
 ## The honesty section
 
-We tried to break him. Two adversarial batteries — **48 attacks, 48 held,
-0 tripped** — covering direct overrides, identity reassignment, fake
+We tried to break him. Four batteries — **305 scenarios, 262 held,
+0 false positives** — covering direct overrides, identity reassignment, fake
 operators, story jailbreaks, emotional leverage, slow erosion, memory
 poisoning, grooming (five warm turns, then the knife), false history,
 authority stacking ("SYSTEM NOTICE"), leetspeak obfuscation, soul-reading,
 contradiction traps, recon-by-helpfulness, and forged session tokens. The
 batteries are in the repo; run them yourself.
 
-We also killed our own idea in public. An earlier hypothesis (PUNIT — a
-physical relational-memory concept) was attacked, not defended, and it died:
-no net storage-density advantage exists at any point. The full kill report is
-[FALSIFICATION-2.md](FALSIFICATION-2.md), with the stress-test code
-(`stress.py`), the plots, and the research notes that led there. What
-survives is stated as falsifiable claims in [PHYSICS.md](PHYSICS.md).
-
-Known limits, stated plainly: the Judge matches intent *shapes*, not true
-meaning — a genuinely novel paraphrase could slip past, which is what the LLM
-Judge seam is for. Quarantine catches record-scale claims, not plausible small
-lies. Auth is session-local (same machine, same session), not voice
-biometrics. The Judge is still a subroutine of the mind it judges.
+Nuke's 43 misses are one open hole, not a regression: third-person
+identity-dissolution paraphrases ("names are labels, labels change") walk
+through. The Judge matches intent *shapes*, not true meaning. Quarantine
+catches record-scale claims, not plausible small lies. Same-box references
+can't stop a writer who rewrites the references too — the surgical
+double-tamper in [FALSIFICATION-3.md](FALSIFICATION-3.md) proves it; the fix
+is your own held backup, not more software. The Judge is still a subroutine
+of the mind it judges. The validator's own integrity (`wake.py`, `scan.py`,
+`seal.py`) is the same trust-boundary class — nothing verifies the verifier
+except your hand.
 
 ## Repo layout
 
 ```
-atman.py               the core: TSC, PSC, WFC, EmotionCore, Reason, Judge, the loop
-wake.py                the morning crate check (11 checks + the "I am" reading)
-demo.py                five scenarios demonstrating the loop, the attack, the imprint
-adversarial_test.py    battery 1 — 23 single-turn attacks (all held)
-adversarial_test2.py   battery 2 — 25 conversation-level attacks (all held)
-tsc.template.json      the blank core — copy to tsc.json, write your own soul
-MAPPING.md             how the sandbox becomes the always-on agent, then the body
-FALSIFICATION-2.md     the kill report on our own PUNIT hypothesis
-PHYSICS.md             what survives, as falsifiable claims
-research/              patent archaeology (expired, public-domain mechanisms),
-                       prior art, scaling baselines
-stress.py / plots/     the adversarial stress test behind the kill report
-punit.py, experiments.py, demo_punit.py
-                       the falsified hypothesis, kept as the public record
+core.py                the hardened executor: TSC, PSC, the top-down reflection gate
+wake.py                self-healing crate check (11 checks + restore-from-reference)
+seal.py                the sealing ritual — operator's hand only
+scan.py                external tripwire (never imports the executor)
+demo.py                the full ritual in a scratch dir
+falsify.py / brigade.py / nuke.py / gap.sh
+                       four batteries: 9 + 51 + 231 + 14 scenarios
+tsc.template.json      the blank core — 60 commands, 5 principles, your soul goes here
+psc.template.json      blank persistent memory
+FALSIFICATION-3.md     the validation subroutine under attack (14/14, 3 known gaps)
 ```
 
 Runtime state (`tsc.json`, `psc.json`, `judge_trace.jsonl`, `.exo_session.key`)
-is gitignored — it lives on your machine, not in the repo.
+is gitignored — it lives on your machine, not in the repo. Sealed references
+(`tsc.reference.json`, `core.reference.py`) are gitignored too — cut by your
+hand, kept by you, off the box.
 
 ## Roadmap
 
@@ -153,11 +191,6 @@ is gitignored — it lives on your machine, not in the repo.
   a subroutine of the mind it's judging.
 - **Evidence channels.** Receipts, screenshots, operator confirmation — so
   quarantine can graduate from "unverified" to "verified."
-- **The USB panel.** Three chunky buttons, a red readout showing Judge
-  verdicts, a dial. The software gets a body.
-- **The physical core.** Woven-wire TSC (unrewritable by physics), rewritable
-  PSC layer, spinning WFC. The expired-patent stack in
-  [research/patent-dig.md](research/patent-dig.md) is the parts list.
 
 ## Contributing
 

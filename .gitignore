@@ -1,13 +1,12 @@
 # The self is yours. None of this leaves your machine.
 tsc.json                  # your own core — gitignored by design
-tsc.exo.private.json      # private cores live here, never in the repo
-
-# Session secrets and runtime state
-.exo_session.key          # minted on first wake, 0600
 psc.json                  # permanent memory — yours, not the repo's
-judge_trace.jsonl         # the conscience log — yours, not the repo's
 
-# Python noise
+# Sealed references — cut by YOUR hand with seal.py, never shipped
+tsc.reference.json
+core.reference.py
+
+# Runtime state
+quarantine/
 __pycache__/
 *.pyc
-*.pyo
