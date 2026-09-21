@@ -1,4 +1,4 @@
-# ATMAN — an agent with an immutable self
+# Project ATMaN — an agent with an immutable self
 
 Most AI agents are weather: every prompt can reshape them, every update can
 rewrite who they are. ATMAN starts from the opposite premise — that an agent
