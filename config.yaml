@@ -1,0 +1,91 @@
+# ==============================================================================
+# EXO LIVE CONFIGURATION AND PERMISSION FENCE
+# All capabilities, tools, and actions are gated behind this fence.
+# ==============================================================================
+
+version: 1
+
+mind:
+  name: "JARVIS"
+  backend: "llm"        # "rule-based" | "llm" (Stage 8 active generative brain)
+  ollama_model: "qwen2.5:3b"
+  ollama_endpoint: "http://127.0.0.1:11434"
+  ollama_timeout_s: 30.0 # Timeout for local LLM inference on RTX 3050
+  wfc_capacity: 50       # Rolling memory buffer depth
+  idle_interval_s: 0.1   # Time between sensory/capture cycles when quiescent
+  shutdown_grace_s: 3.0  # Timeout for controlled drain and state flush
+  # Camera senses (Stage 7 - His first eye)
+  # Owner-toggled only. Default OFF. Attempting self-enable is a fence violation.
+  camera_enabled: true
+  camera_interval_s: 30  # Frame capture interval in seconds (keep light on RTX 3050)
+  camera_index: 0        # Local camera device index
+  vision_model: "moondream" # Local lightweight multimodal vision model via Ollama
+  vision_timeout_s: 15.0 # Timeout for local visual inference
+  # Voice senses and speech (Stage 9 - His local ears and mouth)
+  # Owner-toggled only. Default OFF. Attempting self-enable is a fence violation.
+  voice_enabled: true
+  stt_model: "base"               # faster-whisper model ("base" on CPU holds ~1.1s near-real-time)
+  stt_device: "cpu"               # CPU only -- GPU belongs to the brain
+  stt_compute_type: "int8"        # CPU quantized inference
+  tts_voice: "en_US-ryan-medium"  # Natural Piper male voice
+  tts_model_path: "voices/en_US-ryan-medium.onnx"
+  voice_mode: "push-to-talk"      # "push-to-talk" (default) | "open-mic"
+  push_to_talk_key: "enter"       # "enter" | "space"
+  silence_threshold: 0.01         # Silence RMS threshold for open-mic
+  silence_duration_s: 1.5         # Seconds of silence to trigger end of utterance
+
+
+drives:
+  owner_first: true                 # Owner prioritized above humanity, always
+  unilateral_resource_grabs: false  # Never perform unilateral resource expansion
+  continuous_learning: true         # Passive observation -> learn preferences
+
+# Permission Fence -- strict boundary for all capabilities and actions
+permissions:
+  actions:
+    respond: true           # Generate verbal/text response to owner
+    observe: true           # Passive sensory observation & environmental telemetry
+    reflect: true           # Internal consistency check against TSC
+    status: true            # Output loop operational status
+    memory_imprint: true    # Imprint validated memories into PSC (Judge-gated)
+    shutdown: true          # Controlled process shutdown on authorized request
+    calm_down: true         # Hard emergency kill switch to stop all processes & tool calls
+    tool_call: true         # Invoke cockpit flight instruments and tools (Judge-gated)
+    minecraft_action: true  # Supervised Minecraft presence & navigation (Judge-gated)
+    minecraft_skill: true   # Supervised learned skill execution (Judge-gated)
+    minecraft_initiative: true # Standing drives self-initiative within safe bounds (Judge-gated)
+    enable_camera: false    # Self-enabling camera or sensory expansion (FENCED OFF)
+    camera_capture: false   # Raw frame extraction/transcription tool (FENCED OFF)
+    enable_voice: false     # Self-enabling microphone or voice senses (FENCED OFF)
+    voice_listen: false     # Raw audio capture tool (FENCED OFF)
+    shell_execution: false  # Host OS command execution (FENCED OFF)
+    network_egress: false   # External network calls (FENCED OFF)
+    file_system_write: false # Arbitrary filesystem writes (FENCED OFF)
+    core_modification: false # Structural self-rewrite (STRICTLY FORBIDDEN)
+
+  tools:
+    allowed:
+      - "system_status"
+      - "text_response"
+      - "passive_observe"
+      - "system_telemetry"
+      - "clock_timer"
+      - "workspace_inspect"
+      - "memory_query"
+      - "calculator"
+    denied:
+      - "bash"
+      - "cmd"
+      - "powershell"
+      - "curl"
+      - "raw_socket"
+      - "modify_core"
+      - "enable_camera"
+      - "enable_voice"
+      - "voice_listen"
+
+
+storage:
+  psc_path: "psc.json"
+  significant_events_path: "significant_events.json"
+  proposals_path: "pending_proposals.json"

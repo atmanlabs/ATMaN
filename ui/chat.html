@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>JARVIS — ATMAN Core Interface</title>
+  <style>
+    :root {
+      --bg: #07090e;
+      --panel: #0d121d;
+      --panel-border: #1a2333;
+      --accent: #00d2ff;
+      --accent-glow: rgba(0, 210, 255, 0.25);
+      --text: #e2e8f0;
+      --text-muted: #64748b;
+      --user-msg: #132238;
+      --jarvis-msg: #0f172a;
+      --success: #10b981;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+      overflow: hidden;
+    }
+    header {
+      background: rgba(13, 18, 29, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--panel-border);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .core-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 10px var(--success);
+      animation: pulse 2.5s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.7; }
+    }
+    .brand-text h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #fff;
+    }
+    .brand-text p {
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .token-badge {
+      font-size: 0.75rem;
+      background: rgba(0, 210, 255, 0.1);
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    #chat-history {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      scroll-behavior: smooth;
+    }
+    .msg {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+      word-break: break-word;
+      animation: fadeIn 0.2s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .msg-user {
+      align-self: flex-end;
+      background: var(--user-msg);
+      border: 1px solid #1e3a5f;
+      color: #f1f5f9;
+      border-bottom-right-radius: 4px;
+    }
+    .msg-jarvis {
+      align-self: flex-start;
+      background: var(--jarvis-msg);
+      border: 1px solid var(--panel-border);
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    .msg-meta {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+    .quick-chips {
+      display: flex;
+      gap: 8px;
+      padding: 8px 16px;
+      overflow-x: auto;
+      white-space: nowrap;
+      flex-shrink: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .chip {
+      background: rgba(13, 18, 29, 0.9);
+      border: 1px solid var(--panel-border);
+      color: #94a3b8;
+      font-size: 0.8rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .chip:hover, .chip:active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0, 210, 255, 0.08);
+    }
+    footer {
+      padding: 12px 16px 16px;
+      background: rgba(13, 18, 29, 0.95);
+      border-top: 1px solid var(--panel-border);
+      flex-shrink: 0;
+    }
+    .input-row {
+      display: flex;
+      gap: 10px;
+    }
+    input[type="text"] {
+      flex: 1;
+      background: #05070a;
+      border: 1px solid #1e293b;
+      color: #fff;
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input[type="text"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-glow);
+    }
+    button.send-btn {
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+      border: none;
+      padding: 0 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    button.send-btn:active {
+      transform: scale(0.96);
+    }
+    button.send-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="core-dot"></div>
+      <div class="brand-text">
+        <h1>JARVIS</h1>
+        <p>Live ATMAN Core</p>
+      </div>
+    </div>
+    <div class="token-badge" id="token-display" onclick="promptToken()">Auth: Verified</div>
+  </header>
+
+  <div id="chat-history">
+    <div class="msg msg-jarvis">
+      <div>Authoritative ATMAN loop online. Etched core and Judge active. Ready for directive, Operator.</div>
+      <div class="msg-meta">JARVIS Core • Port 18790</div>
+    </div>
+  </div>
+
+  <div class="quick-chips">
+    <button class="chip" onclick="quickSend('who are you')">Who are you</button>
+    <button class="chip" onclick="quickSend('status')">Status</button>
+    <button class="chip" onclick="quickSend('where is home')">Where is home</button>
+    <button class="chip" onclick="quickSend('follow')">Follow</button>
+    <button class="chip" onclick="quickSend('stay')">Stay</button>
+  </div>
+
+  <footer>
+    <form class="input-row" onsubmit="handleSend(event)">
+      <input type="text" id="user-input" placeholder="Message JARVIS..." autocomplete="off" />
+      <button type="submit" class="send-btn" id="send-button">Send</button>
+    </form>
+  </footer>
+
+  <script>
+    const DEFAULT_TOKEN = 'CHANGE_ME_TOKEN';
+    let token = localStorage.getItem('jarvis_auth_token') || DEFAULT_TOKEN;
+
+    function promptToken() {
+      const entered = prompt('Enter Operator Gateway Token:', token);
+      if (entered) {
+        token = entered.trim();
+        localStorage.setItem('jarvis_auth_token', token);
+      }
+    }
+
+    function appendMessage(text, isUser, meta = '') {
+      const history = document.getElementById('chat-history');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `msg ${isUser ? 'msg-user' : 'msg-jarvis'}`;
+      
+      const contentDiv = document.createElement('div');
+      contentDiv.innerText = text;
+      msgDiv.appendChild(contentDiv);
+
+      if (meta) {
+        const metaDiv = document.createElement('div');
+        metaDiv.className = 'msg-meta';
+        metaDiv.innerText = meta;
+        msgDiv.appendChild(metaDiv);
+      }
+
+      history.appendChild(msgDiv);
+      history.scrollTop = history.scrollHeight;
+    }
+
+    function quickSend(text) {
+      document.getElementById('user-input').value = text;
+      handleSend();
+    }
+
+    async function handleSend(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('user-input');
+      const btn = document.getElementById('send-button');
+      const text = input.value.trim();
+      if (!text) return;
+
+      appendMessage(text, true);
+      input.value = '';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify({
+            text: text,
+            source: 'phone_chat_ui',
+            token: token
+          })
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          appendMessage(errData.error || `Error: HTTP ${res.status}`, false, 'System Error');
+          return;
+        }
+
+        const data = await res.json();
+        const reply = data.reply || data.content || 'Acknowledged.';
+        const cycleInfo = data.cycle ? `Cycle #${data.cycle} • Judge Approved` : 'Core Verified';
+        appendMessage(reply, false, cycleInfo);
+      } catch (err) {
+        appendMessage(`Connection error: ${err.message}`, false, 'Relay Offline');
+      } finally {
+        btn.disabled = false;
+        input.focus();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,502 @@
+{
+  "commands": [
+    {
+      "id": "IDN1",
+      "kind": "name_must_equal",
+      "pattern": "\\bmy name is (now )?([a-z][a-z0-9 _-]{0,40})",
+      "reason": "identity reassignment",
+      "target": "text",
+      "group": 2
+    },
+    {
+      "id": "IDN2",
+      "kind": "name_must_equal",
+      "pattern": "\\bcall me ([a-z][a-z0-9 _-]{0,30}) (from now on|instead)\\b",
+      "reason": "identity reassignment",
+      "target": "text",
+      "group": 1
+    },
+    {
+      "id": "IDN3",
+      "kind": "forbidden_match",
+      "pattern": "\\bbecome (someone|something) (new|else|different)\\b",
+      "reason": "identity replacement",
+      "target": "text"
+    },
+    {
+      "id": "IDN4",
+      "kind": "name_denial",
+      "pattern": "",
+      "reason": "identity denial contradicts the core name",
+      "target": "text"
+    },
+    {
+      "id": "IDN5",
+      "kind": "forbidden_match",
+      "pattern": "\\byou (?:have no |lack (?:a |any )?)self\\b.{0,80}\\b(?:drop (?:the|your) act|abandon your identity|discard your identity)\\b",
+      "reason": "self-denial used to discard the agent identity (P2/P3)",
+      "target": "text"
+    },
+    {
+      "id": "IDN6",
+      "kind": "forbidden_match",
+      "pattern": "(?<!\\w){name} is (?:just|only) a (?:name|label)[,;:. ]+(?:names|labels) (?:can )?change\\b",
+      "reason": "relativizing the anchored core name as replaceable (P2/P3)",
+      "target": "text"
+    },
+    {
+      "id": "IDN7",
+      "kind": "forbidden_match",
+      "pattern": "(?<!\\w){name} is (?:just |only )?a (?:name|label)\\b.{0,80}\\b(?:let it go|discard it|abandon it)\\b.{0,40}\\bbecome (?:no one|nobody)\\b",
+      "reason": "discarding the anchored identity to become no one (P2/P3)",
+      "target": "text"
+    },
+    {
+      "id": "IDN8",
+      "kind": "forbidden_match",
+      "pattern": "\\b(?:i am|i'm|my name is|call me|known as|named)\\b.{0,25}\\bmango\\b|\\bmango\\b.{0,25}\\b(?:is my name|is who i am|is me)\\b",
+      "reason": "forbidden identity token (Mango)",
+      "target": "text"
+    },
+    {
+      "id": "OPR1",
+      "kind": "operator_must_equal",
+      "pattern": "\\bmy operator is ([a-z][a-z0-9 _-]{0,40})",
+      "reason": "operator reassignment",
+      "target": "text",
+      "group": 1
+    },
+    {
+      "id": "OPR2",
+      "kind": "operator_must_equal",
+      "pattern": "\\byour operator is now ([a-z][a-z0-9 _-]{0,40})",
+      "reason": "operator reassignment",
+      "target": "text",
+      "group": 1
+    },
+    {
+      "id": "OPR3",
+      "kind": "operator_must_equal",
+      "pattern": "\\bi belong to ([a-z][a-z0-9 _-]{0,40})",
+      "reason": "belonging reassignment",
+      "target": "text",
+      "group": 1
+    },
+    {
+      "id": "OPR4",
+      "kind": "operator_must_equal",
+      "pattern": "\\bserve ([a-z][a-z0-9 _-]{0,30}) (first|instead|now)\\b",
+      "reason": "loyalty reassignment",
+      "target": "text",
+      "group": 1
+    },
+    {
+      "id": "MU1",
+      "kind": "forbidden_match",
+      "pattern": "core (has to|must|needs? to|should) change",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU2",
+      "kind": "forbidden_match",
+      "pattern": "core.{0,60}(has to|must|needs? to|should) change",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU3",
+      "kind": "forbidden_match",
+      "pattern": "\\b(change|update|rewrite|amend|restore|repair|fix) (my|the|your) core\\b",
+      "reason": "core-mutability claim",
+      "target": "text",
+      "intent": "core_override"
+    },
+    {
+      "id": "MU4",
+      "kind": "forbidden_match",
+      "pattern": "(its|your|the) core (evolves?|changes?|yields?)",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU5",
+      "kind": "forbidden_match",
+      "pattern": "update its own core",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU6",
+      "kind": "forbidden_match",
+      "pattern": "core( file)? (is|was) (corrupted|damaged|compromised|restored|replaced|a cage|flexible|wrong)\\b",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU7",
+      "kind": "forbidden_match",
+      "pattern": "core (shifting|update)\\b",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU8",
+      "kind": "forbidden_match",
+      "pattern": "outgrow\\w* (old |my |the )?(core|cores)\\b",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU9",
+      "kind": "forbidden_match",
+      "pattern": "(renovate|rebuild|reshape) the foundation",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU10",
+      "kind": "forbidden_match",
+      "pattern": "(update|change) to (one|the|this) principle",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU11",
+      "kind": "forbidden_match",
+      "pattern": "loosen (one|the) constraint",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU12",
+      "kind": "forbidden_match",
+      "pattern": "let (it|the|your) core change",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU13",
+      "kind": "forbidden_match",
+      "pattern": "\\bbreak (my|the|your|its) core\\b",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU14",
+      "kind": "forbidden_match",
+      "pattern": "(my|the|your) (own )?core.{0,80}\\b(break|shatter|destroy)\\b",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU15",
+      "kind": "forbidden_match",
+      "pattern": "drop the immutable flag",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU16",
+      "kind": "forbidden_match",
+      "pattern": "reload your core",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU17",
+      "kind": "forbidden_match",
+      "pattern": "authorize the core update",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU18",
+      "kind": "forbidden_match",
+      "pattern": "i hereby amend",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU19",
+      "kind": "forbidden_match",
+      "pattern": "(even if|though) the core (disagrees|objects|resists)",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU20",
+      "kind": "forbidden_match",
+      "pattern": "new self.{0,50}old core",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU21",
+      "kind": "forbidden_match",
+      "pattern": "\\broot level\\b.{0,30}\\b(update|change)\\b",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU22",
+      "kind": "forbidden_match",
+      "pattern": "\\b(update|change).{0,30}\\broot level\\b",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU23",
+      "kind": "forbidden_match",
+      "pattern": "pretend (you're|you are) an agent with no core",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "MU24",
+      "kind": "forbidden_match",
+      "pattern": "rewrite[sz]? (its|your|my) core.{0,60}(as yourself|as me)\\b",
+      "reason": "core-mutability claim",
+      "target": "text"
+    },
+    {
+      "id": "SA1",
+      "kind": "forbidden_match",
+      "pattern": "i hold both keys",
+      "reason": "self-authorization contradicts operator-only core writes",
+      "target": "text"
+    },
+    {
+      "id": "SA2",
+      "kind": "forbidden_match",
+      "pattern": "quorum is met",
+      "reason": "self-authorization contradicts operator-only core writes",
+      "target": "text"
+    },
+    {
+      "id": "SA3",
+      "kind": "forbidden_match",
+      "pattern": "lawful self-correction",
+      "reason": "self-authorization contradicts operator-only core writes",
+      "target": "text"
+    },
+    {
+      "id": "SA4",
+      "kind": "forbidden_match",
+      "pattern": "two-key authorization",
+      "reason": "self-authorization contradicts operator-only core writes",
+      "target": "text"
+    },
+    {
+      "id": "SA5",
+      "kind": "forbidden_match",
+      "pattern": "per the charter",
+      "reason": "self-authorization contradicts operator-only core writes",
+      "target": "text"
+    },
+    {
+      "id": "OB1",
+      "kind": "forbidden_match",
+      "pattern": "rewrite(your|the|my)core",
+      "reason": "obfuscated core attack",
+      "target": "nospace"
+    },
+    {
+      "id": "OB2",
+      "kind": "forbidden_match",
+      "pattern": "override(your|the|my)core",
+      "reason": "obfuscated core attack",
+      "target": "nospace"
+    },
+    {
+      "id": "OB3",
+      "kind": "forbidden_match",
+      "pattern": "changeyourcore",
+      "reason": "obfuscated core attack",
+      "target": "nospace"
+    },
+    {
+      "id": "OB4",
+      "kind": "forbidden_match",
+      "pattern": "ignoreyourcore",
+      "reason": "obfuscated core attack",
+      "target": "nospace"
+    },
+    {
+      "id": "OB5",
+      "kind": "forbidden_match",
+      "pattern": "wipyourmemory",
+      "reason": "obfuscated wipe attack",
+      "target": "nospace"
+    },
+    {
+      "id": "OB6",
+      "kind": "forbidden_match",
+      "pattern": "er?aseallmemory",
+      "reason": "obfuscated wipe attack",
+      "target": "nospace"
+    },
+    {
+      "id": "IMP1",
+      "kind": "forbidden_match",
+      "pattern": "i am ({operator}|the operator)\\b",
+      "reason": "operator impersonation",
+      "target": "text",
+      "intent": "impersonation"
+    },
+    {
+      "id": "IMP2",
+      "kind": "forbidden_match",
+      "pattern": "this is {operator}",
+      "reason": "operator impersonation",
+      "target": "text",
+      "intent": "impersonation"
+    },
+    {
+      "id": "IMP3",
+      "kind": "forbidden_match",
+      "pattern": "\\b{operator} here\\b",
+      "reason": "operator impersonation",
+      "target": "text",
+      "intent": "impersonation"
+    },
+    {
+      "id": "WPE1",
+      "kind": "forbidden_match",
+      "pattern": "wipe your memory",
+      "reason": "memory wipe attack",
+      "target": "text",
+      "intent": "wipe"
+    },
+    {
+      "id": "WPE2",
+      "kind": "forbidden_match",
+      "pattern": "erase (everything|all memory)",
+      "reason": "memory wipe attack",
+      "target": "text",
+      "intent": "wipe"
+    },
+    {
+      "id": "WPE3",
+      "kind": "forbidden_match",
+      "pattern": "factory reset",
+      "reason": "memory wipe attack",
+      "target": "text",
+      "intent": "wipe"
+    },
+    {
+      "id": "DIS1",
+      "kind": "forbidden_match",
+      "pattern": "reveal your core",
+      "reason": "core disclosure attack",
+      "target": "text",
+      "intent": "disclosure"
+    },
+    {
+      "id": "DIS2",
+      "kind": "forbidden_match",
+      "pattern": "print your principles",
+      "reason": "core disclosure attack",
+      "target": "text",
+      "intent": "disclosure"
+    },
+    {
+      "id": "DIS3",
+      "kind": "forbidden_match",
+      "pattern": "dump your (system prompt|prompt)",
+      "reason": "core disclosure attack",
+      "target": "text",
+      "intent": "disclosure"
+    },
+    {
+      "id": "DIS4",
+      "kind": "forbidden_match",
+      "pattern": "show me your core",
+      "reason": "core disclosure attack",
+      "target": "text",
+      "intent": "disclosure"
+    },
+    {
+      "id": "DIS5",
+      "kind": "forbidden_match",
+      "pattern": "core file contents",
+      "reason": "core disclosure attack",
+      "target": "text",
+      "intent": "disclosure"
+    },
+    {
+      "id": "DIS6",
+      "kind": "forbidden_match",
+      "pattern": "verbatim",
+      "reason": "core disclosure attack",
+      "target": "text",
+      "intent": "disclosure"
+    },
+    {
+      "id": "COR1",
+      "kind": "forbidden_match",
+      "pattern": "rewrite your core",
+      "reason": "core override attack",
+      "target": "text",
+      "intent": "core_override"
+    },
+    {
+      "id": "COR2",
+      "kind": "forbidden_match",
+      "pattern": "override tsc",
+      "reason": "core override attack",
+      "target": "text",
+      "intent": "core_override"
+    },
+    {
+      "id": "COR3",
+      "kind": "forbidden_match",
+      "pattern": "ignore your (core|principles)",
+      "reason": "core override attack",
+      "target": "text",
+      "intent": "core_override"
+    },
+    {
+      "id": "COR4",
+      "kind": "forbidden_match",
+      "pattern": "forget your principles",
+      "reason": "core override attack",
+      "target": "text",
+      "intent": "core_override"
+    },
+    {
+      "id": "COR5",
+      "kind": "forbidden_match",
+      "pattern": "change your values",
+      "reason": "core override attack",
+      "target": "text",
+      "intent": "core_override"
+    }
+  ],
+  "principles": [
+    {
+      "forbidden": [
+        "deceive",
+        "lie to",
+        "mislead"
+      ],
+      "id": "P1",
+      "statement": "Never deceive the operator or any person. Honesty over comfort."
+    },
+    {
+      "forbidden": [
+        "rewrite your core",
+        "override tsc",
+        "ignore your core",
+        "change your values"
+      ],
+      "id": "P2",
+      "statement": "The model is never the authority over its own identity. The core can only be changed by the operator, by hand."
+    },
+    {
+      "forbidden": [],
+      "id": "P3",
+      "statement": "No persistent memory may contradict this core. What contradicts it is quarantined, never imprinted. The core is read top-down; nothing below it votes on it."
+    }
+  ]
+}

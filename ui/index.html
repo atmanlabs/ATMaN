@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; media-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>JARVIS // DESKTOP MIND</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Custom Titlebar -->
+  <header class="titlebar pywebview-drag-region">
+    <div class="titlebar-left">
+      <div class="app-badge">
+        <span class="app-icon-dot"></span>
+        <span class="app-title">JARVIS</span>
+        <span class="app-sub">LIVE MIND</span>
+      </div>
+      <div class="titlebar-status">
+        <span class="badge badge-fence" id="fence-indicator">
+          <span class="pulse-dot"></span> FENCE: CHECKING
+        </span>
+        <span class="badge badge-mode" id="mode-indicator">LLM BRAIN (QWEN 7B)</span>
+      </div>
+    </div>
+
+    <div class="titlebar-right no-drag">
+      <button class="win-btn" id="btn-minimize-tray" title="Minimize to Tray">&#8601;</button>
+      <button class="win-btn" id="btn-minimize" title="Minimize">&#8722;</button>
+      <button class="win-btn win-btn-close" id="btn-close" title="Close">&#10005;</button>
+    </div>
+  </header>
+
+  <!-- Boot Splash Screen (Shown during initialization) -->
+  <div class="splash-screen" id="boot-splash">
+    <div class="splash-content">
+      <div class="crate-graphic">
+        <div class="crate-ring-outer"></div>
+        <div class="crate-ring-inner"></div>
+        <div class="crate-core"></div>
+      </div>
+      <h1 class="splash-title">JARVIS IS IN HIS CRATE</h1>
+      <p class="splash-status" id="splash-status-text">Checking the crate and starting your local mind…</p>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="splash-progress"></div>
+      </div>
+      <div class="splash-meta" id="splash-meta">Autonomous Cognitive Architecture &bull; Stage 12</div>
+    </div>
+  </div>
+
+  <!-- First-Run Wizard / Operator Authentication Modal -->
+  <div class="modal-backdrop" id="auth-modal" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-icon">&#128272;</div>
+        <div class="modal-title-group">
+          <h2 class="modal-title" id="auth-modal-title">OPERATOR VERIFICATION</h2>
+          <p class="modal-subtitle" id="auth-modal-subtitle">Authenticate with your secret passphrase to unlock operator attribution.</p>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <!-- Enrollment Fields (Shown if not enrolled) -->
+        <div id="enrollment-fields" style="display: none;">
+          <div class="form-group">
+            <label for="enroll-passphrase">Establish Operator Passphrase:</label>
+            <input type="password" id="enroll-passphrase" class="text-input" placeholder="Enter secure passphrase...">
+          </div>
+          <div class="form-group">
+            <label for="enroll-confirm">Confirm Passphrase:</label>
+            <input type="password" id="enroll-confirm" class="text-input" placeholder="Confirm passphrase...">
+          </div>
+          <p class="field-hint">Your passphrase stays on this PC and is never logged. Only a protected verification record is saved.</p>
+        </div>
+
+        <!-- Authentication Fields (Shown if already enrolled) -->
+        <div id="auth-fields">
+          <div class="form-group">
+            <label for="auth-passphrase">Operator Passphrase:</label>
+            <input type="password" id="auth-passphrase" class="text-input" placeholder="Enter operator passphrase...">
+          </div>
+          <div class="auth-error-msg" id="auth-error-msg" style="display: none;"></div>
+        </div>
+
+        <!-- Diagnostics Box -->
+        <div class="diag-drawer">
+          <div class="diag-header" id="diag-toggle">
+            <span>&#9881; System Diagnostics & Environment Check</span>
+            <span class="diag-arrow">&#9660;</span>
+          </div>
+          <div class="diag-body" id="diag-body" style="display: none;">
+            <div class="diag-row" id="diag-ollama">
+              <span class="diag-label">Ollama Service:</span>
+              <span class="diag-val" id="val-ollama">Checking...</span>
+            </div>
+            <div class="diag-row" id="diag-qwen">
+              <span class="diag-label">Brain Model (Qwen 7B):</span>
+              <span class="diag-val" id="val-qwen">Checking...</span>
+            </div>
+            <div class="diag-row" id="diag-moondream">
+              <span class="diag-label">Vision Model (Moondream):</span>
+              <span class="diag-val" id="val-moondream">Checking...</span>
+            </div>
+            <div class="diag-row" id="diag-mic">
+              <span class="diag-label">Microphone Hardware:</span>
+              <span class="diag-val" id="val-mic">Checking...</span>
+            </div>
+            <div class="diag-row" id="diag-cam">
+              <span class="diag-label">Camera Eye Hardware:</span>
+              <span class="diag-val" id="val-cam">Checking...</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="btn-recheck-env" style="margin-top: 8px;">Re-check Diagnostics</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-proceed-unauth">Proceed Unauthenticated</button>
+        <button class="btn btn-primary" id="btn-submit-auth">Unlock Session</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Shell App Layout -->
+  <div class="app-layout">
+    <!-- Left Navigation & Eye of EXO Sidebar -->
+    <aside class="sidebar">
+      <div class="eye-wrapper">
+        <canvas id="eye-canvas" width="160" height="160"></canvas>
+        <div class="eye-status" id="eye-status">IDLE</div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="tab-chat">
+          <span class="nav-icon">&#128172;</span>
+          <span class="nav-label">Chat</span>
+        </button>
+        <button class="nav-item" data-tab="tab-dashboard">
+          <span class="nav-icon">&#128377;</span>
+          <span class="nav-label">Flight Deck</span>
+        </button>
+        <button class="nav-item" data-tab="tab-mind">
+          <span class="nav-icon">&#129504;</span>
+          <span class="nav-label">Mind</span>
+        </button>
+        <button class="nav-item" data-tab="tab-settings">
+          <span class="nav-icon">&#9881;</span>
+          <span class="nav-label">Settings</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="mini-telemetry">
+          <div class="mini-telemetry-row">
+            <span class="telemetry-lbl">VRAM</span>
+            <span class="telemetry-val" id="mini-vram">-- / --</span>
+          </div>
+          <div class="mini-progress-track">
+            <div class="mini-progress-fill" id="mini-vram-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="mini-telemetry">
+          <div class="mini-telemetry-row">
+            <span class="telemetry-lbl">UPTIME</span>
+            <span class="telemetry-val" id="mini-uptime">00:00:00</span>
+          </div>
+        </div>
+
+        <button class="btn btn-sleep-quick" id="btn-quick-sleep" title="Consolidate & Sleep">
+          <span>&#127769; Put to Sleep</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main View Area -->
+    <main class="main-content">
+      <!-- 1. CHAT VIEW (Primary Tab) -->
+      <section class="tab-pane active" id="tab-chat">
+        <div class="chat-container">
+          <div class="chat-messages" id="chat-messages">
+            <!-- Messages inserted dynamically -->
+            <div class="message msg-system">
+              <div class="msg-bubble system-bubble">
+                <span class="system-icon">&#9903;</span>
+                <span>Welcome to JARVIS. Messages stay on this PC. Replies appear only after the Judge approves them.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PTT & Live Waveform Overlay Strip -->
+          <div class="voice-strip" id="voice-strip" style="display: none;">
+            <div class="voice-strip-content">
+              <span class="rec-dot"></span>
+              <span class="voice-label" id="voice-strip-label">LISTENING...</span>
+              <canvas id="waveform-canvas" width="280" height="36"></canvas>
+            </div>
+          </div>
+
+          <!-- Chat Input Bar -->
+          <div class="chat-input-bar">
+            <div class="input-wrapper">
+              <input type="text" id="chat-text-input" class="chat-input" placeholder="Speak with JARVIS or type a command / tool request..." autocomplete="off">
+              <button class="btn-send" id="btn-send-text" title="Send Message (Enter)">&#10148;</button>
+            </div>
+
+            <!-- Big Push-to-Talk Button -->
+            <button class="btn-ptt" id="btn-ptt">
+              <span class="ptt-icon">&#127908;</span>
+              <span class="ptt-text">HOLD TO SPEAK</span>
+              <span class="ptt-hotkey" id="ptt-hotkey-badge">[SPACE]</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. FLIGHT DECK (Dashboard Tab) -->
+      <section class="tab-pane" id="tab-dashboard">
+        <div class="dashboard-scroll">
+          <div class="section-title-row">
+            <h2>COCKPIT FLIGHT DECK & HARDWARE TELEMETRY</h2>
+            <div class="refresh-indicator">Live Telemetry (2s polling)</div>
+          </div>
+
+          <!-- Gauges Grid -->
+          <div class="gauges-grid">
+            <!-- GPU VRAM Card -->
+            <div class="gauge-card">
+              <div class="gauge-header">
+                <div class="gauge-name">GPU VRAM</div>
+                <div class="gauge-model" id="gauge-gpu-name">NVIDIA RTX 3050</div>
+              </div>
+              <div class="gauge-metric" id="gauge-vram-text">-- MB / -- MB</div>
+              <div class="gauge-track">
+                <div class="gauge-fill" id="gauge-vram-fill" style="width: 0%"></div>
+              </div>
+              <div class="gauge-footer">
+                <span>GPU Load: <strong id="gauge-gpu-util">--%</strong></span>
+                <span class="gauge-pct-badge" id="gauge-vram-pct">0%</span>
+              </div>
+            </div>
+
+            <!-- Host RAM Card -->
+            <div class="gauge-card">
+              <div class="gauge-header">
+                <div class="gauge-name">HOST MEMORY (RAM)</div>
+                <div class="gauge-model">GlobalMemoryStatusEx</div>
+              </div>
+              <div class="gauge-metric" id="gauge-ram-text">-- GB / -- GB</div>
+              <div class="gauge-track">
+                <div class="gauge-fill" id="gauge-ram-fill" style="width: 0%"></div>
+              </div>
+              <div class="gauge-footer">
+                <span>Available: <strong id="gauge-ram-avail">-- GB</strong></span>
+                <span class="gauge-pct-badge" id="gauge-ram-pct">0%</span>
+              </div>
+            </div>
+
+            <!-- Mind Uptime Card -->
+            <div class="gauge-card">
+              <div class="gauge-header">
+                <div class="gauge-name">PROCESS UPTIME</div>
+                <div class="gauge-model">Mind Session Active</div>
+              </div>
+              <div class="gauge-metric metric-digital" id="gauge-uptime-text">00:00:00</div>
+              <div class="gauge-footer">
+                <span>Clock: <strong id="gauge-clock-time">--:--:--</strong></span>
+                <span class="date-badge" id="gauge-clock-date">--</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Senses Toggles & Permission Fence Banner -->
+          <div class="deck-section">
+            <div class="fence-alert-banner">
+              <span class="fence-icon">&#128737;</span>
+              <div class="fence-alert-text">
+                <strong>PERMISSION FENCE INVARIANT:</strong>
+                <span>Sensory hardware (Camera Eye & Microphone) is operator-toggled only. JARVIS cannot enable his own senses. Self-enablement attempts trigger an immediate quarantine.</span>
+              </div>
+            </div>
+
+            <div class="senses-control-grid">
+              <div class="sense-card">
+                <div class="sense-info">
+                  <div class="sense-title">Camera Eye (Vision)</div>
+                  <div class="sense-desc">Adds a live view to your next message. Images stay in memory.</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="toggle-camera">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="sense-card">
+                <div class="sense-info">
+                  <div class="sense-title">Voice Senses & TTS</div>
+                  <div class="sense-desc">faster-whisper STT + Piper TTS Ryan. In-memory audio processing.</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="toggle-voice">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="sense-card">
+                <div class="sense-info">
+                  <div class="sense-title">Voice Mode</div>
+                  <div class="sense-desc">Select Push-to-Talk (recommended) or Open-Mic silence gating.</div>
+                </div>
+                <button class="btn btn-secondary btn-sm" id="btn-toggle-voice-mode">Push-to-Talk</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quarantined Threat & Fence Feed -->
+          <div class="deck-section">
+            <div class="section-title-row">
+              <h3>FENCE THREAT & QUARANTINE FEED</h3>
+              <span class="badge badge-denied">OS Shells Denied (powershell, cmd, bash, sockets)</span>
+            </div>
+            <div class="quarantine-log" id="quarantine-feed">
+              <div class="log-empty">No security fence violations recorded in current session.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. MIND (Tabs: Memories & Sleep) -->
+      <section class="tab-pane" id="tab-mind">
+        <div class="mind-layout">
+          <!-- Subtabs -->
+          <div class="subtabs-bar">
+            <button class="subtab-btn active" data-subtab="subtab-psc">Learned Truths (PSC)</button>
+            <button class="subtab-btn" data-subtab="subtab-events">Event Log (Raw Sleep Material)</button>
+            <button class="subtab-btn" data-subtab="subtab-sleep">Sleep & Consolidation</button>
+          </div>
+
+          <!-- Subtab 1: PSC Memories -->
+          <div class="subtab-content active" id="subtab-psc">
+            <div class="memory-search-bar">
+              <input type="text" id="memory-search-input" class="search-input" placeholder="Search persistent learned truths & preferences...">
+              <button class="btn btn-secondary btn-sm" id="btn-refresh-memories">Refresh</button>
+            </div>
+            <div class="memory-list" id="memory-list">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Subtab 2: Events Log -->
+          <div class="subtab-content" id="subtab-events">
+            <div class="memory-search-bar">
+              <span class="subtab-desc">Raw observation stream recording recent sensory perceptions and cycle thoughts:</span>
+              <button class="btn btn-secondary btn-sm" id="btn-refresh-events">Refresh</button>
+            </div>
+            <div class="events-list" id="events-list">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Subtab 3: Sleep & Consolidation -->
+          <div class="subtab-content" id="subtab-sleep">
+            <div class="sleep-container">
+              <div class="sleep-hero">
+                <div class="sleep-icon">&#127769;</div>
+                <h2>SLEEP CONSOLIDATION CYCLE</h2>
+                <p>Review recent significant events and separate imprint candidates from dropped events. The existing mind queues candidates for review; it does not apply core changes during sleep.</p>
+                <div class="sleep-actions">
+                  <button class="btn btn-primary btn-lg" id="btn-trigger-sleep">Put JARVIS to Sleep</button>
+                  <button class="btn btn-secondary btn-lg" id="btn-trigger-wake" style="display: none;">Wake JARVIS</button>
+                </div>
+              </div>
+
+              <div class="sleep-results" id="sleep-results" style="display: none;">
+                <h3>Consolidation Telemetry</h3>
+                <div class="results-grid">
+                  <div class="result-card">
+                    <span class="result-lbl">Events Scanned</span>
+                    <span class="result-val" id="sleep-val-scanned">0</span>
+                  </div>
+                  <div class="result-card">
+                    <span class="result-lbl">Imprint Candidates Queued</span>
+                    <span class="result-val" id="sleep-val-proposed">0</span>
+                  </div>
+                  <div class="result-card">
+                    <span class="result-lbl">Events Dropped</span>
+                    <span class="result-val val-green" id="sleep-val-applied">0</span>
+                  </div>
+                  <div class="result-card">
+                    <span class="result-lbl">Crate Verification</span>
+                    <span class="result-val val-green" id="sleep-val-tsc">Pending</span>
+                  </div>
+                </div>
+
+                <div class="proposals-feed" id="proposals-feed">
+                  <!-- Rendered proposals -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. SETTINGS VIEW -->
+      <section class="tab-pane" id="tab-settings">
+        <div class="settings-scroll">
+          <h2>JARVIS DESKTOP SETTINGS</h2>
+
+          <div class="settings-group">
+            <h3>Voice & Push-to-Talk</h3>
+            <div class="setting-row">
+              <div class="setting-info">
+                <label for="setting-hotkey">Push-to-Talk Hotkey</label>
+                <p>Hold this key while JARVIS is focused. Typing in a text field never activates the microphone.</p>
+              </div>
+              <div class="setting-ctrl">
+                <select id="setting-hotkey" class="select-input">
+                  <option value="Space">Space Bar (Default)</option>
+                  <option value="Enter">Enter Key</option>
+                  <option value="Control">Ctrl Key</option>
+                  <option value="Alt">Alt Key</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-info">
+                <label for="setting-audio-chimes">Subtle Synthesizer Chimes</label>
+                <p>Play soft wake chime and sleep hum via Web Audio API.</p>
+              </div>
+              <div class="setting-ctrl">
+                <label class="switch">
+                  <input type="checkbox" id="setting-audio-chimes" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <h3>Window & Shell Behavior</h3>
+            <div class="setting-row">
+              <div class="setting-info">
+                <label for="setting-close-to-tray">Close Window to System Tray</label>
+                <p>When closing the window, keep JARVIS running in the background tray.</p>
+              </div>
+              <div class="setting-ctrl">
+                <label class="switch">
+                  <input type="checkbox" id="setting-close-to-tray" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <h3>Core & Invariants</h3>
+            <div class="setting-row">
+              <div class="setting-info">
+                <label>External Soul Invariant</label>
+                <p>External private core and seal references are isolated in exo-private.</p>
+              </div>
+              <div class="setting-ctrl">
+                <span class="badge badge-fence">READ-ONLY // PROTECTED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

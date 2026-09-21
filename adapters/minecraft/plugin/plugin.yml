@@ -1,0 +1,5 @@
+name: JarvisDemonstrations
+version: 1.0.0
+main: JarvisDemonstrations
+api-version: '1.20'
+description: Attributed block, equipment and crafting events for supervised JARVIS learning.

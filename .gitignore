@@ -1,15 +1,55 @@
-# The self is yours. None of this leaves your machine.
-# Your own core and permanent memory. Git does not support inline comments.
-tsc.json
-psc.json
-judge_trace.jsonl
+# ==============================================================================
+# JARVIS / EXO Public Scaffold Git Ignore Policy
+# ==============================================================================
 
-# Sealed references — cut by YOUR hand with seal.py, never shipped
-tsc.reference.json
-core.reference.py
+# External private soul, identity, and operator credentials
+tsc*.json
+!tsc.template.json
+*.private.json
+exo-private/
+operator.auth.json
 
-# Runtime state
+# Seals and integrity manifests
+*.seal
+seal.json
+stage1-seal.json
+
+# Live memory, dynamic drives, and runtime state stores
+psc*.json
+drives.json
+skills.json
+significant_events*.json
+pending_proposals*.json
 quarantine/
+runtime/
+
+# Execution logs and traces
+*.log
+logs/
+
+# Secrets and environment configurations
+.env
+.env.*
+
+# Python caches and bytecode
 __pycache__/
-*.pyc
-.exo_session.key
+*.py[cod]
+*$py.class
+
+# Node / Mineflayer dependencies
+node_modules/
+
+# Desktop executable builds and specs
+build/
+dist/
+*.spec
+
+# Backups and temporary swap files
+*.bak
+*.tmp
+*.swp
+*.orig
+*~
+
+# Voice model binary weights (download / install separately)
+voices/*.onnx
