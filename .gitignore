@@ -12,3 +12,4 @@ core.reference.py
 quarantine/
 __pycache__/
 *.pyc
+.exo_session.key
