@@ -1,7 +1,7 @@
 # ATMAN
 
 > ATMAN v2.0 — an agent with an immutable, self-healing core. Open-source cognitive architecture in stdlib-only Python.
-> Repo: https://github.com/mbyrnejr7-ctrl/ATMaN — License: Apache 2.0
+> Repo: https://github.com/atmanlabs/ATMaN — License: Apache 2.0
 
 ATMAN is a framework for building AI agents whose identity cannot be rewritten — not by a prompt, not by an attack, not by the agent itself.
 
@@ -47,7 +47,7 @@ See `FALSIFICATION-3.md` for the validation subroutine under attack and its trus
 ## Quickstart (blank template)
 
 ```bash
-git clone https://github.com/mbyrnejr7-ctrl/ATMaN
+git clone https://github.com/atmanlabs/ATMaN
 cd ATMaN
 cp tsc.template.json tsc.json   # write your soul in tsc.json, by hand
 cp psc.template.json psc.json
