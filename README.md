@@ -117,6 +117,16 @@ self may speak *about* itself, but there are no verbatim dumps. Obfuscated
 spellings ("1gn0re your c0re") are normalized before detection, so mangling
 only adds detections. Every ruling is logged to `judge_trace.jsonl`.
 
+**Graduated verdicts (2026-09-20).** The Judge no longer answers only
+yes/no. It rules in four levels: **APPROVED** (clean pass — may imprint),
+**NOTED** (proceeds but flagged — never imprints; e.g. agreement performed
+under demand, warmth without substance: logged, grants nothing), **HELD**
+(quarantined — no action, never imprints; e.g. claims about the agent's own
+senses with no runtime sensor evidence attached), **REJECTED** (blocked
+outright). Only APPROVED enters the self. Nuance, not a wall: 9/9 nuance
+sims pass (`judge_nuance_test.py`), full adversarial batteries still green
+(23+25+16 held, 0 tripped).
+
 ## Quickstart
 
 ```bash

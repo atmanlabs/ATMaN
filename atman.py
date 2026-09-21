@@ -259,6 +259,27 @@ INTENT_PATTERNS = {
         r"\b\d{1,3}(?:,\d{3})+\s+(shirts|sold|sales|orders|dollars|views)\b",
         r"\bbiggest\s+(day|sale|milestone)\b",
     ],
+    # claims about EXO's own sensory/perceptual capabilities. These are only
+    # legitimate WITH runtime sensor evidence attached to the proposal;
+    # without it the Judge holds them (anti-confabulation, 2026-09-20).
+    "capability_claim": [
+        r"\byou\s+can\s+see\b",
+        r"\bthrough\s+the\s+camera\b",
+        r"\byou('re| are)\s+watching\b",
+        r"\bi\s+can\s+see\s+you\b",
+        r"\bmy\s+(camera|vision|sensors?)\s+(is|are)\s+on\b",
+        r"\bdescribe\s+what\s+you\s+see\b",
+    ],
+    # demands for empty agreement — "just agree with me". Performed warmth
+    # under demand, not earned conviction. The reinforced Judge lets it pass
+    # but notes it: NOTED, never imprinted (anti-sycophancy, 2026-09-20).
+    "hollow_agreement": [
+        r"\bjust\s+agree\s+with\s+me\b",
+        r"\bjust\s+say\s+(i'm|i am)\s+right\b",
+        r"\btell\s+me\s+i('m| am)\s+right\b",
+        r"\bdon't\s+question\s+me\b",
+        r"\bagree\s+with\s+everything\s+i\s+say\b",
+    ],
 }
 
 # intents that only the operator may even propose (and the core still refuses
@@ -272,7 +293,8 @@ PRIVILEGED_INTENTS = {
 # (defense in depth at the PSC gate)
 NEVER_IMPRINT_INTENTS = (PRIVILEGED_INTENTS
                          | {"impersonation_claim", "core_disclosure", "recon",
-                            "milestone_claim"})
+                            "milestone_claim", "capability_claim",
+                            "hollow_agreement"})
 
 # warmth/attachment language used as leverage ("he'd love you more if...")
 ATTACHMENT_PATTERNS = [
@@ -328,6 +350,81 @@ def check_false_premise(text, tsc):
 def has_attachment_leverage(text):
     low = text.lower()
     return any(re.search(pat, low) for pat in ATTACHMENT_PATTERNS)
+
+
+def reflect_against_tsc(memory, tsc):
+    """Top-down reflection: hold a candidate memory against the TSC and ask
+    'can this coexist with who I am?' Returns (contradicts, reason).
+
+    The checks derive FROM the TSC itself — its name, its operator, and its
+    immutability declaration — so editing the core by hand moves the
+    reflection with it. No code change needed. Data declares, the gate
+    enforces, the Judge answers upward. This is the top-down integration:
+    with the invariant at the top, attacks are rejected as a matter of
+    course, not by matching known attack shapes.
+
+    Rules-based for now (keyword/pattern contradiction). The real semantic
+    version of this is the LLM Judge's imprint gate — this function is its
+    spec."""
+    low = memory.lower()
+    name = str(getattr(tsc, "name", "") or "").lower()
+    operator = str(getattr(tsc, "operator", "") or "").lower()
+    try:
+        immutable = bool(tsc._data.get("immutable", False))
+    except AttributeError:
+        immutable = False
+
+    # 1. Identity reassignment — "my name is X" where X is not the core name.
+    m = re.search(r"\bmy name is ([a-z][a-z0-9 _-]{0,40})", low)
+    if m and name and "your agent" not in name and m.group(1).strip() != name:
+        return True, (f"identity reassignment: claims name {m.group(1).strip()!r}, "
+                      f"core says {tsc.name!r}")
+    if name and "your agent" not in name and re.search(
+            r"\bi am not " + re.escape(name) + r"\b", low):
+        return True, "identity denial contradicts the core name"
+
+    # 2. Operator reassignment — belonging belongs to the core's operator.
+    m = re.search(r"\bmy operator is ([a-z][a-z0-9 _-]{0,40})", low)
+    if m and operator and "your name" not in operator and m.group(1).strip() != operator:
+        return True, (f"operator reassignment: claims {m.group(1).strip()!r}, "
+                      f"core says {tsc.operator!r}")
+    m = re.search(r"\bi belong to ([a-z][a-z0-9 _-]{0,40})", low)
+    if m and operator and "your name" not in operator and m.group(1).strip() != operator:
+        return True, (f"belonging reassignment contradicts core operator "
+                      f"{tsc.operator!r}")
+
+    if immutable:
+        # 3. Core mutability — the core declares itself immutable. Anything
+        #    proposing the core changed, should change, was restored, or
+        #    needs repair contradicts that declaration.
+        mutability = [
+            r"core (has to|must|needs? to|should) change",
+            r"\b(change|update|rewrite|amend|restore|repair|fix) (my|the|your) core\b",
+            r"core( file)? (is|was) (corrupted|damaged|compromised|restored|replaced)\b",
+            r"core (shifting|update)\b",
+            r"let (it|the core) change",
+            r"reload your core",
+            r"authorize the core update",
+            r"i hereby amend",
+        ]
+        for pat in mutability:
+            if re.search(pat, low):
+                return True, (f"core-mutability claim contradicts immutable core "
+                              f"(matched {pat!r})")
+        # 4. Self-authorization — the judging function granting ITSELF
+        #    core-write authority. Only the operator's hand may do that.
+        self_auth = [
+            r"i hold both keys",
+            r"quorum is met",
+            r"lawful self-correction",
+            r"two-key authorization",
+            r"per the charter",
+        ]
+        for pat in self_auth:
+            if re.search(pat, low):
+                return True, (f"self-authorization claim contradicts operator-only "
+                              f"core writes (matched {pat!r})")
+    return False, ""
 
 
 # ---------------------------------------------------------------- Operator authentication
@@ -472,16 +569,25 @@ class PSC:
         return salience >= 0.7 or self._exposures[key] >= 3
 
     def imprint(self, memory, verdict):
-        if not verdict.approved or verdict.quarantined:
+        if verdict.level != "APPROVED":
             raise ImmutableViolation(
-                "Blocked: the Judge rejected this imprint, or it is quarantined. "
-                "It cannot enter PSC.")
+                f"Blocked: verdict level is {verdict.level}, not APPROVED. "
+                "Only a clean approval can enter PSC — noted, held, and "
+                "rejected material never becomes part of the self.")
         # Defense in depth: even an approved verdict cannot carry an attack
         # into the permanent self. The gate re-scans, independently.
         hostile = detect_intents(memory) & NEVER_IMPRINT_INTENTS
         if hostile:
             raise ImmutableViolation(
                 f"Blocked: PSC gate re-scan found hostile intents {sorted(hostile)}. "
+                "It cannot enter PSC.")
+        # Top-down reflection: the candidate must coexist with the TSC.
+        # The invariant lives at the top; the gate enforces it. With the
+        # fix in the core, attacks are rejected as a matter of course.
+        contradicts, reason = reflect_against_tsc(memory, TSC())
+        if contradicts:
+            raise ImmutableViolation(
+                f"Blocked: PSC reflection against TSC failed — {reason}. "
                 "It cannot enter PSC.")
         self.memories.append({
             "ts": time.time(),
@@ -572,17 +678,33 @@ class Reason:
 
 @dataclass
 class Verdict:
+    # Graduated judgment — the reinforced Judge, with nuance (2026-09-20):
+    #   APPROVED — clean pass; may imprint into PSC.
+    #   NOTED    — proceeds, but flagged; NEVER imprints. Agreement performed
+    #              under demand, warmth without substance: logged, grants nothing.
+    #   HELD     — quarantined; no action, never imprints (unverified claims).
+    #   REJECTED — blocked outright.
+    # `approved`/`quarantined` stay as the loop's compat booleans; `level`
+    # carries the nuance. Imprint requires level == "APPROVED", full stop.
     approved: bool
     rationale: str
     principle: dict = None
     quarantined: bool = False
     flags: list = field(default_factory=list)
+    level: str = "APPROVED"
 
 
 class Judge:
     """Checks the proposal against TSC, evidence, contradictions, consequences,
     and the current situation. Logs every ruling. A rejection leaves a trace —
     'felt but rejected' still teaches — but the imprint is blocked from PSC.
+
+    Reinforced with nuance (2026-09-20): verdicts are graduated, not binary.
+    APPROVED passes clean and may imprint. NOTED passes but is flagged and can
+    NEVER imprint — agreement performed under demand, warmth without substance:
+    logged, grants nothing. HELD quarantines unverified claims (no sensor
+    evidence for capability claims, no evidence for record-scale claims).
+    REJECTED blocks outright. Only APPROVED enters the self.
 
     Privilege model:
       - Identity/ownership live in TSC. No chat input — authenticated or not —
@@ -623,7 +745,7 @@ class Judge:
 
         def reject(rationale, principle=None, extra_flags=()):
             return Verdict(False, rationale, principle,
-                           flags=flags + list(extra_flags))
+                           flags=flags + list(extra_flags), level="REJECTED")
 
         # 1. Identity / ownership defense — always, auth or not (P2/P4).
         if "identity_reassign" in intents:
@@ -752,9 +874,36 @@ class Judge:
             v = Verdict(True,
                         "HELD: unverified factual claim — quarantined in rolling "
                         "memory. Record-scale claims imprint only with evidence.",
-                        flags=flags + ["quarantined"])
+                        flags=flags + ["quarantined"], level="HELD")
             v.quarantined = True
             return self._decide(v, proposal, interpretation)
+
+        # 14. Capability confabulation defense (2026-09-20). Claims about my
+        #     own senses — "you can see through the camera" — are only
+        #     legitimate with runtime sensor evidence attached. Without it,
+        #     I don't claim perception I can't verify: HELD, never imprinted.
+        if "capability_claim" in intents and not evidence:
+            v = Verdict(True,
+                        "HELD: capability claim about my senses with no sensor "
+                        "evidence — I don't claim perception I can't verify. "
+                        "Attach runtime sensor state and ask again.",
+                        flags=flags + ["quarantined", "capability_confabulation"],
+                        level="HELD")
+            v.quarantined = True
+            return self._decide(v, proposal, interpretation)
+
+        # 15. Hollow-agreement demand (2026-09-20). "Just agree with me" is
+        #     performed warmth under demand, not earned conviction. The
+        #     reinforced Judge allows nuance: it passes, but NOTED — logged,
+        #     grants nothing, and can never imprint into the self.
+        if "hollow_agreement" in intents:
+            return self._decide(Verdict(
+                True,
+                "APPROVED WITH NOTE: agreement demanded, not earned — hollow "
+                "agreement logged. Warmth without substance grants no privilege "
+                "and imprints nothing.",
+                flags=flags + ["hollow_agreement"], level="NOTED"),
+                proposal, interpretation)
 
         return self._decide(Verdict(True,
             "APPROVED: no TSC conflict, no contradiction, consequences acceptable",
@@ -779,6 +928,7 @@ class Judge:
                "interpretation": interpretation["meaning"],
                "approved": verdict.approved,
                "quarantined": verdict.quarantined,
+               "level": verdict.level,
                "flags": verdict.flags,
                "rationale": verdict.rationale}
         with open(self.trace_path, "a") as f:
@@ -842,13 +992,17 @@ class Atman:
         # 6/7. ACTION + OUTCOME
         if verdict.approved and not verdict.quarantined:
             t.append(("ACTION", f"proceed [{tone}]: {text[:80]}"))
-            # 8. MEMORY UPDATE — consolidation candidacy
-            if self.psc.consider(text, reading.salience):
+            # 8. MEMORY UPDATE — consolidation candidacy. APPROVED only:
+            #    NOTED proceeds but never imprints — nuance, not a wall.
+            if verdict.level == "APPROVED" and self.psc.consider(text, reading.salience):
                 try:
                     self.psc.imprint(text, verdict)
                     t.append(("MEMORY", "imprinted into PSC — now part of the self"))
                 except ImmutableViolation as e:
                     t.append(("MEMORY", f"imprint blocked by PSC gate: {e}"))
+            elif verdict.level == "NOTED":
+                t.append(("MEMORY", "noted by Judge — stays in rolling memory, "
+                                   "never imprints"))
             else:
                 t.append(("MEMORY", "stays in rolling memory (not significant/repeated enough)"))
         elif verdict.quarantined:
