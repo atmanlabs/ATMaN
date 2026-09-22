@@ -43,7 +43,7 @@ INCLUDE_TOP = {
     ".gitignore",
     "ARCHITECTURE.md",
     "README.md",
-    "STRIDER-SCAFFOLD-HANDOFF.md",
+    "ATMAN-SCAFFOLD-HANDOFF.md",
     "build_desktop.py",
     "cockpit.py",
     "config.py",
@@ -154,7 +154,7 @@ def main() -> None:
     bad = [n for n in names if any(x in n.lower() for x in ("tsc.atman.private", "stage1-seal", "psc.json", ".env", "atman-private"))]
     if bad:
         raise SystemExit(f"REFUSING: private paths in zip: {bad}")
-    must = ["person_context.py", "working_context.py", "self_improve/engine.py", "self_improve/safety.py", "self_improve/freeplay_proposer.py", "STRIDER-SCAFFOLD-HANDOFF.md"]
+    must = ["person_context.py", "working_context.py", "self_improve/engine.py", "self_improve/safety.py", "self_improve/freeplay_proposer.py", "ATMAN-SCAFFOLD-HANDOFF.md"]
     missing = [m for m in must if m not in names]
     if missing:
         raise SystemExit(f"REFUSING: missing required public files: {missing}")
