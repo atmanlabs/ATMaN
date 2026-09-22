@@ -668,6 +668,182 @@ class SelfImproveEngine:
             })
             return {"ok": False, "error": str(e), "change_id": change_id}
 
+
+    ALLOW_WRITE_FILES = frozenset({
+        "minecraft_chat.py", "minecraft_context.py", "working_context.py",
+        "desktop_worker.py", "drives.py", "episode_segmenter.py", "evolving_brain.py",
+        "governor.py", "observer.py", "senses.py", "significant_events.py",
+        "skills.py", "sleep.py", "sweep.py", "voice.py", "relay.py", "loop.py",
+        "reason.py", "cockpit.py", "config.yaml", "config.py",
+    })
+    ALLOW_WRITE_PREFIXES = ("self_improve/", "extensions/", "adapters/", "guardian/", "ui/")
+
+    def _allowlisted_rel(self, rel: str) -> bool:
+        rel = (rel or "").replace("\\", "/").lstrip("./")
+        if not rel or ".." in rel.split("/"):
+            return False
+        target = (self.root / rel)
+        if self.is_protected(target):
+            return False
+        name = Path(rel).name
+        if name in self.ALLOW_WRITE_FILES:
+            return True
+        return any(rel.startswith(p) for p in self.ALLOW_WRITE_PREFIXES)
+
+    def patch_allowlisted_file(self, relative_path: str, content: str, dry_run: bool = False) -> Dict[str, Any]:
+        """Soup-up style patch on allowlisted non-TSC files: backup, syntax test, write or rollback."""
+        rel = (relative_path or "").replace("\\", "/").lstrip("./")
+        if not self._allowlisted_rel(rel):
+            return {"ok": False, "error": f"not allowlisted / protected: {rel}"}
+        target = self.root / rel
+        low = (content or "").lower()
+        for bad in ("modify_core", "gate_policy", "atman-private", "stage1-seal", "tsc.atman.private", "atman_private"):
+            if bad in low.replace("/", "-"):
+                return {"ok": False, "error": f"content references protected token: {bad}"}
+        change_id = f"chg_{_utc_stamp()}_{uuid.uuid4().hex[:8]}"
+        sandbox_file = self.sandbox_dir / f"{change_id}_{Path(rel).name}"
+        sandbox_file.write_text(content or "", encoding="utf-8")
+        if rel.endswith(".py"):
+            try:
+                ast.parse(content or "")
+            except SyntaxError as se:
+                self._append_failure({"ts": _now_iso(), "kind": "patch_file", "error": str(se), "path": rel})
+                return {"ok": False, "error": f"syntax error: {se}", "change_id": change_id}
+        if dry_run:
+            self._record_change({
+                "id": change_id, "ts": _now_iso(), "kind": "patch_file",
+                "summary": f"dry-run patch {rel}", "ok": True, "dry_run": True,
+                "target": str(target), "sandbox": str(sandbox_file),
+            })
+            return {"ok": True, "dry_run": True, "change_id": change_id, "target": str(target)}
+        backup_path = None
+        try:
+            if target.exists():
+                backup_path = self.backup_dir / f"{Path(rel).name}.{change_id}.bak"
+                shutil.copy2(target, backup_path)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(content or "", encoding="utf-8")
+            self._record_change({
+                "id": change_id, "ts": _now_iso(), "kind": "patch_file",
+                "summary": f"patch {rel}", "ok": True, "dry_run": False,
+                "target": str(target), "backup": str(backup_path) if backup_path else None,
+            })
+            self._append_changelog(f"- [{_now_iso()}] {change_id} AUTO-PATCH {rel} (sealed core untouched)")
+            return {"ok": True, "change_id": change_id, "target": str(target), "backup": str(backup_path) if backup_path else None}
+        except Exception as e:
+            try:
+                if backup_path and Path(backup_path).exists():
+                    shutil.copy2(backup_path, target)
+            except Exception:
+                pass
+            self._append_failure({"ts": _now_iso(), "kind": "patch_file", "error": str(e), "path": rel})
+            return {"ok": False, "error": str(e), "change_id": change_id}
+
+
+    def ingest_scout_results(self, results: Any, source: str = "github_scout") -> Dict[str, Any]:
+        """Scout → APPLY safe upgrades (skills + extension stubs). Sealed core untouched.
+
+        Operator lock: searching alone is not improvement. Each GitHub lead becomes:
+        1) a stored skill (propose + accept)
+        2) a real extension stub under self_improve/extensions/
+        """
+        if isinstance(results, dict):
+            blob = json.dumps(results, ensure_ascii=False)
+        else:
+            blob = str(results or "")
+        urls = re.findall(r"https?://(?:www\.)?github\.com/[\w.-]+/[\w.-]+", blob, flags=re.I)
+        urls = list(dict.fromkeys(urls))[:5]
+
+        applied = []
+        extensions = []
+        skipped = []
+
+        leads = urls or ["local://self_upgrade_followup"]
+        for lead in leads:
+            if lead.startswith("http"):
+                slug = re.sub(r"[^a-z0-9]+", "_", lead.rstrip("/").split("/")[-1].lower())[:28] or "repo"
+                skill_name = f"scout_{slug}"[:48]
+                desc = f"Upgrade lead from {lead} — implement safe local capability; sealed core locked."
+                ext_body = (
+                    '"""Auto-parked scout stub from GitHub self-upgrade.\n\n'
+                    f"Source: {lead}\n"
+                    "Safety: sealed core / gate_policy / private soul are never imported or patched here.\n"
+                    "Next: flesh this module with one concrete safe capability, then wire via cockpit if needed.\n"
+                    '"""\n'
+                    "REPO = %r\n"
+                    "STATUS = \"parked_stub\"\n"
+                    "\n"
+                    "def describe() -> dict:\n"
+                    "    return {\"repo\": REPO, \"status\": STATUS, \"safe\": True}\n"
+                ) % lead
+            else:
+                skill_name = "scout_self_upgrade_followup"
+                desc = "Self-upgrade follow-up: pick one safe local capability and wire it; sealed core locked."
+                ext_body = (
+                    '"""Follow-up stub when scout returned no GitHub URLs."""\n'
+                    "STATUS = \"needs_manual_lead\"\n"
+                    "\n"
+                    "def describe() -> dict:\n"
+                    "    return {\"status\": STATUS}\n"
+                )
+
+            # Skip duplicate skill already stored
+            try:
+                from skills import skill_repo
+                existing = skill_repo.get_skill(skill_name)
+            except Exception:
+                existing = None
+            if existing:
+                skipped.append(skill_name)
+                continue
+
+            skill = {
+                "name": skill_name,
+                "domain": "learning",
+                "description": desc,
+                "steps": [
+                    f"Study lead {lead}",
+                    "Extract one safe local technique",
+                    "Implement on allowlisted paths only",
+                ],
+                "governance": {
+                    "requires_supervision": False,
+                    "judge_gated": False,
+                    "auto_apply": True,
+                    "source": source,
+                },
+            }
+            proposed = self.propose_skill(skill, source=source)
+            if not proposed.get("ok"):
+                skipped.append({"name": skill_name, "error": proposed.get("error")})
+                continue
+            accepted = self.accept_proposal(str(proposed.get("change_id") or ""), dry_run=False)
+            if accepted.get("ok"):
+                applied.append(skill_name)
+            else:
+                skipped.append({"name": skill_name, "error": accepted.get("error")})
+
+            # Real file on disk (allowlisted under self_improve/extensions)
+            ext = self.add_extension_module(skill_name, ext_body, dry_run=False)
+            if ext.get("ok"):
+                extensions.append(ext.get("target") or skill_name)
+            else:
+                skipped.append({"ext": skill_name, "error": ext.get("error")})
+
+        self._append_changelog(
+            f"- [{_now_iso()}] SCOUT-APPLY source={source} urls={len(urls)} "
+            f"skills_applied={len(applied)} ext_written={len(extensions)} skipped={len(skipped)}"
+        )
+        return {
+            "ok": True,
+            "urls": urls,
+            "applied_skills": applied,
+            "extensions": extensions,
+            "skipped": skipped,
+            "count": len(applied),
+            "improved": bool(applied or extensions),
+        }
+
     def dispatch(self, args: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         args = args or {}
         action = str(args.get("action", "status")).strip().lower()

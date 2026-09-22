@@ -1,4 +1,4 @@
-﻿"""Working-context snapshot for ATMAN reason stage.
+"""Working-context snapshot for ATMAN reason stage.
 
 Architecture (Operator soup-up Phase 2):
 - TSC system prefix: injected once, cached forever (soul is immutable).
@@ -62,15 +62,31 @@ class WorkingContext:
         slim: List[Dict[str, Any]] = []
         for entry in window:
             ar = entry.get("action_result") or {}
+            intent = str(entry.get("intent") or "")
+            raw = str(entry.get("raw") or "")
             content = ""
             if isinstance(ar, dict):
                 content = str(ar.get("content") or "")[: self.wfc_reply_chars]
+                tool = str(ar.get("tool") or "")
+                # Never let evolve/search SERP poison normal conversation context
+                if tool in ("web_search", "fetch_web") or intent in (
+                    "github_self_upgrade_scout",
+                    "inferred_world_knowledge",
+                    "cockpit_web_search",
+                ):
+                    raw = "[self-evolve/search tick]"
+                    content = (content[:80] if content else "searched") 
+                    if re.search(r"windows\s*1[12]|windows\s*update", content, re.I):
+                        content = "upgrade scout ran"
+            # Camera dumps are huge and derail chat — keep tiny
+            if str(entry.get("source") or "") == "camera" or raw.lower().startswith("visual observation"):
+                raw = "[camera note]"
+                content = content[:60]
             slim.append(
                 {
-                    "raw": str(entry.get("raw") or "")[: self.wfc_raw_chars],
+                    "raw": raw[: self.wfc_raw_chars],
                     "reply": content,
                     "outcome": entry.get("outcome"),
-                    # intentionally omit fat movement_evidence blobs from prompt path
                 }
             )
         return slim

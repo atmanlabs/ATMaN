@@ -128,6 +128,11 @@ class RelayHandler(BaseHTTPRequestHandler):
                 maybe_propose({"mode": "initiative", "source": "initiative_pending", "propose_source": "freeplay_initiative"})
             except Exception as _fp_err:
                 print(f"[FREEPLAY] propose hook skipped: {_fp_err}")
+            try:
+                from self_improve.rolling_evolve import maybe_evolve
+                maybe_evolve({"mode": "initiative", "source": "initiative_pending"})
+            except Exception as _ev_err:
+                print(f"[EVOLVE] rolling tick skipped: {_ev_err}")
             from drives import drive_manager
             from loop import evaluate_judge
             init_action = drive_manager.evaluate_initiative()
@@ -420,6 +425,12 @@ class RelayHandler(BaseHTTPRequestHandler):
                 reply = "I'm right here with you, Operator."
 
             if isinstance(reply, str):
+
+                try:
+                    from reason import naturalize_reply
+                    reply = naturalize_reply(reply)
+                except Exception:
+                    reply = re.sub(r"\s+", " ", reply).strip()
                 reply = re.sub(
                     r"\s*(?:what would you like (?:me )?to (?:do|build|explore|try|work on)|how can i (?:help|assist)|what (?:should|do) you want (?:me )?to do)[^.?!\n]*[.?!\n]?",
                     "",

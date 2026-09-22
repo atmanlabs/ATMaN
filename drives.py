@@ -385,7 +385,7 @@ class DriveManager:
         proposal = {
             "id": f"prop_{title}_{int(time.time())}",
             "timestamp": time.time(),
-            "source": "atman_initiative",
+            "source": "jarvis_initiative",
             "drive": drive_id,
             "title": title,
             "proposal": proposal_text,

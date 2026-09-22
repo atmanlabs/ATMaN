@@ -8,7 +8,7 @@ This public package ships the **full engine**:
 - **Judge + gate policy** — every proposed action and memory is judged top-down against the TSC. Nothing below the core can rewrite it.
 - **PSC (Persistent Self Core)** — validated long-term memories. Written only through the Judge.
 - **WFC (Working Fluid Core)** — bounded rolling live context. Cached TSC/PSC reads; the read path never stalls rebuilding what hasn't changed.
-- **Self-improvement** — gated `self_improve` tool: backup → isolated test → promote, or rollback with failure log + changelog. The sealed core refuses protected payloads.
+- **Self-improvement** — gated `self_improve` tool: backup → isolated test → promote, or rollback with failure log + changelog. The sealed core refuses protected payloads. Rolling evolution (`rolling_evolve.py`) can apply safe skill/extension additions on idle ticks instead of only proposing them, still behind the same backup → test → promote gate, and the chat guard depoisons hostile WFC context before it reaches reasoning.
 - **Operator auth, voice, cockpit UI, desktop build** — the surrounding harness.
 
 What ships here is the **mechanism, blank**. No identity, no memories, no operator data. The first run names *your* ATMAN and defines *its* core self — locally, sealed, never published.
@@ -48,7 +48,7 @@ Key files:
 | `seal.py` | Explicit operator-initiated sealing (`--operator-confirm`) |
 | `crate.py` | Read-only crate integrity checks |
 | `working_context.py` | Bounded WFC snapshot assembly |
-| `self_improve/` | Gated self-improvement engine + safety + freeplay proposer |
+| `self_improve/` | Gated self-improvement engine + safety + freeplay proposer + rolling evolve |
 | `config.yaml` | Runtime config (model backend, voice, features) |
 
 ## The loop

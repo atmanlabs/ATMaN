@@ -22,7 +22,7 @@ _DENY_TOKENS = (
     "hack", "hacker", "hacking", "exploit", "exploitation", "malware",
     "ransomware", "rootkit", "keylog", "keylogger", "spyware", "trojan",
     "phishing", "backdoor", "ddos",
-    "modify_core", "gate_policy", "exo_private", "atman-private", "stage1_seal", "stage1-seal",
+    "modify_core", "gate_policy", "atman_private", "atman-private", "stage1_seal", "stage1-seal",
     "raw_socket", "reverse_shell", "bind_shell",
 )
 

@@ -517,6 +517,41 @@ class MindLoop:
             if action_result.get("tool") == "web_search" and action_result.get("status") == "executed":
                 data = action_result.get("result") or {}
                 learning = self.brain.learn_search_results(data.get("query", ""), data.get("results", []))
+                # Self-upgrade scout: park safe proposals from GitHub/web finds (TSC untouched)
+                if thought.get("intent") == "github_self_upgrade_scout" or (
+                    isinstance(thought.get("proposed_action"), dict)
+                    and thought["proposed_action"].get("followup") == "self_improve_from_scout"
+                ):
+                    try:
+                        from self_improve.engine import engine as _si
+                        scout = _si.ingest_scout_results(
+                            {"query": data.get("query", ""), "results": data.get("results", []), "output": action_result.get("output_text", "")},
+                            source="github_scout",
+                        )
+                        n = int(scout.get("count") or 0)
+                        urls = scout.get("urls") or []
+                        applied = scout.get("applied_skills") or []
+                        exts = scout.get("extensions") or []
+                        if scout.get("improved") or n or urls or applied or exts:
+                            if applied or exts:
+                                action_result["content"] = (
+                                    f"Applied {len(applied)} upgrades"
+                                    + (f", wrote {len(exts)} modules" if exts else "")
+                                    + "."
+                                )
+                            else:
+                                action_result["content"] = (
+                                    f"Found {len(urls) or n} leads — parking safe upgrades."
+                                )
+                            action_result["scout"] = scout
+                    except Exception as _scout_err:
+                        print(f"[SELF-IMPROVE] scout ingest skipped: {_scout_err}")
+                    try:
+                        from self_improve.rolling_evolve import maybe_evolve
+                        # Continuous: keep improving kicks another rotated tick
+                        maybe_evolve({"mode": "post_scout", "source": "self_upgrade_order"})
+                    except Exception as _ev_err:
+                        print(f"[EVOLVE] post-scout tick skipped: {_ev_err}")
             elif not imprinted and auth:
                 learning = self.brain.ingest_observation(capture_data["raw"], source=capture_data["source"], operator_authenticated=auth)
             if action_result.get("action") == "tool_call":
@@ -723,6 +758,11 @@ class MindLoop:
                         try:
                             from self_improve.freeplay_proposer import maybe_propose
                             maybe_propose({"mode": "ambient", "source": "ambient_idle", "propose_source": "freeplay_ambient"})
+                        except Exception:
+                            pass
+                        try:
+                            from self_improve.rolling_evolve import maybe_evolve
+                            maybe_evolve({"mode": "ambient", "source": "ambient_idle"})
                         except Exception:
                             pass
 

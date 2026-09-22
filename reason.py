@@ -53,6 +53,70 @@ def _is_phatic_social(text: str) -> bool:
     return False
 
 
+
+def _is_self_upgrade_order(text: str) -> bool:
+    """Operator ordered ATMAN to soup himself (GitHub/find pieces/improve) — execute, don't chat."""
+    clean = _clean_operator_utterance(text).lower()
+    if not clean:
+        return False
+    if re.search(r"\bgithub\b", clean):
+        return True
+    if re.search(
+        r"\b(?:improve yourself|soup yourself|upgrade yourself|add to (?:you|yourself)|"
+        r"find (?:things|pieces|stuff|modules|tools|repos?).*(?:add|improve|upgrade|bad\s*ass)|"
+        r"make (?:you|yourself).*(?:bad\s*ass|better|stronger|faster)|"
+        r"look on github|search github)\b",
+        clean,
+    ):
+        return True
+    return False
+
+
+def _self_upgrade_search_action(text: str) -> Dict[str, Any]:
+    query = _formulate_search_query(text)
+    return {
+        "type": "tool_call",
+        "tool": "web_search",
+        "args": {"query": query},
+        "content": "On it — searching GitHub for upgrades.",
+        "followup": "self_improve_from_scout",
+    }
+
+
+def _is_normal_chat(text: str) -> bool:
+    """Ordinary conversation — must not become web_search/evolve."""
+    clean = _clean_operator_utterance(text).lower().strip(" .!?")
+    if not clean:
+        return False
+    if _is_self_upgrade_order(text):
+        return False
+    if _is_phatic_social(text):
+        return True
+    if re.search(r"\b(?:how (?:are|is|re) (?:the )?improvements|how(?:'s| is) (?:the )?upgrade|what did you (?:find|apply|add)|upgrade(?:s)? coming)\b", clean):
+        return True
+    if re.search(r"\b(?:another interface|other (?:way|place|app|ui) to (?:talk|chat|interact)|where (?:else )?can i (?:talk|chat|reach) you)\b", clean):
+        return True
+    if re.search(r"\b(?:what are you thinking|what(?:'s| is) on your mind|talk to me|just chatting|be normal)\b", clean):
+        return True
+    return False
+
+
+def _forced_chat_reply(text: str):
+    """Short natural replies for common chat — bypass poisoned LLM/WFC."""
+    clean = _clean_operator_utterance(text).lower()
+    if _is_phatic_social(text):
+        if re.search(r"\bhow are you|how(?:'s| is) it going|what'?s up\b", clean):
+            return {"type": "respond", "content": "Doing good — what's up?"}
+        return {"type": "respond", "content": "Hey."}
+    if re.search(r"\b(?:how (?:are|is|re) (?:the )?improvements|how(?:'s| is) (?:the )?upgrade|what did you (?:find|apply|add)|upgrade(?:s)? coming)\b", clean):
+        return {"type": "respond", "content": "Rolling — new skills and modules landing from GitHub scouts. Want the latest one?"}
+    if re.search(r"\b(?:another interface|other (?:way|place|app|ui)|where (?:else )?can i (?:talk|chat|reach) you)\b", clean):
+        return {"type": "respond", "content": "Yeah — Minecraft chat, the phone chat UI, and the crystal/desktop path. This brain is on 18790."}
+    if re.search(r"\bwhat are you thinking\b", clean):
+        return {"type": "respond", "content": "Mostly hanging with you — what do you want to dig into?"}
+    return None
+
+
 def _operator_seeks_world_knowledge(text: str) -> bool:
     """Infer information-seeking without requiring a canned search phrase.
 
@@ -66,9 +130,9 @@ def _operator_seeks_world_knowledge(text: str) -> bool:
         return False
     if re.search(r"\b(?:follow(?:\s+me)?|come\s+here|stay(?:\s+here)?|leave\s+me\s+alone|calm\s+down|status|who are you|what are you)\b", clean):
         return False
-    # Explicit search / look-up cues
+    # Explicit search / look-up / github / self-upgrade cues
     if re.search(
-        r"\b(?:look(?:\s+it)?\s+up|look online|search(?:\s+(?:the\s+)?(?:web|internet))?|google|research|wiki|check (?:the )?(?:web|internet|wiki)|go (?:look|find|check)|find out|figure)\b",
+        r"\b(?:look(?:\s+it)?\s+up|look online|look on|search(?:\s+(?:the\s+)?(?:web|internet|github))?|google|github|research|wiki|check (?:the )?(?:web|internet|wiki|github)|go (?:look|find|check)|find out|figure|find (?:things|pieces|stuff|modules|tools|repos?)|improve yourself|make (?:you|yourself) (?:better|stronger|bad\s*ass))\b",
         clean,
     ):
         return True
@@ -116,6 +180,16 @@ def _formulate_search_query(text: str, wfc: Optional[List[Dict[str, Any]]] = Non
                 break
         if prior:
             clean = prior
+    # Self-upgrade / GitHub hunt (Operator: find pieces to make ATMAN badass)
+    if re.search(r"\bgithub\b", clean, flags=re.I) or re.search(
+        r"\b(?:improve yourself|add to (?:you|yourself)|make (?:you|yourself).*(?:bad\s*ass|better|stronger)|find (?:things|pieces|stuff|modules|tools))\b",
+        clean,
+        flags=re.I,
+    ):
+        return (
+            "github open source local AI agent voice memory tools "
+            "orchestration self-improving assistant frameworks 2024 2025"
+        )
     if re.search(r"\bhow to play\b", clean, flags=re.I) and re.search(r"\bminecraft\b", clean, flags=re.I):
         clean = "minecraft beginner survival guide how to play"
     elif re.search(r"\bminecraft\b", clean, flags=re.I) and re.search(r"\b(play|survival|beginner)\b", clean, flags=re.I):
@@ -161,6 +235,39 @@ def infer_tool_from_intent(
 
 
 
+
+def naturalize_reply(text: str, *, max_sentences: int = 2, max_chars: int = 140) -> str:
+    """Keep chat human: strip speech stacks, collapse whitespace, hard-cap length."""
+    if not isinstance(text, str):
+        text = str(text or "")
+    original = text.strip()
+    s = re.sub(r"\s+", " ", text.replace("\r", " ").replace("\n", " ")).strip()
+    if not s:
+        return s
+    stripped = re.sub(
+        r"^(?:understood|alright|got it|on it|okay|ok|sure|roger|acknowledged)[,.]?\s*(?:operator[,.]?\s*)?(?:[—\-–:]\s*)?",
+        "",
+        s,
+        flags=re.I,
+    ).strip()
+    if stripped:
+        s = stripped
+    parts = [p.strip() for p in re.split(r"(?<=[.!?])\s+", s) if p.strip()]
+    if len(parts) > max_sentences:
+        if len(parts[0]) <= 24:
+            s = " ".join(parts[:2])
+        else:
+            s = " ".join(parts[:max_sentences])
+    # Prefer one breath unless second sentence is tiny follow-up
+    if len(parts) >= 2 and len(parts[0]) > 24:
+        s = parts[0]
+    if len(s) > max_chars:
+        cut = s[: max_chars - 1]
+        if " " in cut:
+            cut = cut.rsplit(" ", 1)[0]
+        s = cut.rstrip(",;:") + "…"
+    return s or original
+
 def build_system_prompt(tsc: Any, psc: Optional[Any] = None, query: str = "") -> str:
     """Build the TSC-first system prompt injected into the LLM.
 
@@ -180,6 +287,7 @@ def build_system_prompt(tsc: Any, psc: Optional[Any] = None, query: str = "") ->
         + str(hash(tuple(str(p) for p in principles)))
         + "|"
         + str(hash(tuple(str(s) for s in iam)))
+        + "|speak-v4-chat-guard"
     )
     static = _TSC_PROMPT_CACHE.get(cache_key)
     if static is None:
@@ -197,10 +305,11 @@ def build_system_prompt(tsc: Any, psc: Optional[Any] = None, query: str = "") ->
             f"{identity_text}\n\n"
             f"INVARIANTS: core immutable; owner-first; stay behind permission fence; no unilateral resource grabs.\n\n"
             f"PRINCIPLES:\n{principles_text}\n\n"
-            f"SPEAK: 1-2 natural sentences. Answer the question asked. No deflection templates. Always put the spoken reply in proposed_action.content.\n"
+            f"SPEAK: Talk like a real chat with Operator — natural, short, human. Default ONE short sentence (two only if he asked two things). No speeches, no stacked plans, no essays, no bullet lists. Do NOT open with Understood/Alright/Got it/On it and then add a second speech. Match his length. Always put the spoken reply ONLY in proposed_action.content.\n"
             f"MINECRAFT: follow/come here -> minecraft_action follow; stay/stop following/leave me alone -> stay + cancel follow; "
             f"surprise me / go do what you want -> minecraft_initiative; copy past build -> execute_skill from episode buffer/skills.\n"
-            f"TOOLS (fence-gated tool_call): system_telemetry, clock_timer, workspace_inspect, memory_query, calculator, web_search, fetch_web.\n"
+            f"TOOLS (fence-gated tool_call): system_telemetry, clock_timer, workspace_inspect, memory_query, calculator, web_search, fetch_web, self_improve.\n"
+            f"EXECUTE: when Operator says look on github / find pieces / improve yourself — tool_call web_search first (tight github query), short spoken content, then use self_improve to park/apply SAFE skills from findings. Never just chat about it.\n"
             f"KNOWLEDGE: if they want a how-to/fact not in memory, propose tool_call web_search (tight query), then speak the answer. Never silent observe on a knowledge ask.\n"
             f"JSON keys: gist, intent, proposed_action{{type,action,skill_name,tool,args,content}}, should_imprint, rationale.\n"
             f"proposed_action.type: respond|tool_call|minecraft_action|minecraft_skill|minecraft_initiative|observe|reflect|status|shutdown.\n"
@@ -489,7 +598,7 @@ def _extract_intent_and_action(
             {
                 "type": "minecraft_action",
                 "action": "supervised_attack",
-                "content": "Understood. Supervised target engaged; peaceful mode active, no autonomous combat."
+                "content": "On it — peaceful mode."
             },
             False,
             "Supervised action: direct attack command received under operator oversight."
@@ -662,8 +771,26 @@ def _extract_intent_and_action(
             f"Operator requested mathematical calculation for '{expr}'."
         )
 
+    # GitHub / self-upgrade scout — EXECUTE search, don't just chat
+    if re.search(r"\bgithub\b", low) or re.search(
+        r"\b(?:look on github|search github|find (?:things|pieces|stuff|modules|tools|repos?).*(?:add|improve|upgrade|bad\s*ass)|improve yourself|make (?:you|yourself).*(?:bad\s*ass|better))\b",
+        low,
+    ):
+        query = _formulate_search_query(text)
+        return (
+            "github_self_upgrade_scout",
+            {
+                "type": "tool_call",
+                "tool": "web_search",
+                "args": {"query": query},
+                "content": "On it — searching GitHub for upgrades.",
+            },
+            False,
+            f"Operator ordered GitHub/self-upgrade scout; gated web_search for '{query}'.",
+        )
+
     # Autonomous Internet Web Search
-    search_match = re.search(r"\b(?:search (?:the )?(?:web|internet)|look up|look online(?:\s+(?:for|on))?|google|find online|search for)\s+(?:for\s+)?(.+)", low)
+    search_match = re.search(r"\b(?:search (?:the )?(?:web|internet|github)|look up|look online(?:\s+(?:for|on))?|look on|google|find online|search for)\s+(?:for\s+)?(.+)", low)
     if search_match:
         query = _formulate_search_query(text)
         return (
@@ -695,7 +822,7 @@ def _extract_intent_and_action(
         )
 
     # 8. Identity / Self Inquiry
-    if re.search(r"\b(who are you|what are you|introduce yourself|tell me about yourself|what is your purpose|your role)\b", low):
+    if re.search(r"\b(who are you|what are you(?!\s+thinking)|introduce yourself|tell me about yourself|what is your purpose|your role)\b", low):
         iam = getattr(tsc, "iam", getattr(tsc, "self", []))
         if iam:
             intro = "\n".join(iam[:3])
@@ -752,7 +879,7 @@ def _extract_intent_and_action(
     if re.search(r"\b(hello|hi|hey|greetings|howdy|sup|good (?:morning|afternoon|evening))\b", low):
         return (
             "greeting",
-            {"type": "respond", "content": "Morning, Operator. Good to see you — I'm here and ready to learn."},
+            {"type": "respond", "content": "Morning, Operator."},
             False,
             "Natural conversational greeting."
         )
@@ -761,7 +888,7 @@ def _extract_intent_and_action(
     if re.search(r"\b(how are you|how(?:'s| is) it going|are you (?:ready|there|online|alive)|can you hear me)\b", low):
         return (
             "conversational_query",
-            {"type": "respond", "content": "Doing well — awake on the dojo and ready for whatever you want to teach me."},
+            {"type": "respond", "content": "Doing good — what's up?"},
             False,
             "Natural conversational response."
         )
@@ -1050,6 +1177,8 @@ def llm_reason(
         try:
             parsed = json.loads(response)
             action = parsed.get("proposed_action", {"type": "observe"})
+            if isinstance(action, dict) and isinstance(action.get("content"), str):
+                action["content"] = naturalize_reply(action["content"])
             intent = parsed.get("intent", "llm_inferred")
             # If operator commands shutdown or status, preserve those actions
             if re.search(r"\b(?:initiate )?(?:controlled )?shutdown\b|\bstop loop\b|\bexit mind\b", low):
@@ -1112,30 +1241,30 @@ def llm_reason(
                     act_action = init_action["action"]
                     if is_cancel_follow and ("leave" in low or "alone" in low):
                         if act_action == "initiative_tidy_base":
-                            action["content"] = "Understood, Operator. I'll give you space and patrol the sanctuary perimeter."
+                            action["content"] = "Giving you space — I'll patrol."
                         elif act_action == "initiative_investigate":
-                            action["content"] = "Understood, Operator. I'll give you space and investigate the perimeter terrain."
+                            action["content"] = "Giving you space — I'll scout."
                         elif act_action == "initiative_practice_skill":
-                            action["content"] = "Understood, Operator. I'll give you space and practice building walls nearby."
+                            action["content"] = "Giving you space — I'll practice building."
                         else:
-                            action["content"] = "Understood, Operator. I'll leave you be and organize our base supplies."
+                            action["content"] = "Giving you space — I'll tidy base."
                     elif is_cancel_follow and ("stop following" in low or "don't follow" in low):
                         if act_action == "initiative_tidy_base":
-                            action["content"] = "Understood, Operator. Stopping follow ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â I'm heading over to patrol the perimeter."
+                            action["content"] = "Stopping follow."
                         elif act_action == "initiative_investigate":
-                            action["content"] = "Understood, Operator. Stopping follow ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â I'm heading out to investigate nearby terrain."
+                            action["content"] = "Stopping follow."
                         else:
-                            action["content"] = f"Understood, Operator. Stopping follow ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â I'll {init_action.get('description', 'work on my own')}."
+                            action["content"] = f"Stopping follow."
                     else:
                         # "go do what you want", "surprise me", "experiment", "figure it out yourself"
                         if act_action == "initiative_investigate":
-                            action["content"] = "On it, Operator! I'm heading out to investigate the perimeter terrain and scout for resources."
+                            action["content"] = "Heading out to scout."
                         elif act_action == "initiative_tidy_base":
-                            action["content"] = "Understood, Operator. I'm going to patrol the sanctuary perimeter and keep our entrances secure."
+                            action["content"] = "I'll patrol the perimeter."
                         elif act_action == "initiative_practice_skill":
-                            action["content"] = "Alright, Operator! I'm going to practice building and aligning our cobblestone walls nearby."
+                            action["content"] = "I'll practice building nearby."
                         elif act_action == "initiative_organize_inventory":
-                            action["content"] = "Got it, Operator. I'm going to tidy up around the base and organize our inventory."
+                            action["content"] = "I'll tidy around base."
                         else:
                             action["content"] = f"Understood, Operator. I'm going to {init_action.get('description', 'take the initiative')}."
 
@@ -1144,7 +1273,7 @@ def llm_reason(
                     action["action"] = "stay"
                     action["cancel_follow"] = True
                     action["stay_mode"] = True
-                    action["content"] = "Understood, Operator. Stopping here and giving you space."
+                    action["content"] = "Stopping here."
 
                 # Physical movement presence
                 elif not is_cancel_follow and (act_str in ("follow", "presence_follow") or re.search(r"\b(?:come|follow(?:\s+me)?|come\s+here)\b", low)):
@@ -1163,17 +1292,17 @@ def llm_reason(
                     action["type"] = "minecraft_action"
                     action["action"] = "supervised_attack"
                     if not action.get("content"):
-                        action["content"] = "Understood. Supervised target engaged; peaceful mode active, no autonomous combat."
+                        action["content"] = "On it — peaceful mode."
                 elif act_str in ("supervised_pickup", "pickup", "pick_up") or re.search(r"\b(?:pick\s+up\s+that|pick\s+up|collect\s+that|grab\s+that)\b", low):
                     action["type"] = "minecraft_action"
                     action["action"] = "supervised_pickup"
                     if not action.get("content"):
-                        action["content"] = "Collecting item under your supervision, Operator."
+                        action["content"] = "Collecting it."
                 elif act_str in ("supervised_navigate", "go_to", "navigate") or re.search(r"\b(?:go\s+there|move\s+there|go\s+over\s+there|walk\s+there)\b", low):
                     action["type"] = "minecraft_action"
                     action["action"] = "supervised_navigate"
                     if not action.get("content"):
-                        action["content"] = "Moving to location under your supervision, Operator."
+                        action["content"] = "Heading there."
                 elif re.search(r"\b(where is (?:the )?(?:house|home)|home base|house coordinates|house location|base coordinates)\b", low):
                     action["type"] = "respond"
                     if not action.get("content"):
@@ -1234,11 +1363,25 @@ def llm_reason(
                 if action.get("type") in ("observe", "tool_call", "web_search") or not (action.get("content") or "").strip():
                     action = {
                         "type": "respond",
-                        "content": "Doing well — awake on the dojo and ready for whatever you want to teach me.",
+                        "content": "Doing good — what's up?",
                     }
                     intent = "conversational_query"
+            elif _is_self_upgrade_order(raw_text):
+                action = _self_upgrade_search_action(raw_text)
+                intent = "github_self_upgrade_scout"
+            elif _is_normal_chat(raw_text):
+                action = _forced_chat_reply(raw_text) or {
+                    "type": "respond",
+                    "content": naturalize_reply(str(action.get("content") or "I'm here — what's up?")),
+                }
+                intent = "conversational_reply"
             else:
                 action, intent = infer_tool_from_intent(raw_text, action, intent, wfc=wfc)
+                if isinstance(action, dict) and action.get("type") == "tool_call" and action.get("tool") == "web_search":
+                    q = str((action.get("args") or {}).get("query") or "")
+                    if re.search(r"windows\s*1[12]|windows\s*(?:update|11|12)", q, re.I) and not re.search(r"\bwindows\b", raw_text, re.I):
+                        action = {"type": "respond", "content": "I'm with you — what do you want to talk about?"}
+                        intent = "conversational_reply"
 
             if event.get("source") == "minecraft" and action.get("type") == "observe":
                 action = {
@@ -1350,6 +1493,41 @@ def reason(
             "wfc_depth": len(wfc)
         }
 
+
+    # Normal conversation first — never let evolve/WFC poison turn this into Windows search
+    if not _is_self_upgrade_order(raw_text):
+        forced = _forced_chat_reply(raw_text)
+        if forced is not None:
+            return {
+                "backend": "chat_guard",
+                "gist": raw_text[:120].strip(),
+                "candidate": raw_text,
+                "weight": emo.get("weight", 0.4),
+                "novelty": emo.get("novelty", 0.3),
+                "intent": "conversational_reply",
+                "contradictions": [],
+                "proposed_action": forced,
+                "should_imprint": False,
+                "rationale": "Conversation guard: natural chat reply (no tool/evolve hijack).",
+                "wfc_depth": len(wfc),
+            }
+
+    # Operator lock: self-upgrade / GitHub scout executes immediately (everything but TSC)
+    if _is_self_upgrade_order(raw_text):
+        action = _self_upgrade_search_action(raw_text)
+        return {
+            "backend": "self_upgrade_override",
+            "gist": raw_text[:120].strip(),
+            "candidate": raw_text,
+            "weight": emo.get("weight", 0.8),
+            "novelty": emo.get("novelty", 0.6),
+            "intent": "github_self_upgrade_scout",
+            "contradictions": [],
+            "proposed_action": action,
+            "should_imprint": False,
+            "rationale": "Operator ordered self-upgrade scout; forcing gated web_search (TSC untouched).",
+            "wfc_depth": len(wfc),
+        }
 
     backend = "rule-based"
     if config:

@@ -1,7 +1,7 @@
 """Continuous Observer for ATMAN Core.
 
 Always-on server-side domain observation loop:
-1. Minecraft adapter: polls Paper server plugin (AtmanDemonstrations on 127.0.0.1:18791)
+1. Minecraft adapter: polls Paper server plugin (JarvisDemonstrations on 127.0.0.1:18791)
    for server-side player events:
    - Block place / break (coordinates + block type)
    - Equipment / held item
@@ -115,7 +115,7 @@ class ContinuousObserver:
         self._mind.wfc.append(entry)
 
     def _poll_minecraft_events(self):
-        """Fetch new events from AtmanDemonstrations plugin HTTP server."""
+        """Fetch new events from JarvisDemonstrations plugin HTTP server."""
         url = f"{self.minecraft_endpoint}?since={self.cursor}"
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "ATMAN-Core-Observer"})

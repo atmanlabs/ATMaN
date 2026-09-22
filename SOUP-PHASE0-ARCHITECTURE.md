@@ -105,7 +105,7 @@ Player chat → atman_bot.js (Mineflayer)
 Paper/Bukkit demo stream (optional): plugin → `127.0.0.1:18791` → `observer.py` → episode_segmenter → skills.
 
 Canonical bot path (PC): `C:\Users\<you>\Documents\atman-minecraft\bot\atman_bot.js`  
-Box scaffold mirror: `/workspace/atman-who-he-is/adapters/minecraft/bot/atman_bot.js`
+Box scaffold mirror: `/workspace/atman-scaffold/adapters/minecraft/bot/atman_bot.js`
 
 ---
 

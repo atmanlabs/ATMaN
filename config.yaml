@@ -107,3 +107,5 @@ self_improve:
   freeplay_min_interval_sec: 900
   auto_apply_proposals: true  # Operator 2026-09-22: safe skills self-apply
   auto_apply_requires_safety: true
+  rolling_evolve: true
+  rolling_evolve_interval_sec: 600  # continuous soup; 10 min ticks

@@ -14,6 +14,11 @@ significant_events*.json
 **/significant_events*.json
 pending_proposals*.json
 **/pending_proposals*.json
+# Runtime self-improvement state (local machine only, never published).
+evolve_state*.json
+**/evolve_state*.json
+freeplay_state*.json
+**/freeplay_state*.json
 # Stage 12 generated packaging outputs (the source manifest is build_desktop.py).
 build/
 dist/

@@ -212,7 +212,7 @@ class DesktopTests(unittest.TestCase):
 
     def test_no_runtime_files_or_remote_assets_in_packaging(self):
         from build_desktop import DATA_FILES, FORBIDDEN_NAMES
-        self.assertEqual(set(DATA_FILES),{'ui/index.html','ui/style.css','ui/app.js','exo_icon.png','desktop_worker.py'})
+        self.assertEqual(set(DATA_FILES),{'ui/index.html','ui/style.css','ui/app.js','atman_icon.png','desktop_worker.py'})
         self.assertFalse(any(any(word in name.lower() for word in FORBIDDEN_NAMES) for name in DATA_FILES))
         html=(Path(__file__).parent/'ui/index.html').read_text(encoding='utf-8')
         self.assertIn("connect-src 'none'",html)
