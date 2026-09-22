@@ -5,7 +5,7 @@ Safety: sealed core / gate_policy / private soul are never imported or patched h
 Next: flesh this module with one concrete safe capability, then wire via cockpit if needed.
 """
 REPO = 'https://github.com/topics/ai-voice-assistant'
-STATUS = "evolving_gen_3"
+STATUS = "evolving_gen_5"
 
 def describe() -> dict:
     return {"repo": REPO, "status": STATUS, "safe": True}
@@ -17,4 +17,10 @@ DEFICIT = "needs concrete capability wired"
 DEFICIT = "needs concrete capability wired"
 
 # evolve_tick_gen_3
+DEFICIT = "needs concrete capability wired"
+
+# evolve_tick_gen_4
+DEFICIT = "needs concrete capability wired"
+
+# evolve_tick_gen_5
 DEFICIT = "needs concrete capability wired"

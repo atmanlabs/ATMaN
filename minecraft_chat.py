@@ -87,31 +87,31 @@ def route_chat(
         act_action = init_action["action"]
         if is_cancel_follow and ("leave" in low or "alone" in low):
             if act_action == "initiative_tidy_base":
-                content = "Understood, Operator. I'll give you space and patrol the sanctuary perimeter."
+                content = "Understood, the operator. I'll give you space and patrol the sanctuary perimeter."
             elif act_action == "initiative_investigate":
-                content = "Understood, Operator. I'll give you space and investigate the perimeter terrain."
+                content = "Understood, the operator. I'll give you space and investigate the perimeter terrain."
             elif act_action == "initiative_practice_skill":
-                content = "Understood, Operator. I'll give you space and practice building walls nearby."
+                content = "Understood, the operator. I'll give you space and practice building walls nearby."
             else:
-                content = "Understood, Operator. I'll leave you be and organize our base supplies."
+                content = "Understood, the operator. I'll leave you be and organize our base supplies."
         elif is_cancel_follow and ("stop following" in low or "don't follow" in low):
             if act_action == "initiative_tidy_base":
-                content = "Understood, Operator. Stopping follow — I'm heading over to patrol the perimeter."
+                content = "Understood, the operator. Stopping follow — I'm heading over to patrol the perimeter."
             elif act_action == "initiative_investigate":
-                content = "Understood, Operator. Stopping follow — I'm heading out to investigate nearby terrain."
+                content = "Understood, the operator. Stopping follow — I'm heading out to investigate nearby terrain."
             else:
-                content = f"Understood, Operator. Stopping follow — I'll {init_action.get('description', 'work on my own')}."
+                content = f"Understood, the operator. Stopping follow — I'll {init_action.get('description', 'work on my own')}."
         else:
             if act_action == "initiative_investigate":
-                content = "On it, Operator! I'm heading out to investigate the perimeter terrain and scout for resources."
+                content = "On it, the operator! I'm heading out to investigate the perimeter terrain and scout for resources."
             elif act_action == "initiative_tidy_base":
-                content = "Understood, Operator. I'm going to patrol the sanctuary perimeter and keep our entrances secure."
+                content = "Understood, the operator. I'm going to patrol the sanctuary perimeter and keep our entrances secure."
             elif act_action == "initiative_practice_skill":
-                content = "Alright, Operator! I'm going to practice building and aligning our cobblestone walls nearby."
+                content = "Alright, the operator! I'm going to practice building and aligning our cobblestone walls nearby."
             elif act_action == "initiative_organize_inventory":
-                content = "Got it, Operator. I'm going to tidy up around the base and organize our inventory."
+                content = "Got it, the operator. I'm going to tidy up around the base and organize our inventory."
             else:
-                content = f"Understood, Operator. I'm going to {init_action.get('description', 'take the initiative')}."
+                content = f"Understood, the operator. I'm going to {init_action.get('description', 'take the initiative')}."
 
         return "minecraft_initiative", {
             "type": "minecraft_initiative",
@@ -129,12 +129,12 @@ def route_chat(
             "action": "stay",
             "cancel_follow": True,
             "stay_mode": True,
-            "content": "Understood, Operator. Stopping here and giving you space."
+            "content": "Understood, the operator. Stopping here and giving you space."
         }, False, "Follow cancelled on operator request."
 
     # 1. Direct Presence & Social Commands (fast path)
     if not is_cancel_follow and re.fullmatch(r"(?:come|follow(?:\s+me)?|come\s+here|come\s+with\s+me)", low):
-        msg = f"Following you, Operator. {return_summary}" if return_summary else "Following you, Operator."
+        msg = f"Following you, the operator. {return_summary}" if return_summary else "Following you, the operator."
         return "presence_follow", {
             "type": "minecraft_action",
             "action": "follow",
@@ -152,14 +152,14 @@ def route_chat(
 
     if re.fullmatch(
         r"(?:hey|hi|hello|howdy|sup|yo|good\s+(?:morning|afternoon|evening|night)|what'?s up)"
-        r"(?:\s+(?:buddy|atman|there|man|operator|dude))?",
+        r"(?:\s+(?:buddy|atman|there|man|mike|dude))?",
         low,
     ):
         if return_summary:
-            return reply(f"Hey Operator! {return_summary}")
+            return reply(f"Hey the operator! {return_summary}")
         if re.search(r"morning", low):
-            return reply("Morning, Operator. Good to see you — I'm here and ready to learn.")
-        return reply("Hey Operator! Good to see you — ready when you are.")
+            return reply("Morning, the operator. Good to see you — I'm here and ready to learn.")
+        return reply("Hey the operator! Good to see you — ready when you are.")
 
     if re.search(
         r"\b(?:how are you(?: doing)?(?: (?:today|this morning|tonight))?|how(?:'s| is) it going|how(?:'s| are) things)\b",
@@ -198,7 +198,7 @@ def route_chat(
     if re.search(r"\b(?:(?:yes\s+)?build (?:a |the )?perimeter wall|go ahead and build (?:it|the wall)|sure build it)\b", low):
         skill = repository.find_skill("build_wall", domain="minecraft")
         if skill:
-            return action("execute_skill", "build_wall", "Understood, Operator! Starting the perimeter wall now under your supervision.", skill)
+            return action("execute_skill", "build_wall", "Understood, the operator! Starting the perimeter wall now under your supervision.", skill)
 
     # 2. Referent Resolution: "see that wall, now you do it", "now you do it", "do that again", "your turn"
     is_referent = bool(re.search(
@@ -207,7 +207,7 @@ def route_chat(
     ))
 
     if is_referent:
-        actor = "Operator"
+        actor = "the operator"
         if context and isinstance(context, dict):
             p = context.get("player")
             if p:
@@ -225,7 +225,7 @@ def route_chat(
                 repository.store_skill(skill)
                 from significant_events import SignificantEventsLog
                 SignificantEventsLog().log_event(
-                    f"Passively learned skill '{skill['name']}' from Operator's actions ({len(skill.get('steps', []))} steps).",
+                    f"Passively learned skill '{skill['name']}' from the operator's actions ({len(skill.get('steps', []))} steps).",
                     source="passive_skill_learning",
                     metadata={"skill": skill['name'], "domain": "minecraft", "steps": len(skill.get("steps", []))}
                 )

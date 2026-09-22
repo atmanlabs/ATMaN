@@ -1,6 +1,6 @@
 """Rolling self-evolution — continuous scout→apply→advance. Sealed core never touched.
 
-Operator lock (2026-09-22): evolving is the purpose. Not one-shot "ok I did it."
+the operator lock (2026-09-22): evolving is the purpose. Not one-shot "ok I did it."
 """
 from __future__ import annotations
 

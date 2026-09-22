@@ -2,7 +2,7 @@
 
 ## Goal
 Make Phase 3 `self_improve` **alive during idle/freeplay**: ATMAN *proposes* skill drafts
-through the gate; Operator reviews via CHANGELOG (+ proposal JSON). Sealed core stays LOCKED.
+through the gate; the operator reviews via CHANGELOG (+ proposal JSON). Sealed core stays LOCKED.
 `auto_apply_proposals` defaults **false**.
 
 ## Design summary
@@ -33,10 +33,10 @@ State file: `self_improve/freeplay_state.json` (`last_propose_ts`).
 self_improve:
   freeplay_propose: true
   freeplay_min_interval_sec: 900   # 15 minutes between proposals
-  auto_apply_proposals: false      # Operator must accept
+  auto_apply_proposals: false      # the operator must accept
 ```
 
-## How Operator reviews
+## How the operator reviews
 1. Scan `self_improve/CHANGELOG.md` for **`PROPOSE (not applied)`**
 2. Open `self_improve/proposals/<change_id>.json`
 3. Accept:

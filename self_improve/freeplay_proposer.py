@@ -2,7 +2,7 @@
 
 During idle / freeplay ticks, draft a skill idea from recent significant events /
 operator chat themes and park it via SelfImproveEngine.propose_skill.
-Safe skills (esp. Minecraft) auto-apply after safety fence. Unsafe = REFUSED. Operator does not approve routine applies.
+Safe skills (esp. Minecraft) auto-apply after safety fence. Unsafe = REFUSED. the operator does not approve routine applies.
 """
 from __future__ import annotations
 
@@ -334,7 +334,7 @@ def maybe_propose(context: Optional[Dict[str, Any]] = None) -> Optional[Dict[str
     state["last_ok"] = bool(result.get("ok"))
     _write_state(state)
 
-    # Operator lock: auto-apply safe skills; no operator approve for Minecraft/etc.
+    # the operator lock: auto-apply safe skills; no operator approve for Minecraft/etc.
     auto_cfg = section.get("auto_apply_proposals", True)
     require_safety = section.get("auto_apply_requires_safety", True)
     if isinstance(auto_cfg, str):

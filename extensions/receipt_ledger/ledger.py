@@ -1,4 +1,4 @@
-﻿"""Receipt ledger — every money claim cites source + timestamp."""
+"""Receipt ledger — every money claim cites source + timestamp."""
 from __future__ import annotations
 import json
 import time

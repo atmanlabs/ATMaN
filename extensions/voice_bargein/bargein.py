@@ -1,4 +1,4 @@
-﻿"""Always-on voice barge-in scaffold. Does not alter TSC; wraps Stage 9 voice."""
+"""Always-on voice barge-in scaffold. Does not alter TSC; wraps Stage 9 voice."""
 from __future__ import annotations
 from typing import Any, Dict, Optional
 

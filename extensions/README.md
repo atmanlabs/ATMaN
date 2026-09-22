@@ -1,4 +1,4 @@
-﻿# ATMAN Extensions (peripheral only)
+# ATMAN Extensions (peripheral only)
 
 These modules implement the crew-voted capability gaps **around** the sealed core.
 

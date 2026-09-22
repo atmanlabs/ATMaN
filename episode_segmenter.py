@@ -81,8 +81,9 @@ class EpisodeSegmenter:
 
     def _canonical_actor(self, actor: str) -> str:
         clean = re.sub(r"^\.+", "", str(actor or "")).lower()
-        if clean in ("operator", "operator", "operator"):
-            return "Operator"
+        # Operator's own handle(s) canonicalize to "the operator" (set via config).
+        if clean in ("operator", "owner"):
+            return "the operator"
         return actor
 
     def ingest_event(
@@ -91,7 +92,7 @@ class EpisodeSegmenter:
         domain: str = "minecraft"
     ) -> Optional[Episode]:
         """Ingest a single action event and update or segment episodes."""
-        raw_actor = event_dict.get("player") or event_dict.get("actor") or "Operator"
+        raw_actor = event_dict.get("player") or event_dict.get("actor") or "the operator"
         actor = self._canonical_actor(raw_actor)
 
         # Ignore bot's own events
@@ -338,7 +339,7 @@ class EpisodeSegmenter:
     def get_recent_episode(
         self,
         domain: str = "minecraft",
-        actor: str = "Operator",
+        actor: str = "the operator",
         action_type: Optional[str] = None
     ) -> Optional[Episode]:
         """Retrieve the most recent matching episode (checks active first, then buffer)."""
@@ -365,7 +366,7 @@ class EpisodeSegmenter:
     def resolve_referent(
         self,
         text: str,
-        actor: str = "Operator",
+        actor: str = "the operator",
         domain: str = "minecraft"
     ) -> Optional[Tuple[Episode, str]]:
         """Resolve referent phrases to the most recent matching episode in the buffer.

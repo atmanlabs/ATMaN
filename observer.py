@@ -7,7 +7,7 @@ Always-on server-side domain observation loop:
    - Equipment / held item
    - Crafting recipes
    - Never limited to bot visual chunk range!
-2. Attributes every event to the actor (the operator).
+2. Attributes every event to the actor (the operator / Operator).
 3. Streams timestamped action events into WFC and feeds the EpisodeSegmenter.
 4. Domain-agnostic: accepts events from Minecraft, desktop, web, or custom domain adapters.
 """
@@ -135,7 +135,7 @@ class ContinuousObserver:
 
                 for ev in events:
                     episode_segmenter.ingest_event(ev, domain="minecraft")
-                    actor = ev.get("player", "Operator")
+                    actor = ev.get("player", "the operator")
                     action = ev.get("action", "")
                     params = ev.get("params", {})
                     self._stream_to_wfc("minecraft", actor, action, params)

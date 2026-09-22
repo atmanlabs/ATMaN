@@ -548,6 +548,11 @@ class MindLoop:
                         print(f"[SELF-IMPROVE] scout ingest skipped: {_scout_err}")
                     try:
                         from self_improve.rolling_evolve import maybe_evolve
+                        try:
+                            from person_context import sync_from_disk
+                            sync_from_disk()
+                        except Exception:
+                            pass
                         # Continuous: keep improving kicks another rotated tick
                         maybe_evolve({"mode": "post_scout", "source": "self_upgrade_order"})
                     except Exception as _ev_err:
@@ -673,9 +678,21 @@ class MindLoop:
                         if isinstance(tool_args, dict):
                             q = str(tool_args.get("query") or "").strip()
                         if snippet:
-                            spoken_content = (f"Looked it up{(' — ' + q) if q else ''}: {snippet}")[:220]
+                            low_snip = snippet.lower()
+                            low_q = (q or '').lower()
+                            junk = (
+                                len(snippet.strip()) < 12
+                                or bool(re.search(r'windows\s*1[12]|windows\s*update', low_snip))
+                                or (q and snippet.strip().lower() == q.strip().lower())
+                                or ('what improvements' in low_q or 'improvements have you' in low_q)
+                                or (low_snip.startswith("i'll look") or ('comprehensive' in low_snip and '2025' in low_snip))
+                            )
+                            if junk:
+                                spoken_content = "Didn't find anything useful."
+                            else:
+                                spoken_content = (f"Looked it up{(' — ' + q) if q else ''}: {snippet}")[:220]
                         else:
-                            spoken_content = f"Looked up '{q}', but got nothing useful." if q else "Search came back empty."
+                            spoken_content = (f"Looked up '{q}', but got nothing useful." if q else "Search came back empty.")
                     else:
                         spoken_content = raw_out or spoken_content
                 return {

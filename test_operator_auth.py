@@ -25,7 +25,7 @@ class TestOperatorAuth(unittest.TestCase):
         self.events_file = self.temp_path / "test_events.json"
         self.config = Config(HERE / "config.yaml")
         self.tsc = TSC()
-        self.secret_passphrase = "operator-secure-passphrase-2026-xyz!"
+        self.secret_passphrase = "michael-secure-passphrase-2026-xyz!"
 
     def test_correct_passphrase_authenticates(self):
         """Test 1: Correct passphrase successfully enrolls and authenticates."""

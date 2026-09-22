@@ -1,4 +1,4 @@
-﻿"""Local offline work queue. Survives usage death; no cloud required."""
+"""Local offline work queue. Survives usage death; no cloud required."""
 from __future__ import annotations
 import json
 import time

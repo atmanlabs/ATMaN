@@ -122,7 +122,7 @@ class RelayHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            # Freeplay idle hook: park gated skill proposals for Operator (no auto-apply)
+            # Freeplay idle hook: park gated skill proposals for the operator (no auto-apply)
             try:
                 from self_improve.freeplay_proposer import maybe_propose
                 maybe_propose({"mode": "initiative", "source": "initiative_pending", "propose_source": "freeplay_initiative"})
@@ -222,7 +222,7 @@ class RelayHandler(BaseHTTPRequestHandler):
                 from observer import continuous_observer
                 continuous_observer.ingest_domain_event(
                     domain=data.get("domain", "minecraft"),
-                    actor=data.get("actor") or data.get("player") or "Operator",
+                    actor=data.get("actor") or data.get("player") or "the operator",
                     action=data.get("action", ""),
                     params=data.get("params", {}),
                     timestamp=data.get("timestamp") or data.get("time")
@@ -422,7 +422,7 @@ class RelayHandler(BaseHTTPRequestHandler):
                 reply = "Acknowledged."
 
             if source == "minecraft" and (not isinstance(reply, str) or "Observation/reflection recorded in memory trace" in reply):
-                reply = "I'm right here with you, Operator."
+                reply = "I'm right here with you, the operator."
 
             if isinstance(reply, str):
 

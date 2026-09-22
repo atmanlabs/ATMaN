@@ -1,4 +1,4 @@
-﻿"""Keep-alive scoreboard + kill-criteria watcher."""
+"""Keep-alive scoreboard + kill-criteria watcher."""
 from __future__ import annotations
 import json
 import time

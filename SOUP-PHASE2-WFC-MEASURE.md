@@ -4,8 +4,8 @@ Session turns: 10
 Trace rows: 10
 
 ## Per-turn wall
-- turn 1: 3106.2 ms | 'Good morning, Operator.'
-- turn 2: 4156.6 ms | "Good morning, Operator. It's nice to see you're up and about. I'll keep us in sync w"
+- turn 1: 3106.2 ms | 'Good morning, the operator.'
+- turn 2: 4156.6 ms | "Good morning, the operator. It's nice to see you're up and about. I'll keep us in sync w"
 - turn 3: 3736.1 ms | 'I can assist with various tasks such as finding information, playing games like '
 - turn 4: 3265.7 ms | 'I understand you like sapphire blue. I can help you remember preferences and als'
 - turn 5: 3197.4 ms | "I understand you like sapphire blue. Is there anything specific you'd like to di"

@@ -1,1 +1,1 @@
-﻿from .board import upsert_play, evaluate_kills, snapshot
+from .board import upsert_play, evaluate_kills, snapshot

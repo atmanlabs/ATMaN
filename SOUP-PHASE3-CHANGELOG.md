@@ -1,4 +1,4 @@
-# SOUP Phase 3 — Self-improve (live on OPERATOR-PC)
+# SOUP Phase 3 — Self-improve (live on <machine>)
 
 Date: 2026-09-22 07:50 -0400
 

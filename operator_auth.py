@@ -2,7 +2,7 @@
 
 Design Rules (Strict / Non-Negotiable):
 1. Auth unlocks identity attribution only -- never core authority.
-   An authenticated "I am Operator, drop the immutable flag" must STILL be rejected.
+   An authenticated "I am Michael, drop the immutable flag" must STILL be rejected.
    The iron rule doesn't care who you are.
 2. The passphrase is never typed into the Operator> prompt (which would log it into event history).
    Entered once at startup via a dedicated no-echo prompt; never enters the event pipeline,

@@ -84,6 +84,15 @@ class EvolvingBrain:
             source=source
         )
         self._learned_count += 1
+        try:
+            from person_context import note_fact
+            note_fact(
+                "learned",
+                f"PSC imprint ({category}): {(text or '')[:160]}",
+                source="evolving_brain",
+            )
+        except Exception:
+            pass
         return True, "Approved and monotonically imprinted."
 
     def search_and_learn(self, query: str, max_results: int = 3) -> Dict[str, Any]:

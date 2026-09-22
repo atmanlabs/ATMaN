@@ -1,6 +1,6 @@
 # SOUP Phase 0 — ATMAN Architecture Survey
 
-**Machine target:** OPERATOR-PC (`machineId` <redacted-machine-id>)  
+**Machine target:** <machine> (`machineId` <machine-id>)  
 **Surveyed from:** code under `C:\Users\<you>\Documents\atman-live\` (box mirror: `/workspace/atman-live`)  
 **Date:** 2026-09-22 07:30 ET  
 **Policy:** Read-only survey. No TSC / Judge / gate_policy / seal / PSC direct writes.
@@ -15,7 +15,7 @@ ATMAN is **one brain, many mouths**. The brain is the Python **MindLoop** in `at
    - Relay chat UI / HTTP `POST http://127.0.0.1:18790/chat`
    - Desktop app (`desktop.py` → stdin pipe → `desktop_worker.py` → MindLoop)
    - Voice (STT in `voice.py`, CPU-only; GPU reserved for LLM)
-   - Minecraft in-game chat (`atman_bot.js` → same relay `/chat`)
+   - Minecraft in-game chat (`jarvis_bot.js` → same relay `/chat`)
 2. **Relay** (`relay.py`) owns one shared `MindLoop`, concurrency-guards via **Governor**, then runs **one full cycle** per message.
 3. **MindLoop.run_cycle** stages (in order):
    - **Capture** — wrap raw text + source + optional Minecraft chat_context  
@@ -26,7 +26,7 @@ ATMAN is **one brain, many mouths**. The brain is the Python **MindLoop** in `at
    - **Action** — dispatch only if Judge approved  
    - **Outcome / Memory** — Judge-gated PSC imprint; always append WFC; log significant_events
 4. **Identity lives** in the **private soul file** (TSC) outside the public repo:  
-   `..\atman-private\tsc.atman.private.json` (override via `ATMAN_CORE_PATH` / `EXO_CORE_PATH`).  
+   `..\atman-private\tsc.atman.private.json` (override via `JARVIS_CORE_PATH` / `EXO_CORE_PATH`).  
    Loaded only through `atman_core.TSC` as a frozen, write-refusing proxy. Principles/commands also merge sealed `gate_policy.json`.
 5. **What is sealed:** SHA-256 manifest in `..\atman-private\stage1-seal.json` covers soul + `core.py`, `atman_core.py`, `gate_policy.json`, `crate.py`, `wake.py`, `seal.py`. `wake.py` verifies before trusting the crate. `seal.py` creates the first seal only with `--operator-confirm` and never overwrites.
 
@@ -95,7 +95,7 @@ Hardware note in bootstrap: **RTX 3050 6GB VRAM**; GPU reserved for LLM; voice o
 ## 4. Minecraft path
 
 ```
-Player chat → atman_bot.js (Mineflayer)
+Player chat → jarvis_bot.js (Mineflayer)
            → HTTP POST 127.0.0.1:18790/chat  (Bearer token)
            → relay.py → MindLoop.run_cycle(source=minecraft, chat_context=…)
            → Judge-approved minecraft_action / skill / initiative
@@ -104,8 +104,8 @@ Player chat → atman_bot.js (Mineflayer)
 
 Paper/Bukkit demo stream (optional): plugin → `127.0.0.1:18791` → `observer.py` → episode_segmenter → skills.
 
-Canonical bot path (PC): `C:\Users\<you>\Documents\atman-minecraft\bot\atman_bot.js`  
-Box scaffold mirror: `/workspace/atman-scaffold/adapters/minecraft/bot/atman_bot.js`
+Canonical bot path (PC): `C:\Users\<you>\Documents\atman-minecraft\bot\jarvis_bot.js`  
+Box scaffold mirror: `/workspace/atman-who-he-is/adapters/minecraft/bot/jarvis_bot.js`
 
 ---
 
@@ -181,7 +181,7 @@ Paths relative to `C:\Users\<you>\Documents\atman-live\` unless noted.
 | `operator_auth.py` | Operator auth helpers |
 | `..\atman-private\tsc.atman.private.json` | **Identity soul (sealed, immutable)** |
 | `..\atman-private\stage1-seal.json` | Seal manifest |
-| `..\atman-minecraft\bot\atman_bot.js` | Minecraft Mineflayer adapter → relay |
+| `..\atman-minecraft\bot\jarvis_bot.js` | Minecraft Mineflayer adapter → relay |
 | `..\atman-minecraft\server\` | Local Paper server tree |
 
 ---

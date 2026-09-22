@@ -94,7 +94,7 @@ class Bridge:
     def _start_tray(self):
         import pystray
         from PIL import Image
-        self._tray = pystray.Icon('ATMAN', Image.open(ASSETS/'atman_icon.png'), 'ATMAN — Personal AI',
+        self._tray = pystray.Icon('ATMAN', Image.open(ASSETS/'exo_icon.png'), 'ATMAN — Personal AI',
             pystray.Menu(pystray.MenuItem('Show ATMAN', self._show, default=True),
                          pystray.MenuItem('Sleep', lambda: self._tray_command('sleep')),
                          pystray.MenuItem('Wake', lambda: self._tray_command('wake')),

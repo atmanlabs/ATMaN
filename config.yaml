@@ -101,11 +101,16 @@ storage:
   significant_events_path: "significant_events.json"
   proposals_path: "pending_proposals.json"
 
-# Phase 3 freeplay self-improve proposals (Operator reviews CHANGELOG; sealed core untouched)
+# Phase 3 freeplay self-improve proposals (the operator reviews CHANGELOG; sealed core untouched)
 self_improve:
   freeplay_propose: true
   freeplay_min_interval_sec: 900
-  auto_apply_proposals: true  # Operator 2026-09-22: safe skills self-apply
+  auto_apply_proposals: true  # the operator 2026-09-22: safe skills self-apply
   auto_apply_requires_safety: true
   rolling_evolve: true
   rolling_evolve_interval_sec: 600  # continuous soup; 10 min ticks
+
+person_context:
+  enabled: true
+  journal_path: "self_improve/PERSON_JOURNAL.jsonl"
+  always_inject: true

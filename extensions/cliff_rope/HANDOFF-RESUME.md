@@ -1,6 +1,6 @@
-﻿# ATMAN GAP STACK — HANDOFF / RESUME
+# ATMAN GAP STACK — HANDOFF / RESUME
 Updated: 2026-09-21 21:30:08 -04:00
-Machine: OPERATOR-PC
+Machine: <machine>
 
 ## Goal
 Peripheral Atman gap stack + refreshed public scaffold zip. Core sealed.

@@ -131,6 +131,14 @@ class SelfImproveEngine:
         tmp.replace(self.changes_index)
 
     def _append_changelog(self, line: str) -> None:
+        try:
+            from person_context import note_fact
+            low = (line or "").lower()
+            if "dry_run" not in low:
+                kind = "applied" if ("add_skill" in low or "accept" in low or "auto-patch" in low) else "evolve_tick"
+                note_fact(kind, f"Self-improve: {(line or '')[:180]}", source="self_improve.engine")
+        except Exception:
+            pass
         with self.changelog.open("a", encoding="utf-8") as fh:
             fh.write(line.rstrip() + "\n")
 
@@ -478,7 +486,7 @@ class SelfImproveEngine:
             "rolled_back": False,
         }
         self._record_change(change)
-        # Explicit PROPOSE marker line for Operator's changelog scan
+        # Explicit PROPOSE marker line for the operator's changelog scan
         self._append_changelog(
             f"- [{change['ts']}] {change_id} PROPOSE (not applied) "
             f"skill={skill.get('name')} source={source} status=proposed"
@@ -493,7 +501,7 @@ class SelfImproveEngine:
             "status": "proposed",
             "proposal_path": str(proposal_path),
             "sandbox": str(sandbox_file),
-            "message": "PROPOSE recorded — skills.json unchanged; Operator reviews via CHANGELOG",
+            "message": "PROPOSE recorded — skills.json unchanged; the operator reviews via CHANGELOG",
         }
 
     def list_proposals(self, status: str = "proposed") -> Dict[str, Any]:
@@ -743,7 +751,7 @@ class SelfImproveEngine:
     def ingest_scout_results(self, results: Any, source: str = "github_scout") -> Dict[str, Any]:
         """Scout → APPLY safe upgrades (skills + extension stubs). Sealed core untouched.
 
-        Operator lock: searching alone is not improvement. Each GitHub lead becomes:
+        the operator lock: searching alone is not improvement. Each GitHub lead becomes:
         1) a stored skill (propose + accept)
         2) a real extension stub under self_improve/extensions/
         """

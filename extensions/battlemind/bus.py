@@ -1,4 +1,4 @@
-﻿"""Battlemind bus — route tasks to crew lanes without Operator re-briefing."""
+"""Battlemind bus — route tasks to crew lanes without the operator re-briefing."""
 from __future__ import annotations
 from typing import Any, Dict, List
 
@@ -31,7 +31,7 @@ def route(intent: str, payload: Dict[str, Any] | None = None) -> Dict[str, Any]:
         "owner": LANES[lane],
         "intent": intent,
         "payload": payload or {},
-        "note": "Advisory only until Operator/CoS greenlights action",
+        "note": "Advisory only until the operator/CoS greenlights action",
     }
 
 

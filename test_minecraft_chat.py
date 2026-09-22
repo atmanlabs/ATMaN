@@ -55,7 +55,7 @@ class RoutingTests(unittest.TestCase):
     def test_greeting_no_canned_logs(self):
         a = self.route('hey buddy')
         self.assertEqual(a['type'], 'respond')
-        self.assertIn('Hey Operator', a['content'])
+        self.assertIn('Hey the operator', a['content'])
         self.assertNotIn('Observation/reflection recorded in memory trace', a['content'])
         self.assertNotIn('learn this as NAME', a['content'])
 

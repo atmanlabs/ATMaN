@@ -1,6 +1,6 @@
 # SOUP Phase 1 — Latency Profile
 
-**Target PC:** OPERATOR-PC (RTX 3050 6GB)  
+**Target PC:** <machine> (RTX 3050 6GB)  
 **Date:** 2026-09-22 07:30 ET  
 **Tool:** `soup_profile_turn.py` (reusable; appends dated sections below)  
 **Policy:** No permanent production behavior change. No TSC/Judge/gate/seal/PSC edits. Local only.
@@ -13,7 +13,7 @@
 |------|--------|
 | Profiler script created | **DONE** — `C:\Users\<you>\Documents\atman-live\soup_profile_turn.py` (box path `/workspace/atman-live/soup_profile_turn.py`) |
 | Code-derived model/stream/call facts | **DONE** (below) |
-| Live PC turn measurement (relay + Ollama) | **BLOCKED** — executor subagent has no `ListMachines` / `Shell(machineId=…)`; cannot reach OPERATOR-PC from the box |
+| Live PC turn measurement (relay + Ollama) | **BLOCKED** — executor subagent has no `ListMachines` / `Shell(machineId=…)`; cannot reach <machine> from the box |
 | Parent action required | `ListMachines` → `CopyFromBox` these files → `Shell(machineId)` run profiler on PC |
 
 ### Parent run (exact)
@@ -70,7 +70,7 @@ When the PC profiler + relay logs are available, fill ms for:
 
 ## Live measured numbers (PC)
 
-**Not yet measured on OPERATOR-PC from this subagent.**
+**Not yet measured on <machine> from this subagent.**
 
 Placeholder table (parent/profiler fills):
 
@@ -144,7 +144,7 @@ command not found: ollama
 ---
 
 ## Run 2026-09-22 07:32:53 -0400
-- Host: `OPERATOR-PC` / `Windows-10-10.0.26200-SP0`
+- Host: `<machine>` / `Windows-10-10.0.26200-SP0`
 - Config: backend=`llm` model=`qwen2.5:3b` endpoint=`http://127.0.0.1:11434`
 - Message: `ping soup profile` source=`operator`
 - Relay listening: `True` Ollama listening: `True`
@@ -374,7 +374,7 @@ Model
   "wall_ms": 4516.8,
   "response": {
     "ok": true,
-    "reply": "I am right here with you, Operator.",
+    "reply": "I am right here with you, the operator.",
     "action": "respond",
     "intent": "llm_inferred",
     "skill": null,
@@ -386,6 +386,262 @@ Model
     "cancel_follow": false,
     "stay_mode": false,
     "cycle": 6
+  }
+}
+```
+
+---
+
+## Run 2026-09-22 09:49:45 -0400
+- Host: `<machine>` / `Windows-10-10.0.26200-SP0`
+- Config: backend=`llm` model=`qwen2.5:3b` endpoint=`http://127.0.0.1:11434`
+- Message: `how are your improvements coming?` source=`operator`
+- Relay listening: `True` Ollama listening: `True`
+- nvidia-smi: `NVIDIA GeForce RTX 3050, 6144, 4584, 29`
+- RAM query: `{"TotalVisibleMemorySize":33496384,"FreePhysicalMemory":13756836}`
+- Models loaded before: `['qwen2.5:3b']` after: `['qwen2.5:3b']`
+- Quantization / show summary: `Q4_K_M`
+- Streamed vs buffered (code): **buffered** (`stream: false` in `reason.call_ollama`)
+- keep_alive in call_ollama payload: **not set** (Ollama default residency)
+- Typical chat LLM calls: **1** via `/api/generate` (Minecraft skill resolve may add 1× `/api/chat`)
+
+### Stage timings (ms)
+
+| Stage | ms | Note |
+| --- | ---: | --- |
+| machine_facts | 809.5 | ok |
+| ollama_tags | 17.7 | http=200 |
+| ollama_ps_before | 1.0 | http=200 |
+| ollama_show | 10.3 | http=200 |
+| direct_generate_1 | 605.1 | http=200 |
+| direct_generate_2_warm | 467.7 | http=200 |
+| ollama_ps_mid | 1.1 | http=200 |
+| relay_chat_total | 9972.9 | http=200 |
+| ollama_ps_after | 1.1 | http=200 |
+| TOTAL_SCRIPT | 12125.3 | wall |
+
+### Direct Ollama generate probes
+
+```json
+{
+  "cold": {
+    "http": 200,
+    "wall_ms": 604.9,
+    "raw": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-09-22T13:49:34.6954629Z",
+      "response": "{\n  \"ok\": true,\n  \"n\": 1\n}",
+      "done": true,
+      "done_reason": "stop",
+      "context": [
+        151644,
+        8948,
+        198,
+        5598,
+        4718,
+        25,
+        5212,
+        562,
+        788,
+        830,
+        92,
+        151645,
+        198,
+        151644,
+        872,
+        198,
+        5598,
+        4718,
+        5212,
+        77,
+        788,
+        16,
+        92,
+        151645,
+        198,
+        151644,
+        77091,
+        198,
+        515,
+        220,
+        330,
+        562,
+        788,
+        830,
+        345,
+        220,
+        330,
+        77,
+        788,
+        220,
+        16,
+        198,
+        92
+      ],
+      "total_duration": 577823600,
+      "load_duration": 5577100,
+      "prompt_eval_count": 28,
+      "prompt_eval_cached_count": 3,
+      "prompt_eval_duration": 165403000,
+      "eval_count": 16,
+      "eval_duration": 369816000
+    },
+    "total_duration": 577823600,
+    "load_duration": 5577100,
+    "prompt_eval_count": 28,
+    "prompt_eval_duration": 165403000,
+    "eval_count": 16,
+    "eval_duration": 369816000,
+    "model": "qwen2.5:3b",
+    "done": true,
+    "total_duration_ms": 577.8,
+    "load_duration_ms": 5.6,
+    "prompt_eval_duration_ms": 165.4,
+    "eval_duration_ms": 369.8
+  },
+  "warm": {
+    "http": 200,
+    "wall_ms": 467.6,
+    "raw": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-09-22T13:49:35.1629363Z",
+      "response": "{\n  \"ok\": true,\n  \"n\": 2\n}",
+      "done": true,
+      "done_reason": "stop",
+      "context": [
+        151644,
+        8948,
+        198,
+        5598,
+        4718,
+        25,
+        5212,
+        562,
+        788,
+        830,
+        92,
+        151645,
+        198,
+        151644,
+        872,
+        198,
+        5598,
+        4718,
+        5212,
+        77,
+        788,
+        17,
+        92,
+        151645,
+        198,
+        151644,
+        77091,
+        198,
+        515,
+        220,
+        330,
+        562,
+        788,
+        830,
+        345,
+        220,
+        330,
+        77,
+        788,
+        220,
+        17,
+        198,
+        92
+      ],
+      "total_duration": 440850500,
+      "load_duration": 3996900,
+      "prompt_eval_count": 28,
+      "prompt_eval_cached_count": 21,
+      "prompt_eval_duration": 79428000,
+      "eval_count": 16,
+      "eval_duration": 351985000
+    },
+    "total_duration": 440850500,
+    "load_duration": 3996900,
+    "prompt_eval_count": 28,
+    "prompt_eval_duration": 79428000,
+    "eval_count": 16,
+    "eval_duration": 351985000,
+    "model": "qwen2.5:3b",
+    "done": true,
+    "total_duration_ms": 440.9,
+    "load_duration_ms": 4.0,
+    "prompt_eval_duration_ms": 79.4,
+    "eval_duration_ms": 352.0
+  }
+}
+```
+
+### ollama list
+
+```
+NAME                          ID              SIZE      MODIFIED     
+phi4-mini:latest              78fad5d182a7    2.5 GB    11 hours ago    
+llama3.2:3b                   a80c4f17acd5    2.0 GB    11 hours ago    
+moondream:latest              55fc3abd3867    1.7 GB    41 hours ago    
+qwen2.5:7b-instruct-q4_K_M    845dbda0ea48    4.7 GB    42 hours ago    
+qwen2.5:7b                    845dbda0ea48    4.7 GB    10 days ago     
+nomic-embed-text:latest       0a109f422b47    274 MB    10 days ago     
+qwen2.5:3b                    357c53fb659c    1.9 GB    10 days ago     
+qwen3-nothink:latest          7d172b8ab830    2.5 GB    10 days ago     
+qwen3:4b                      359d7dd4bcda    2.5 GB    13 days ago
+```
+
+### ollama ps
+
+```
+NAME          ID              SIZE      PROCESSOR    CONTEXT    UNTIL   
+qwen2.5:3b    357c53fb659c    2.2 GB    100% GPU     4096       Forever
+```
+
+### ollama show (truncated)
+
+```
+Model
+    architecture        qwen2     
+    parameters          3.1B      
+    context length      32768     
+    embedding length    2048      
+    quantization        Q4_K_M    
+
+  Capabilities
+    completion    
+    tools         
+
+  System
+    You are Qwen, created by Alibaba Cloud. You are a helpful assistant.    
+
+  License
+    Qwen RESEARCH LICENSE AGREEMENT                                     
+    Qwen RESEARCH LICENSE AGREEMENT Release Date: September 19, 2024    
+    ...
+```
+
+### Relay /chat response
+
+```json
+{
+  "http": 200,
+  "wall_ms": 9972.8,
+  "response": {
+    "ok": true,
+    "reply": "I'll look into what improvements have been made to ATMAN.",
+    "action": "tool_call",
+    "intent": "Respond to the operator's query about improvements",
+    "skill": null,
+    "domain": "minecraft",
+    "steps": [],
+    "approved": true,
+    "initiative": null,
+    "drive_id": null,
+    "cancel_follow": false,
+    "stay_mode": false,
+    "cycle": 1
   }
 }
 ```

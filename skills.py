@@ -151,7 +151,7 @@ class SkillRepository:
         if "created_at" not in metadata:
             metadata["created_at"] = time.time()
         if "author" not in metadata:
-            metadata["author"] = "Operator (Operator)"
+            metadata["author"] = "the operator (Operator)"
 
         entry = {
             "name": name,

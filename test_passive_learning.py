@@ -17,7 +17,7 @@ from atman_core import TSC
 
 def test_passive_skill_learning():
     print("\n--- TEST 1: Ingest Server-Side Block Placements (Wall Demonstration) ---")
-    # Simulate Operator building a 4-block cobblestone wall at world coords (48, 59, -19) to (48, 59, -16)
+    # Simulate the operator building a 4-block cobblestone wall at world coords (48, 59, -19) to (48, 59, -16)
     base_time = time.time() * 1000
     events = [
         {"action": "place", "player": ".Operator", "world": "world", "time": base_time + 100,
@@ -52,7 +52,7 @@ def test_passive_skill_learning():
     ]
 
     for phrase in test_phrases:
-        res = episode_segmenter.resolve_referent(phrase, actor="Operator", domain="minecraft")
+        res = episode_segmenter.resolve_referent(phrase, actor="the operator", domain="minecraft")
         assert res is not None, f"Referent resolution failed for '{phrase}'"
         resolved_ep, rationale = res
         assert resolved_ep.id == ep.id
@@ -101,7 +101,7 @@ def test_passive_skill_learning():
         context={"player": "Operator"}
     )
     print(f"Greeting Content: \"{proposed.get('content')}\"")
-    assert "Hey Operator" in proposed.get("content")
+    assert "Hey the operator" in proposed.get("content")
     assert "Observation/reflection recorded in memory trace" not in proposed.get("content")
     assert "learn this as NAME" not in proposed.get("content")
     print("PASS: Greeting answered naturally without canned telemetry or logs.")

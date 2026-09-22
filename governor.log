@@ -1,0 +1,66 @@
+[2026-09-22 10:06:58,937] [GOVERNOR] INFO: Spawn slot acquired: 'tool_system_telemetry_1790086018.9373088' (Cockpit tool execution: system_telemetry). Active: 1/5
+[2026-09-22 10:06:58,938] [GOVERNOR] INFO: Spawn slot released: 'tool_system_telemetry_1790086018.9373088'. Remaining active: 0/5
+[2026-09-22 10:06:58,938] [GOVERNOR] INFO: Spawn slot acquired: 'tool_clock_timer_1790086018.9386346' (Cockpit tool execution: clock_timer). Active: 1/5
+[2026-09-22 10:06:58,939] [GOVERNOR] INFO: Spawn slot released: 'tool_clock_timer_1790086018.9386346'. Remaining active: 0/5
+[2026-09-22 10:06:58,939] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086018.939113' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:06:58,939] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086018.939113'. Remaining active: 0/5
+[2026-09-22 10:06:58,940] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086018.9400241' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:06:58,940] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086018.9400241'. Remaining active: 0/5
+[2026-09-22 10:06:58,940] [GOVERNOR] INFO: Spawn slot acquired: 'tool_memory_query_1790086018.940627' (Cockpit tool execution: memory_query). Active: 1/5
+[2026-09-22 10:06:58,940] [GOVERNOR] INFO: Spawn slot released: 'tool_memory_query_1790086018.940627'. Remaining active: 0/5
+[2026-09-22 10:06:58,941] [GOVERNOR] INFO: Spawn slot acquired: 'tool_calculator_1790086018.9409902' (Cockpit tool execution: calculator). Active: 1/5
+[2026-09-22 10:06:58,941] [GOVERNOR] INFO: Spawn slot released: 'tool_calculator_1790086018.9409902'. Remaining active: 0/5
+[2026-09-22 10:06:58,950] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086018.9503212' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:06:58,950] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086018.9503212'. Remaining active: 0/5
+[2026-09-22 10:06:58,950] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086018.950626' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:06:58,950] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086018.950626'. Remaining active: 0/5
+[2026-09-22 10:06:58,950] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086018.9508524' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:06:58,950] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086018.9508524'. Remaining active: 0/5
+[2026-09-22 10:06:58,951] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086018.9510603' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:06:58,951] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086018.9510603'. Remaining active: 0/5
+[2026-09-22 10:06:58,951] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086018.9512944' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:06:58,951] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086018.9512944'. Remaining active: 0/5
+[2026-09-22 10:07:02,342] [GOVERNOR] INFO: Spawn slot acquired: 'tool_system_telemetry_1790086022.342463' (Cockpit tool execution: system_telemetry). Active: 1/5
+[2026-09-22 10:07:02,343] [GOVERNOR] INFO: Spawn slot released: 'tool_system_telemetry_1790086022.342463'. Remaining active: 0/5
+[2026-09-22 10:07:02,344] [GOVERNOR] INFO: Spawn slot acquired: 'tool_clock_timer_1790086022.3441715' (Cockpit tool execution: clock_timer). Active: 1/5
+[2026-09-22 10:07:02,344] [GOVERNOR] INFO: Spawn slot released: 'tool_clock_timer_1790086022.3441715'. Remaining active: 0/5
+[2026-09-22 10:07:02,344] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086022.3444903' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:02,345] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086022.3444903'. Remaining active: 0/5
+[2026-09-22 10:07:02,345] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086022.3457248' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:02,346] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086022.3457248'. Remaining active: 0/5
+[2026-09-22 10:07:02,346] [GOVERNOR] INFO: Spawn slot acquired: 'tool_memory_query_1790086022.346322' (Cockpit tool execution: memory_query). Active: 1/5
+[2026-09-22 10:07:02,346] [GOVERNOR] INFO: Spawn slot released: 'tool_memory_query_1790086022.346322'. Remaining active: 0/5
+[2026-09-22 10:07:02,346] [GOVERNOR] INFO: Spawn slot acquired: 'tool_calculator_1790086022.346623' (Cockpit tool execution: calculator). Active: 1/5
+[2026-09-22 10:07:02,346] [GOVERNOR] INFO: Spawn slot released: 'tool_calculator_1790086022.346623'. Remaining active: 0/5
+[2026-09-22 10:07:02,361] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086022.3616648' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:02,361] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086022.3616648'. Remaining active: 0/5
+[2026-09-22 10:07:02,362] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086022.362039' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:02,362] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086022.362039'. Remaining active: 0/5
+[2026-09-22 10:07:02,362] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086022.362256' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:02,362] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086022.362256'. Remaining active: 0/5
+[2026-09-22 10:07:02,362] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086022.3624563' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:02,362] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086022.3624563'. Remaining active: 0/5
+[2026-09-22 10:07:02,362] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086022.3626847' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:02,362] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086022.3626847'. Remaining active: 0/5
+[2026-09-22 10:07:06,474] [GOVERNOR] INFO: Spawn slot acquired: 'tool_system_telemetry_1790086026.4745612' (Cockpit tool execution: system_telemetry). Active: 1/5
+[2026-09-22 10:07:06,475] [GOVERNOR] INFO: Spawn slot released: 'tool_system_telemetry_1790086026.4745612'. Remaining active: 0/5
+[2026-09-22 10:07:06,475] [GOVERNOR] INFO: Spawn slot acquired: 'tool_clock_timer_1790086026.475867' (Cockpit tool execution: clock_timer). Active: 1/5
+[2026-09-22 10:07:06,476] [GOVERNOR] INFO: Spawn slot released: 'tool_clock_timer_1790086026.475867'. Remaining active: 0/5
+[2026-09-22 10:07:06,476] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086026.476212' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:06,476] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086026.476212'. Remaining active: 0/5
+[2026-09-22 10:07:06,477] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086026.477023' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:06,477] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086026.477023'. Remaining active: 0/5
+[2026-09-22 10:07:06,477] [GOVERNOR] INFO: Spawn slot acquired: 'tool_memory_query_1790086026.4774375' (Cockpit tool execution: memory_query). Active: 1/5
+[2026-09-22 10:07:06,477] [GOVERNOR] INFO: Spawn slot released: 'tool_memory_query_1790086026.4774375'. Remaining active: 0/5
+[2026-09-22 10:07:06,477] [GOVERNOR] INFO: Spawn slot acquired: 'tool_calculator_1790086026.4776776' (Cockpit tool execution: calculator). Active: 1/5
+[2026-09-22 10:07:06,477] [GOVERNOR] INFO: Spawn slot released: 'tool_calculator_1790086026.4776776'. Remaining active: 0/5
+[2026-09-22 10:07:06,486] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086026.486904' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:06,487] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086026.486904'. Remaining active: 0/5
+[2026-09-22 10:07:06,487] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086026.4872139' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:06,487] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086026.4872139'. Remaining active: 0/5
+[2026-09-22 10:07:06,487] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086026.487314' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:06,487] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086026.487314'. Remaining active: 0/5
+[2026-09-22 10:07:06,487] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086026.4874473' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:06,487] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086026.4874473'. Remaining active: 0/5
+[2026-09-22 10:07:06,487] [GOVERNOR] INFO: Spawn slot acquired: 'tool_workspace_inspect_1790086026.4876173' (Cockpit tool execution: workspace_inspect). Active: 1/5
+[2026-09-22 10:07:06,487] [GOVERNOR] INFO: Spawn slot released: 'tool_workspace_inspect_1790086026.4876173'. Remaining active: 0/5

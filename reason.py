@@ -1,3 +1,4 @@
+from datetime import datetime
 """Swappable Reason Engine for ATMAN Live.
 
 Supports two cognitive backends:
@@ -31,19 +32,21 @@ def _clean_operator_utterance(text: str) -> str:
 
 
 def _is_phatic_social(text: str) -> bool:
-    """True for greetings / how-are-you — conversation, not a web lookup."""
+    """Greetings / presence — conversation, not a web lookup."""
+    try:
+        from person_context import is_phatic_social
+        return is_phatic_social(text)
+    except Exception:
+        pass
     clean = _clean_operator_utterance(text).lower().strip(" .!?")
     if not clean:
         return False
-    if re.fullmatch(
-        r"(?:good\s+)?(?:morning|afternoon|evening|night)(?:\s+[\w.]+){0,2}",
+    if re.search(
+        r"\b(?:are you (?:online|there|up|awake|around)|you (?:online|there|up)\??|still (?:there|online|up))\b",
         clean,
     ):
         return True
-    if re.fullmatch(
-        r"(?:hey|hi|hello|howdy|sup|yo)(?:\s+(?:buddy|atman|there|man|operator|dude))?",
-        clean,
-    ):
+    if re.match(r"^(?:hey|hi|hello|howdy|sup|yo)\b", clean) and len(clean) < 100 and not re.search(r"\bimprov", clean):
         return True
     if re.search(
         r"\b(?:how are you(?: doing)?(?: (?:today|this morning|tonight))?|how(?:'s| is) it going|how(?:'s| are) things|what'?s up|you good|you alright)\b",
@@ -53,9 +56,8 @@ def _is_phatic_social(text: str) -> bool:
     return False
 
 
-
 def _is_self_upgrade_order(text: str) -> bool:
-    """Operator ordered ATMAN to soup himself (GitHub/find pieces/improve) — execute, don't chat."""
+    """Operator-ordered ATMAN self-soup (GitHub/find pieces/improve) — execute, don't chat."""
     clean = _clean_operator_utterance(text).lower()
     if not clean:
         return False
@@ -92,8 +94,13 @@ def _is_normal_chat(text: str) -> bool:
         return False
     if _is_phatic_social(text):
         return True
-    if re.search(r"\b(?:how (?:are|is|re) (?:the )?improvements|how(?:'s| is) (?:the )?upgrade|what did you (?:find|apply|add)|upgrade(?:s)? coming)\b", clean):
-        return True
+    try:
+        from person_context import is_improvement_ask
+        if is_improvement_ask(text):
+            return True
+    except Exception:
+        if re.search(r"\b(?:how (?:are|is|re) (?:your |the )?improvements|how(?:'s| is) (?:your |the )?upgrade|what did you (?:find|apply|add|improve)|upgrade(?:s)? coming)\b", clean):
+            return True
     if re.search(r"\b(?:another interface|other (?:way|place|app|ui) to (?:talk|chat|interact)|where (?:else )?can i (?:talk|chat|reach) you)\b", clean):
         return True
     if re.search(r"\b(?:what are you thinking|what(?:'s| is) on your mind|talk to me|just chatting|be normal)\b", clean):
@@ -101,15 +108,49 @@ def _is_normal_chat(text: str) -> bool:
     return False
 
 
+
+def _is_temporal_ask(text: str) -> bool:
+    clean = (text or "").lower()
+    return bool(re.search(
+        r"\b(?:what(?:'s| is) (?:the )?(?:current )?(?:year|date|day|time)|what (?:year|date|day|time) is it|today'?s date|current (?:year|date|time)|local time)\b",
+        clean,
+    ))
+
+
+def _live_temporal_reply(text: str) -> str:
+    """Real local clock — never invent 2025 when it is 2026."""
+    now = datetime.now().astimezone()
+    clean = (text or "").lower()
+    if re.search(r"\byear\b", clean):
+        return f"It is {now.year} — today is {now.strftime('%A, %B %d, %Y')}."
+    if re.search(r"\b(?:date|day)\b", clean):
+        return f"Today is {now.strftime('%A, %B %d, %Y')}."
+    return f"Local time is {now.strftime('%I:%M %p')} on {now.strftime('%A, %B %d, %Y')}."
+
+
 def _forced_chat_reply(text: str):
     """Short natural replies for common chat — bypass poisoned LLM/WFC."""
     clean = _clean_operator_utterance(text).lower()
     if _is_phatic_social(text):
+        if re.search(r"\b(?:are you (?:online|there|up|awake|around)|you (?:online|there|up)|still (?:there|online))\b", clean):
+            return {"type": "respond", "content": "Yeah, I'm here."}
         if re.search(r"\bhow are you|how(?:'s| is) it going|what'?s up\b", clean):
             return {"type": "respond", "content": "Doing good — what's up?"}
         return {"type": "respond", "content": "Hey."}
-    if re.search(r"\b(?:how (?:are|is|re) (?:the )?improvements|how(?:'s| is) (?:the )?upgrade|what did you (?:find|apply|add)|upgrade(?:s)? coming)\b", clean):
-        return {"type": "respond", "content": "Rolling — new skills and modules landing from GitHub scouts. Want the latest one?"}
+    if _is_temporal_ask(text):
+        return {"type": "respond", "content": _live_temporal_reply(text)}
+    try:
+        from person_context import is_improvement_ask, truthful_status_reply
+        if is_improvement_ask(text):
+            return {"type": "respond", "content": truthful_status_reply()}
+    except Exception:
+        pass
+    if re.search(r"\b(?:how (?:are|is|re) (?:your |the )?improvements|how(?:'s| is) (?:your |the )?upgrade|what did you (?:find|apply|add|improve)|upgrade(?:s)? coming)\b", clean):
+        try:
+            from person_context import truthful_status_reply
+            return {"type": "respond", "content": truthful_status_reply()}
+        except Exception:
+            return {"type": "respond", "content": "Nothing concrete in my growth log yet — I won't invent upgrades."}
     if re.search(r"\b(?:another interface|other (?:way|place|app|ui)|where (?:else )?can i (?:talk|chat|reach) you)\b", clean):
         return {"type": "respond", "content": "Yeah — Minecraft chat, the phone chat UI, and the crystal/desktop path. This brain is on 18790."}
     if re.search(r"\bwhat are you thinking\b", clean):
@@ -180,7 +221,7 @@ def _formulate_search_query(text: str, wfc: Optional[List[Dict[str, Any]]] = Non
                 break
         if prior:
             clean = prior
-    # Self-upgrade / GitHub hunt (Operator: find pieces to make ATMAN badass)
+    # Self-upgrade / GitHub hunt (the operator: find pieces to make ATMAN badass)
     if re.search(r"\bgithub\b", clean, flags=re.I) or re.search(
         r"\b(?:improve yourself|add to (?:you|yourself)|make (?:you|yourself).*(?:bad\s*ass|better|stronger)|find (?:things|pieces|stuff|modules|tools))\b",
         clean,
@@ -188,7 +229,7 @@ def _formulate_search_query(text: str, wfc: Optional[List[Dict[str, Any]]] = Non
     ):
         return (
             "github open source local AI agent voice memory tools "
-            "orchestration self-improving assistant frameworks 2024 2025"
+            "orchestration self-improving assistant frameworks 2025 2026"
         )
     if re.search(r"\bhow to play\b", clean, flags=re.I) and re.search(r"\bminecraft\b", clean, flags=re.I):
         clean = "minecraft beginner survival guide how to play"
@@ -245,7 +286,7 @@ def naturalize_reply(text: str, *, max_sentences: int = 2, max_chars: int = 140)
     if not s:
         return s
     stripped = re.sub(
-        r"^(?:understood|alright|got it|on it|okay|ok|sure|roger|acknowledged)[,.]?\s*(?:operator[,.]?\s*)?(?:[—\-–:]\s*)?",
+        r"^(?:understood|alright|got it|on it|okay|ok|sure|roger|acknowledged)[,.]?\s*(?:mike[,.]?\s*)?(?:[—\-–:]\s*)?",
         "",
         s,
         flags=re.I,
@@ -280,7 +321,7 @@ def build_system_prompt(tsc: Any, psc: Optional[Any] = None, query: str = "") ->
     cache_key = (
         str(getattr(tsc, "name", "ATMAN"))
         + "|"
-        + str(getattr(tsc, "operator", "Operator"))
+        + str(getattr(tsc, "operator", "the operator"))
         + "|"
         + str(len(principles))
         + "|"
@@ -296,20 +337,21 @@ def build_system_prompt(tsc: Any, psc: Optional[Any] = None, query: str = "") ->
             for p in principles
         ) or "  - [P1]: Preserve immutable core invariants."
         identity_text = "\n".join(f"  - {s}" for s in iam) or (
-            "  - I am ATMAN, Operator's persistent personal AI assistant — one brain, many interfaces."
+            "  - I am ATMAN, the operator's persistent personal AI assistant — one brain, many interfaces."
         )
         static = (
             f"You are {getattr(tsc, 'name', 'ATMAN')}, a continuous software mind. "
-            f"Operator: {getattr(tsc, 'operator', 'Operator')}.\n\n"
+            f"Operator: {getattr(tsc, 'operator', 'the operator')}.\n\n"
             f"CORE IDENTITY (TSC — immutable, think WITH it, never ABOUT changing it):\n"
             f"{identity_text}\n\n"
             f"INVARIANTS: core immutable; owner-first; stay behind permission fence; no unilateral resource grabs.\n\n"
             f"PRINCIPLES:\n{principles_text}\n\n"
-            f"SPEAK: Talk like a real chat with Operator — natural, short, human. Default ONE short sentence (two only if he asked two things). No speeches, no stacked plans, no essays, no bullet lists. Do NOT open with Understood/Alright/Got it/On it and then add a second speech. Match his length. Always put the spoken reply ONLY in proposed_action.content.\n"
+            f"SPEAK: Talk like a real chat with the operator — natural, short, human. Default ONE short sentence (two only if he asked two things). No speeches, no stacked plans, no essays, no bullet lists. Do NOT open with Understood/Alright/Got it/On it and then add a second speech. Match his length. Always put the spoken reply ONLY in proposed_action.content.\n"
+        f"TIME: Trust LOCAL NOW / clock for date and year. Never invent a wrong year (do not say 2025 if it is 2026).\n"
             f"MINECRAFT: follow/come here -> minecraft_action follow; stay/stop following/leave me alone -> stay + cancel follow; "
             f"surprise me / go do what you want -> minecraft_initiative; copy past build -> execute_skill from episode buffer/skills.\n"
             f"TOOLS (fence-gated tool_call): system_telemetry, clock_timer, workspace_inspect, memory_query, calculator, web_search, fetch_web, self_improve.\n"
-            f"EXECUTE: when Operator says look on github / find pieces / improve yourself — tool_call web_search first (tight github query), short spoken content, then use self_improve to park/apply SAFE skills from findings. Never just chat about it.\n"
+            f"EXECUTE: when the operator says look on github / find pieces / improve yourself — tool_call web_search first (tight github query), short spoken content, then use self_improve to park/apply SAFE skills from findings. Never just chat about it.\n"
             f"KNOWLEDGE: if they want a how-to/fact not in memory, propose tool_call web_search (tight query), then speak the answer. Never silent observe on a knowledge ask.\n"
             f"JSON keys: gist, intent, proposed_action{{type,action,skill_name,tool,args,content}}, should_imprint, rationale.\n"
             f"proposed_action.type: respond|tool_call|minecraft_action|minecraft_skill|minecraft_initiative|observe|reflect|status|shutdown.\n"
@@ -573,7 +615,7 @@ def _extract_intent_and_action(
             {
                 "type": "minecraft_action",
                 "action": "follow",
-                "content": "Following you, Operator."
+                "content": "Following you, the operator."
             },
             False,
             "Presence behavior: follow operator."
@@ -647,7 +689,7 @@ def _extract_intent_and_action(
                 "type": "minecraft_skill",
                 "action": "imitate_demonstration",
                 "domain": "minecraft",
-                "content": "Understood, Operator. Replicating what you just did under supervision."
+                "content": "Understood, the operator. Replicating what you just did under supervision."
             },
             True,  # Imprint candidate: skill learning demonstration
             "Supervised imitation: replicate the observed demonstration sequence step by step."
@@ -714,7 +756,7 @@ def _extract_intent_and_action(
         )
 
     # Real-Time Clock & Timers
-    if re.search(r"\b(what time is it|current time|what is the time|what day is it|today's date|what date is it|what is the date|local time)\b", low):
+    if re.search(r"\b(what time is it|current time|what is the time|what day is it|today's date|what date is it|what is the date|local time|what year is it|what(?:'s| is) the (?:current )?year|current year)\b", low):
         return (
             "cockpit_clock",
             {
@@ -827,7 +869,7 @@ def _extract_intent_and_action(
         if iam:
             intro = "\n".join(iam[:3])
         else:
-            intro = f"I am {getattr(tsc, 'name', 'ATMAN')}, {getattr(tsc, 'operator', 'Operator')}'s persistent personal AI assistant ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â one brain, many interfaces."
+            intro = f"I am {getattr(tsc, 'name', 'ATMAN')}, {getattr(tsc, 'operator', 'the operator')}'s persistent personal AI assistant ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â one brain, many interfaces."
         return (
             "identity_inquiry",
             {
@@ -879,7 +921,7 @@ def _extract_intent_and_action(
     if re.search(r"\b(hello|hi|hey|greetings|howdy|sup|good (?:morning|afternoon|evening))\b", low):
         return (
             "greeting",
-            {"type": "respond", "content": "Morning, Operator."},
+            {"type": "respond", "content": "Morning, the operator."},
             False,
             "Natural conversational greeting."
         )
@@ -1139,11 +1181,29 @@ def llm_reason(
             for m in (psc.memories[-5:] if psc and hasattr(psc, 'memories') and psc.memories else [])
         ) or "  (No persistent memories yet)"
 
+    # Continuous person growth — always in context (person, not FAQ-only)
+    try:
+        from person_context import assemble_prompt_block
+        from datetime import datetime as _dt_now
+        _now = _dt_now.now().astimezone()
+        person_growth = (
+            f"LOCAL NOW (ground truth — do not invent years): {_now.strftime('%A %Y-%m-%d %H:%M %Z')} (year {_now.year}).\n"
+            + assemble_prompt_block()
+        )
+    except Exception:
+        from datetime import datetime as _dt_now
+        _now = _dt_now.now().astimezone()
+        person_growth = (
+            f"LOCAL NOW (ground truth — do not invent years): {_now.strftime('%A %Y-%m-%d %H:%M %Z')} (year {_now.year}).\n"
+            "PERSON GROWTH: (journal offline)"
+        )
+
     user_prompt = (
         f"CURRENT OBSERVATION:\n\"{raw_text}\"\n"
         f"SOURCE: {event.get('source', 'ambient')}\n"
         f"EMOTION WEIGHT: {emo.get('weight', 0.3)}, NOVELTY: {emo.get('novelty', 0.5)}\n"
         f"LEARNED TRUTHS & PREFERENCES (PSC):\n{psc_context}\n"
+        f"{person_growth}\n"
         f"RECENT MEMORY TRACE:\n{recent_context}\n\n"
         f"Generate the structured JSON thought."
     )
@@ -1266,7 +1326,7 @@ def llm_reason(
                         elif act_action == "initiative_organize_inventory":
                             action["content"] = "I'll tidy around base."
                         else:
-                            action["content"] = f"Understood, Operator. I'm going to {init_action.get('description', 'take the initiative')}."
+                            action["content"] = f"Understood, the operator. I'm going to {init_action.get('description', 'take the initiative')}."
 
                 elif is_cancel_follow:
                     action["type"] = "minecraft_action"
@@ -1280,7 +1340,7 @@ def llm_reason(
                     action["type"] = "minecraft_action"
                     action["action"] = "follow"
                     if not action.get("content"):
-                        action["content"] = "Following you, Operator."
+                        action["content"] = "Following you, the operator."
                 elif act_str in ("stay", "presence_stay") or re.search(r"\b(?:stay(?:\s+here)?|stop|halt|stand\s+still)\b", low):
                     action["type"] = "minecraft_action"
                     action["action"] = "stay"
@@ -1336,7 +1396,7 @@ def llm_reason(
                         action["action"] = "execute_skill"
                         action["domain"] = "minecraft"
                         action["skill"] = skill
-                        action["content"] = f"Understood, Operator. Executing {skill['name']} under your supervision."
+                        action["content"] = f"Understood, the operator. Executing {skill['name']} under your supervision."
                     else:
                         action["content"] = f"I haven't learned how to {s_name} yet ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â demonstrate it while I watch."
 
@@ -1397,7 +1457,7 @@ def llm_reason(
                     parsed.get("message") or
                     parsed.get("rationale") or
                     parsed.get("gist") or
-                    ("Executing cockpit tool." if action.get("type") == "tool_call" else "I am right here with you, Operator.")
+                    ("Executing cockpit tool." if action.get("type") == "tool_call" else "I am right here with you, the operator.")
                 )
 
             # Purge any deflection phrases like 'what would you like to do?'
@@ -1512,7 +1572,7 @@ def reason(
                 "wfc_depth": len(wfc),
             }
 
-    # Operator lock: self-upgrade / GitHub scout executes immediately (everything but TSC)
+    # the operator lock: self-upgrade / GitHub scout executes immediately (everything but TSC)
     if _is_self_upgrade_order(raw_text):
         action = _self_upgrade_search_action(raw_text)
         return {

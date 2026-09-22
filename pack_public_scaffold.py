@@ -1,10 +1,10 @@
-"""Build project-atman.zip from atman-live without private core secrets."""
+"""Build atman-scaffold-public.zip from atman-live without private core secrets."""
 from __future__ import annotations
 import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-OUT = ROOT.parent / "project-atman.zip"
+OUT = ROOT.parent / "atman-scaffold-public.zip"
 
 DENY_NAMES = {
     "psc.json",
@@ -43,7 +43,7 @@ INCLUDE_TOP = {
     ".gitignore",
     "ARCHITECTURE.md",
     "README.md",
-    "ATMAN-SCAFFOLD-HANDOFF.md",
+    "STRIDER-SCAFFOLD-HANDOFF.md",
     "build_desktop.py",
     "cockpit.py",
     "config.py",
@@ -56,8 +56,8 @@ INCLUDE_TOP = {
     "episode_segmenter.py",
     "evolving_brain.py",
     "atman_core.py",
-    "atman_icon.ico",
-    "atman_icon.png",
+    "exo_icon.ico",
+    "exo_icon.png",
     "gate_policy.json",
     "governor.py",
     "load_knowledge_bootstrap.py",
@@ -78,8 +78,6 @@ INCLUDE_TOP = {
     "voice.py",
     "wake.py",
     "working_context.py",
-    "onboard.py",
-    "llms.txt",
     "pack_public_scaffold.py",
     "SOUP-PHASE0-ARCHITECTURE.md",
     "SOUP-PHASE1-PROFILE.md",
@@ -89,6 +87,7 @@ INCLUDE_TOP = {
     "SOUP-PHASE3-CHANGELOG.md",
     "SOUP-PHASE3-FREEPLAY.md",
     "SOUP-SELF-UPGRADE.md",
+    "person_context.py",
 }
 
 
@@ -155,7 +154,7 @@ def main() -> None:
     bad = [n for n in names if any(x in n.lower() for x in ("tsc.atman.private", "stage1-seal", "psc.json", ".env", "atman-private"))]
     if bad:
         raise SystemExit(f"REFUSING: private paths in zip: {bad}")
-    must = ["working_context.py", "self_improve/engine.py", "self_improve/safety.py", "self_improve/freeplay_proposer.py", "ATMAN-SCAFFOLD-HANDOFF.md"]
+    must = ["person_context.py", "working_context.py", "self_improve/engine.py", "self_improve/safety.py", "self_improve/freeplay_proposer.py", "STRIDER-SCAFFOLD-HANDOFF.md"]
     missing = [m for m in must if m not in names]
     if missing:
         raise SystemExit(f"REFUSING: missing required public files: {missing}")

@@ -6,7 +6,7 @@ import subprocess
 import sys
 
 ROOT=Path(__file__).resolve().parent
-DATA_FILES=('ui/index.html','ui/style.css','ui/app.js','atman_icon.png','desktop_worker.py')
+DATA_FILES=('ui/index.html','ui/style.css','ui/app.js','exo_icon.png','desktop_worker.py')
 FORBIDDEN_NAMES=('tsc','operator.auth','operator_auth','stage1-seal','seal.json','atman-private',
                  'psc.json','significant_events.json','pending_proposals.json','.env','credentials')
 EXCLUDED=('core','atman_core','crate','seal','operator_auth','loop','reason','voice','senses',
@@ -41,7 +41,7 @@ def main():
     parser.add_argument('--output-dir',type=Path,default=ROOT/'dist')
     output=parser.parse_args().output_dir.resolve()
     command=[sys.executable,'-m','PyInstaller','--noconfirm','--clean','--onefile','--windowed',
-             '--name','ATMAN','--icon',str(ROOT/'atman_icon.ico'),
+             '--name','ATMAN','--icon',str(ROOT/'exo_icon.ico'),
              '--distpath',str(output),'--workpath',str(ROOT/'build')]
     for name in DATA_FILES:
         destination=str(Path(name).parent)

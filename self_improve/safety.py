@@ -1,6 +1,6 @@
 """Skill safety fence for freeplay auto-apply.
 
-Operator lock (2026-09-22): safe skills (esp. Minecraft) auto-apply without
+the operator lock (2026-09-22): safe skills (esp. Minecraft) auto-apply without
 operator approve. Anything that looks like hacking, credential theft,
 sealed-core mutation, or out-of-bounds shell/network abuse is REFUSED.
 """

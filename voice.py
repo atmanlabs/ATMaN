@@ -393,7 +393,7 @@ class VoiceEngine:
         if not self.is_enabled and not force_enabled:
             raise PermissionFenceError(
                 "Voice subsystem is disabled in config.yaml ('voice_enabled: false'). "
-                "Operator must explicitly enable it in config.yaml."
+                "Michael must explicitly enable it in config.yaml."
             )
 
         # 1. Capture audio in memory

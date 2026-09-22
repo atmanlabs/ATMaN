@@ -25,7 +25,7 @@ def test_drives_and_initiative():
         test_proposals.unlink()
     dm = DriveManager(storage_path=test_storage, proposals_path=test_proposals)
 
-    assert "be_useful_to_operator" in dm.drives
+    assert "be_useful_to_mike" in dm.drives
     assert "learn_the_world" in dm.drives
     assert "keep_base_safe_and_tidy" in dm.drives
     assert "practice_known_skills" in dm.drives
@@ -86,7 +86,7 @@ def test_drives_and_initiative():
 
     print("\n--- TEST 3: Proposal Loop for Big Wants ---")
     # Reset drives and give abundant cobblestone (16 items)
-    dm.drives["be_useful_to_operator"].intensity = 0.3
+    dm.drives["be_useful_to_mike"].intensity = 0.3
     dm.drives["learn_the_world"].intensity = 0.3
     dm.drives["practice_known_skills"].intensity = 0.85
     dm.drives["keep_base_safe_and_tidy"].intensity = 0.95

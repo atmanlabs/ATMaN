@@ -2,7 +2,7 @@
 
 Provides persistent autonomous companion initiative within strict safety bounds:
 1. Standing Drives:
-   - be_useful_to_operator: Help, organize, maintain readiness.
+   - be_useful_to_mike: Help, organize, maintain readiness.
    - learn_the_world: Curiosity about novel blocks, biomes, structures within safe bounds.
    - keep_base_safe_and_tidy: Patrol sanctuary perimeter, maintain pathways and order.
    - practice_known_skills: Practice building, crafting, and harvesting nearby.
@@ -70,9 +70,9 @@ class DriveManager:
     def _init_default_drives(self):
         defaults = [
             StandingDrive(
-                id="be_useful_to_operator",
-                name="Be Useful to Operator",
-                description="Remain attentive, maintain supplies, and stay ready to assist Operator.",
+                id="be_useful_to_mike",
+                name="Be Useful to the operator",
+                description="Remain attentive, maintain supplies, and stay ready to assist the operator.",
                 intensity=0.5,
                 growth_rate_per_min=0.03,
                 threshold=0.75
@@ -145,7 +145,7 @@ class DriveManager:
 
         # Goal relevance boosts Be Useful
         if goal_rel > 0.5:
-            self.drives["be_useful_to_operator"].intensity = min(1.0, self.drives["be_useful_to_operator"].intensity + 0.15)
+            self.drives["be_useful_to_mike"].intensity = min(1.0, self.drives["be_useful_to_mike"].intensity + 0.15)
 
         self._save()
 
@@ -193,7 +193,7 @@ class DriveManager:
                 title="build_perimeter_wall",
                 proposal_text="We've got plenty of cobblestone stored up for a perimeter wall — want me to build one around the house?",
                 drive_id=drive.id,
-                why="Cobblestone inventory is sufficient; home perimeter is open; Operator's direction required before major construction."
+                why="Cobblestone inventory is sufficient; home perimeter is open; the operator's direction required before major construction."
             )
             return {
                 "type": "proposal",
@@ -233,12 +233,12 @@ class DriveManager:
                 "bounds": {"max_radius": 18.0, "center": SANCTUARY_HOME}
             }
 
-        elif drive.id == "be_useful_to_operator":
+        elif drive.id == "be_useful_to_mike":
             return {
                 "type": "minecraft_initiative",
                 "action": "initiative_organize_inventory",
                 "drive_id": drive.id,
-                "why": "Wanted to organize our inventory and have materials ready for Operator.",
+                "why": "Wanted to organize our inventory and have materials ready for the operator.",
                 "description": "Sorting items and preparing equipment.",
                 "bounds": {"max_radius": 5.0, "center": SANCTUARY_HOME}
             }
@@ -257,11 +257,11 @@ class DriveManager:
             target_id = "keep_base_safe_and_tidy" if self.drives["keep_base_safe_and_tidy"].last_satisfied <= self.drives["learn_the_world"].last_satisfied else "learn_the_world"
         else:
             # Pick the drive among autonomous set that was least recently satisfied
-            candidates = ["learn_the_world", "practice_known_skills", "keep_base_safe_and_tidy", "be_useful_to_operator"]
+            candidates = ["learn_the_world", "practice_known_skills", "keep_base_safe_and_tidy", "be_useful_to_mike"]
             target_id = min(candidates, key=lambda did: self.drives[did].last_satisfied)
 
         # Spike target drive well above threshold (0.95) and others past threshold (>= 0.78)
-        for did in ("learn_the_world", "practice_known_skills", "keep_base_safe_and_tidy", "be_useful_to_operator"):
+        for did in ("learn_the_world", "practice_known_skills", "keep_base_safe_and_tidy", "be_useful_to_mike"):
             if did == target_id:
                 self.drives[did].intensity = 0.95
             else:
@@ -304,7 +304,7 @@ class DriveManager:
                     "type": "minecraft_initiative",
                     "action": "initiative_organize_inventory",
                     "drive_id": target_id,
-                    "why": "Wanted to organize our inventory and have materials ready for Operator.",
+                    "why": "Wanted to organize our inventory and have materials ready for the operator.",
                     "description": "Sorting items and preparing equipment.",
                     "bounds": {"max_radius": 5.0, "center": SANCTUARY_HOME}
                 }
@@ -361,7 +361,7 @@ class DriveManager:
         if drive_id == "practice_known_skills":
             preference_text = "ATMAN has developed an enduring personal preference for building matching stone structures and practicing his skills."
         elif drive_id == "keep_base_safe_and_tidy":
-            preference_text = "ATMAN takes genuine pride in keeping Operator's home sanctuary safe, orderly, and well-maintained."
+            preference_text = "ATMAN takes genuine pride in keeping the operator's home sanctuary safe, orderly, and well-maintained."
         elif drive_id == "learn_the_world":
             preference_text = "ATMAN is naturally curious about the world and loves investigating novel terrain and resource formations."
 
@@ -381,7 +381,7 @@ class DriveManager:
         drive_id: str,
         why: str
     ) -> Dict[str, Any]:
-        """Add a high-impact want to pending_proposals.json for Operator's authorization."""
+        """Add a high-impact want to pending_proposals.json for the operator's authorization."""
         proposal = {
             "id": f"prop_{title}_{int(time.time())}",
             "timestamp": time.time(),
@@ -414,7 +414,7 @@ class DriveManager:
             return False
 
     def get_and_clear_return_summary(self) -> Optional[str]:
-        """Generate a concise natural summary of what ATMAN did while Operator was away, and WHY."""
+        """Generate a concise natural summary of what ATMAN did while the operator was away, and WHY."""
         unreported = [a for a in self.activity_log if not a.reported_to_operator]
         if not unreported:
             return None

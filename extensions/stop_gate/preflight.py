@@ -1,4 +1,4 @@
-﻿"""Pre-flight STOP gate + Counsel Soft GO card. Peripheral — does not edit TSC."""
+"""Pre-flight STOP gate + Counsel Soft GO card. Peripheral — does not edit TSC."""
 from __future__ import annotations
 from dataclasses import dataclass, asdict
 from typing import Any, Dict, List, Optional

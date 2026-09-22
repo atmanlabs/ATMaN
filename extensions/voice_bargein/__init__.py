@@ -1,1 +1,1 @@
-﻿from .bargein import configure, should_interrupt, status
+from .bargein import configure, should_interrupt, status

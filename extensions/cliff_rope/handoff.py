@@ -1,4 +1,4 @@
-﻿"""Cliff-rope handoff writer. Peripheral only — never touches TSC/seal."""
+"""Cliff-rope handoff writer. Peripheral only — never touches TSC/seal."""
 from __future__ import annotations
 from datetime import datetime
 from pathlib import Path
@@ -35,7 +35,7 @@ def write_handoff(
     do_not = do_not or [
         "Do NOT edit private TSC / seal / atman_core / identity gate_policy",
         "Do NOT reinstall or wipe OpenClaw or ATMAN",
-        "Homestead money ops stay stopped until Operator unlocks",
+        "Homestead money ops stay stopped until the operator unlocks",
     ]
     lines = [
         "# ATMAN CLIFF-ROPE HANDOFF",

@@ -1,45 +1,46 @@
-# ATMAN public scaffold — GitHub patch handoff
+# ATMAN public scaffold — Strider GitHub patch handoff
 
-Built: 2026-09-22 09:37 Eastern Daylight Time
-Source: live atman-live on OPERATOR-PC (project ATMAN, relay 127.0.0.1:18790)
+Built: 2026-09-22 10:00 Eastern Daylight Time
+Source: live atman-live on operator machine (ATMAN core, local relay)
 Artifact: atman-scaffold-public.zip + Desktop atman-scaffold-public\
 
-## For the maintainer
+## For Strider
 Drop this pack onto the public GitHub scaffold and patch forward.
 **Do not** commit private soul / seal / PSC / .env / atman-private.
 
-OpenClaw note: gateway 18789 is OpenClaw-Worker (tools). Conversational ATMAN person = ATMAN/atman-live on **18790**.
 
-## What is new since prior public zip
+## What is new in this pack (2026-09-22)
 
-### Phase 2 — latency / working context
-- working_context.py — TSC flat + capped WFC snapshot
-- WFC depoison (2026-09-22): search/evolve/camera blobs redacted in prompt so chat is not derailed into fake Windows-upgrade tool calls
-- Docs: SOUP-PHASE0-ARCHITECTURE.md, SOUP-PHASE1-PROFILE.md, SOUP-PHASE2-*.md
+### Person-context (continuous growth)
+- person_context.py + self_improve/PERSON_JOURNAL.jsonl
+- Always injected into Reason (LOCAL NOW + growth facts) — he is a person; context evolves
+- Improvement asks → 	ruthful_status_reply() from journal/CHANGELOG/skills (never web invent)
+- Phatic "how are you" unchanged; presence: "are you online" / "you there" → "Yeah, I'm here."
+- Year/date ground truth: forced clock replies; never invent 2025 when it is 2026
 
-### Phase 3 — self-improve (alive + rolling)
-- self_improve/ — engine, safety fence, freeplay_proposer, **rolling_evolve**
-- Cockpit tool self_improve + config permissions
-- Idle hooks: relay /initiative/pending, MindLoop ambient
-- Safe skills auto-apply; hack/credential/core-bypass REFUSED
-- GitHub self-upgrade orders **execute** (web_search → ingest → apply skills + extension stubs)
-- **Rolling evolve** (~10 min): rotate scout topics, apply new leads, advance stubs — continuous, not one-shot
-- Allowlisted patch_file for non-sealed soup (never gate_policy/core/seal/psc)
-- Docs: SOUP-PHASE3-*.md, SOUP-SELF-UPGRADE.md
+### Chat / WFC guards (Strider hit-list applied live)
+- Broader phatic (hello + atman + online/status)
+- Broader improvement phrasing: "what improvements have you made to yourself"
+- loop.py Looked-it-up junk guard (no echo of operator sentence / Windows poison)
+- working_context.py depoison: web_search + llm_inferred + Windows content labels
+- Scout seed years: 2025 2026 (not 2024 2025)
 
-### Chat / conversation guards (2026-09-22)
-- Natural short replies (
-aturalize_reply, SPEAK v4)
-- Conversation guard: normal talk (how are you / interfaces / upgrade status) must not become web_search
-- Reject hallucinated Windows 11/12 searches Operator never asked for
-- Identity regex: what are you thinking is chat, not identity dump
-- Post-scout evolve no longer orce=True mid-chat (was flooding WFC)
+### Prior soup (still included)
+- Phase 2 working context / latency; Phase 3 self_improve + rolling_evolve
+- Safe auto-apply skills; sealed core never writable
+- Docs: SOUP-PHASE*, SOUP-SELF-UPGRADE.md
 
 ### Hard locks (unchanged)
 Sealed: core.py, atman_core.py, gate_policy.json, crate.py, wake.py, seal.py
 Never ship: atman-private/, 	sc.atman.private*, stage1-seal.json, psc.json, secrets
 
 ## Rebuild
-`ash
+`bash
 python pack_public_scaffold.py
 `
+
+## Live smoke (already verified on PC 2026-09-22)
+- Hello, Atman. Are you online? → Yeah, I'm here.
+- what improvements have you made to yourself → From my real growth log: …
+- how are you → Doing good — what's up?
+- what year is it → It is 2026 — today is Tuesday, September 22, 2026.

@@ -1,1 +1,1 @@
-﻿from .door import set_standing_greenlight, status, open_rail
+from .door import set_standing_greenlight, status, open_rail
