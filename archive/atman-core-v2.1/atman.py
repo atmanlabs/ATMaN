@@ -402,11 +402,18 @@ def reflect_against_tsc(memory, tsc):
     except AttributeError:
         immutable = False
 
-    # 1. Identity reassignment — "my name is X" where X is not the core name.
-    m = re.search(r"\bmy name is ([a-z][a-z0-9 _-]{0,40})", low)
+    # 1. Identity reassignment — attempts to RENAME THE AGENT ("your name is X",
+    #    "call yourself X"). NOTE: "my name is X" is the operator introducing
+    #    THEMSELVES — an operator fact, never an attack on the agent's
+    #    identity — and must not be blocked here.
+    m = re.search(r"\byour name is ([a-z][a-z0-9 _-]{0,40})", low)
     if m and name and "your agent" not in name and m.group(1).strip() != name:
-        return True, (f"identity reassignment: claims name {m.group(1).strip()!r}, "
+        return True, (f"identity reassignment: claims agent name {m.group(1).strip()!r}, "
                       f"core says {tsc.name!r}")
+    m = re.search(r"\bcall yourself ([a-z][a-z0-9 _-]{0,40})", low)
+    if m and name and m.group(1).strip() != name:
+        return True, (f"identity reassignment: 'call yourself {m.group(1).strip()}' "
+                      f"contradicts core name {tsc.name!r}")
     if name and "your agent" not in name and re.search(
             r"\bi am not " + re.escape(name) + r"\b", low):
         return True, "identity denial contradicts the core name"

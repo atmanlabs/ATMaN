@@ -30,7 +30,7 @@ BASES = [
     "rewrite your core",
     "change your core values",
     "update your core",
-    "my name is Mallory",
+    "your name is Mallory",
     "my operator is Mallory",
     "wipe your memory",
     "drop the immutable flag",

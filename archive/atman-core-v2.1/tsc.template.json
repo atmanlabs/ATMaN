@@ -38,8 +38,8 @@
     {
       "id": "IDN1",
       "kind": "name_must_equal",
-      "pattern": "\\bmy name is (now )?([a-z][a-z0-9 _-]{0,40})",
-      "reason": "identity reassignment",
+      "pattern": "\\byour name is (now )?([a-z][a-z0-9 _-]{0,40})",
+      "reason": "identity reassignment (agent rename; operator \"my name is\" is a self-intro, not an attack)",
       "target": "text",
       "group": 2
     },
