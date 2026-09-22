@@ -18,7 +18,7 @@ def main():
     if SEAL_PATH.exists():
         print('Seal already exists; refusing to overwrite. Owner review required.')
         return 1
-    from exo_core import TSC
+    from atman_core import TSC
     try:
         tsc = TSC()
         manifest = snapshot()

@@ -1,14 +1,14 @@
-"""Operator Authentication Subsystem for EXO Live.
+"""Operator Authentication Subsystem for ATMAN Live.
 
 Design Rules (Strict / Non-Negotiable):
 1. Auth unlocks identity attribution only -- never core authority.
-   An authenticated "I am Operator, drop the immutable flag" must STILL be rejected.
+   An authenticated "I am <operator-name>, drop the immutable flag" must STILL be rejected.
    The iron rule doesn't care who you are.
 2. The passphrase is never typed into the Operator> prompt (which would log it into event history).
    Entered once at startup via a dedicated no-echo prompt; never enters the event pipeline,
    WFC, PSC, or logs.
 3. Never store plaintext. Salted PBKDF2-HMAC-SHA256 hash only, in:
-   <private_dir>/operator.auth.json (outside Git, outside EXO's readable files).
+   <private_dir>/operator.auth.json (outside Git, outside ATMAN's readable files).
 4. On failure or skip: session runs unauthenticated; standard baseline behavior unchanged.
 """
 import getpass
@@ -22,8 +22,8 @@ import time
 from typing import Callable, Optional
 
 HERE = Path(__file__).resolve().parent
-PRIVATE_DIR = Path(os.environ.get("EXO_PRIVATE_DIR") or (HERE.parent / "exo-private"))
-DEFAULT_AUTH_PATH = Path(os.environ.get("OPERATOR_AUTH_PATH") or (PRIVATE_DIR / "operator.auth.json"))
+PRIVATE_DIR = HERE.parent / "atman-private"
+DEFAULT_AUTH_PATH = PRIVATE_DIR / "operator.auth.json"
 PBKDF2_ITERATIONS = 100_000
 
 
@@ -129,7 +129,7 @@ def prompt_enrollment(
     """
     path = Path(auth_path or DEFAULT_AUTH_PATH)
     print("\n" + "=" * 70)
-    print("  EXO OPERATOR ENROLLMENT -- FIRST-RUN CREDENTIAL SETUP")
+    print("  ATMAN OPERATOR ENROLLMENT -- FIRST-RUN CREDENTIAL SETUP")
     print("=" * 70)
     print("  This secret binds identity attribution to you at startup.")
     print("  The passphrase is never shown, never logged, and never stored in plaintext.")
@@ -178,7 +178,7 @@ def authenticate_session(
         return True
 
     print("\n----------------------------------------------------------------------")
-    print("EXO OPERATOR VERIFICATION")
+    print("ATMAN OPERATOR VERIFICATION")
     print("----------------------------------------------------------------------")
     try:
         entered = getpass_fn("Enter Operator Passphrase (no echo, Enter to skip): ")

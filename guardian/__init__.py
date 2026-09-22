@@ -1,1 +1,1 @@
-"""Guardian package — Externalized authorization process for EXO Live."""
+"""Guardian package — Externalized authorization process for ATMAN Live."""

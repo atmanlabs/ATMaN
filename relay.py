@@ -1,11 +1,11 @@
-"""JARVIS Chat Relay Bridge Server.
+"""ATMAN Chat Relay Bridge Server.
 
 Exposes a unified HTTP endpoint serving both the local Minecraft bot and remote phone clients:
 - Bound strictly to localhost (127.0.0.1) and Tailscale interface (100.x.x.x) -- OFF 0.0.0.0.
 - Serves single-page chat UI at GET /
 - POST /chat: runs input through authoritative live ATMAN cognitive loop (Governor -> Capture -> Emotion -> WFC -> Reason -> Judge -> Act -> Outcome -> Memory Update).
 - Proves core wiring with detailed execution trace logging.
-- Token authenticated (CHANGE_ME_TOKEN).
+- Token authenticated (0151c1b8c9fda7c07fe8965423e28042415ece45ea07b944).
 """
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 import json
@@ -28,7 +28,7 @@ from governor import governor
 from skills import skill_repo
 
 PORT = 18790
-AUTHORITATIVE_TOKEN = os.environ.get("JARVIS_AUTH_TOKEN", "CHANGE_ME_TOKEN")
+AUTHORITATIVE_TOKEN = "0151c1b8c9fda7c07fe8965423e28042415ece45ea07b944"
 CHAT_UI_PATH = HERE / "ui" / "chat.html"
 
 
@@ -37,7 +37,7 @@ def get_tailscale_ip() -> Optional[str]:
     try:
         # Check tailscale cli
         res = subprocess.run(
-            [shutil.which("tailscale") or "tailscale", "ip", "-4"],
+            ["C:\\Program Files\\Tailscale\\tailscale.exe", "ip", "-4"],
             capture_output=True,
             text=True,
             timeout=2
@@ -59,7 +59,7 @@ def get_tailscale_ip() -> Optional[str]:
     except Exception:
         pass
 
-    return "127.0.0.1"  # Authoritative host Tailscale IP
+    return "100.114.96.84"  # Authoritative host Tailscale IP
 
 
 class RelayHandler(BaseHTTPRequestHandler):
@@ -74,7 +74,7 @@ class RelayHandler(BaseHTTPRequestHandler):
             if CHAT_UI_PATH.exists():
                 content = CHAT_UI_PATH.read_bytes()
             else:
-                content = b"<h1>JARVIS Core Online</h1><p>UI file not found.</p>"
+                content = b"<h1>ATMAN Core Online</h1><p>UI file not found.</p>"
             self.wfile.write(content)
         elif self.path in ("/health", "/status"):
             self.send_response(200)
@@ -82,9 +82,10 @@ class RelayHandler(BaseHTTPRequestHandler):
             self.end_headers()
             status_data = {
                 "status": "online",
-                "mind": "JARVIS",
+                "mind": "ATMAN",
                 "core": "authoritative_atman_live",
                 "cycles": self.mind.cycle_count if self.mind else 0,
+                "learning": self.mind.brain.get_brain_stats() if self.mind else None,
                 "governor_active": governor.active_count,
                 "timestamp": time.time()
             }
@@ -121,6 +122,12 @@ class RelayHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
+            # Freeplay idle hook: park gated skill proposals for Operator (no auto-apply)
+            try:
+                from self_improve.freeplay_proposer import maybe_propose
+                maybe_propose({"mode": "initiative", "source": "initiative_pending", "propose_source": "freeplay_initiative"})
+            except Exception as _fp_err:
+                print(f"[FREEPLAY] propose hook skipped: {_fp_err}")
             from drives import drive_manager
             from loop import evaluate_judge
             init_action = drive_manager.evaluate_initiative()
@@ -146,11 +153,23 @@ class RelayHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         if self.path in ("/initiative/complete", "/initiative/action_completed"):
+            if self.headers.get("Authorization") != f"Bearer {AUTHORITATIVE_TOKEN}":
+                self.send_response(401)
+                self.end_headers()
+                return
             content_len = int(self.headers.get("Content-Length", 0))
             post_body = self.rfile.read(content_len).decode("utf-8", errors="replace")
             try:
                 data = json.loads(post_body)
                 from drives import drive_manager
+                details = data.get("details", {})
+                if self.mind:
+                    with self.lock:
+                        self.mind.brain.record_outcome(data.get("description", "Minecraft initiative"), {
+                            "tool": data.get("action_type", "minecraft_initiative"),
+                            "status": "error" if details.get("success") is False else "executed",
+                            "output_text": details.get("error") or details.get("observation", "Adapter reported completion.")
+                        })
                 drive_manager.record_action_completed(
                     drive_id=data.get("drive_id", "keep_base_safe_and_tidy"),
                     action_type=data.get("action_type", "initiative_action"),
@@ -316,6 +335,21 @@ class RelayHandler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps({"error": "Unauthorized: Valid operator token required"}).encode("utf-8"))
             return
 
+        # Health probes are transport checks, not cognitive events. Never queue them
+        # behind player chat or run them through the locked authoritative MindLoop.
+        if source == "minecraft_health":
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({
+                "ok": True,
+                "reply": "",
+                "action": "health",
+                "core": "authoritative_atman_live",
+                "reachable": True
+            }).encode("utf-8"))
+            return
+
         # Explicit Request Trace Logging (Step 4 Proof of Core Wiring)
         spawn_id = f"relay_{int(time.time() * 1000)}"
         print(f"\n=======================================================")
@@ -383,7 +417,7 @@ class RelayHandler(BaseHTTPRequestHandler):
                 reply = "Acknowledged."
 
             if source == "minecraft" and (not isinstance(reply, str) or "Observation/reflection recorded in memory trace" in reply):
-                reply = "I'm right here with you."
+                reply = "I'm right here with you, Operator."
 
             if isinstance(reply, str):
                 reply = re.sub(
@@ -450,7 +484,7 @@ def run_relay(port: int = PORT):
         except Exception as e:
             print(f"[RELAY WARN] Could not bind to Tailscale IP {tailscale_ip}:{port} ({e}). Serving on localhost.")
 
-    print(f"[RELAY] Authoritative JARVIS relay server active -- OFF 0.0.0.0.")
+    print(f"[RELAY] Authoritative ATMAN relay server active -- OFF 0.0.0.0.")
     print(f"[RELAY] Serving single-page Chat UI on GET /")
 
     # Start listener threads

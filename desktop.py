@@ -1,4 +1,4 @@
-"""Native EXO body: WebView2, private pipe to the installed mind, Windows tray."""
+"""Native ATMAN body: WebView2, private pipe to the installed mind, Windows tray."""
 from __future__ import annotations
 import json
 import os
@@ -8,7 +8,7 @@ import sys
 import threading
 
 ASSETS = Path(__file__).resolve().parent
-BACKEND = Path.home() / 'Documents' / 'exo-live'
+BACKEND = Path.home() / 'Documents' / 'atman-live'
 PYTHON = Path.home() / 'AppData/Local/Programs/Python/Python311/python.exe'
 ALLOWED = frozenset({'boot', 'diagnostics', 'authenticate', 'continue', 'poll', 'chat',
     'telemetry', 'memories', 'events', 'sleep', 'wake', 'sense', 'record_start',
@@ -28,7 +28,7 @@ class PipeClient:
             self.process.stdin.write(json.dumps({'command': command, 'payload': payload})+'\n')
             self.process.stdin.flush()
             line = self.process.stdout.readline()
-            if not line: return {'ok': False, 'error': 'The local mind process stopped. Restart EXO.'}
+            if not line: return {'ok': False, 'error': 'The local mind process stopped. Restart ATMAN.'}
             return json.loads(line)
 
     def close(self):
@@ -68,7 +68,7 @@ class Bridge:
                 self._close_to_tray = result['settings']['close_to_tray']
             return result
         except Exception:
-            return {'ok': False, 'error': 'Desktop operation unavailable. Restart EXO if needed.'}
+            return {'ok': False, 'error': 'Desktop operation unavailable. Restart ATMAN if needed.'}
 
     def _closing(self):
         if self._close_to_tray and self._tray is not None and not self._quitting:
@@ -94,8 +94,8 @@ class Bridge:
     def _start_tray(self):
         import pystray
         from PIL import Image
-        self._tray = pystray.Icon('JARVIS', Image.open(ASSETS/'exo_icon.png'), 'JARVIS — Personal AI',
-            pystray.Menu(pystray.MenuItem('Show JARVIS', self._show, default=True),
+        self._tray = pystray.Icon('ATMAN', Image.open(ASSETS/'exo_icon.png'), 'ATMAN — Personal AI',
+            pystray.Menu(pystray.MenuItem('Show ATMAN', self._show, default=True),
                          pystray.MenuItem('Sleep', lambda: self._tray_command('sleep')),
                          pystray.MenuItem('Wake', lambda: self._tray_command('wake')),
                          pystray.MenuItem('Quit', self._quit)))
@@ -106,12 +106,12 @@ def main():
     import webview
     # One body per backend memory store. No competing desktop writers.
     import ctypes
-    mutex = ctypes.windll.kernel32.CreateMutexW(None, False, 'Local\\EXO-Desktop-Stage12')
+    mutex = ctypes.windll.kernel32.CreateMutexW(None, False, 'Local\\ATMAN-Desktop-Stage12')
     if ctypes.windll.kernel32.GetLastError() == 183:
-        ctypes.windll.user32.MessageBoxW(None, 'JARVIS is already running. Use the tray icon to show him.', 'JARVIS', 0)
+        ctypes.windll.user32.MessageBoxW(None, 'ATMAN is already running. Use the tray icon to show him.', 'ATMAN', 0)
         return
     if not PYTHON.exists() or not (BACKEND/'loop.py').exists():
-        ctypes.windll.user32.MessageBoxW(None, 'The existing local JARVIS backend or Python installation is missing.', 'JARVIS', 0)
+        ctypes.windll.user32.MessageBoxW(None, 'The existing local ATMAN backend or Python installation is missing.', 'ATMAN', 0)
         return
     client = PipeClient()
     bridge = Bridge(client)
@@ -123,7 +123,7 @@ def main():
                         '<script>'+(ASSETS/'ui/app.js').read_text(encoding='utf-8')+'</script>')
     webview.settings['ALLOW_DOWNLOADS'] = False
     webview.settings['OPEN_EXTERNAL_LINKS_IN_BROWSER'] = False
-    window = webview.create_window('JARVIS', html=html, js_api=bridge, width=1280, height=840,
+    window = webview.create_window('ATMAN', html=html, js_api=bridge, width=1280, height=840,
                                   min_size=(900, 650), background_color='#080c12', frameless=True,
                                   easy_drag=False, text_select=True)
     bridge._window = window
@@ -131,7 +131,7 @@ def main():
     def started():
         try: bridge._start_tray()
         except Exception:
-            window.evaluate_js('window.desktopNotice("Tray unavailable; closing will quit JARVIS.")')
+            window.evaluate_js('window.desktopNotice("Tray unavailable; closing will quit ATMAN.")')
     try:
         webview.start(started, gui='edgechromium', debug=False, private_mode=True,
                       http_server=False)

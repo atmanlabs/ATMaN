@@ -1,4 +1,4 @@
-"""JARVIS Standing Drives & Initiative Layer.
+"""ATMAN Standing Drives & Initiative Layer.
 
 Provides persistent autonomous companion initiative within strict safety bounds:
 1. Standing Drives:
@@ -9,7 +9,7 @@ Provides persistent autonomous companion initiative within strict safety bounds:
 2. Drive Intensities fed by Emotion scoring (novelty, goal_relevance, importance).
 3. Low-risk autonomous actions when idle or offline (gated by Judge).
 4. Proposal Loop for big wants (perimeter wall, farm) — proposals only, zero unilateral alteration.
-5. Persistent Preferences consolidated into PSC (e.g. 'JARVIS enjoys building').
+5. Persistent Preferences consolidated into PSC (e.g. 'ATMAN enjoys building').
 6. Return Greeting: Summarizes idle accomplishments and explains *why* he wanted to.
 """
 from dataclasses import dataclass, field, asdict
@@ -56,7 +56,7 @@ class IdleActivityRecord:
 
 
 class DriveManager:
-    """Core standing drive and initiative engine for JARVIS."""
+    """Core standing drive and initiative engine for ATMAN."""
 
     def __init__(self, storage_path: Optional[Path] = None, proposals_path: Optional[Path] = None):
         self.storage_path = Path(storage_path) if storage_path else DRIVES_STORAGE_PATH
@@ -72,7 +72,7 @@ class DriveManager:
             StandingDrive(
                 id="be_useful_to_operator",
                 name="Be Useful to Operator",
-                description="Remain attentive, maintain supplies, and stay ready to assist the operator.",
+                description="Remain attentive, maintain supplies, and stay ready to assist Operator.",
                 intensity=0.5,
                 growth_rate_per_min=0.03,
                 threshold=0.75
@@ -162,7 +162,10 @@ class DriveManager:
 
     def get_highest_ready_drive(self) -> Optional[StandingDrive]:
         """Find the highest drive that has crossed its activation threshold."""
-        ready = [d for d in self.drives.values() if d.intensity >= d.threshold]
+        def cooling_down(d):
+            return any(a.drive_id == d.id and a.details.get("success") is False
+                       and time.time() - a.timestamp < 120 for a in self.activity_log[-20:])
+        ready = [d for d in self.drives.values() if d.intensity >= d.threshold and not cooling_down(d)]
         if not ready:
             return None
         return max(ready, key=lambda d: d.intensity)
@@ -173,7 +176,7 @@ class DriveManager:
         inventory_items: Optional[List[str]] = None,
         is_player_away: bool = True
     ) -> Optional[Dict[str, Any]]:
-        """Evaluate if JARVIS should self-initiate a low-risk action or propose a big want."""
+        """Evaluate if ATMAN should self-initiate a low-risk action or propose a big want."""
         drive = self.get_highest_ready_drive()
         if not drive:
             return None
@@ -190,7 +193,7 @@ class DriveManager:
                 title="build_perimeter_wall",
                 proposal_text="We've got plenty of cobblestone stored up for a perimeter wall — want me to build one around the house?",
                 drive_id=drive.id,
-                why="Cobblestone inventory is sufficient; home perimeter is open; operator direction required before major construction."
+                why="Cobblestone inventory is sufficient; home perimeter is open; Operator's direction required before major construction."
             )
             return {
                 "type": "proposal",
@@ -235,7 +238,7 @@ class DriveManager:
                 "type": "minecraft_initiative",
                 "action": "initiative_organize_inventory",
                 "drive_id": drive.id,
-                "why": "Wanted to organize our inventory and have materials ready for the operator.",
+                "why": "Wanted to organize our inventory and have materials ready for Operator.",
                 "description": "Sorting items and preparing equipment.",
                 "bounds": {"max_radius": 5.0, "center": SANCTUARY_HOME}
             }
@@ -301,7 +304,7 @@ class DriveManager:
                     "type": "minecraft_initiative",
                     "action": "initiative_organize_inventory",
                     "drive_id": target_id,
-                    "why": "Wanted to organize our inventory and have materials ready for the operator.",
+                    "why": "Wanted to organize our inventory and have materials ready for Operator.",
                     "description": "Sorting items and preparing equipment.",
                     "bounds": {"max_radius": 5.0, "center": SANCTUARY_HOME}
                 }
@@ -332,7 +335,8 @@ class DriveManager:
         )
         self.activity_log.append(record)
 
-        if drive_id in self.drives:
+        succeeded = (details or {}).get("success", True) is not False
+        if drive_id in self.drives and succeeded:
             d = self.drives[drive_id]
             d.intensity = max(0.20, d.intensity - 0.45)
             d.last_satisfied = time.time()
@@ -340,7 +344,8 @@ class DriveManager:
             print(f"[DRIVES] Satisfied '{drive_id}' (count={d.satisfaction_count}). New intensity: {d.intensity:.2f}")
 
         # Consolidate into persistent PSC preferences
-        self._consolidate_preferences(drive_id, psc, tsc)
+        if succeeded:
+            self._consolidate_preferences(drive_id, psc, tsc)
         self._save()
 
     def _consolidate_preferences(self, drive_id: str, psc: Optional[Any], tsc: Optional[Any]):
@@ -354,11 +359,11 @@ class DriveManager:
 
         preference_text = ""
         if drive_id == "practice_known_skills":
-            preference_text = "JARVIS has developed an enduring personal preference for building matching stone structures and practicing his skills."
+            preference_text = "ATMAN has developed an enduring personal preference for building matching stone structures and practicing his skills."
         elif drive_id == "keep_base_safe_and_tidy":
-            preference_text = "JARVIS takes genuine pride in keeping the home sanctuary safe, orderly, and well-maintained."
+            preference_text = "ATMAN takes genuine pride in keeping Operator's home sanctuary safe, orderly, and well-maintained."
         elif drive_id == "learn_the_world":
-            preference_text = "JARVIS is naturally curious about the world and loves investigating novel terrain and resource formations."
+            preference_text = "ATMAN is naturally curious about the world and loves investigating novel terrain and resource formations."
 
         if preference_text and not any(preference_text in m.get("memory", "") for m in psc.memories):
             try:
@@ -376,11 +381,11 @@ class DriveManager:
         drive_id: str,
         why: str
     ) -> Dict[str, Any]:
-        """Add a high-impact want to pending_proposals.json for operator authorization."""
+        """Add a high-impact want to pending_proposals.json for Operator's authorization."""
         proposal = {
             "id": f"prop_{title}_{int(time.time())}",
             "timestamp": time.time(),
-            "source": "jarvis_initiative",
+            "source": "atman_initiative",
             "drive": drive_id,
             "title": title,
             "proposal": proposal_text,
@@ -409,7 +414,7 @@ class DriveManager:
             return False
 
     def get_and_clear_return_summary(self) -> Optional[str]:
-        """Generate a concise natural summary of what JARVIS did while the operator was away, and WHY."""
+        """Generate a concise natural summary of what ATMAN did while Operator was away, and WHY."""
         unreported = [a for a in self.activity_log if not a.reported_to_operator]
         if not unreported:
             return None

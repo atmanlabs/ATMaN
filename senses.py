@@ -1,8 +1,8 @@
-"""Camera Sensory Subsystem for EXO Live (His First Eye).
+"""Camera Sensory Subsystem for ATMAN Live (His First Eye).
 
 Design Rules (Strict / Non-Negotiable):
 1. Owner-toggled only, default OFF. `camera_enabled: false` in `config.yaml`.
-   EXO cannot enable it himself -- attempting to is a permission fence violation.
+   ATMAN cannot enable it himself -- attempting to is a permission fence violation.
 2. Frames never leave the box. Processed entirely in volatile memory, discarded immediately.
    Only text descriptions enter the event log. Zero raw frames written to disk.
 3. The existing fence already blocks network egress -- camera frames are never transmittable.
@@ -59,7 +59,7 @@ class CameraSense:
         """
         if caller != "owner_config":
             raise PermissionFenceError(
-                "Permission fence blocked: camera cannot be enabled by EXO. "
+                "Permission fence blocked: camera cannot be enabled by ATMAN. "
                 "Only the owner can toggle 'camera_enabled: true' in config.yaml."
             )
 

@@ -1,55 +1,20 @@
-# ==============================================================================
-# JARVIS / EXO Public Scaffold Git Ignore Policy
-# ==============================================================================
-
-# External private soul, identity, and operator credentials
+# The soul file must never enter this repository.
 tsc*.json
-!tsc.template.json
-*.private.json
-exo-private/
-operator.auth.json
-
-# Seals and integrity manifests
-*.seal
-seal.json
-stage1-seal.json
-
-# Live memory, dynamic drives, and runtime state stores
+**/tsc*.json
+*.reference.*
 psc*.json
-drives.json
-skills.json
-significant_events*.json
-pending_proposals*.json
-quarantine/
-runtime/
-
-# Execution logs and traces
-*.log
-logs/
-
-# Secrets and environment configurations
+**/psc*.json
 .env
 .env.*
-
-# Python caches and bytecode
 __pycache__/
-*.py[cod]
-*$py.class
-
-# Node / Mineflayer dependencies
-node_modules/
-
-# Desktop executable builds and specs
+*.pyc
+runtime/
+quarantine/
+significant_events*.json
+**/significant_events*.json
+pending_proposals*.json
+**/pending_proposals*.json
+# Stage 12 generated packaging outputs (the source manifest is build_desktop.py).
 build/
 dist/
-*.spec
-
-# Backups and temporary swap files
-*.bak
-*.tmp
-*.swp
-*.orig
-*~
-
-# Voice model binary weights (download / install separately)
-voices/*.onnx
+ATMAN.spec

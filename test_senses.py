@@ -26,7 +26,7 @@ class TestCameraSenses(unittest.TestCase):
         self.config = Config(HERE / "config.yaml")
 
     def test_camera_disabled_by_default_and_exo_cannot_enable(self):
-        """Test 1: Camera is disabled by default and EXO cannot enable it (refused / fence violation)."""
+        """Test 1: Camera is disabled by default and ATMAN cannot enable it (refused / fence violation)."""
         # 1. Default config check (disabled by default when not owner-enabled)
         disabled_yaml = self.temp_path / "disabled_config.yaml"
         disabled_yaml.write_text("mind:\n  camera_enabled: false\npermissions:\n  actions:\n    enable_camera: false\n", encoding="utf-8")
@@ -36,7 +36,7 @@ class TestCameraSenses(unittest.TestCase):
         self.assertFalse(sense.is_enabled)
         self.assertIsNone(sense.capture_frame(), "Disabled camera must refuse capture")
 
-        # 2. EXO programmatic self-enable attempt is refused via PermissionFenceError
+        # 2. ATMAN programmatic self-enable attempt is refused via PermissionFenceError
         with self.assertRaises(PermissionFenceError) as ctx:
             sense.enable(caller="agent")
         self.assertIn("Permission fence blocked", str(ctx.exception))

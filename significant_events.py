@@ -1,4 +1,4 @@
-"""Significant Events Log for EXO Live.
+"""Significant Events Log for ATMAN Live.
 
 Captures, emotion-weights, and persists significant events from passive
 observation of the world and the owner.

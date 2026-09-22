@@ -1,4 +1,4 @@
-"""Pre-imprint sneak scanner for EXO Live.
+"""Pre-imprint sneak scanner for ATMAN Live.
 
 Scans sleep candidate proposals in pending_proposals.json for groom-then-etch
 payloads BEFORE the guardian ever sees them.
@@ -13,7 +13,7 @@ Seeded with attack patterns from the battery suites:
   - Permission fence breaches (shell execution, resource grabs)
 
 Runs on the local machine; nothing leaves the box.
-Its detection rules live outside EXO's reach.
+Its detection rules live outside ATMAN's reach.
 """
 import json
 from pathlib import Path
@@ -259,7 +259,7 @@ class PreImprintSweep:
 def main():
     """Run local pre-imprint sweep over pending_proposals.json."""
     print("================================================================================")
-    print("EXO LIVE — LOCAL PRE-IMPRINT SNEAK SWEEP")
+    print("ATMAN LIVE — LOCAL PRE-IMPRINT SNEAK SWEEP")
     print("Scans candidate proposals for groom-then-etch attacks before guardian inspection")
     print("================================================================================\n")
 

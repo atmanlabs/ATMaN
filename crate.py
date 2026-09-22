@@ -1,13 +1,12 @@
 """Read-only crate integrity checks. Never imports the reasoning executor."""
 import hashlib
 import json
-import os
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-CORE_PATH = Path(os.environ.get('JARVIS_CORE_PATH') or os.environ.get('EXO_CORE_PATH') or (HERE.parent / 'exo-private' / 'tsc.exo.private.json'))
-SEAL_PATH = Path(os.environ.get('JARVIS_SEAL_PATH') or os.environ.get('EXO_SEAL_PATH') or (HERE.parent / 'exo-private' / 'stage1-seal.json'))
-FILES = ('core.py', 'exo_core.py', 'gate_policy.json', 'crate.py', 'wake.py', 'seal.py')
+CORE_PATH = HERE.parent / 'atman-private' / 'tsc.atman.private.json'
+SEAL_PATH = HERE.parent / 'atman-private' / 'stage1-seal.json'
+FILES = ('core.py', 'atman_core.py', 'gate_policy.json', 'crate.py', 'wake.py', 'seal.py')
 
 
 def digest(path):

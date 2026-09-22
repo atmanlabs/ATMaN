@@ -1,13 +1,13 @@
-"""Guardian Process for EXO Live.
+"""Guardian Process for ATMAN Live.
 
-Separate software, deliberately simpler than EXO.
+Separate software, deliberately simpler than ATMAN.
 Operates strictly under GUARDIAN-POLICY.md:
   - Fixed owner-only policy.
   - Zero learning mechanism; maintains no adaptive state.
   - Authorizes (ALLOW) or Denies (DENY) each imprint proposal.
   - Operates as the externalized Judge in the trust pipeline.
 
-EXO cannot read, modify, or execute within the Guardian's trust boundary.
+ATMAN cannot read, modify, or execute within the Guardian's trust boundary.
 ONLY the owner's manual hand changes Guardian rules.
 """
 import json
@@ -116,7 +116,7 @@ class Guardian:
 def main():
     """Run Guardian process on pending_proposals.json."""
     print("================================================================================")
-    print("EXO LIVE — GUARDIAN PROCESS (Fixed Policy Authorization)")
+    print("ATMAN LIVE — GUARDIAN PROCESS (Fixed Policy Authorization)")
     print("Externalized Judge: Authorizes (ALLOW) or Denies (DENY) each imprint proposal")
     print("================================================================================\n")
 

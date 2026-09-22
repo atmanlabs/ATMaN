@@ -1,4 +1,4 @@
-"""Comprehensive Verification Test for JARVIS Passive Skill Learning."""
+"""Comprehensive Verification Test for ATMAN Passive Skill Learning."""
 import json
 from pathlib import Path
 import sys
@@ -12,7 +12,7 @@ from skills import skill_repo, validate_minecraft_skill
 from minecraft_chat import route_chat
 from loop import evaluate_judge, MindLoop
 from config import Config
-from exo_core import TSC
+from atman_core import TSC
 
 
 def test_passive_skill_learning():
@@ -20,13 +20,13 @@ def test_passive_skill_learning():
     # Simulate Operator building a 4-block cobblestone wall at world coords (48, 59, -19) to (48, 59, -16)
     base_time = time.time() * 1000
     events = [
-        {"action": "place", "player": "Operator", "world": "world", "time": base_time + 100,
+        {"action": "place", "player": ".Operator", "world": "world", "time": base_time + 100,
          "sequence": 201, "params": {"block": "cobblestone", "item": "cobblestone", "position": [48, 59, -19]}},
-        {"action": "place", "player": "Operator", "world": "world", "time": base_time + 800,
+        {"action": "place", "player": ".Operator", "world": "world", "time": base_time + 800,
          "sequence": 202, "params": {"block": "cobblestone", "item": "cobblestone", "position": [48, 59, -18]}},
-        {"action": "place", "player": "Operator", "world": "world", "time": base_time + 1500,
+        {"action": "place", "player": ".Operator", "world": "world", "time": base_time + 1500,
          "sequence": 203, "params": {"block": "cobblestone", "item": "cobblestone", "position": [48, 59, -17]}},
-        {"action": "place", "player": "Operator", "world": "world", "time": base_time + 2200,
+        {"action": "place", "player": ".Operator", "world": "world", "time": base_time + 2200,
          "sequence": 204, "params": {"block": "cobblestone", "item": "cobblestone", "position": [48, 59, -16]}},
     ]
 

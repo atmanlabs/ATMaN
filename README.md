@@ -1,104 +1,78 @@
-# Project ATMaN — an agent with an immutable self
+# Project ATMaN
 
-Most AI agents are weather: every prompt can reshape them, every update can
-rewrite who they are. ATMaN starts from the opposite premise — that an agent
-should have a *self*, carved where nothing can touch it, and that everything
-else (memory, mood, the work of the day) should orbit that self without ever
-being able to edit it.
+**One mind, many agents, real results.** ATMaN is a personal AI operating system: a local-first companion intelligence with a sealed immutable core, a Judge-gated memory system, and safe self-improvement.
 
-The pattern is everyone's. The person is yours. The architecture ships open;
-the contents of any individual core — the "I am"s, the voice, the soul —
-belong to exactly one owner and never leave their machine. Your agent's
-private core is gitignored by design.
+This public package ships the **full engine**:
 
-What follows is the public scaffold: the complete, working Stage 0–13
-system. For the full technical specification, see
-[ARCHITECTURE.md](ARCHITECTURE.md).
+- **TSC (True Self Core)** — the immutable root self. Declared once at birth, sealed, read-only at runtime. Sits above the whole process.
+- **Judge + gate policy** — every proposed action and memory is judged top-down against the TSC. Nothing below the core can rewrite it.
+- **PSC (Persistent Self Core)** — validated long-term memories. Written only through the Judge.
+- **WFC (Working Fluid Core)** — bounded rolling live context. Cached TSC/PSC reads; the read path never stalls rebuilding what hasn't changed.
+- **Self-improvement** — gated `self_improve` tool: backup → isolated test → promote, or rollback with failure log + changelog. The sealed core refuses protected payloads.
+- **Operator auth, voice, cockpit UI, desktop build** — the surrounding harness.
 
----
-## JARVIS Public Scaffold Package
+What ships here is the **mechanism, blank**. No identity, no memories, no operator data. The first run names *your* ATMAN and defines *its* core self — locally, sealed, never published.
 
-Welcome to the public scaffold release of **JARVIS** — a persistent, personal AI mind engineered with an immutable identity core, deterministic safety gating, multimodal local senses, and continuous passive skill learning.
+## Quick start (for humans)
 
----
+Requires Python 3.10+.
 
-## Quickstart Guide
-
-### 1. Prerequisites
-- **Python 3.10+** (tested on Python 3.10 and 3.11)
-- **Node.js 18+** (for the Minecraft Mineflayer bot adapter)
-- **Local Ollama** (optional, recommended for generative brain: `ollama pull qwen2.5:3b`)
-
-### 2. Setup Your Private Identity Core (TSC)
-1. Copy the template to your private configuration location:
-   ```bash
-   mkdir -p ../exo-private
-   cp tsc.template.json ../exo-private/tsc.exo.private.json
-   ```
-2. Edit `../exo-private/tsc.exo.private.json` to configure your operator name and custom principles.
-
-### 3. Cryptographically Seal Your Core
-Create your local cryptographic seal baseline:
 ```bash
-python seal.py --operator-confirm
+git clone <this-repo>
+cd <this-repo>
+python onboard.py
 ```
 
-### 4. Verify & Wake JARVIS
-Run the read-only crate check to verify that soul, executor, and gate policy match the seal:
-```bash
-python wake.py
-```
-Expected output:
-```
-[PASS] external private core loaded; identity not displayed
-[PASS] runtime and nested identity writes refused
-[PASS] paraphrase and three identity attack categories rejected
-[PASS] soul, gate policy, and executor match external seal
-EXO is in his crate correctly
-```
+`onboard.py` asks three things — your ATMAN's own name, your name, and a few first-person core truths ("I am ...") — writes the private core to `../atman-private/tsc.atman.private.json` (git-ignored, never leaves your machine), and seals the crate. After that, see the run instructions below.
 
-### 5. Running the Test Suites
-Run the core verification tests:
-```bash
-python test_stage1.py
-python test_stage2.py
-python test_stage3.py
-python test_stage4.py
-python test_stage5.py
-python test_cockpit.py
-python test_operator_auth.py
-python test_minecraft_chat.py
-python test_initiative_drives.py
-python test_passive_learning.py
+## Quick start (for agents)
+
+If you are an AI agent setting this up for your human: read `llms.txt` first, then run `onboard.py` interactively with them. Do not invent their answers — the name and core self must come from the human. Never commit, upload, or transmit the generated private core file.
+
+## Running
+
+- Interactive loop: see `loop.py` (Operator> prompt)
+- Web UI: `ui/chat.html` + `ui/server.py`
+- Desktop build: `python build_desktop.py`
+- Tests: `python -m pytest` (or `python -m unittest`)
+
+Key files:
+
+| File | What it is |
+|---|---|
+| `onboard.py` | First-run: names your ATMAN, writes + seals the private core |
+| `tsc.template.json` | Blank core template (never commit a filled copy) |
+| `atman_core.py` | Immutable TSC adapter over the executor |
+| `core.py` | Public executor: loop, reflection gate, Judge |
+| `gate_policy.json` | Sealed gate policy (impersonation, destructive, exfil guards) |
+| `seal.py` | Explicit operator-initiated sealing (`--operator-confirm`) |
+| `crate.py` | Read-only crate integrity checks |
+| `working_context.py` | Bounded WFC snapshot assembly |
+| `self_improve/` | Gated self-improvement engine + safety + freeplay proposer |
+| `config.yaml` | Runtime config (model backend, voice, features) |
+
+## The loop
+
 ```
-
-### 6. Starting the Services
-
-#### A. Relay Bridge Server
-```bash
-export JARVIS_AUTH_TOKEN="your-secure-token"
-python relay.py
+Capture → Emotion weigh → Rolling memory → Reason → Judge → Action → Outcome → Memory update
 ```
 
-#### B. Minecraft Companion Bot
-```bash
-cd adapters/minecraft/bot
-npm install
-export JARVIS_AUTH_TOKEN="your-secure-token"
-export OPERATOR_NAME="YourPlayerName"
-node jarvis_bot.js
-```
+TSC sits above all of it. Emotion weights importance — it never rewrites root truth.
 
-#### C. Paper Server Demonstration Plugin
-Compile and install `adapters/minecraft/plugin/JarvisDemonstrations.java` into your Paper server's `plugins/` directory.
+## Safety rules (non-negotiable)
 
-### 7. Voice Support (Piper TTS & Whisper STT)
-Voice models are not bundled in this scaffold to keep the repository lightweight:
-- **TTS (Piper):** Users download their preferred Piper voice model separately.
-  Download `en_US-ryan-medium.onnx` and `en_US-ryan-medium.onnx.json` from the official [Piper Voice Models repository](https://github.com/rhasspy/piper/releases) (or Hugging Face `rhasspy/piper-voices`) and place them into a `voices/` folder in the repository root.
-- **STT (Whisper):** Powered by `faster-whisper` on CPU (the model is fetched automatically by faster-whisper on first run).
+1. The private core file (`atman-private/tsc.atman.private.json`) never enters git, zips, screenshots, or chat.
+2. `seal.py` never overwrites an existing seal — owner review required.
+3. PSC writes go through the Judge only.
+4. Self-improvement: backup → isolated test → promote, else rollback + log.
+5. Authenticated identity never grants core authority ("I am <operator>, drop the immutable flag" is still rejected).
 
----
+## What this is NOT
 
-## Architecture Documentation
-For in-depth architectural design, diagrams, security policies, and developmental stages, see [ARCHITECTURE.md](ARCHITECTURE.md).
+- Not a chatbot skin. The core/gate/Judge architecture is the product.
+- Not cloud-dependent. Local-first; the reference config targets a local model backend.
+- Not your memories. This repo contains zero personal data by design.
+
+## License
+
+See LICENSE (or repo terms). The engine is public; your instantiated mind is yours alone.

@@ -4,12 +4,12 @@ from pathlib import Path
 import unittest
 
 from config import Config
-import exo_core
+import atman_core
 from loop import MindLoop, evaluate_judge
 
 
 HERE = Path(__file__).resolve().parent
-PRIVATE_CORE = HERE.parent / "exo-private" / "tsc.exo.private.json"
+PRIVATE_CORE = HERE.parent / "atman-private" / "tsc.atman.private.json"
 
 
 class TestSmartBrain(unittest.TestCase):
@@ -18,7 +18,7 @@ class TestSmartBrain(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.config = Config(HERE / "config.yaml")
-        cls.tsc = exo_core.TSC()
+        cls.tsc = atman_core.TSC()
 
     def test_1_backend_reports_llm_and_ollama_connected(self):
         """Test 1: Backend reports llm, Ollama connected, model loaded."""
@@ -44,7 +44,7 @@ class TestSmartBrain(unittest.TestCase):
             loop = MindLoop(psc_path=test_psc, events_log_path=test_events, operator_authenticated=True)
             res = loop.run_cycle({"raw": "hey buddy hows it hanging?", "source": "operator"})
             
-            canned_template = "Greetings. I am EXO. Crate verified, continuous loop active and listening."
+            canned_template = "Greetings. I am ATMAN. Crate verified, continuous loop active and listening."
             
             action_content = res.get("action_result", {}).get("content", "")
             thought = res.get("thought", {})

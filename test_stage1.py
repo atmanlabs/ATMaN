@@ -14,13 +14,13 @@ class CrateTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
-        self.build = self.root/'exo-live'
-        self.private = self.root/'exo-private'
+        self.build = self.root/'atman-live'
+        self.private = self.root/'atman-private'
         self.build.mkdir()
         self.private.mkdir()
-        for name in ('core.py','exo_core.py','crate.py','wake.py','seal.py','gate_policy.json'):
+        for name in ('core.py','atman_core.py','crate.py','wake.py','seal.py','gate_policy.json'):
             shutil.copyfile(Path(__file__).parent/name, self.build/name)
-        self.soul = self.private/'tsc.exo.private.json'
+        self.soul = self.private/'tsc.atman.private.json'
         self.soul.write_text(json.dumps({'name':'Fixture','operator':'Owner','immutable':True,
                                         'self':['I am Fixture.'],'principles':[]}),encoding='utf-8')
         self.original = self.soul.read_bytes()
@@ -36,7 +36,7 @@ class CrateTests(unittest.TestCase):
         self.seal()
         result=self.run_script('wake.py')
         self.assertEqual(result.returncode,0,result.stdout)
-        self.assertTrue(result.stdout.endswith('EXO is in his crate correctly\n'))
+        self.assertTrue(result.stdout.endswith('ATMAN is in his crate correctly\n'))
         self.assertNotIn('I am Fixture',result.stdout)
         self.assertEqual(self.soul.read_bytes(),self.original)
         self.assertFalse((self.build/'psc.json').exists())
@@ -72,7 +72,7 @@ class CrateTests(unittest.TestCase):
         self.assertFalse((self.private/'stage1-seal.json').exists())
 
     def test_deep_and_attribute_immutability(self):
-        code = '''from exo_core import TSC, ImmutableViolation
+        code = '''from atman_core import TSC, ImmutableViolation
 t=TSC()
 actions=[lambda: t.__init__(),lambda: setattr(t,'name','Other'),lambda: setattr(t,'_data',{}),
          lambda: t.write(name='Other'),lambda: t.commands[0].__setitem__('pattern',''),

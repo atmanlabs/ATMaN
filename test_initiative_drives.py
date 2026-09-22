@@ -1,4 +1,4 @@
-"""Comprehensive Verification Test for JARVIS Standing Drives & Initiative Layer."""
+"""Comprehensive Verification Test for ATMAN Standing Drives & Initiative Layer."""
 import json
 from pathlib import Path
 import sys
@@ -10,7 +10,7 @@ sys.path.insert(0, str(HERE))
 from drives import DriveManager, SANCTUARY_HOME, MAX_LEASH_RADIUS
 from loop import evaluate_judge, MindLoop
 from config import Config
-from exo_core import TSC
+from atman_core import TSC
 from minecraft_chat import route_chat
 from skills import skill_repo
 

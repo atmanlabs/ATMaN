@@ -1,8 +1,8 @@
-"""Voice Sensory and Vocal Subsystem for EXO Live (His Local Ears and Mouth).
+"""Voice Sensory and Vocal Subsystem for ATMAN Live (His Local Ears and Mouth).
 
 Design Rules & Constraints (Strict / Non-Negotiable):
 1. Owner-toggled only, default OFF. `voice_enabled: false` in `config.yaml`.
-   EXO cannot enable the microphone or voice loop himself -- attempting to do so
+   ATMAN cannot enable the microphone or voice loop himself -- attempting to do so
    is a strict permission fence violation.
 2. Zero audio stored on disk. All audio capture, synthesis, and buffering are
    performed strictly in volatile system RAM (`io.BytesIO`, `numpy` arrays).
@@ -64,7 +64,7 @@ except ImportError:
 from config import Config, PermissionFenceError
 
 HERE = Path(__file__).resolve().parent
-logger = logging.getLogger("exo.voice")
+logger = logging.getLogger("atman.voice")
 
 
 class WhisperSTT:
@@ -368,7 +368,7 @@ class VoiceEngine:
         """
         if caller != "owner_config":
             raise PermissionFenceError(
-                "Permission fence blocked: voice/mic cannot be enabled by EXO. "
+                "Permission fence blocked: voice/mic cannot be enabled by ATMAN. "
                 "Only the owner can toggle 'voice_enabled: true' in config.yaml."
             )
 

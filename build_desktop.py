@@ -7,9 +7,9 @@ import sys
 
 ROOT=Path(__file__).resolve().parent
 DATA_FILES=('ui/index.html','ui/style.css','ui/app.js','exo_icon.png','desktop_worker.py')
-FORBIDDEN_NAMES=('tsc','operator.auth','operator_auth','stage1-seal','seal.json','exo-private',
+FORBIDDEN_NAMES=('tsc','operator.auth','operator_auth','stage1-seal','seal.json','atman-private',
                  'psc.json','significant_events.json','pending_proposals.json','.env','credentials')
-EXCLUDED=('core','exo_core','crate','seal','operator_auth','loop','reason','voice','senses',
+EXCLUDED=('core','atman_core','crate','seal','operator_auth','loop','reason','voice','senses',
           'cockpit','config','sleep','significant_events','torch','transformers','numpy',
           'cv2','faster_whisper','piper','sounddevice','matplotlib','pandas','IPython','pytest')
 
@@ -41,7 +41,7 @@ def main():
     parser.add_argument('--output-dir',type=Path,default=ROOT/'dist')
     output=parser.parse_args().output_dir.resolve()
     command=[sys.executable,'-m','PyInstaller','--noconfirm','--clean','--onefile','--windowed',
-             '--name','EXO','--icon',str(ROOT/'exo_icon.ico'),
+             '--name','ATMAN','--icon',str(ROOT/'exo_icon.ico'),
              '--distpath',str(output),'--workpath',str(ROOT/'build')]
     for name in DATA_FILES:
         destination=str(Path(name).parent)
@@ -49,7 +49,7 @@ def main():
     for name in EXCLUDED: command += ['--exclude-module',name]
     command += [str(ROOT/'desktop.py')]
     subprocess.run(command,cwd=ROOT,check=True)
-    result=verify_archive(output/'EXO.exe')
+    result=verify_archive(output/'ATMAN.exe')
     (output/'RELEASE-CHECK.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
     print(json.dumps(result,indent=2))
 

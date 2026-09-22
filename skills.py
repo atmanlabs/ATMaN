@@ -1,4 +1,4 @@
-"""Core Skill Repository for JARVIS (EXO Live).
+"""Core Skill Repository for ATMAN (ATMAN Live).
 
 Stores, indexes, and retrieves learned skills across domains:
 - 'minecraft' (e.g. mine_tree, place_block, craft)
@@ -151,7 +151,7 @@ class SkillRepository:
         if "created_at" not in metadata:
             metadata["created_at"] = time.time()
         if "author" not in metadata:
-            metadata["author"] = "Operator"
+            metadata["author"] = "Operator (Operator)"
 
         entry = {
             "name": name,

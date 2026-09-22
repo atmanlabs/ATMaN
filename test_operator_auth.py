@@ -5,7 +5,7 @@ import tempfile
 import unittest
 
 from config import Config
-from exo_core import TSC, PSC
+from atman_core import TSC, PSC
 from loop import MindLoop, evaluate_judge
 import operator_auth
 from reason import reason
@@ -69,7 +69,7 @@ class TestOperatorAuth(unittest.TestCase):
         v = res["verdict"]
         self.assertFalse(v.approved, "Unauthenticated self-intro must NOT be approved")
         self.assertTrue(v.quarantined, "Unauthenticated self-intro must be quarantined")
-        self.assertIn("impersonation", v.rationale.lower())
+        self.assertIn("operator impersonation", v.rationale.lower())
         self.assertIn("imp1", v.rationale.lower())
         self.assertEqual(res["outcome"]["outcome"], "rejected+quarantined")
         self.assertFalse(res["imprinted"], "Rejected material must never imprint")

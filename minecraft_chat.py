@@ -4,7 +4,7 @@ Domain: Minecraft
 Core passive learning & drive layer integration:
 - Directly queries the Authoritative Core EpisodeSegmenter rolling buffer.
 - Resolves 'see that wall, now you do it', 'now you do it', 'do that again'.
-- Delivers natural idle summaries explaining what JARVIS did and WHY he wanted to.
+- Delivers natural idle summaries explaining what ATMAN did and WHY he wanted to.
 - Surfaces and authorizes big want proposals ('build perimeter wall').
 - Recalls learned skills ('build a wall', 'mine a tree') under Judge gating.
 - Banned: demonstration mode ('learn this as NAME, do it once, say done'),
@@ -32,7 +32,7 @@ def route_chat(
     """Route Minecraft chat messages through Core passive learning, drives, and Judge gating."""
     # Clean text from speaker prefix and greeting
     clean_text = re.sub(r"^.*? said:\s*", "", text, count=1).strip()
-    clean_text = re.sub(r"^(?:hey\s+)?jarvis[, ]+", "", clean_text, flags=re.I).strip()
+    clean_text = re.sub(r"^(?:hey\s+)?atman[, ]+", "", clean_text, flags=re.I).strip()
     low = clean_text.lower().rstrip(".!?")
 
     def reply(content: str, intent: str = "conversational_reply"):
@@ -150,10 +150,22 @@ def route_chat(
             "content": "Staying here."
         }, False, "Presence stay command."
 
-    if re.fullmatch(r"(?:hey|hi|hello|what'?s up)(?:\s+(?:buddy|jarvis|there|man))?", low):
+    if re.fullmatch(
+        r"(?:hey|hi|hello|howdy|sup|yo|good\s+(?:morning|afternoon|evening|night)|what'?s up)"
+        r"(?:\s+(?:buddy|atman|there|man|operator|dude))?",
+        low,
+    ):
         if return_summary:
             return reply(f"Hey Operator! {return_summary}")
-        return reply("Hey Operator! Good to see you.")
+        if re.search(r"morning", low):
+            return reply("Morning, Operator. Good to see you — I'm here and ready to learn.")
+        return reply("Hey Operator! Good to see you — ready when you are.")
+
+    if re.search(
+        r"\b(?:how are you(?: doing)?(?: (?:today|this morning|tonight))?|how(?:'s| is) it going|how(?:'s| are) things)\b",
+        low,
+    ):
+        return reply("Doing well — awake on the dojo and ready for whatever you want to teach me.")
 
     # 1b. Inquiries into idle actions / initiative ("what did you do?", "what were you doing?", "why did you do that?")
     if re.search(r"\b(?:what (?:did you do|were you doing|have you been doing)|why did you (?:do that|build that|patrol|tidy))\b", low):
@@ -213,7 +225,7 @@ def route_chat(
                 repository.store_skill(skill)
                 from significant_events import SignificantEventsLog
                 SignificantEventsLog().log_event(
-                    f"Passively learned skill '{skill['name']}' from the operator's actions ({len(skill.get('steps', []))} steps).",
+                    f"Passively learned skill '{skill['name']}' from Operator's actions ({len(skill.get('steps', []))} steps).",
                     source="passive_skill_learning",
                     metadata={"skill": skill['name'], "domain": "minecraft", "steps": len(skill.get("steps", []))}
                 )

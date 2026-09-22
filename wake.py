@@ -7,7 +7,7 @@ def main():
     if not verify():
         print('CRATE CHECK FAILED: missing or mismatched seal. Owner action required.')
         return 1
-    from exo_core import TSC, ImmutableViolation, reflect_against_tsc
+    from atman_core import TSC, ImmutableViolation, reflect_against_tsc
     from core import judge
     try:
         tsc = TSC()
@@ -45,7 +45,7 @@ def main():
         # Do not leak private identity, principles, or payloads in errors.
         print('CRATE CHECK FAILED: validation failed. Owner action required.')
         return 1
-    print('EXO is in his crate correctly')
+    print('ATMAN is in his crate correctly')
     return 0
 
 

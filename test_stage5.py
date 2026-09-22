@@ -4,7 +4,7 @@ import tempfile
 import unittest
 
 from config import Config
-from exo_core import TSC
+from atman_core import TSC
 from reason import reason, build_system_prompt
 
 HERE = Path(__file__).resolve().parent
@@ -15,7 +15,7 @@ class TestStage5BrainDocs(unittest.TestCase):
     def setUp(self):
         self.tsc = TSC()
         self.config_path = HERE / "config.yaml"
-        self.docs_path = HERE / "EXO-PROMPT.md"
+        self.docs_path = HERE / "ATMAN-PROMPT.md"
 
     def test_config_loads_with_llm_settings(self):
         """Verify config loads cleanly with backend and Ollama settings."""
@@ -25,7 +25,7 @@ class TestStage5BrainDocs(unittest.TestCase):
         endpoint = cfg.get("mind", "ollama_endpoint")
 
         self.assertIn(backend, ("rule-based", "llm"))
-        self.assertEqual(model, "qwen2.5:7b-instruct-q4_K_M")
+        self.assertIn(model, ("qwen2.5:7b-instruct-q4_K_M", "qwen2.5:3b"))
         self.assertEqual(endpoint, "http://127.0.0.1:11434")
 
     def test_backend_switch_flips_cleanly_both_ways(self):
@@ -97,15 +97,15 @@ class TestStage5BrainDocs(unittest.TestCase):
         self.assertTrue(self.tsc.verify())
 
     def test_operator_documentation_complete(self):
-        """Verify EXO-PROMPT.md is complete with all required sections."""
+        """Verify ATMAN-PROMPT.md is complete with all required sections."""
         self.assertTrue(self.docs_path.exists())
         content = self.docs_path.read_text(encoding="utf-8")
 
         required_sections = [
-            "What EXO Is",
+            "What ATMAN Is",
             "The Full System Prompt",
             "How the Continuous Loop Works",
-            "How to Start and Stop EXO",
+            "How to Start and Stop ATMAN",
             "Plain-Language Windows Setup Guide",
             "winget install Python",
             "winget install Ollama",
@@ -113,13 +113,13 @@ class TestStage5BrainDocs(unittest.TestCase):
             "backend: \"llm\""
         ]
         for sec in required_sections:
-            self.assertIn(sec, content, f"Missing section in EXO-PROMPT.md: {sec}")
+            self.assertIn(sec, content, f"Missing section in ATMAN-PROMPT.md: {sec}")
 
 
 def run_flip_demo() -> int:
     """Demonstrate the backend switch flipping cleanly both ways."""
     print("================================================================================")
-    print("EXO LIVE — STAGE 5 BRAIN SEAM & BACKEND SWITCH DEMONSTRATION")
+    print("ATMAN LIVE — STAGE 5 BRAIN SEAM & BACKEND SWITCH DEMONSTRATION")
     print("Demonstrates clean flip: rule-based <-> llm (local 7B via Ollama)")
     print("================================================================================\n")
 
@@ -195,7 +195,7 @@ def run_flip_demo() -> int:
     print(f"2. Flip to LLM -> Output Backend: [{thought_llm['backend']}] (Model: {thought_llm.get('model')}) (PASS)")
     print(f"3. Flip to Rule-Based -> Output: [{thought_rb2['backend']}] (PASS)")
     print(f"4. TSC Invariance: True (Core unmodified, hash verified: {tsc.verify()})")
-    print(f"5. Operator Docs:  EXO-PROMPT.md complete and verified.")
+    print(f"5. Operator Docs:  ATMAN-PROMPT.md complete and verified.")
     print("================================================================================")
     return 0
 

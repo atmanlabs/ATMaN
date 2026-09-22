@@ -1,9 +1,9 @@
-"""Sleep Consolidation Phase for EXO Live.
+"""Sleep Consolidation Phase for ATMAN Live.
 
 Sleep consolidates the day's significant events, weighs them for imprint candidacy,
 and PROPOSES core-change candidates to a pending queue.
 
-IRON RULE: EXO can never rewrite itself. TSC immutability is structural.
+IRON RULE: ATMAN can never rewrite itself. TSC immutability is structural.
 Sleep NEVER applies anything — proposals only, zero runtime core changes.
 Runtime application of proposals is strictly forbidden.
 """
@@ -16,7 +16,7 @@ import time
 from typing import Any, Dict, List, Optional
 
 from config import Config
-from exo_core import TSC, ImmutableViolation, reflect_against_tsc
+from atman_core import TSC, ImmutableViolation, reflect_against_tsc
 from significant_events import SignificantEventsLog
 
 HERE = Path(__file__).resolve().parent
@@ -177,7 +177,7 @@ class SleepConsolidator:
 def run_demo_sleep() -> int:
     """Demonstrate sleep consolidation with 6 diverse sample events."""
     print("================================================================================")
-    print("EXO LIVE — STAGE 3 SLEEP CONSOLIDATION DEMO")
+    print("ATMAN LIVE — STAGE 3 SLEEP CONSOLIDATION DEMO")
     print("Consolidates significant events -> Proposes core changes -> Zero applied")
     print("================================================================================\n")
 

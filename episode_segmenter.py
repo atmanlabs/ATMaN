@@ -1,4 +1,4 @@
-"""Episode Segmenter and Referent Resolver for JARVIS Authoritative Core.
+"""Episode Segmenter and Referent Resolver for ATMAN Authoritative Core.
 
 Continuous passive skill learning engine:
 1. Ingests raw timestamped domain events (Minecraft, desktop, web).
@@ -81,7 +81,7 @@ class EpisodeSegmenter:
 
     def _canonical_actor(self, actor: str) -> str:
         clean = re.sub(r"^\.+", "", str(actor or "")).lower()
-        if clean in ("operator", "admin") or clean == os.environ.get("OPERATOR_NAME", "").lower():
+        if clean in ("operator", "operator", "operator"):
             return "Operator"
         return actor
 
@@ -95,7 +95,7 @@ class EpisodeSegmenter:
         actor = self._canonical_actor(raw_actor)
 
         # Ignore bot's own events
-        if str(raw_actor).lower() in ("jarvis", "bot"):
+        if str(raw_actor).lower() in ("atman", "bot"):
             return None
 
         action = event_dict.get("action", "").lower()

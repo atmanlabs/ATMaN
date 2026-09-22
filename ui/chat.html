@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>JARVIS — ATMAN Core Interface</title>
+  <title>ATMAN — Core Interface</title>
   <style>
     :root {
       --bg: #07090e;
@@ -14,7 +14,7 @@
       --text: #e2e8f0;
       --text-muted: #64748b;
       --user-msg: #132238;
-      --jarvis-msg: #0f172a;
+      --atman-msg: #0f172a;
       --success: #10b981;
     }
     * {
@@ -109,9 +109,9 @@
       color: #f1f5f9;
       border-bottom-right-radius: 4px;
     }
-    .msg-jarvis {
+    .msg-atman {
       align-self: flex-start;
-      background: var(--jarvis-msg);
+      background: var(--atman-msg);
       border: 1px solid var(--panel-border);
       border-bottom-left-radius: 4px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -198,7 +198,7 @@
     <div class="brand">
       <div class="core-dot"></div>
       <div class="brand-text">
-        <h1>JARVIS</h1>
+        <h1>ATMAN</h1>
         <p>Live ATMAN Core</p>
       </div>
     </div>
@@ -206,9 +206,9 @@
   </header>
 
   <div id="chat-history">
-    <div class="msg msg-jarvis">
+    <div class="msg msg-atman">
       <div>Authoritative ATMAN loop online. Etched core and Judge active. Ready for directive, Operator.</div>
-      <div class="msg-meta">JARVIS Core • Port 18790</div>
+      <div class="msg-meta">ATMAN Core • Port 18790</div>
     </div>
   </div>
 
@@ -222,27 +222,27 @@
 
   <footer>
     <form class="input-row" onsubmit="handleSend(event)">
-      <input type="text" id="user-input" placeholder="Message JARVIS..." autocomplete="off" />
+      <input type="text" id="user-input" placeholder="Message ATMAN..." autocomplete="off" />
       <button type="submit" class="send-btn" id="send-button">Send</button>
     </form>
   </footer>
 
   <script>
-    const DEFAULT_TOKEN = 'CHANGE_ME_TOKEN';
-    let token = localStorage.getItem('jarvis_auth_token') || DEFAULT_TOKEN;
+    const DEFAULT_TOKEN = '0151c1b8c9fda7c07fe8965423e28042415ece45ea07b944';
+    let token = localStorage.getItem('atman_auth_token') || DEFAULT_TOKEN;
 
     function promptToken() {
       const entered = prompt('Enter Operator Gateway Token:', token);
       if (entered) {
         token = entered.trim();
-        localStorage.setItem('jarvis_auth_token', token);
+        localStorage.setItem('atman_auth_token', token);
       }
     }
 
     function appendMessage(text, isUser, meta = '') {
       const history = document.getElementById('chat-history');
       const msgDiv = document.createElement('div');
-      msgDiv.className = `msg ${isUser ? 'msg-user' : 'msg-jarvis'}`;
+      msgDiv.className = `msg ${isUser ? 'msg-user' : 'msg-atman'}`;
       
       const contentDiv = document.createElement('div');
       contentDiv.innerText = text;

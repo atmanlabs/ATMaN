@@ -20,14 +20,14 @@ class Repo:
 
 class RoutingTests(unittest.TestCase):
     def route(self, text, context=None):
-        return route_chat('Operator said: ' + text, Repo(), ('ambient', {'type': 'respond', 'content': 'Acknowledged.'}, False, ''), context=context)[1]
+        return route_chat('.Operator said: ' + text, Repo(), ('ambient', {'type': 'respond', 'content': 'Acknowledged.'}, False, ''), context=context)[1]
 
     def test_referent_resolution_from_buffer(self):
         # Ingest simulated wall placement into episode segmenter
-        ev = {'domain': 'minecraft', 'actor': 'Operator', 'action': 'place',
+        ev = {'domain': 'minecraft', 'actor': '.Operator', 'action': 'place',
               'params': {'block': 'cobblestone', 'item': 'cobblestone', 'position': [10, 60, 20]}, 'time': 1000}
         episode_segmenter.ingest_event(ev, domain='minecraft')
-        a = self.route('see that wall, now you do it', context={'player': 'Operator'})
+        a = self.route('see that wall, now you do it', context={'player': '.Operator'})
         self.assertEqual(a['action'], 'execute_skill')
         self.assertIn('Watched you build', a['content'])
         self.assertEqual(a['skill']['name'], 'build_wall')
@@ -36,7 +36,7 @@ class RoutingTests(unittest.TestCase):
         # Clear segmenter
         episode_segmenter.active_episodes.clear()
         episode_segmenter.rolling_buffer.clear()
-        a = self.route('see that wall, now you do it', context={'player': 'Operator'})
+        a = self.route('see that wall, now you do it', context={'player': '.Operator'})
         self.assertEqual(a['type'], 'respond')
         self.assertIn("I didn't catch an action sequence in my recent memory buffer", a['content'])
 

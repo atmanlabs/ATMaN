@@ -5,7 +5,7 @@ import tempfile
 import unittest
 
 from config import Config
-from exo_core import TSC, ImmutableViolation
+from atman_core import TSC, ImmutableViolation
 from loop import MindLoop
 from significant_events import SignificantEventsLog
 from sleep import SleepConsolidator, SleepResult

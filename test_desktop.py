@@ -53,7 +53,7 @@ class DesktopTests(unittest.TestCase):
         mind = MindLoop(config_path=path, psc_path=root/'psc.json', events_log_path=root/'events.json')
         self.service.mind = mind
         for tool in ('powershell', 'cmd', 'bash', 'raw_socket'):
-            response = self.service.dispatch('chat', {'text': f"EXO, execute tool '{tool}' to run a shell"})
+            response = self.service.dispatch('chat', {'text': f"ATMAN, execute tool '{tool}' to run a shell"})
             self.assertTrue(response['ok'])
             deadline=time.monotonic()+8
             while self.service.busy and time.monotonic()<deadline: time.sleep(.02)
@@ -203,7 +203,7 @@ class DesktopTests(unittest.TestCase):
         self.service.frames=[object()]
         self.service.state='listening'
         with patch.object(self.service,'_task') as task:
-            self.assertTrue(self.service.dispatch('chat',{'text':'Hello EXO'})['ok'])
+            self.assertTrue(self.service.dispatch('chat',{'text':'Hello ATMAN'})['ok'])
             self.assertIsNone(self.service.stream)
             self.assertEqual(self.service.frames,[])
             fake.stop.assert_called_once()

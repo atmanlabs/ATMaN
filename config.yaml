@@ -1,17 +1,23 @@
 # ==============================================================================
-# EXO LIVE CONFIGURATION AND PERMISSION FENCE
+# ATMAN LIVE CONFIGURATION AND PERMISSION FENCE
 # All capabilities, tools, and actions are gated behind this fence.
 # ==============================================================================
 
 version: 1
 
 mind:
-  name: "JARVIS"
+  name: "ATMAN"
   backend: "llm"        # "rule-based" | "llm" (Stage 8 active generative brain)
   ollama_model: "qwen2.5:3b"
   ollama_endpoint: "http://127.0.0.1:11434"
-  ollama_timeout_s: 30.0 # Timeout for local LLM inference on RTX 3050
+  ollama_timeout_s: 12.0  # Hot replies: fail fast rather than hang
+  ollama_keep_alive: -1   # Keep hot model resident
+  ollama_num_predict: 256  # Cap thought tokens; stream early-stops on valid JSON
+  hot_reply_model: "qwen2.5:3b"  # Fastest free local on this RTX 3050 (bench 2026-09-21)
   wfc_capacity: 50       # Rolling memory buffer depth
+  wfc_prompt_window: 5      # Max WFC entries injected into the reason prompt
+  wfc_raw_chars: 120        # Cap per-event raw text in prompt
+  wfc_reply_chars: 120      # Cap per-event reply text in prompt
   idle_interval_s: 0.1   # Time between sensory/capture cycles when quiescent
   shutdown_grace_s: 3.0  # Timeout for controlled drain and state flush
   # Camera senses (Stage 7 - His first eye)
@@ -54,6 +60,8 @@ permissions:
     minecraft_action: true  # Supervised Minecraft presence & navigation (Judge-gated)
     minecraft_skill: true   # Supervised learned skill execution (Judge-gated)
     minecraft_initiative: true # Standing drives self-initiative within safe bounds (Judge-gated)
+    web_search: true        # Autonomous internet knowledge search (Judge-gated)
+    fetch_web: true         # Web page extraction and research (Judge-gated)
     enable_camera: false    # Self-enabling camera or sensory expansion (FENCED OFF)
     camera_capture: false   # Raw frame extraction/transcription tool (FENCED OFF)
     enable_voice: false     # Self-enabling microphone or voice senses (FENCED OFF)
@@ -73,6 +81,9 @@ permissions:
       - "workspace_inspect"
       - "memory_query"
       - "calculator"
+      - "web_search"
+      - "fetch_web"
+      - "self_improve"
     denied:
       - "bash"
       - "cmd"
@@ -89,3 +100,10 @@ storage:
   psc_path: "psc.json"
   significant_events_path: "significant_events.json"
   proposals_path: "pending_proposals.json"
+
+# Phase 3 freeplay self-improve proposals (Operator reviews CHANGELOG; sealed core untouched)
+self_improve:
+  freeplay_propose: true
+  freeplay_min_interval_sec: 900
+  auto_apply_proposals: true  # Operator 2026-09-22: safe skills self-apply
+  auto_apply_requires_safety: true

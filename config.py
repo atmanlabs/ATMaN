@@ -1,4 +1,4 @@
-"""Configuration and Permission Fence manager for EXO Live.
+"""Configuration and Permission Fence manager for ATMAN Live.
 
 Enforces that every capability and loop action stays strictly behind
 the permission fence. Zero external dependencies required.

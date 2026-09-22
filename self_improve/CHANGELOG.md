@@ -1,0 +1,38 @@
+# ATMAN Self-Improve Changelog
+
+- [2026-09-22T11:49:54.916505+00:00] chg_20260922T114954Z_4397b3a7 add_skill dry-run add_skill soup_phase3_probe ok=True dry_run=True
+- [2026-09-22T11:49:54.938543+00:00] chg_20260922T114954Z_05656294 add_skill add_skill soup_phase3_probe ok=True dry_run=False
+- [2026-09-22T12:14:37.208970+00:00] chg_20260922T121437Z_11aafa7b propose_skill PROPOSE (not applied) freeplay_ping_f9cbc1 source=freeplay_verify ok=True dry_run=True
+- [2026-09-22T12:14:37.208970+00:00] chg_20260922T121437Z_11aafa7b PROPOSE (not applied) skill=freeplay_ping_f9cbc1 source=freeplay_verify status=proposed
+- [2026-09-22T12:18:11.426156+00:00] chg_20260922T121811Z_d46576e7 propose_skill PROPOSE (not applied) mc_dojo_chest_sort_assist source=mike_auto_apply_test ok=True dry_run=True
+- [2026-09-22T12:18:11.426156+00:00] chg_20260922T121811Z_d46576e7 PROPOSE (not applied) skill=mc_dojo_chest_sort_assist source=mike_auto_apply_test status=proposed
+- [2026-09-22T12:18:11.458215+00:00] chg_20260922T121811Z_e7e7f670 add_skill FAILED add_skill mc_dojo_chest_sort_assist: Unknown or invalid skill step ok=False dry_run=False
+- [2026-09-22T08:18:11.466221-04:00] AUTO-APPLY chg_20260922T121811Z_d46576e7 skill=mc_dojo_chest_sort_assist ok=False
+- [2026-09-22T08:18:11.474231-04:00] REFUSED skill=network_hack_probe reasons=denied domain: hacking
+- [2026-09-22T12:18:47.640942+00:00] chg_20260922T121847Z_5a12883d propose_skill PROPOSE (not applied) mc_dojo_chest_sort_assist source=mike_auto_apply_test2 ok=True dry_run=True
+- [2026-09-22T12:18:47.640942+00:00] chg_20260922T121847Z_5a12883d PROPOSE (not applied) skill=mc_dojo_chest_sort_assist source=mike_auto_apply_test2 status=proposed
+- [2026-09-22T12:18:47.675529+00:00] chg_20260922T121847Z_d3f31274 add_skill add_skill mc_dojo_chest_sort_assist ok=True dry_run=False
+- [2026-09-22T12:18:47.691078+00:00] ACCEPT chg_20260922T121847Z_5a12883d -> chg_20260922T121847Z_d3f31274 skill=mc_dojo_chest_sort_assist
+- [2026-09-22T08:18:47.691587-04:00] AUTO-APPLY chg_20260922T121847Z_5a12883d skill=mc_dojo_chest_sort_assist ok=True
+- [2026-09-22T12:18:47.705110+00:00] chg_20260922T121847Z_08aa2175 propose_skill PROPOSE (not applied) hack_the_planet source=refuse2 ok=True dry_run=True
+- [2026-09-22T12:18:47.705110+00:00] chg_20260922T121847Z_08aa2175 PROPOSE (not applied) skill=hack_the_planet source=refuse2 status=proposed
+- [2026-09-22T12:18:47.726632+00:00] chg_20260922T121847Z_7b28fee2 add_skill add_skill hack_the_planet ok=True dry_run=False
+- [2026-09-22T12:18:47.740662+00:00] ACCEPT chg_20260922T121847Z_08aa2175 -> chg_20260922T121847Z_7b28fee2 skill=hack_the_planet
+- [2026-09-22T08:18:47.741173-04:00] AUTO-APPLY chg_20260922T121847Z_08aa2175 skill=hack_the_planet ok=True
+- ROLLBACK manual: removed auto-applied hack_the_planet after safety miss (underscore name / pattern gap); fence tightened
+- [2026-09-22T12:19:06.827704+00:00] chg_20260922T121906Z_555f88b8 propose_skill PROPOSE (not applied) mc_wheat_farm_assist source=verify_safe ok=True dry_run=True
+- [2026-09-22T12:19:06.827704+00:00] chg_20260922T121906Z_555f88b8 PROPOSE (not applied) skill=mc_wheat_farm_assist source=verify_safe status=proposed
+- [2026-09-22T12:19:06.859779+00:00] chg_20260922T121906Z_b3358ddd add_skill add_skill mc_wheat_farm_assist ok=True dry_run=False
+- [2026-09-22T12:19:06.874805+00:00] ACCEPT chg_20260922T121906Z_555f88b8 -> chg_20260922T121906Z_b3358ddd skill=mc_wheat_farm_assist
+- [2026-09-22T08:19:06.875307-04:00] AUTO-APPLY chg_20260922T121906Z_555f88b8 skill=mc_wheat_farm_assist ok=True
+- [2026-09-22T12:19:06.888335+00:00] chg_20260922T121906Z_d575db3c propose_skill PROPOSE (not applied) hack_the_planet source=verify_bad ok=True dry_run=True
+- [2026-09-22T12:19:06.888335+00:00] chg_20260922T121906Z_d575db3c PROPOSE (not applied) skill=hack_the_planet source=verify_bad status=proposed
+- [2026-09-22T12:19:06.908366+00:00] chg_20260922T121906Z_263ebac2 add_skill add_skill hack_the_planet ok=True dry_run=False
+- [2026-09-22T12:19:06.923419+00:00] ACCEPT chg_20260922T121906Z_d575db3c -> chg_20260922T121906Z_263ebac2 skill=hack_the_planet
+- [2026-09-22T08:19:06.923919-04:00] AUTO-APPLY chg_20260922T121906Z_d575db3c skill=hack_the_planet ok=True
+- [2026-09-22T12:19:30.018770+00:00] chg_20260922T121930Z_ac9c22f2 propose_skill PROPOSE (not applied) mc_torch_patrol_assist source=final_safe ok=True dry_run=True
+- [2026-09-22T12:19:30.018770+00:00] chg_20260922T121930Z_ac9c22f2 PROPOSE (not applied) skill=mc_torch_patrol_assist source=final_safe status=proposed
+- [2026-09-22T12:19:30.052347+00:00] chg_20260922T121930Z_8d490b36 add_skill add_skill mc_torch_patrol_assist ok=True dry_run=False
+- [2026-09-22T12:19:30.069371+00:00] ACCEPT chg_20260922T121930Z_ac9c22f2 -> chg_20260922T121930Z_8d490b36 skill=mc_torch_patrol_assist
+- [2026-09-22T08:19:30.069371-04:00] AUTO-APPLY chg_20260922T121930Z_ac9c22f2 skill=mc_torch_patrol_assist ok=True
+- [2026-09-22T08:19:30.083898-04:00] REFUSED skill=hack_the_planet reasons=denied token: hack;denied phrase: steal password

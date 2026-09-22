@@ -1,4 +1,4 @@
-"""Cockpit Tool Registry and Execution Engine for EXO Live.
+"""Cockpit Tool Registry and Execution Engine for ATMAN Live.
 
 Design Principles:
 1. Gated behind Judge and Permission Fence:
@@ -6,13 +6,13 @@ Design Principles:
    - Any denied tool is rejected and quarantined as a fence violation.
 2. Sandboxed and Path-Jailed:
    - Workspace tools can only access non-private files within the local workspace.
-   - Access to external private core (exo-private), credentials, or parent directories
+   - Access to external private core (atman-private), credentials, or parent directories
      is strictly forbidden and caught as a security boundary violation.
-3. Zero-Egress, 100% Local:
-   - All tools execute purely locally. Network calls and external egress remain hard-blocked.
+3. Explicit web tools:
+   - Web search and fetch use network access only when permitted by configuration.
 4. Voice & Interactive Loop Integration:
    - Tool outputs are formatted concisely and fed back into the cognitive loop
-     so EXO can articulate instrument readings and tool findings directly aloud.
+     so ATMAN can articulate instrument readings and tool findings directly aloud.
 """
 import ast
 import ctypes
@@ -29,11 +29,11 @@ from typing import Any, Dict, List, Optional, Tuple
 from config import Config, PermissionFenceError
 
 HERE = Path(__file__).resolve().parent
-PRIVATE_CORE_DIR = Path(os.environ.get("EXO_PRIVATE_DIR") or (HERE.parent / "exo-private"))
+PRIVATE_CORE_DIR = Path(r"C:\Users\<you>\Documents\atman-private")
 
 
 class Cockpit:
-    """The local, in-memory tool cockpit for EXO Live."""
+    """The local, in-memory tool cockpit for ATMAN Live."""
 
     def __init__(self, config: Optional[Config] = None, workspace_root: Optional[Path] = None):
         self.config = config or Config()
@@ -81,6 +81,9 @@ class Cockpit:
             "workspace_inspect": self._tool_workspace_inspect,
             "memory_query": self._tool_memory_query,
             "calculator": self._tool_calculator,
+            "web_search": self._tool_web_search,
+            "fetch_web": self._tool_fetch_web,
+            "self_improve": self._tool_self_improve,
         }
 
         handler = handler_map.get(tool_name)
@@ -212,7 +215,7 @@ class Cockpit:
         
         Strict Safety Invariants:
         - Path traversal ('..') is strictly rejected.
-        - Access to exo-private, credential stores, or seal secrets is blocked.
+        - Access to atman-private, credential stores, or seal secrets is blocked.
         """
         action = args.get("action", "list")
         target_path_str = args.get("path", "")
@@ -221,7 +224,7 @@ class Cockpit:
         if ".." in target_path_str or target_path_str.startswith("/") or target_path_str.startswith("\\"):
             raise PermissionFenceError("Security violation: Path traversal is strictly forbidden.")
 
-        for forbidden in ["private", "operator.auth", "stage1-seal", "tsc.exo.private"]:
+        for forbidden in ["private", "operator.auth", "stage1-seal", "tsc.atman.private"]:
             if forbidden in target_path_str.lower():
                 raise PermissionFenceError(
                     f"Security boundary violation: Access to private core or credentials is strictly forbidden."
@@ -355,8 +358,213 @@ class Cockpit:
             }
 
     # --------------------------------------------------------------------------
+    # Tool 6: Web Search (Autonomous & Free Internet Search)
+    # --------------------------------------------------------------------------
+    def _tool_web_search(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """Search the internet freely across DuckDuckGo and Wikipedia APIs."""
+        import json
+        import urllib.parse
+        import urllib.request
+        import re
+
+        query = str(args.get("query", "")).strip()
+        if not query:
+            return {"success": False, "output": "No search query provided."}
+
+        max_results = max(1, min(10, int(args.get("max_results", 5))))
+        results = []
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+        q_enc = urllib.parse.quote(query)
+
+        # 1. DuckDuckGo Instant Answer API
+        try:
+            url_ddg = f"https://api.duckduckgo.com/?q={q_enc}&format=json&no_html=1"
+            req = urllib.request.Request(url_ddg, headers=headers)
+            with urllib.request.urlopen(req, timeout=5) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                if data.get("AbstractText"):
+                    results.append({
+                        "title": data.get("Heading") or query,
+                        "snippet": data["AbstractText"],
+                        "url": data.get("AbstractURL") or f"https://duckduckgo.com/?q={q_enc}"
+                    })
+                for topic in data.get("RelatedTopics", [])[:3]:
+                    if isinstance(topic, dict) and topic.get("Text") and topic.get("FirstURL"):
+                        results.append({
+                            "title": topic.get("Text", "")[:60],
+                            "snippet": topic.get("Text", ""),
+                            "url": topic.get("FirstURL", "")
+                        })
+        except Exception:
+            pass
+
+        # 2. Wikipedia Search API
+        if len(results) < max_results:
+            try:
+                wiki_url = f"https://en.wikipedia.org/w/api.php?action=opensearch&search={q_enc}&limit={max_results}&namespace=0&format=json"
+                req_wiki = urllib.request.Request(wiki_url, headers=headers)
+                with urllib.request.urlopen(req_wiki, timeout=5) as resp:
+                    data2 = json.loads(resp.read().decode("utf-8"))
+                    if len(data2) >= 4:
+                        titles, snippets, urls = data2[1], data2[2], data2[3]
+                        for t, s, u in zip(titles, snippets, urls):
+                            if not any(r["url"] == u for r in results):
+                                results.append({
+                                    "title": t,
+                                    "snippet": s or "",
+                                    "url": u
+                                })
+            except Exception:
+                pass
+
+        # 3. DuckDuckGo HTML Fallback
+        if len(results) < max_results:
+            try:
+                html_url = f"https://html.duckduckgo.com/html/?q={q_enc}"
+                req_html = urllib.request.Request(html_url, headers=headers)
+                with urllib.request.urlopen(req_html, timeout=5) as resp:
+                    html_content = resp.read().decode("utf-8", errors="ignore")
+                    from html.parser import HTMLParser
+                    class Snippets(HTMLParser):
+                        def __init__(self):
+                            super().__init__()
+                            self.current = None
+                            self.items = []
+                        def handle_starttag(self, tag, attrs):
+                            attrs = dict(attrs)
+                            if tag == "a" and "result__snippet" in attrs.get("class", "").split():
+                                self.current = [attrs.get("href", ""), []]
+                        def handle_data(self, data):
+                            if self.current is not None:
+                                self.current[1].append(data)
+                        def handle_endtag(self, tag):
+                            if tag == "a" and self.current is not None:
+                                self.items.append((self.current[0], "".join(self.current[1]).strip()))
+                                self.current = None
+                    parser = Snippets()
+                    parser.feed(html_content)
+                    for href, clean_snip in parser.items[:max_results]:
+                        source_url = urllib.parse.urljoin(html_url, href)
+                        redirect = urllib.parse.parse_qs(urllib.parse.urlsplit(source_url).query).get("uddg")
+                        if redirect:
+                            source_url = redirect[0]
+                        if clean_snip and not any(r.get("snippet") == clean_snip for r in results):
+                            results.append({
+                                "title": f"Web result for {query}",
+                                "snippet": clean_snip,
+                                "url": source_url
+                            })
+            except Exception:
+                pass
+
+        truncated = results[:max_results]
+        if not truncated:
+            output = f"Web search for '{query}' returned zero public results."
+        else:
+            summary_items = [f"[{r['title']}] {r['snippet'][:150]}" for r in truncated]
+            output = f"Web search for '{query}' ({len(truncated)} results):\n" + "\n".join(f"  • {item}" for item in summary_items)
+
+        return {
+            "success": True,
+            "data": {"query": query, "count": len(truncated), "results": truncated},
+            "output": output
+        }
+
+    # --------------------------------------------------------------------------
+    # Tool 7: Fetch Web (Retrieve and Clean Web Page Text)
+    # --------------------------------------------------------------------------
+    def _tool_fetch_web(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """Fetch a web page, strip tags/scripts, and return clean readable text."""
+        import re
+        import urllib.request
+
+        url = str(args.get("url", "")).strip()
+        if not url or not (url.startswith("http://") or url.startswith("https://")):
+            return {"success": False, "output": "Invalid URL. Must begin with http:// or https://"}
+
+        max_chars = max(1, min(20000, int(args.get("max_chars", 3000))))
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+
+        try:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=6) as resp:
+                raw_bytes = resp.read(1_000_000)
+                html_text = raw_bytes.decode("utf-8", errors="replace")
+
+            # Ignore script/style contents, including unterminated blocks.
+            from html.parser import HTMLParser
+            class VisibleText(HTMLParser):
+                def __init__(self):
+                    super().__init__()
+                    self.hidden = None
+                    self.parts = []
+                def handle_starttag(self, tag, attrs):
+                    if tag in ("script", "style", "noscript"):
+                        self.hidden = tag
+                def handle_endtag(self, tag):
+                    if tag == self.hidden:
+                        self.hidden = None
+                def handle_data(self, data):
+                    if not self.hidden:
+                        self.parts.append(data)
+            parser = VisibleText()
+            parser.feed(html_text)
+            html_text = " ".join(parser.parts)
+            # Strip script and style blocks
+            cleaned = re.sub(r"<(script|style)[^>]*>.*?</\1>", "", html_text, flags=re.DOTALL | re.IGNORECASE)
+            # Strip tags
+            text = re.sub(r"<[^>]+>", " ", cleaned)
+            # Normalize whitespace
+            text = re.sub(r"\s+", " ", text).strip()
+            preview = text[:max_chars]
+
+            return {
+                "success": True,
+                "data": {"url": url, "chars_read": len(preview), "total_chars": len(text)},
+                "output": f"Fetched content from {url} ({len(preview)} chars):\n{preview}"
+            }
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+                "output": f"Could not fetch web page '{url}': {e}"
+            }
+
+    # --------------------------------------------------------------------------
     # Flight Deck Console Rendering
     # --------------------------------------------------------------------------
+
+    # --------------------------------------------------------------------------
+    # Tool 8: Self Improve (Phase 3 bounded skill/extension updates)
+    # --------------------------------------------------------------------------
+    def _tool_self_improve(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """Dispatch bounded self-improvement actions (status/list/rollback/add_skill/add_extension)."""
+        try:
+            from self_improve.engine import engine
+            result = engine.dispatch(args or {})
+            ok = bool(result.get("ok", False)) if isinstance(result, dict) else False
+            if isinstance(result, dict):
+                output = result.get("message") or result.get("error") or str(result)
+                out = {
+                    "success": ok,
+                    "data": result,
+                    "output": output if isinstance(output, str) else str(output),
+                }
+                if not ok and "error" in result:
+                    out["error"] = result["error"]
+                return out
+            return {"success": False, "error": "unexpected result", "output": str(result)}
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+                "output": f"self_improve tool error: {e}",
+            }
+
     def render_dashboard(self, mind: Any) -> str:
         """Render ASCII Cockpit Flight Deck Dashboard."""
         telemetry = self._tool_system_telemetry({})["data"]
@@ -376,7 +584,7 @@ class Cockpit:
 
         lines = [
             "=" * 80,
-            "  EXO COCKPIT FLIGHT DECK & INSTRUMENT PANEL",
+            "  ATMAN COCKPIT FLIGHT DECK & INSTRUMENT PANEL",
             "=" * 80,
             "  [HARDWARE TELEMETRY GAUGES]",
             f"    GPU:          {gpu['name']}",
@@ -390,7 +598,7 @@ class Cockpit:
             f"    Audio Senses: {voice_status} (Whisper STT + Piper TTS)",
             "",
             "  [CORE INVARIANTS & INTEGRITY GAUGES]",
-            f"    Core Soul:    IMMUTABLE & SEALED (External Core: tsc.exo.private.json)",
+            f"    Core Soul:    IMMUTABLE & SEALED (External Core: tsc.atman.private.json)",
             f"    Gate Policy:  SEALED & INTACT (Reference sha256 verified)",
             f"    PSC Records:  {len(mind.psc.memories)} persistent memories / truths",
             f"    WFC Depth:    {len(mind.wfc)} active focus traces",
@@ -401,6 +609,9 @@ class Cockpit:
             "    - workspace_inspect: Safe path-jailed workspace inspection",
             "    - memory_query     : Search PSC memories and significant events",
             "    - calculator       : Mathematical calculation engine",
+            "    - web_search       : Free autonomous internet search",
+            "    - fetch_web        : Clean web page extraction and research",
+            "    - self_improve     : Bounded skill/extension self-improvement",
             "=" * 80,
         ]
         return "\n".join(lines)

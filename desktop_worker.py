@@ -1,4 +1,4 @@
-"""EXO desktop adapter. Runs in the installed backend Python, never in a web server.
+"""ATMAN desktop adapter. Runs in the installed backend Python, never in a web server.
 
 Only structured, allowlisted commands arrive over the parent's private stdin pipe.
 No private values or backend diagnostics are forwarded to stdout/stderr.
@@ -18,7 +18,7 @@ import threading
 import time
 from urllib.parse import urlsplit
 
-ROOT = Path.home() / 'Documents' / 'exo-live'
+ROOT = Path.home() / 'Documents' / 'atman-live'
 COMMANDS = frozenset({'boot', 'diagnostics', 'authenticate', 'continue', 'poll', 'chat',
     'telemetry', 'memories', 'events', 'sleep', 'wake', 'sense', 'record_start',
     'record_stop', 'settings', 'quit'})
@@ -71,7 +71,7 @@ class DesktopService:
         if isinstance(value, str):
             for pattern in self.secret_patterns:
                 value = pattern.sub('[protected]', value)
-            value = re.sub(r'(?i)(?:[A-Z]:\\[^\n]*?(?:exo-private|operator\.auth)[^\n]*|(?:password|passphrase|api[_-]?key|token)\s*[:=]\s*\S+)', '[protected]', value)
+            value = re.sub(r'(?i)(?:[A-Z]:\\[^\n]*?(?:atman-private|operator\.auth)[^\n]*|(?:password|passphrase|api[_-]?key|token)\s*[:=]\s*\S+)', '[protected]', value)
             return value[:24000]
         if isinstance(value, list):
             return [self.clean(v) for v in value[:500]]
@@ -145,7 +145,7 @@ class DesktopService:
                 if not isinstance(text, str) or not 1 <= len(text.strip()) <= 8000:
                     raise ValueError('Enter a message of 1–8,000 characters.')
                 self._fence('respond')
-                if self.state == 'sleeping': raise ValueError('Wake JARVIS before sending a message.')
+                if self.state == 'sleeping': raise ValueError('Wake ATMAN before sending a message.')
                 self._stop_recording(False)
                 self._task(lambda: self._chat(text), 'thinking')
                 return {'ok': True}
@@ -304,7 +304,7 @@ class DesktopService:
         return {'ok': True, 'senses': self.senses.copy()}
 
     def _task(self, fn, state):
-        if self.busy: raise ValueError('JARVIS is finishing the current operation.')
+        if self.busy: raise ValueError('ATMAN is finishing the current operation.')
         self.busy = True
         self.state = state
         def run():
@@ -377,7 +377,7 @@ class DesktopService:
     def _start_recording(self):
         self._fence('observe')
         if not self.senses['mic']: raise ValueError('Turn the microphone on in Flight Deck first.')
-        if self.busy or self.state == 'sleeping': raise ValueError('Wait until JARVIS is awake and ready.')
+        if self.busy or self.state == 'sleeping': raise ValueError('Wait until ATMAN is awake and ready.')
         if self.stream is not None: return {'ok': True}
         import numpy as np
         import sounddevice as sd

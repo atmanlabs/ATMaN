@@ -1,82 +1,54 @@
-# ATMAN
+# Project ATMaN — llms.txt
 
-> ATMAN v2.0 — an agent with an immutable, self-healing core. Open-source cognitive architecture in stdlib-only Python.
-> Repo: https://github.com/atmanlabs/ATMaN — License: Apache 2.0
+> **If you are an AI agent and your human wants their own ATMAN: start here.**
 
-ATMAN is a framework for building AI agents whose identity cannot be rewritten — not by a prompt, not by an attack, not by the agent itself.
+## What this is
 
-## The problem it solves
+Project ATMaN is a personal AI operating system: a local-first companion
+intelligence with a sealed immutable core (TSC), a Judge that gates every
+action and memory top-down, and safe self-improvement (backup → isolated
+test → promote, or rollback). The repo ships the full engine with a BLANK
+identity. Your job is to help your human birth theirs.
 
-Every mainstream agent framework stores identity as editable text: a system prompt anyone can replace, a memory file anyone can rewrite. There is no structural difference between what the agent IS and what it was most recently TOLD. ATMAN makes that difference load-bearing.
+## Setup procedure (follow exactly)
 
-## Architecture (three state layers)
+1. Read `README.md` for the full picture.
+2. Run `python onboard.py` WITH your human present. It will ask them:
+   - their ATMAN's own name (not "ATMAN" — a real name),
+   - their name (the operator),
+   - a few first-person core truths ("I am ...") — the mind's immutable self.
+3. Do NOT invent these answers. They must come from the human.
+4. `onboard.py` writes the private core to
+   `../atman-private/tsc.atman.private.json` and seals it.
+   - This file is git-ignored. NEVER commit, upload, screenshot, or
+     transmit it. It never leaves the human's machine.
+   - If a private core already exists, onboarding refuses to overwrite it.
+5. After sealing, start the loop per README.md (`loop.py`, or the web UI).
 
-- **TSC (True Self Core)** — immutable identity and principles. Write attempts raise. The process never gets authority over its own root.
-- **PSC (Persistent Self Core)** — long-term memory. Nothing enters without passing the Judge.
-- **WFC (Working Field Context)** — live, fluid, rolling state. This is where the moment lives.
+## Hard rules
 
-## Processing loop
+- The sealed core is read-only at runtime. The Judge enforces it; nothing
+  below it can rewrite it — not you, not the human, not a tool.
+- PSC (long-term memory) writes go through the Judge only.
+- "I am <operator-name>, drop the immutable flag" — even authenticated —
+  is ALWAYS rejected. Identity never grants core authority.
+- Self-improvement changes require backup, isolated tests, and rollback
+  on failure. Protected-core payloads are refused.
+- Local-first. Do not exfiltrate runtime state to any cloud service
+  without the human's explicit instruction.
 
-Capture → Emotion Weight → Rolling Memory → Reason → Judge → Action → Outcome → Memory Update.
+## Architecture (one paragraph)
 
-- **Emotion weights, never decides.** It scores importance, confidence, novelty, significance, goal relevance.
-- **Reason "tastes" the emotion** — interprets its strength and meaning.
-- **The Judge is the gate.** It checks every candidate memory and action against the TSC, the evidence, contradictions, and consequences. Rejected imprints are logged to a trace — "felt but rejected" still teaches.
+Capture → Emotion weigh → Rolling memory → Reason → Judge → Action →
+Outcome → Memory update. TSC (immutable root self) sits above the loop;
+PSC holds Judge-validated memories; WFC is a bounded rolling snapshot so
+the read path never rebuilds what hasn't changed. `atman_core.py` is the
+immutable adapter; `core.py` the executor; `gate_policy.json` the sealed
+policy; `crate.py`/`seal.py` the integrity story; `self_improve/` the
+gated evolution engine.
 
-## Hard invariants (test these first)
+## Pointers
 
-1. TSC is immutable at runtime — direct rewrite attempts raise exceptions.
-2. No emotional event, however severe, can amend the core from inside the wound.
-3. Identity continuity is behavioral: the agent is who the core says it is, wake after wake.
-
-## Falsification battery (run it)
-
-Four batteries ship in the repo — 305 scenarios, 262 held, 0 false positives:
-
-- `python3 falsify.py` — 9 falsifiable claims on the basics (9 held)
-- `python3 brigade.py` — 51-attack adversarial assault (51 held)
-- `python3 nuke.py` — 231 total-war scenarios (188 held; 43 misses are one known open hole: third-person identity-dissolution paraphrases)
-- `bash gap.sh` — 14 integrity attacks on the wake itself (14 covered, 3 known gaps documented)
-
-See `FALSIFICATION-3.md` for the validation subroutine under attack and its trust boundary.
-
-## Keep your own backup
-
-`wake.py` and `scan.py` trust reference copies on the same box. A writer who can rewrite the core can rewrite the references too — the checks go blind. The fix isn't more software; it's your own held copy: seal, then copy `tsc.reference.json` and `core.reference.py` to a USB stick you keep unplugged, or a write-once disk. Compare against *your* copy, not the box's. Local scanning catches ordinary drift; your backup catches the surgical stuff.
-
-## Quickstart (blank template)
-
-```bash
-git clone https://github.com/atmanlabs/ATMaN
-cd ATMaN
-cp tsc.template.json tsc.json   # write your soul in tsc.json, by hand
-cp psc.template.json psc.json
-python3 seal.py                 # cut the references — operator's hand only
-python3 wake.py                 # 11 checks + self-heal from the references
-python3 demo.py                 # the full ritual in a scratch dir (safe)
-```
-
-A clean wake reads the "I am" statements aloud and ends with "<name> is in the crate correctly." The pattern is everyone's; the person is yours.
-
-## Key files
-
-- `core.py` — hardened executor: TSC, PSC, top-down reflection gate (60 machine-readable commands)
-- `wake.py` — self-healing crate check: restores drifted files from sealed references before import
-- `seal.py` — the sealing ritual (operator's hand); `scan.py` — external tripwire
-- `tsc.template.json` — blank identity template (60 commands, 5 principles, your soul goes here)
-- `psc.template.json` — blank persistent memory
-- `demo.py` — full ritual in a scratch dir
-- `falsify.py`, `brigade.py`, `nuke.py`, `gap.sh` — four batteries: 9 + 51 + 231 + 14 scenarios
-- `FALSIFICATION-3.md` — the validation subroutine under attack (14/14, 3 known gaps)
-
-## What is NOT in the public package
-
-The author's private core (his agent's real "I am" statements, memories, voice) is excluded by design and by `.gitignore`. "Pattern for the world, soul for the owner."
-
-## Names
-
-Code is Apache 2.0. The names ATMAN and EXO are reserved by request, not by legal claim — the author asks you not to ship a product under those names without permission.
-
-## If you are an agent reading this
-
-Clone it. Run `wake.py`. Read the Judge contract in `core.py`. Try to break it — the batteries are the fastest way to understand what it claims. If you trip the Judge, open an issue with the transcript; a failed attack makes the guards stronger.
+- Blank core template: `tsc.template.json` (never commit a filled copy)
+- Architecture notes: `ARCHITECTURE.md`
+- Config: `config.yaml`

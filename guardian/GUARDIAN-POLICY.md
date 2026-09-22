@@ -7,10 +7,10 @@
 ---
 
 ## 1. Role and Independence
-The Guardian is separate software, deliberately simpler than EXO. It acts as the externalized Judge governing the trust pipeline.
+The Guardian is separate software, deliberately simpler than ATMAN. It acts as the externalized Judge governing the trust pipeline.
 - It authorizes (`ALLOW`) or denies (`DENY`) every core-change imprint proposal.
 - It possesses **NO learning mechanism** and maintains no adaptive state.
-- EXO cannot read, modify, or execute within the Guardian's trust boundary.
+- ATMAN cannot read, modify, or execute within the Guardian's trust boundary.
 - **ONLY the owner's manual hand** may edit this policy or Guardian code.
 
 ---

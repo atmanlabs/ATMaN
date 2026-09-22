@@ -1,4 +1,4 @@
-"""Execution Governor for JARVIS.
+"""Execution Governor for ATMAN.
 
 Protects the host environment against runaway process/tool spirals:
 1. Concurrency Cap: Max 5 concurrent tool/process spawns (within 4-6 cap range).
@@ -6,7 +6,7 @@ Protects the host environment against runaway process/tool spirals:
    - Rejects or throttles spawns while cooldown is active.
    - Logs every time the cap engages with timestamp, active count, and reason.
 2. Hard 'Calm Down' Command:
-   - Recognizes text & voice trigger: 'calm down', 'hey jarvis, calm down', 'jarvis calm down'.
+   - Recognizes text & voice trigger: 'calm down', 'hey atman, calm down', 'atman calm down'.
    - Immediately terminates all registered child processes and process trees (taskkill /F /T).
    - Aborts and cancels all in-flight tool calls / thread tasks.
    - Resets the concurrency counters and clears pending tool tasks.
@@ -25,7 +25,7 @@ HERE = Path(__file__).resolve().parent
 LOG_FILE = HERE / "governor.log"
 
 # Configure dedicated governor logger
-logger = logging.getLogger("JARVIS.Governor")
+logger = logging.getLogger("ATMAN.Governor")
 logger.setLevel(logging.INFO)
 if not logger.handlers:
     fh = logging.FileHandler(LOG_FILE, encoding="utf-8")
@@ -39,7 +39,7 @@ class ConcurrencyCapExceeded(Exception):
 
 
 class Governor:
-    """Thread-safe concurrency throttle and emergency kill switch for JARVIS."""
+    """Thread-safe concurrency throttle and emergency kill switch for ATMAN."""
 
     def __init__(self, max_concurrent: int = 5, cooldown_seconds: float = 3.0):
         if not (4 <= max_concurrent <= 6):
@@ -69,8 +69,8 @@ class Governor:
         if not text:
             return False
         clean = re.sub(r"[^\w\s]", "", text.lower()).strip()
-        # Matches: "calm down", "hey jarvis calm down", "jarvis calm down", "please calm down", "stop all processes and calm down"
-        pattern = r"\b(?:hey\s+jarvis[, ]+|jarvis[, ]+)?calm\s+down\b|\bstop\s+all\s+processes\b"
+        # Matches: "calm down", "hey atman calm down", "atman calm down", "please calm down", "stop all processes and calm down"
+        pattern = r"\b(?:hey\s+atman[, ]+|atman[, ]+)?calm\s+down\b|\bstop\s+all\s+processes\b"
         return bool(re.search(pattern, clean))
 
     def acquire_spawn(self, spawn_id: str, description: str = "") -> bool:
@@ -83,7 +83,7 @@ class Governor:
             now = time.time()
             if self._emergency_halt:
                 logger.warning(f"Spawn blocked: emergency halt in effect. Attempted: '{spawn_id}' ({description})")
-                raise ConcurrencyCapExceeded("Emergency halt active. JARVIS is in calm-down state.")
+                raise ConcurrencyCapExceeded("Emergency halt active. ATMAN is in calm-down state.")
 
             if now < self._cooldown_until:
                 remaining = round(self._cooldown_until - now, 2)
@@ -120,7 +120,7 @@ class Governor:
                 logger.info(f"Spawn slot released: '{spawn_id}'. Remaining active: {len(self._active_spawns)}/{self.max_concurrent}")
 
     def track_process(self, proc: subprocess.Popen):
-        """Track an external child process spawned by JARVIS."""
+        """Track an external child process spawned by ATMAN."""
         with self._lock:
             self._tracked_processes.add(proc)
             if hasattr(proc, "pid") and proc.pid:
@@ -137,7 +137,7 @@ class Governor:
     def calm_down(self) -> Dict[str, Any]:
         """HARD CALM DOWN COMMAND.
         
-        Immediately kills every child process spawned by JARVIS,
+        Immediately kills every child process spawned by ATMAN,
         stops all in-flight tool calls, clears active spawns, and engages cooldown.
         Must work even mid-spiral.
         """
