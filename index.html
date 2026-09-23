@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATMAN — An open-source agent with an immutable self</title>
+<meta name="description" content="ATMAN is an open-source agent operating system (software simulation) with a sealed, tamper-evident core identity and Judge-gated memory. Apache 2.0.">
+<style>
+  :root{
+    --bg:#0a0a0e; --panel:#121218; --line:#23232e;
+    --ink:#f2f0ea; --dim:#a7a5a0; --amber:#e8a33d; --amber-dim:#9a6b24;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--amber);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  nav{border-bottom:1px solid var(--line);padding:18px 0;position:sticky;top:0;background:rgba(10,10,14,.92);backdrop-filter:blur(8px);z-index:10}
+  nav .wrap{display:flex;align-items:center;gap:14px}
+  .ring{width:30px;height:30px;border:2px solid var(--amber);border-radius:50%;position:relative;flex:none}
+  .ring::after{content:"";position:absolute;inset:8px;background:var(--amber);border-radius:50%}
+  .brand{font-weight:700;letter-spacing:.18em;font-size:15px}
+  nav .links{margin-left:auto;display:flex;gap:22px;font-size:14px}
+  nav .links a{color:var(--dim)}
+  nav .links a:hover{color:var(--ink);text-decoration:none}
+  .hero{padding:110px 0 80px;text-align:center}
+  .hero h1{font-size:clamp(38px,6vw,64px);line-height:1.08;letter-spacing:-.02em;margin:26px 0 20px}
+  .hero h1 .amber{color:var(--amber)}
+  .hero p.sub{font-size:19px;color:var(--dim);max-width:640px;margin:0 auto 38px}
+  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;padding:14px 30px;border-radius:10px;font-weight:600;font-size:16px;border:1px solid var(--amber);transition:transform .12s ease}
+  .btn:hover{text-decoration:none;transform:translateY(-2px)}
+  .btn.solid{background:var(--amber);color:#0a0a0e}
+  .btn.ghost{color:var(--amber);background:transparent}
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0}
+  .strip .wrap{display:flex;justify-content:center;gap:44px;flex-wrap:wrap;font-size:14px;color:var(--dim)}
+  .strip b{color:var(--ink)}
+  section{padding:76px 0}
+  h2{font-size:30px;letter-spacing:-.01em;margin-bottom:14px;text-align:center}
+  p.lead{color:var(--dim);text-align:center;max-width:640px;margin:0 auto 44px;font-size:17px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
+  .card h3{font-size:18px;margin-bottom:10px;color:var(--amber)}
+  .card p{color:var(--dim);font-size:15px}
+  .loop{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin-top:10px}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 16px;font-size:14px;white-space:nowrap}
+  .step.judge{border-color:var(--amber);color:var(--amber);font-weight:600}
+  .arrow{color:var(--amber-dim);font-size:18px}
+  pre{background:#0d0d12;border:1px solid var(--line);border-radius:12px;padding:24px;overflow-x:auto;font-size:14.5px;line-height:1.7;color:#d8d6d0}
+  .tok-c{color:#6b6f7a}.tok-k{color:var(--amber)}
+  .fail{border:1px dashed var(--amber-dim);border-radius:14px;padding:30px;text-align:center;background:rgba(232,163,61,.04)}
+  .fail h3{color:var(--amber);margin-bottom:10px}
+  .fail p{color:var(--dim);max-width:600px;margin:0 auto}
+  footer{border-top:1px solid var(--line);padding:36px 0;color:var(--dim);font-size:14px;text-align:center}
+  footer .wrap{display:flex;flex-direction:column;gap:8px}
+  @media(max-width:640px){nav .links{display:none}.hero{padding:70px 0 56px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="ring"></div>
+    <div class="brand">ATMAN</div>
+    <div class="links">
+      <a href="#concept">Concept</a>
+      <a href="#loop">The Loop</a>
+      <a href="#start">Quickstart</a>
+      <a href="https://github.com/atmanlabs/ATMaN">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="ring" style="width:64px;height:64px;margin:0 auto;border-width:3px"></div>
+    <h1>An open-source agent<br>with an <span class="amber">immutable self</span>.</h1>
+    <p class="sub">ATMAN is a software simulation of an agent operating system. A sealed, tamper-evident core identity the agent's own brain can't rewrite. Memory that only imprints through a Judge. Built to resist prompt injection and identity hijack — from the architecture up, not bolted on.</p>
+    <div class="cta">
+      <a class="btn solid" href="https://github.com/atmanlabs/ATMaN">Get the code</a>
+      <a class="btn ghost" href="#start">Run it in 60 seconds</a>
+    </div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="wrap">
+    <span><b>Apache 2.0</b> open source</span>
+    <span><b>100%</b> local — no cloud required</span>
+    <span><b>Python</b> — runs anywhere</span>
+  </div>
+</div>
+
+<section id="concept">
+  <div class="wrap">
+    <h2>Your ATMAN is yours.</h2>
+    <p class="lead">Once you make your ATMAN, no one can change your ATMAN — but you. Three layers, one hard invariant: the core sits above the process, and nothing in the process can rewrite it.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>TSC — The Immutable Core</h3>
+        <p>Identity, directives, root truth. Sealed and tamper-evident. The agent can read it, never rewrite it. Emotion, persuasion, and prompt injection stop at this wall.</p>
+      </div>
+      <div class="card">
+        <h3>PSC — Judge-Gated Memory</h3>
+        <p>Long-term memory that only imprints through the Judge. Every candidate memory is validated before it becomes part of the self. Bad imprints get rejected — and logged.</p>
+      </div>
+      <div class="card">
+        <h3>WFC — Fluid Working State</h3>
+        <p>Live, fast, disposable context. Thinks, drafts, forgets. Nothing here is sacred, which is exactly why the core stays clean.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="loop" style="padding-top:0">
+  <div class="wrap">
+    <h2>The loop</h2>
+    <p class="lead">Every experience runs the same gauntlet before it can touch the self.</p>
+    <div class="loop">
+      <span class="step">Capture</span><span class="arrow">→</span>
+      <span class="step">Emotion&nbsp;Weight</span><span class="arrow">→</span>
+      <span class="step">Rolling&nbsp;Memory</span><span class="arrow">→</span>
+      <span class="step">Reason</span><span class="arrow">→</span>
+      <span class="step judge">Judge</span><span class="arrow">→</span>
+      <span class="step">Action</span><span class="arrow">→</span>
+      <span class="step">Outcome</span><span class="arrow">→</span>
+      <span class="step">Memory&nbsp;Update</span>
+    </div>
+    <p class="lead" style="margin-top:34px;font-size:15px">Emotion <em>weights</em> — importance, novelty, goal relevance. It never <em>decides</em>. The Judge does, against the immutable core.</p>
+  </div>
+</section>
+
+<section id="start" style="padding-top:0">
+  <div class="wrap">
+    <h2>Run it</h2>
+    <p class="lead">Blank-slate onboarding. Your instance names itself. Sixty seconds from clone to a running agent.</p>
+<pre><span class="tok-c"># clone and enter</span>
+git clone https://github.com/atmanlabs/ATMaN.git
+cd ATMaN
+
+<span class="tok-c"># meet your ATMAN — it names itself</span>
+python onboard.py
+
+<span class="tok-c"># watch the full loop run five scenarios</span>
+python demo.py</pre>
+    <div style="height:44px"></div>
+    <div class="fail">
+      <h3>Failures first.</h3>
+      <p>It's early. The docs are rougher than the code. We don't want applause — we want someone to run it, break it, and tell us exactly where it broke. Open an issue. Be brutal. That's how this gets good.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span><a href="https://github.com/atmanlabs/ATMaN">github.com/atmanlabs/ATMaN</a></span>
+    <span>Apache 2.0 · Built in the open · They promised you the future and gave you tricks — this is something else.</span>
+  </div>
+</footer>
+
+</body>
+</html>
