@@ -1,0 +1,33 @@
+name: Feature request
+description: An idea for the ATMAN scaffold
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ideas welcome — especially ones that make the scaffold easier to try, understand, or build on.
+  - type: input
+    id: title
+    attributes:
+      label: One-line summary
+      placeholder: e.g. "Add a --demo flag that runs the five-scenario tour"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Who hits this, and what do they do today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Your proposal
+      description: How should it work? Sketch the behavior, not necessarily the code.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you've considered
