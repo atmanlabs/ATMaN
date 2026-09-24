@@ -84,6 +84,7 @@ class Cockpit:
             "web_search": self._tool_web_search,
             "fetch_web": self._tool_fetch_web,
             "self_improve": self._tool_self_improve,
+            "action_audit": self._tool_action_audit,
         }
 
         handler = handler_map.get(tool_name)
@@ -272,6 +273,26 @@ class Cockpit:
     # --------------------------------------------------------------------------
     def _tool_memory_query(self, args: Dict[str, Any]) -> Dict[str, Any]:
         """Search persistent memories (PSC) and significant events log."""
+        # Calibrated recall: scoped admission or evidence-grounded answer, with a
+        # next step when memory is missing. Training reports are folded in by
+        # training_receipts (read-only evidence; never claimed as skill).
+        if args.get("action") == "calibrated_recall":
+            from epistemic_dialogue import recall
+            path = self.workspace_root / self.config.get("storage", "psc_path", default="psc.json")
+            return recall(path, args, self.config)
+        if args.get("action") == "count":
+            provider = getattr(self, "memory_stats_provider", None)
+            if not callable(provider):
+                return {"success": False, "output": "I can't read my memory count right now. Shall we try again?"}
+            try:
+                stats = provider()
+                count = stats["total_memories"]
+                if type(count) is not int or count < 0:
+                    raise ValueError("Invalid memory count")
+                return {"success": True, "data": {"count": count, "source": "brain.get_brain_stats"},
+                        "output": f"I'm holding {count} persistent memories right now."}
+            except Exception:
+                return {"success": False, "output": "I can't read my memory count right now. Shall we try again?"}
         query = str(args.get("query", "")).lower().strip()
         
         # 1. Search PSC
@@ -565,6 +586,33 @@ class Cockpit:
                 "output": f"self_improve tool error: {e}",
             }
 
+    # --------------------------------------------------------------------------
+    # Tool: Action Receipts & Audit Trail
+    # --------------------------------------------------------------------------
+    def _tool_action_audit(self, args: Dict[str, Any]) -> Dict[str, Any]:
+        """Audit trail lookup: 'Why did you do that?'
+
+        The calibrated branch answers from receipts only, never substituting
+        the latest unrelated receipt for a missing answer. Receipt
+        proposals/beliefs are not proof of execution; the result is included.
+        """
+        if args.get("calibrated") is True:
+            import json
+            from epistemic_dialogue import recall
+            try:
+                from audit_receipts import audit_ledger
+                records = [{"memory": json.dumps({"recorded_at": r.timestamp_iso,
+                    "action": r.what_happened, "judge_approved": r.judge_decision.get("approved"),
+                    "external_result": r.external_result}, ensure_ascii=False)}
+                    for r in audit_ledger.get_recent(limit=100)]
+            except Exception:
+                records = []
+            return recall(None, {**args, "need": "logs"}, self.config, records=records)
+        return {
+            "success": False,
+            "output": "No audit receipts are recorded in this build. Ask what I did and I'll answer from what I can check.",
+        }
+
     def render_dashboard(self, mind: Any) -> str:
         """Render ASCII Cockpit Flight Deck Dashboard."""
         telemetry = self._tool_system_telemetry({})["data"]
@@ -612,6 +660,7 @@ class Cockpit:
             "    - web_search       : Free autonomous internet search",
             "    - fetch_web        : Clean web page extraction and research",
             "    - self_improve     : Bounded skill/extension self-improvement",
+            "    - action_audit     : Audit trail lookup of past actions",
             "=" * 80,
         ]
         return "\n".join(lines)

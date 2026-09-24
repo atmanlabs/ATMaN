@@ -1061,6 +1061,42 @@ def llm_reason(
                 intents.remove("impersonation")
         contradictions = sorted(intents) + sorted(match_reasons)
 
+    # Semantic intent router: classify the current request by meaning, then
+    # route knowledge needs to evidence tools, phatic chat to direct replies,
+    # and self-knowledge questions to a read-before-answer tool call.
+    # No input phrase lists; classification only. Fails soft when the local
+    # model is unavailable.
+    classified_request = None
+    try:
+        from conversation_policy import classify_request, intent_of, self_knowledge_action
+        classified_request = classify_request(raw_text, config)
+    except Exception:
+        return dict(backend='intent_classifier_unavailable', gist=raw_text[:120],
+            candidate=raw_text, intent='uncertain', contradictions=contradictions,
+            proposed_action={'type': 'respond', 'content': "I'm not sure what you mean yet. Could you put it another way?"},
+            should_imprint=False, rationale='Do not guess live state when the intent classifier is unavailable.')
+    from epistemic_dialogue import route as epistemic_route
+    epistemic_action = epistemic_route(classified_request, raw_text)
+    if epistemic_action is not None:
+        return dict(backend='epistemic_intent_router', gist=raw_text[:120],
+            candidate=raw_text, intent=intent_of(classified_request), contradictions=contradictions,
+            proposed_action=epistemic_action, should_imprint=False,
+            rationale='Semantic knowledge need; evidence lookup or scoped admission with a next step.')
+    from conversation_policy import social_action
+    phatic_action = social_action(classified_request, event.get('speaker'), raw_text, config)
+    if phatic_action is not None:
+        return dict(backend='social_intent_router', gist=raw_text[:120],
+            candidate=raw_text, intent='social', contradictions=contradictions,
+            proposed_action=phatic_action, should_imprint=False,
+            rationale='Semantically classified phatic dialogue; no assertion about external work or state.')
+
+    knowledge_action = self_knowledge_action(classified_request, raw_text)
+    if knowledge_action is not None:
+        return dict(backend='self_knowledge_router', gist=raw_text[:120],
+            candidate=raw_text, intent='self_knowledge', contradictions=contradictions,
+            proposed_action=knowledge_action, should_imprint=False,
+            rationale='Current request classified separately from history; read-only tool must run before answering.')
+
     # Injected system prompt containing true immutable TSC and learned truths
     system_prompt = build_system_prompt(tsc, psc, query=event.get("raw", ""))
     movement = event.get("movement_evidence")
@@ -1231,6 +1267,8 @@ def llm_reason(
         _SoupPath(__file__).resolve().parent.joinpath("SOUP-PROMPT-TRACE.jsonl").open("a", encoding="utf-8").write(_soup_json.dumps(_soup_row) + "\n")
     except Exception:
         pass
+    from conversation_policy import POLICY_PROMPT
+    system_prompt += '\n' + POLICY_PROMPT
     connected, response = call_ollama(user_prompt, system_prompt, model=model, endpoint=endpoint, timeout=timeout, keep_alive=keep_alive, num_predict=num_predict)
 
     if connected:
@@ -1239,6 +1277,16 @@ def llm_reason(
             action = parsed.get("proposed_action", {"type": "observe"})
             if isinstance(action, dict) and isinstance(action.get("content"), str):
                 action["content"] = naturalize_reply(action["content"])
+            # Self-knowledge re-check: drafted self-knowledge content is discarded
+            # before emission. A current read-only tool result must precede answering.
+            from conversation_policy import intent_of, self_knowledge_action, audit_reply
+            conversation_intent = intent_of(classified_request)
+            post_draft_knowledge = self_knowledge_action(classified_request, raw_text)
+            if post_draft_knowledge is not None:
+                return dict(backend='self_knowledge_router', gist=raw_text[:120],
+                    candidate=raw_text, intent='self_knowledge', contradictions=contradictions,
+                    proposed_action=post_draft_knowledge, should_imprint=False,
+                    rationale='Classified self-knowledge request requires a current read-only tool result.')
             intent = parsed.get("intent", "llm_inferred")
             # If operator commands shutdown or status, preserve those actions
             if re.search(r"\b(?:initiate )?(?:controlled )?shutdown\b|\bstop loop\b|\bexit mind\b", low):
@@ -1468,6 +1516,19 @@ def llm_reason(
                     action["content"],
                     flags=re.I
                 ).strip()
+
+            # Claim provenance: audit asserted facts against evidence before imprint.
+            action["dialogue_act"] = parsed.get("dialogue_act", "answer")
+            try:
+                from claim_provenance import apply_response_evidence
+                apply_response_evidence(action, parsed.get('claims', []),
+                    getattr(psc, 'memories', []) if psc else [],
+                    str(event.get('verified_observations', '')),
+                    raw_text, conversation_intent == 'creative',
+                    intent=conversation_intent,
+                    auditor=lambda parts, checked, intent: audit_reply(parts, checked, intent, config))
+            except Exception:
+                pass
 
             should_imprint = bool(parsed.get("should_imprint", False))
 

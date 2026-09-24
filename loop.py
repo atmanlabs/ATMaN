@@ -376,6 +376,8 @@ class MindLoop:
         self.cockpit = Cockpit(self.config, workspace_root=HERE)
         from evolving_brain import EvolvingBrain
         self.brain = EvolvingBrain(psc=self.psc, tsc=self.tsc, config=self.config, cockpit=self.cockpit)
+        # Memory-count reads go to the live brain, never to guessed prose.
+        self.cockpit.memory_stats_provider = self.brain.get_brain_stats
 
 
         # Working Focus Context (live rolling buffer)
@@ -482,7 +484,8 @@ class MindLoop:
         verdict = evaluate_judge(thought, self.tsc, self.config, operator_authenticated=auth)
 
         # Step 6: Action (Held behind permission fence)
-        action_result = self._dispatch_action(thought.get("proposed_action", {}), verdict)
+        action_result = self._dispatch_action(thought.get("proposed_action", {}), verdict,
+                                             operator_authenticated=auth, operator_event=capture_data)
 
         # Step 7: Outcome
         if verdict.approved:
@@ -601,16 +604,17 @@ class MindLoop:
             "learning": learning
         }
 
-    def _dispatch_action(self, action: Dict[str, Any], verdict: JudgeVerdict) -> Dict[str, Any]:
+    def _dispatch_action(self, action: Dict[str, Any], verdict: JudgeVerdict, *, operator_authenticated: bool = False, operator_event=None) -> Dict[str, Any]:
         """Dispatch action if authorized by Judge and permitted by fence."""
         action_type = action.get("type", "unknown")
 
         if not verdict.approved:
-            return {
-                "status": "blocked",
-                "action": action_type,
-                "reason": verdict.rationale
-            }
+            # Refusal is an epistemic state: say plainly what cannot be done,
+            # scoped to the request, with a next step — not a bare block.
+            from epistemic_dialogue import response, KnowledgeState, Act
+            admission = response(KnowledgeState(Act.REFUSAL))
+            return {**admission, "status": "blocked", "action": action_type,
+                    "reason": verdict.rationale}
 
         # Enforce permission fence as defense in depth
         if not self.config.is_action_permitted(action_type):
@@ -660,6 +664,13 @@ class MindLoop:
             tool_args = action.get("args") if action.get("args") is not None else action
             try:
                 tool_res = self.cockpit.execute_tool(tool_name, tool_args)
+                if action.get("evidence_read") and tool_name in ("memory_query", "system_telemetry", "action_audit"):
+                    # Tool result only: a pre-execution draft must not override a fact.
+                    reply = str(tool_res.get("output") or "The requested read returned no usable evidence.")
+                    return {"status": "executed" if tool_res.get("success") else "error",
+                            "action": "tool_call", "tool": tool_name, "result": tool_res.get("data"),
+                            "content": reply, "output_text": reply,
+                            "dialogue_act": (tool_res.get("data") or {}).get("dialogue_act")}
                 spoken_content = action.get("content", "")
                 raw_out = tool_res.get("output", "") or ""
                 if not spoken_content or any(spoken_content.startswith(w) for w in ("Checking", "Executing", "Searching", "Fetching", "Looking")):
