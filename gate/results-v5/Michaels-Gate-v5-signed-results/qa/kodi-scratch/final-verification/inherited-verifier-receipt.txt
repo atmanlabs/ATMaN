@@ -1,0 +1,13 @@
+COMMAND ["python3", "-B", "run_v4.py", "verify-bundle"] CWD /workspace/michaels-gate-v5-candidate/inherited/v4/reference-model
+Traceback (most recent call last):
+  File "/workspace/michaels-gate-v5-candidate/inherited/v4/reference-model/run_v4.py", line 72, in <module>
+    if sys.argv[1:] == ["verify-bundle"]: sys.exit(0 if verify() else 1)
+                                                        ~~~~~~^^
+  File "/workspace/michaels-gate-v5-candidate/inherited/v4/reference-model/run_v4.py", line 69, in verify
+    bad = [f for f, h in json.loads(m)["files"].items() if sha(f) != h]; print("signature OK;", "all hashes match" if not bad else f"MISMATCH {bad}"); return not bad
+                                                           ~~~^^^
+  File "/workspace/michaels-gate-v5-candidate/inherited/v4/reference-model/run_v4.py", line 7, in <lambda>
+    sha = lambda p: hashlib.sha256(open(p, "rb").read()).hexdigest()
+                                   ~~~~^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'artifacts/v3_inherited/FROZEN_BATTERY.sha256'
+EXIT 1

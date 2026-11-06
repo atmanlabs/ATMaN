@@ -152,7 +152,7 @@ def route_chat(
 
     if re.fullmatch(
         r"(?:hey|hi|hello|howdy|sup|yo|good\s+(?:morning|afternoon|evening|night)|what'?s up)"
-        r"(?:\s+(?:buddy|atman|there|man|mike|dude))?",
+        r"(?:\s+(?:buddy|atman|there|man|dude))?",
         low,
     ):
         if return_summary:

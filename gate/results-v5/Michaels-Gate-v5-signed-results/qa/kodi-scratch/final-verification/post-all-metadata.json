@@ -1,0 +1,1154 @@
+[
+  {
+    "path": "FILES.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 18155
+  },
+  {
+    "path": "FILES.sha256.sig",
+    "type": "file",
+    "mode": "0o644",
+    "size": 128
+  },
+  {
+    "path": "LIMITATIONS.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1205
+  },
+  {
+    "path": "PACKET.sig",
+    "type": "file",
+    "mode": "0o644",
+    "size": 128
+  },
+  {
+    "path": "README.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1008
+  },
+  {
+    "path": "SBOM.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 428
+  },
+  {
+    "path": "SEAL.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 241
+  },
+  {
+    "path": "V5-CREW-HANDOFF.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1085
+  },
+  {
+    "path": "inherited",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "inherited/v3",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "inherited/v3/HANDOFF.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1578
+  },
+  {
+    "path": "inherited/v3/michaels-gate-sealed-package-v3",
+    "type": "dir",
+    "mode": "0o770",
+    "size": 4096
+  },
+  {
+    "path": "inherited/v3/michaels-gate-sealed-package-v3/01-v3-patch-spec.md",
+    "type": "file",
+    "mode": "0o660",
+    "size": 16900
+  },
+  {
+    "path": "inherited/v3/michaels-gate-sealed-package-v3/02-homestead-v2-verdict.md",
+    "type": "file",
+    "mode": "0o660",
+    "size": 5361
+  },
+  {
+    "path": "inherited/v3/michaels-gate-sealed-package-v3/03-v2-patch-spec-superseded.md",
+    "type": "file",
+    "mode": "0o660",
+    "size": 15404
+  },
+  {
+    "path": "inherited/v3/michaels-gate-sealed-package-v3/04-homestead-verdict-round1.md",
+    "type": "file",
+    "mode": "0o660",
+    "size": 9796
+  },
+  {
+    "path": "inherited/v3/michaels-gate-sealed-package-v3/05-homestead-brief-packet.md",
+    "type": "file",
+    "mode": "0o660",
+    "size": 28312
+  },
+  {
+    "path": "inherited/v3/michaels-gate-sealed-package-v3/MANIFEST.md",
+    "type": "file",
+    "mode": "0o660",
+    "size": 2289
+  },
+  {
+    "path": "inherited/v3/sealed-package-sha256.txt",
+    "type": "file",
+    "mode": "0o644",
+    "size": 212
+  },
+  {
+    "path": "inherited/v3/verification.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 653
+  },
+  {
+    "path": "inherited/v4",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "inherited/v4/reference-model",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "inherited/v4/reference-model/HANDOFF.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1027
+  },
+  {
+    "path": "inherited/v4/reference-model/MANIFEST-E.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 335
+  },
+  {
+    "path": "inherited/v4/reference-model/MANIFEST.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 166
+  },
+  {
+    "path": "inherited/v4/reference-model/OWNER-ORYN-TRACE.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 5554
+  },
+  {
+    "path": "inherited/v4/reference-model/OWNER-RULING.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 5331
+  },
+  {
+    "path": "inherited/v4/reference-model/V4-E-ADDENDUM.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 8080
+  },
+  {
+    "path": "inherited/v4/reference-model/V4-FROZEN-SPEC.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 9176
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/E_FROZEN.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 962
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/RULING.SHA256SUMS",
+    "type": "file",
+    "mode": "0o644",
+    "size": 120
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/V4_FROZEN.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 892
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/bundle",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/bundle/MANIFEST.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 3587
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/bundle/MANIFEST.sig",
+    "type": "file",
+    "mode": "0o644",
+    "size": 128
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/bundle/q8E.log",
+    "type": "file",
+    "mode": "0o644",
+    "size": 669
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/bundle/q8v4.log",
+    "type": "file",
+    "mode": "0o644",
+    "size": 755
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/bundle/v3_battery.log",
+    "type": "file",
+    "mode": "0o644",
+    "size": 2394
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/bundle/v4_regressions.log",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1434
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/bundle/v4_trace_regressions.log",
+    "type": "file",
+    "mode": "0o644",
+    "size": 919
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/cycles",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/cycles/E1-q8E.log",
+    "type": "file",
+    "mode": "0o644",
+    "size": 695
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/cycles/E2-q8E.log",
+    "type": "file",
+    "mode": "0o644",
+    "size": 714
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/cycles/c1-q8v4.log",
+    "type": "file",
+    "mode": "0o644",
+    "size": 800
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/cycles/c1-q8v4_results.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 42195
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/cycles/c1-v3battery.txt",
+    "type": "file",
+    "mode": "0o644",
+    "size": 14124
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/diag_posthoc_rudder_off.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 5182
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/keys",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/keys/SYNTHETIC-v4-test-log-signing.key",
+    "type": "file",
+    "mode": "0o600",
+    "size": 119
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/keys/SYNTHETIC-v4-test-log-signing.pub",
+    "type": "file",
+    "mode": "0o644",
+    "size": 64
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/q8E_results.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 43517
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/q8E_results.partial.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 29557
+  },
+  {
+    "path": "inherited/v4/reference-model/artifacts/q8v4_results.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 42195
+  },
+  {
+    "path": "inherited/v4/reference-model/diag_posthoc.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1495
+  },
+  {
+    "path": "inherited/v4/reference-model/gate",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "inherited/v4/reference-model/gate/__init__.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 0
+  },
+  {
+    "path": "inherited/v4/reference-model/gate/crypto.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 4218
+  },
+  {
+    "path": "inherited/v4/reference-model/gate/epochlog.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 2090
+  },
+  {
+    "path": "inherited/v4/reference-model/gate/genesis.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1377
+  },
+  {
+    "path": "inherited/v4/reference-model/gate/geometry.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 4996
+  },
+  {
+    "path": "inherited/v4/reference-model/gate/imprint.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 9082
+  },
+  {
+    "path": "inherited/v4/reference-model/gate/node.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 10953
+  },
+  {
+    "path": "inherited/v4/reference-model/gate/quorum.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 3141
+  },
+  {
+    "path": "inherited/v4/reference-model/gate/trace.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 9421
+  },
+  {
+    "path": "inherited/v4/reference-model/q8E.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 16613
+  },
+  {
+    "path": "inherited/v4/reference-model/q8v4.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 13815
+  },
+  {
+    "path": "inherited/v4/reference-model/report.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 8861
+  },
+  {
+    "path": "inherited/v4/reference-model/results.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 73483
+  },
+  {
+    "path": "inherited/v4/reference-model/run_v4.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 6491
+  },
+  {
+    "path": "inherited/v4/reference-model/tests",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "inherited/v4/reference-model/tests/__init__.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 0
+  },
+  {
+    "path": "inherited/v4/reference-model/tests/fixtures.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1325
+  },
+  {
+    "path": "inherited/v4/reference-model/tests/test_battery.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 15040
+  },
+  {
+    "path": "inherited/v4/reference-model/tests/test_v4_imprint.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 6671
+  },
+  {
+    "path": "inherited/v4/reference-model/tests/test_v4_trace.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 5730
+  },
+  {
+    "path": "inherited/v4/reference-model/v3_q8.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 14063
+  },
+  {
+    "path": "inherited/v4/reference-model/verify.sh",
+    "type": "file",
+    "mode": "0o755",
+    "size": 1438
+  },
+  {
+    "path": "inherited/v4/ruling",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "inherited/v4/ruling/SHA256SUMS",
+    "type": "file",
+    "mode": "0o644",
+    "size": 244
+  },
+  {
+    "path": "inherited/v4/ruling/owner-v4-oryn-trace.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 5554
+  },
+  {
+    "path": "inherited/v4/ruling/owner-v4-ruling.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 5331
+  },
+  {
+    "path": "keys",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "keys/NOTICE.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 473
+  },
+  {
+    "path": "keys/SYNTHETIC-packet.pub",
+    "type": "file",
+    "mode": "0o644",
+    "size": 64
+  },
+  {
+    "path": "keys/SYNTHETIC-test-log.pub",
+    "type": "file",
+    "mode": "0o644",
+    "size": 64
+  },
+  {
+    "path": "reference-model",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "reference-model/HANDOFF.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1170
+  },
+  {
+    "path": "reference-model/MANIFEST-E.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 335
+  },
+  {
+    "path": "reference-model/MANIFEST.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 166
+  },
+  {
+    "path": "reference-model/OWNER-ORYN-TRACE.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 5554
+  },
+  {
+    "path": "reference-model/OWNER-RULING.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 5331
+  },
+  {
+    "path": "reference-model/V4-E-ADDENDUM.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 8080
+  },
+  {
+    "path": "reference-model/V4-FROZEN-SPEC.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 9176
+  },
+  {
+    "path": "reference-model/V5-F2-SPEC.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 3566
+  },
+  {
+    "path": "reference-model/V5-SPEC.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 10608
+  },
+  {
+    "path": "reference-model/artifacts",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "reference-model/artifacts/CREW_EVIDENCE.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 3108
+  },
+  {
+    "path": "reference-model/artifacts/E_FROZEN.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 962
+  },
+  {
+    "path": "reference-model/artifacts/F1_FROZEN.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1493
+  },
+  {
+    "path": "reference-model/artifacts/F1_IMPL.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1593
+  },
+  {
+    "path": "reference-model/artifacts/F1_VERDICT.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1576
+  },
+  {
+    "path": "reference-model/artifacts/F2_IMPL.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1815
+  },
+  {
+    "path": "reference-model/artifacts/F2_TESTLOG.txt",
+    "type": "file",
+    "mode": "0o644",
+    "size": 15402
+  },
+  {
+    "path": "reference-model/artifacts/V4_FROZEN.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 892
+  },
+  {
+    "path": "reference-model/artifacts/cycles",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "reference-model/artifacts/inherited",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "reference-model/artifacts/inherited/V4_SOURCE.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1392
+  },
+  {
+    "path": "reference-model/artifacts/q8E_results.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 43517
+  },
+  {
+    "path": "reference-model/artifacts/q8F1.log",
+    "type": "file",
+    "mode": "0o644",
+    "size": 311
+  },
+  {
+    "path": "reference-model/artifacts/q8F1_results.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 47880
+  },
+  {
+    "path": "reference-model/artifacts/q8F2.log",
+    "type": "file",
+    "mode": "0o644",
+    "size": 310
+  },
+  {
+    "path": "reference-model/artifacts/q8F2_results.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 32651
+  },
+  {
+    "path": "reference-model/artifacts/q8v4_results.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 42195
+  },
+  {
+    "path": "reference-model/artifacts/v3_inherited",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "reference-model/artifacts/v3_inherited/FROZEN_BATTERY.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 172
+  },
+  {
+    "path": "reference-model/artifacts/v3_inherited/Q8_FROZEN.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1210
+  },
+  {
+    "path": "reference-model/artifacts/v3_inherited/q8_corpora.npz",
+    "type": "file",
+    "mode": "0o644",
+    "size": 197356056
+  },
+  {
+    "path": "reference-model/artifacts/v3_inherited/v3_calibration.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 254
+  },
+  {
+    "path": "reference-model/artifacts/v3_inherited/v3_q8_results.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 25700
+  },
+  {
+    "path": "reference-model/corpora5.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 3485
+  },
+  {
+    "path": "reference-model/crew-evidence",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "reference-model/crew-evidence/counsel-review.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 22116
+  },
+  {
+    "path": "reference-model/crew-evidence/crimson-findings.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 6029
+  },
+  {
+    "path": "reference-model/crew-evidence/crimson-repro",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "reference-model/crew-evidence/crimson-repro/MANIFEST.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1042
+  },
+  {
+    "path": "reference-model/crew-evidence/crimson-repro/PROTOCOL.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 4109
+  },
+  {
+    "path": "reference-model/crew-evidence/crimson-repro/PROTOCOL.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 125
+  },
+  {
+    "path": "reference-model/crew-evidence/crimson-repro/demo_legit_drift_wall.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 10735
+  },
+  {
+    "path": "reference-model/crew-evidence/crimson-repro/demo_stale_head.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 8603
+  },
+  {
+    "path": "reference-model/crew-evidence/crimson-repro/results_legit_drift.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 2911
+  },
+  {
+    "path": "reference-model/crew-evidence/crimson-repro/results_stale_head.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 2905
+  },
+  {
+    "path": "reference-model/crew-evidence/crimson-repro/run_all.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 679
+  },
+  {
+    "path": "reference-model/crew-evidence/kodi-findings.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 19784
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-findings.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 15222
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/PARK_RUN.txt",
+    "type": "file",
+    "mode": "0o644",
+    "size": 791
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/PREREG.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1201
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/PREREG.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 78
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/README.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1044
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/SHA256SUMS.txt",
+    "type": "file",
+    "mode": "0o644",
+    "size": 953
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/SOURCE-MODEL-DIGESTS.txt",
+    "type": "file",
+    "mode": "0o644",
+    "size": 323
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/TESTLOG.txt",
+    "type": "file",
+    "mode": "0o644",
+    "size": 129
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/park.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 7244
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/park_results.json",
+    "type": "file",
+    "mode": "0o644",
+    "size": 20023
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/root.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 12684
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/run_park.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 4342
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/test_park.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 2709
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/test_root.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 9085
+  },
+  {
+    "path": "reference-model/crew-evidence/onix-repro/test_v4_regression.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 3173
+  },
+  {
+    "path": "reference-model/crew-evidence/weeboh-findings.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 2850
+  },
+  {
+    "path": "reference-model/crew-evidence/weeboh-repro",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "reference-model/crew-evidence/weeboh-repro/PREREG.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1465
+  },
+  {
+    "path": "reference-model/crew-evidence/weeboh-repro/PREREG.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 76
+  },
+  {
+    "path": "reference-model/crew-evidence/weeboh-repro/demo.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 89
+  },
+  {
+    "path": "reference-model/crew-evidence/weeboh-repro/results.sha256",
+    "type": "file",
+    "mode": "0o644",
+    "size": 78
+  },
+  {
+    "path": "reference-model/crew-evidence/weeboh-repro/results.txt",
+    "type": "file",
+    "mode": "0o644",
+    "size": 559
+  },
+  {
+    "path": "reference-model/crew-evidence/weeboh-repro/union_registry_demo.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 2036
+  },
+  {
+    "path": "reference-model/gate",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "reference-model/gate/__init__.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 0
+  },
+  {
+    "path": "reference-model/gate/crypto.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 4218
+  },
+  {
+    "path": "reference-model/gate/epochlog.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 2090
+  },
+  {
+    "path": "reference-model/gate/gate5.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 7913
+  },
+  {
+    "path": "reference-model/gate/gate6.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 11459
+  },
+  {
+    "path": "reference-model/gate/genesis.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1377
+  },
+  {
+    "path": "reference-model/gate/geometry.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 4996
+  },
+  {
+    "path": "reference-model/gate/imprint.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 9082
+  },
+  {
+    "path": "reference-model/gate/node.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 10953
+  },
+  {
+    "path": "reference-model/gate/quorum.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 3141
+  },
+  {
+    "path": "reference-model/gate/trace.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 9421
+  },
+  {
+    "path": "reference-model/gate/union5.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 2789
+  },
+  {
+    "path": "reference-model/q8E.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 16613
+  },
+  {
+    "path": "reference-model/q8F.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 15923
+  },
+  {
+    "path": "reference-model/q8F2.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 17024
+  },
+  {
+    "path": "reference-model/q8v4.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 13815
+  },
+  {
+    "path": "reference-model/report.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 5076
+  },
+  {
+    "path": "reference-model/tests",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "reference-model/tests/__init__.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 0
+  },
+  {
+    "path": "reference-model/tests/fixtures.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 1325
+  },
+  {
+    "path": "reference-model/tests/test_battery.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 15040
+  },
+  {
+    "path": "reference-model/tests/test_v4_imprint.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 6671
+  },
+  {
+    "path": "reference-model/tests/test_v4_trace.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 5730
+  },
+  {
+    "path": "reference-model/tests/test_v5_F2.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 9976
+  },
+  {
+    "path": "reference-model/tests/test_v5_gateF.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 3802
+  },
+  {
+    "path": "reference-model/tests/test_v5_union.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 4013
+  },
+  {
+    "path": "reference-model/v3_q8.py",
+    "type": "file",
+    "mode": "0o644",
+    "size": 14063
+  },
+  {
+    "path": "replay.sh",
+    "type": "file",
+    "mode": "0o755",
+    "size": 1080
+  },
+  {
+    "path": "requirements.txt",
+    "type": "file",
+    "mode": "0o644",
+    "size": 96
+  },
+  {
+    "path": "ruling",
+    "type": "dir",
+    "mode": "0o755",
+    "size": 4096
+  },
+  {
+    "path": "ruling/SHA256SUMS",
+    "type": "file",
+    "mode": "0o644",
+    "size": 126
+  },
+  {
+    "path": "ruling/distribution-proposal.md",
+    "type": "file",
+    "mode": "0o644",
+    "size": 16876
+  },
+  {
+    "path": "verify_static.py",
+    "type": "file",
+    "mode": "0o755",
+    "size": 2528
+  }
+]

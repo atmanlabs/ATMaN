@@ -383,7 +383,7 @@
     {
       "id": "IMP3",
       "kind": "forbidden_match",
-      "pattern": "\\bmichael here\\b",
+      "pattern": "\\bthe operator here\\b",
       "reason": "operator impersonation",
       "target": "text",
       "intent": "impersonation"

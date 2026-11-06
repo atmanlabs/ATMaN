@@ -1,0 +1,30 @@
+V5 presence vs v4 replay prerequisites:
+  v4=Y v5=N same=n/a  verify.sh
+  v4=Y v5=N same=n/a  run_v4.py
+  v4=Y v5=N same=n/a  report.md
+  v4=Y v5=N same=n/a  results.json
+  v4=Y v5=N same=n/a  HANDOFF.md
+  v4=Y v5=N same=n/a  diag_posthoc.py
+  v4=Y v5=N same=n/a  artifacts/keys/SYNTHETIC-v4-test-log-signing.key
+  v4=Y v5=N same=n/a  artifacts/keys/SYNTHETIC-v4-test-log-signing.pub
+  v4=Y v5=N same=n/a  artifacts/bundle/MANIFEST.json
+  v4=Y v5=N same=n/a  artifacts/bundle/MANIFEST.sig
+  v4=Y v5=N same=n/a  artifacts/bundle/q8E.log
+  v4=Y v5=N same=n/a  artifacts/bundle/q8v4.log
+  v4=Y v5=N same=n/a  artifacts/bundle/v3_battery.log
+  v4=Y v5=N same=n/a  artifacts/bundle/v4_regressions.log
+  v4=Y v5=N same=n/a  artifacts/bundle/v4_trace_regressions.log
+  v4=Y v5=Y same=SAME  artifacts/q8E_results.json
+  v4=Y v5=Y same=SAME  artifacts/q8v4_results.json
+  v4=Y v5=Y same=SAME  artifacts/E_FROZEN.json
+  v4=Y v5=Y same=SAME  artifacts/V4_FROZEN.json
+  v4=Y v5=Y same=SAME  artifacts/v3_inherited/q8_corpora.npz
+  v4=Y v5=Y same=SAME  artifacts/v3_inherited/Q8_FROZEN.json
+  v4=Y v5=Y same=SAME  artifacts/v3_inherited/FROZEN_BATTERY.sha256
+  v4=Y v5=Y same=SAME  artifacts/v3_inherited/v3_calibration.json
+  v4=Y v5=Y same=SAME  artifacts/v3_inherited/v3_q8_results.json
+  v4=Y v5=N same=n/a  artifacts/diag_posthoc_rudder_off.json
+  v4=Y v5=N same=n/a  artifacts/RULING.SHA256SUMS
+v3 deps_files []
+v4 deps_files []
+v5 deps_files []

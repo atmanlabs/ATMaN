@@ -1,0 +1,5 @@
+Python 3.13.5
+2.5.4 43.0.0
+git version 2.47.3
+8
+Linux grok-bot-vm-420880936 6.12.94+ #1 SMP PREEMPT_DYNAMIC Mon Oct 26 15:07:58 UTC 2026 x86_64 GNU/Linux

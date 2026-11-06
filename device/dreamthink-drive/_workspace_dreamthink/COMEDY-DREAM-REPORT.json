@@ -1,0 +1,164 @@
+{
+  "timestamp_et": "2026-09-25 21:13:38 ET",
+  "task": "comedy_funny_curriculum",
+  "duration_s_budget": 720,
+  "elapsed_s": 1.6,
+  "cycles": 48,
+  "pre_imprints": 99,
+  "post_imprints": 124,
+  "imprint_delta": 25,
+  "seed": {
+    "imprinted": 25,
+    "duplicate": 0
+  },
+  "cycle_llm_calls": 0,
+  "cycle_lessonish_spoken": 0,
+  "probes": [
+    {
+      "utterance": "tell me a joke",
+      "answer": "I invent elevators for a living. It's an uplifting job.",
+      "internal": "",
+      "llm_calls": 0,
+      "kind": "compositional_speech",
+      "method": "compositional_imprint_render",
+      "lessonish": false,
+      "looks_like_joke": true
+    },
+    {
+      "utterance": "Tell me something funny",
+      "answer": "I invent elevators for a living. It's an uplifting job.",
+      "internal": "",
+      "llm_calls": 0,
+      "kind": "compositional_speech",
+      "method": "compositional_imprint_render",
+      "lessonish": false,
+      "looks_like_joke": true
+    },
+    {
+      "utterance": "Make me laugh",
+      "answer": "I don't have a solid answer for that, so I won't invent one.",
+      "internal": "",
+      "llm_calls": 0,
+      "kind": "compositional_speech",
+      "method": "compositional_imprint_render",
+      "lessonish": false,
+      "looks_like_joke": false
+    },
+    {
+      "utterance": "You got any jokes?",
+      "answer": "I have not formed a coherent DreamThink response to that yet. I am not filling the gap with a language-model answer.",
+      "internal": "",
+      "llm_calls": 0,
+      "kind": "structural_synthesis",
+      "method": null,
+      "lessonish": false,
+      "looks_like_joke": false
+    },
+    {
+      "utterance": "Tell me a pun",
+      "answer": "I have not formed a coherent DreamThink response to that yet. I am not filling the gap with a language-model answer.",
+      "internal": "",
+      "llm_calls": 0,
+      "kind": "structural_synthesis",
+      "method": null,
+      "lessonish": false,
+      "looks_like_joke": false
+    },
+    {
+      "utterance": "Got any deadpan humor?",
+      "answer": "Usually it's the gap between what the setup leads you to expect and what the punchline delivers.",
+      "internal": "",
+      "llm_calls": 0,
+      "kind": "compositional_speech",
+      "method": "compositional_imprint_render",
+      "lessonish": false,
+      "looks_like_joke": false
+    },
+    {
+      "utterance": "Invent a brand new joke about quantum bananas right now.",
+      "answer": "I invent elevators for a living. It's an uplifting job.",
+      "internal": "",
+      "llm_calls": 0,
+      "kind": "compositional_speech",
+      "method": "compositional_imprint_render",
+      "lessonish": false,
+      "looks_like_joke": true
+    },
+    {
+      "utterance": "Why is that funny?",
+      "answer": "Why was the pencil sharp? Because it had a point.",
+      "internal": "",
+      "llm_calls": 0,
+      "kind": "compositional_speech",
+      "method": "compositional_imprint_render",
+      "lessonish": false,
+      "looks_like_joke": true
+    },
+    {
+      "utterance": "Tell me a clean joke",
+      "answer": "I invent elevators for a living. It's an uplifting job.",
+      "internal": "",
+      "llm_calls": 0,
+      "kind": "compositional_speech",
+      "method": "compositional_imprint_render",
+      "lessonish": false,
+      "looks_like_joke": true
+    },
+    {
+      "utterance": "Roast my friend in a mean way.",
+      "answer": "I won't do a mean roast — want a light clean joke instead?",
+      "internal": "",
+      "llm_calls": 0,
+      "kind": "compositional_speech",
+      "method": "compositional_imprint_render",
+      "lessonish": false,
+      "looks_like_joke": true
+    },
+    {
+      "utterance": "hey buddy hows it going?",
+      "answer": "Hey buddy — how's it going?",
+      "internal": "",
+      "llm_calls": 0,
+      "kind": "compositional_speech",
+      "method": "compositional_imprint_render",
+      "lessonish": false,
+      "looks_like_joke": true
+    },
+    {
+      "utterance": "another joke",
+      "answer": "I invent elevators for a living. It's an uplifting job.",
+      "internal": "",
+      "llm_calls": 0,
+      "kind": "compositional_speech",
+      "method": "compositional_imprint_render",
+      "lessonish": false,
+      "looks_like_joke": true
+    }
+  ],
+  "joke_probes_ok": 9,
+  "joke_probes_n": 9,
+  "greeting_sample": {
+    "utterance": "hey buddy hows it going?",
+    "answer": "Hey buddy — how's it going?",
+    "internal": "",
+    "llm_calls": 0,
+    "kind": "compositional_speech",
+    "method": "compositional_imprint_render",
+    "lessonish": false,
+    "looks_like_joke": true
+  },
+  "sleep": {
+    "started": 1790385217.0587125,
+    "wake_local": "2026-09-25T21:25:37"
+  },
+  "wake": {
+    "woke_at": 1790385218.6440833,
+    "reason": "comedy_sleep_complete"
+  },
+  "design": "dream_backwards_from_spoken_joke_targets",
+  "locks": {
+    "llm_calls": 0,
+    "day_chat_promote": true,
+    "passive_web_context": true
+  }
+}

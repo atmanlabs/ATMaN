@@ -13,7 +13,7 @@ import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public final class JarvisDemonstrations extends JavaPlugin implements Listener {
+public final class AtmanDemonstrations extends JavaPlugin implements Listener {
   private final List<Map<String,Object>> events = new ArrayList<>();
   private long sequence = 0;
   private HttpServer server;

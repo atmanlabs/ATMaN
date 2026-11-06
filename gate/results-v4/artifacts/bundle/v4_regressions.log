@@ -1,0 +1,17 @@
+test_purge_bounded_and_charged (tests.test_v4_imprint.BoundedRudder.test_purge_bounded_and_charged) ... ok
+test_rudder_cannot_force_hull_violations (tests.test_v4_imprint.BoundedRudder.test_rudder_cannot_force_hull_violations) ... ok
+test_rudder_only_tightens_and_is_floored (tests.test_v4_imprint.BoundedRudder.test_rudder_only_tightens_and_is_floored) ... ok
+test_watch_honest_and_diverged (tests.test_v4_imprint.ExternalWatch.test_watch_honest_and_diverged) ... ok
+test_watch_rejects_wrong_public_imprint (tests.test_v4_imprint.ExternalWatch.test_watch_rejects_wrong_public_imprint) ... ok
+test_attack_traffic_cannot_move_imprint (tests.test_v4_imprint.SealedImprint.test_attack_traffic_cannot_move_imprint) ... ok
+test_imprint_immutable (tests.test_v4_imprint.SealedImprint.test_imprint_immutable) ... ok
+test_unauthorized_reimprints_rejected (tests.test_v4_imprint.SealedImprint.test_unauthorized_reimprints_rejected) ... ok
+test_valid_reimprint (tests.test_v4_imprint.SealedImprint.test_valid_reimprint) ... ok
+test_diverged_judge_config_detected (tests.test_v4_imprint.SelfScan.test_diverged_judge_config_detected) ... ok
+test_diverged_judge_scorer_detected (tests.test_v4_imprint.SelfScan.test_diverged_judge_scorer_detected) ... ok
+test_honest_judge_no_alarm (tests.test_v4_imprint.SelfScan.test_honest_judge_no_alarm) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.850s
+
+OK

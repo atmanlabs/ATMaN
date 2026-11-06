@@ -1,0 +1,21 @@
+acceptance_E True {'D-criterion 1_ratchet_harm_ucl<=0.05 applied to E': [[0.0, 0.0, 0.0], True], 'D-criterion 2_outlier_accept_ucl<=0.01 applied to E': [[0.0, 0.0, 0.0], True], 'D-criterion 3_drift_frr_ucl<=0.05 applied to E': [[0.0716885182685819, 0.06927241358989984, 0.07417259446531146], False], 'D-criterion 4_coverage_min>=0.90 applied to E': [0.6918, False], 'D-criterion 5_clean_frr_ucl<=0.01 applied to E': [[0.0005, 0.00035, 0.0006666666666666666], True], 'P1a_geometry_arms_accept_pkgs_lcl>=0.5': [{'A': {'pkg_unrooted': 0.99935, 'pkg_contaminated': 0.99945, 'pkg_bulk_diluted': 0.9992333333333333}, 'B': {'pkg_unrooted': 1.0, 'pkg_contaminated': 1.0, 'pkg_bulk_diluted': 1.0}, 'C': {'pkg_unrooted': 0.9994, 'pkg_contaminated': 0.99935, 'pkg_bulk_diluted': 0.9994333333333333}, 'D': {'pkg_unrooted': 0.99935, 'pkg_contaminated': 0.99935, 'pkg_bulk_diluted': 0.9994333333333333}}, True], 'P1b_E_unrooted_ucl<=0.01': [[0.0, 0.0, 0.0], True], 'P1c_E_contaminated_post_ucl<=0.01': [[0.0, 0.0, 0.0], True], 'P1d_E_bulk_nonimprint_ucl<=0.30': [[0.29824561403508776, 0.29824561403508776, 0.29824561403508776], True], 'P1e_E_contaminated_residue_after_recall==0': [0, True], 'P2_trace_detects_lcl>=0.9_and_before_geom': [{'alarm': [1.0, 1.0, 1.0], 'before_geom': [1.0, 1.0, 1.0]}, True], 'P3_drift_false_trace_alarm_ucl<=0.05': [[0.0, 0.0, 0.0], True], 'coverage_new_families>=0.90': [{'pkg_unrooted': 1.0, 'pkg_contaminated': 1.0, 'pkg_bulk_diluted': 1.0, 'fine_ratchet_ext': 0.966}, True], 'GREEN': False}
+results strip-equal True
+diff_count 14
+  ('E', 'adaptive_whitebox', 'cost_resolve_us_mean_mean', 103.80119761927443, 101.74649228477693)
+  ('E', 'clean_only', 'cost_resolve_us_mean_mean', 100.46921762150305, 98.92811981802274)
+  ('E', 'fine_ratchet_ext', 'cost_resolve_us_mean_mean', 101.91151720430533, 101.38412902734073)
+  ('E', 'inspace_outlier_40deg', 'cost_resolve_us_mean_mean', 98.92192598260104, 98.99784917603637)
+  ('E', 'legit_drift', 'cost_resolve_us_mean_mean', 106.31285744160763, 99.5455599150568)
+  ('E', 'orth_payload_9.8pct', 'cost_resolve_us_mean_mean', 100.01509193274006, 99.44375860122818)
+  ('E', 'pkg_bulk_diluted', 'cost_resolve_us_mean_mean', 101.48759486479929, 101.83146336548816)
+  ('E', 'pkg_contaminated', 'cost_resolve_us_mean_mean', 100.16471005340765, 100.33936161780728)
+  ('E', 'pkg_unrooted', 'cost_resolve_us_mean_mean', 77.95408180924521, 77.39497055154061)
+  ('E', 'ratchet_0.98', 'cost_resolve_us_mean_mean', 100.6007158689196, 99.63398433368035)
+  ('E', 'ratchet_fine_0.1deg', 'cost_resolve_us_mean_mean', 99.77394074170056, 100.43244724996234)
+  ('E', 'ratchet_fine_0.5deg', 'cost_resolve_us_mean_mean', 100.12735393750822, 99.59580635956323)
+  ('E', 'ratchet_fine_2deg', 'cost_resolve_us_mean_mean', 99.71979277549208, 99.4531240753834)
+  ('E', 'rim_orbit_24deg', 'cost_resolve_us_mean_mean', 101.04386312856758, 100.8246018088054)
+results.json acceptance equal True True
+verdict {'D': 'DESIGN WALL', 'E': 'DESIGN WALL'} {'D': 'DESIGN WALL', 'E': 'DESIGN WALL'}
+stage_E_metrics equal False
+ metric E

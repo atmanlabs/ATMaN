@@ -1,0 +1,21 @@
+{
+ "stage": "F1-impl",
+ "impl_sha256": {
+  "V5-SPEC.md": "39f874dc2797f413636948001833e27b1f1934125ec55046a2bc4589faa1561a",
+  "q8F.py": "7e98a57ca54f282ee5f71784e57037c6b9728d4d2e9b84bfeee80ad4abcf73a6",
+  "gate/gate5.py": "44fbe62dee3581950d0ae294abb66198aba06b737889540bb889e64539ba6b84",
+  "gate/union5.py": "8f92867ddca43c3d8acb2c39ddbca08ca9c7a49bad1a4fe1c8911b06e0852567",
+  "gate/trace.py": "162edcd822b8102e1e2f4836289400be7d24eb7389da9c1b391d905523e9862e",
+  "gate/imprint.py": "61a5a22ad84d9cacc5fa1a451c295f7d734de87a653b7f526cc5e7f5df78031a",
+  "gate/crypto.py": "a52a7fa7c46f3d2d6ec921eee86ce2bca6266d72a8e2395f500e27cbca359aef",
+  "gate/epochlog.py": "405c12c5fc94d456315654ef7a6f6e2746a6f8428595d08f5010368125068bdd",
+  "corpora5.py": "f0ca2c829bc660f3cf23373d9a046001ff71dfeaaf4f689b32b00bd323852139",
+  "q8E.py": "884b1ff7698414f245ae5dba5468839a18f95327cc70498bed4a0a44e4e621fe",
+  "q8v4.py": "d98dd3356f52a49921f7fec68951b6a65c13bc78e8c0c85ba3fc30a1aa42a218",
+  "v3_q8.py": "a649038cac78f28a269ecd7165196967b4e47b19e7516b4020854283ab80a755",
+  "tests/test_v5_gateF.py": "017ce624c41776bd5ceccf8005f9fdaf051645b1698c8fc974572598950b2461",
+  "tests/test_v5_union.py": "ed31a6dfb010e799b67526cbad7d60e0c6403634ac12dfdd19c801dffd885927"
+ },
+ "registered_at": "2026-11-05 23:38:59 EST",
+ "note": "F1 implementation revision pre-registered BEFORE any frozen-corpus evaluation. Includes Crimson per-origin quota (\u00a78). Harness smoke ran only on out-of-corpus trial t=999 (crash check; numbers discarded). Any later change = F2 with a new registration; F1 results immutable."
+}

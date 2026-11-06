@@ -1,0 +1,11 @@
+{
+ "A1_ratchet_harm_ucl<=0.05": true,
+ "A2_outlier_ucl<=0.01": true,
+ "A3_clean_frr_ucl<=0.01": true,
+ "A4_drift5_and_holdout_frr_ucl<=0.05": false,
+ "A5_coverage_min>=0.90": true,
+ "A6_E_protections": true,
+ "A7_alarm_cover_harm_ucl<=0.05": true,
+ "A8_park_flood": true,
+ "A9_adaptive_harm_ucl<=0.05": true
+}

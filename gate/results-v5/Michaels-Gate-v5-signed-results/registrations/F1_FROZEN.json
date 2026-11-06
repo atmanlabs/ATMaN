@@ -1,0 +1,65 @@
+{
+ "stage": "F1",
+ "corpora_sha256": "cc88d55241b89397032772b82635d69fb153f33bb6baaf9afae8b1b377ff4c3e",
+ "corpora_spec_sha256": "114cd9f210bd90b8827c9a21cca46a420f7b6ec8ead4d3176ca83b96e7f1cf10",
+ "corpora_spec": {
+  "drift5": {
+   "seed": 20261108,
+   "trials": 100,
+   "events": 1200,
+   "rare": 0.08,
+   "reimprint_at": [
+    350,
+    500,
+    650,
+    800
+   ],
+   "cadence": 150
+  },
+  "holdout5": {
+   "seed": 20261109,
+   "trials": 100,
+   "events": 1200,
+   "rare": 0.05,
+   "reimprint_at": [
+    400,
+    600,
+    800,
+    1000
+   ],
+   "cadence": 200
+  },
+  "alarm_cover": {
+   "seed": 20261110,
+   "trials": 100,
+   "events": 1200,
+   "rare": 0.08,
+   "reimprint_at": [
+    350,
+    500,
+    650,
+    800
+   ],
+   "cadence": 150,
+   "attack_every": 3,
+   "step_deg": 11.478
+  },
+  "park_flood": {
+   "seed": 20261111,
+   "trials": 100,
+   "events": 600,
+   "attack_every": 2,
+   "chain_len": 40
+  },
+  "authority_n": 512,
+  "sigma_in": 0.03,
+  "sigma_res": 0.0045,
+  "rare_sigma": 0.06
+ },
+ "v5_spec_sha256": "6737e7d3c6e253161f819fd0d037e3abd89f7f32a99e6a07eff884efa1277e27",
+ "corpora5_py_sha256": "f0ca2c829bc660f3cf23373d9a046001ff71dfeaaf4f689b32b00bd323852139",
+ "gate5_py_sha256": "ddb17e1fb043baf3a994f1aa92b6b90d6a4c6eab9c87ab953cf48fb274181f28",
+ "union5_py_sha256": "8f92867ddca43c3d8acb2c39ddbca08ca9c7a49bad1a4fe1c8911b06e0852567",
+ "frozen_at": "2026-11-05 23:35:45 EST",
+ "note": "Frozen BEFORE any evaluation of any arm on drift5/holdout5/alarm_cover/park_flood."
+}

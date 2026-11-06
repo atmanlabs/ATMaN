@@ -1,0 +1,16 @@
+test_RESIDUAL_attested_stale_head_thaws (tests.test_regressions.Cycle2_EclipseThaw.test_RESIDUAL_attested_stale_head_thaws) ... ok
+test_expired_attestation_no_thaw (tests.test_regressions.Cycle2_EclipseThaw.test_expired_attestation_no_thaw) ... ok
+test_no_attestation_no_thaw (tests.test_regressions.Cycle2_EclipseThaw.test_no_attestation_no_thaw) ... ok
+test_pre_reconnect_attestation_replay_no_thaw (tests.test_regressions.Cycle2_EclipseThaw.test_pre_reconnect_attestation_replay_no_thaw) ... ok
+test_anchor_reproducible_from_transcript (tests.test_regressions.ExtraBreaks.test_anchor_reproducible_from_transcript) ... ok
+test_cross_body_cert_reuse (tests.test_regressions.ExtraBreaks.test_cross_body_cert_reuse) ... ok
+test_duplicate_signer_does_not_count_twice (tests.test_regressions.ExtraBreaks.test_duplicate_signer_does_not_count_twice) ... ok
+test_genesis_validation (tests.test_regressions.ExtraBreaks.test_genesis_validation) ... ok
+test_recall_payload_tamper (tests.test_regressions.ExtraBreaks.test_recall_payload_tamper) ... ok
+test_rule_hash_mismatch (tests.test_regressions.ExtraBreaks.test_rule_hash_mismatch) ... ok
+test_unfreeze_needs_recovery_threshold_and_ack (tests.test_regressions.ExtraBreaks.test_unfreeze_needs_recovery_threshold_and_ack) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.084s
+
+OK

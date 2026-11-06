@@ -1162,23 +1162,23 @@ def run_interactive(loop: Optional[MindLoop] = None) -> int:
             if act_type in ("respond", "tool_call"):
                 if act_type == "tool_call":
                     print(f"\n[COCKPIT INSTRUMENT: {action.get('tool')}] {action.get('output_text')}")
-                print(f"\nEXO > {action.get('content', '')}\n")
+                print(f"\nATMAN > {action.get('content', '')}\n")
                 if mind.voice.is_enabled and action.get('content'):
                     mind.voice.tts.speak(action.get('content'), play_audio=True)
             elif act_type == "status":
                 d = action.get("details", {})
-                print(f"\nEXO > TELEMETRY:")
+                print(f"\nATMAN > TELEMETRY:")
                 print(f"      - Total Cycles:        {d.get('cycles')}")
                 print(f"      - WFC Rolling Depth:   {d.get('wfc_depth')} / {mind.wfc.maxlen}")
                 print(f"      - PSC Imprints:        {d.get('psc_records')} records")
                 print(f"      - Crate Hash Verified: {d.get('tsc_verified')}")
                 print(f"      - Active Backend:      {thought.get('backend')}\n")
             elif act_type == "shutdown":
-                print(f"\nEXO > Controlled shutdown confirmed. Draining and flushing state...\n")
+                print(f"\nATMAN > Controlled shutdown confirmed. Draining and flushing state...\n")
             else:
-                print(f"\nEXO > [{act_type}: {action.get('details', '')}]\n")
+                print(f"\nATMAN > [{act_type}: {action.get('details', '')}]\n")
         else:
-            print(f"\nEXO > [JUDGE REJECTION] Action blocked. Invariants preserved.\n")
+            print(f"\nATMAN > [JUDGE REJECTION] Action blocked. Invariants preserved.\n")
 
         if res["imprinted"]:
             print(f"  Memory:     [IMPRINTED TO PSC] Validated preference permanently etched.")

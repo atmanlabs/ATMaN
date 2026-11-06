@@ -286,7 +286,7 @@ def naturalize_reply(text: str, *, max_sentences: int = 2, max_chars: int = 140)
     if not s:
         return s
     stripped = re.sub(
-        r"^(?:understood|alright|got it|on it|okay|ok|sure|roger|acknowledged)[,.]?\s*(?:mike[,.]?\s*)?(?:[—\-–:]\s*)?",
+        r"^(?:understood|alright|got it|on it|okay|ok|sure|roger|acknowledged)[,.]?\s*(?:[—\-–:]\s*)?",
         "",
         s,
         flags=re.I,

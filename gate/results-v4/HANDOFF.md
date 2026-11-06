@@ -1,0 +1,13 @@
+# v4 reference model: HANDOFF
+- **Verdict: DESIGN WALL, for both D and E.** Both fail D criteria 3 (legit-drift FRR) and 4 (coverage) because of the rudder. E's Trace predictions P1–P3 all pass. See report.md.
+- **Verify:** `cd /workspace/michaels-gate-v4/reference-model && ./verify.sh` (about 6 minutes, offline).
+- **Frozen files (never edit):**
+  - OWNER-RULING.md and OWNER-ORYN-TRACE.md
+  - V4-FROZEN-SPEC.md and V4-E-ADDENDUM.md
+  - MANIFEST*.sha256
+  - artifacts/V4_FROZEN.json and artifacts/E_FROZEN.json
+  - artifacts/v3_inherited/*
+  - tests/test_battery.py
+- **Results:** results.json (compact, signed), artifacts/q8v4_results.json (D stage) and artifacts/q8E_results.json (E stage). The post-hoc diagnostic is artifacts/diag_posthoc_rudder_off.json and is not acceptance evidence.
+- **Next steps:** v5 proposals go to the Owner (rudder response, re-imprint cadence, park load, root-admission trust). After any implementation fix, add a regression test and re-run `python3 run_v4.py`.
+- **v3 remains untouched.**

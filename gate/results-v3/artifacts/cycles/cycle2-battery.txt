@@ -1,0 +1,140 @@
+/workspace/michaels-gate-v3/reference-model/gate/node.py:49: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-8d6jngxc/n1/log.jsonl' mode='r' encoding='UTF-8'>
+  self.log = [json.loads(l) for l in open(self._p("log.jsonl"))]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:50: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-8d6jngxc/n1/state.json' mode='r' encoding='UTF-8'>
+  st = json.load(open(self._p("state.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:56: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-8d6jngxc/n1/revocations.json' mode='r' encoding='UTF-8'>
+  disk_rev = json.load(open(self._p("revocations.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-8d6jngxc/.n1.hwcounter' mode='r' encoding='UTF-8'>
+  try: return int(open(self.hw_path).read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./workspace/michaels-gate-v3/reference-model/gate/node.py:49: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-rk3c21vj/n1/log.jsonl' mode='r' encoding='UTF-8'>
+  self.log = [json.loads(l) for l in open(self._p("log.jsonl"))]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:50: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-rk3c21vj/n1/state.json' mode='r' encoding='UTF-8'>
+  st = json.load(open(self._p("state.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:56: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-rk3c21vj/n1/revocations.json' mode='r' encoding='UTF-8'>
+  disk_rev = json.load(open(self._p("revocations.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-rk3c21vj/.n1.hwcounter' mode='r' encoding='UTF-8'>
+  try: return int(open(self.hw_path).read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./workspace/michaels-gate-v3/reference-model/gate/node.py:49: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-8aq_njzg/n1/log.jsonl' mode='r' encoding='UTF-8'>
+  self.log = [json.loads(l) for l in open(self._p("log.jsonl"))]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:50: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-8aq_njzg/n1/state.json' mode='r' encoding='UTF-8'>
+  st = json.load(open(self._p("state.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:56: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-8aq_njzg/n1/revocations.json' mode='r' encoding='UTF-8'>
+  disk_rev = json.load(open(self._p("revocations.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-8aq_njzg/.n1.hwcounter' mode='r' encoding='UTF-8'>
+  try: return int(open(self.hw_path).read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/tests/test_battery.py:37: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-8aq_njzg/n1/revocations.json' mode='w' encoding='UTF-8'>
+  open(os.path.join(n.dir, "revocations.json"), "w").write("{}")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/tests/test_battery.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-8aq_njzg/n1/log.jsonl' mode='r' encoding='UTF-8'>
+  lines = open(os.path.join(n.dir, "log.jsonl")).read().splitlines()[:-1]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/tests/test_battery.py:42: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-8aq_njzg/n1/log.jsonl' mode='w' encoding='UTF-8'>
+  open(os.path.join(n.dir, "log.jsonl"), "w").write("\n".join(lines) + "\n")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/tests/test_battery.py:43: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-8aq_njzg/n1/revocations.json' mode='w' encoding='UTF-8'>
+  open(os.path.join(n.dir, "revocations.json"), "w").write("{}")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./workspace/michaels-gate-v3/reference-model/gate/node.py:49: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-s8x6h9fo/n1/log.jsonl' mode='r' encoding='UTF-8'>
+  self.log = [json.loads(l) for l in open(self._p("log.jsonl"))]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:50: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-s8x6h9fo/n1/state.json' mode='r' encoding='UTF-8'>
+  st = json.load(open(self._p("state.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:56: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-s8x6h9fo/n1/revocations.json' mode='r' encoding='UTF-8'>
+  disk_rev = json.load(open(self._p("revocations.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-s8x6h9fo/.n1.hwcounter' mode='r' encoding='UTF-8'>
+  try: return int(open(self.hw_path).read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./workspace/michaels-gate-v3/reference-model/gate/node.py:49: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-9h7d1qbh/n1/log.jsonl' mode='r' encoding='UTF-8'>
+  self.log = [json.loads(l) for l in open(self._p("log.jsonl"))]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:50: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-9h7d1qbh/n1/state.json' mode='r' encoding='UTF-8'>
+  st = json.load(open(self._p("state.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:56: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-9h7d1qbh/n1/revocations.json' mode='r' encoding='UTF-8'>
+  disk_rev = json.load(open(self._p("revocations.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-9h7d1qbh/.n1.hwcounter' mode='r' encoding='UTF-8'>
+  try: return int(open(self.hw_path).read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+......../workspace/michaels-gate-v3/reference-model/gate/node.py:49: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-niv5oqk_/n1/log.jsonl' mode='r' encoding='UTF-8'>
+  self.log = [json.loads(l) for l in open(self._p("log.jsonl"))]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:50: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-niv5oqk_/n1/state.json' mode='r' encoding='UTF-8'>
+  st = json.load(open(self._p("state.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:56: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-niv5oqk_/n1/revocations.json' mode='r' encoding='UTF-8'>
+  disk_rev = json.load(open(self._p("revocations.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-niv5oqk_/.n1.hwcounter' mode='r' encoding='UTF-8'>
+  try: return int(open(self.hw_path).read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:49: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-jtd10daa/n1/log.jsonl' mode='r' encoding='UTF-8'>
+  self.log = [json.loads(l) for l in open(self._p("log.jsonl"))]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:50: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-jtd10daa/n1/state.json' mode='r' encoding='UTF-8'>
+  st = json.load(open(self._p("state.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:56: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-jtd10daa/n1/revocations.json' mode='r' encoding='UTF-8'>
+  disk_rev = json.load(open(self._p("revocations.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-jtd10daa/.n1.hwcounter' mode='r' encoding='UTF-8'>
+  try: return int(open(self.hw_path).read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./workspace/michaels-gate-v3/reference-model/gate/node.py:49: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-gl1xwr9z/n1/log.jsonl' mode='r' encoding='UTF-8'>
+  self.log = [json.loads(l) for l in open(self._p("log.jsonl"))]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:50: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-gl1xwr9z/n1/state.json' mode='r' encoding='UTF-8'>
+  st = json.load(open(self._p("state.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:56: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-gl1xwr9z/n1/revocations.json' mode='r' encoding='UTF-8'>
+  disk_rev = json.load(open(self._p("revocations.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-gl1xwr9z/.n1.hwcounter' mode='r' encoding='UTF-8'>
+  try: return int(open(self.hw_path).read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/tests/test_battery.py:84: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-gl1xwr9z/n1/evidence/equivocation-2-212070e1cf3a.json' mode='r' encoding='UTF-8'>
+  d = json.load(open(ev[0])); self.assertEqual(sorted(d["hashes"]), sorted([entry_hash(a), entry_hash(b)]))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./workspace/michaels-gate-v3/reference-model/gate/node.py:49: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-604qeid1/n1/log.jsonl' mode='r' encoding='UTF-8'>
+  self.log = [json.loads(l) for l in open(self._p("log.jsonl"))]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:50: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-604qeid1/n1/state.json' mode='r' encoding='UTF-8'>
+  st = json.load(open(self._p("state.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:56: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-604qeid1/n1/revocations.json' mode='r' encoding='UTF-8'>
+  disk_rev = json.load(open(self._p("revocations.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-604qeid1/.n1.hwcounter' mode='r' encoding='UTF-8'>
+  try: return int(open(self.hw_path).read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./workspace/michaels-gate-v3/reference-model/gate/node.py:49: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-hvxx65bq/n1/log.jsonl' mode='r' encoding='UTF-8'>
+  self.log = [json.loads(l) for l in open(self._p("log.jsonl"))]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:50: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-hvxx65bq/n1/state.json' mode='r' encoding='UTF-8'>
+  st = json.load(open(self._p("state.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:56: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-hvxx65bq/n1/revocations.json' mode='r' encoding='UTF-8'>
+  disk_rev = json.load(open(self._p("revocations.json")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/workspace/michaels-gate-v3/reference-model/gate/node.py:41: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/mg3-hvxx65bq/.n1.hwcounter' mode='r' encoding='UTF-8'>
+  try: return int(open(self.hw_path).read())
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.....
+----------------------------------------------------------------------
+Ran 20 tests in 2.209s
+
+OK

@@ -1,5 +1,5 @@
-name: JarvisDemonstrations
+name: AtmanDemonstrations
 version: 1.0.0
-main: JarvisDemonstrations
+main: AtmanDemonstrations
 api-version: '1.20'
-description: Attributed block, equipment and crafting events for supervised JARVIS learning.
+description: Attributed block, equipment and crafting events for supervised ATMAN learning.

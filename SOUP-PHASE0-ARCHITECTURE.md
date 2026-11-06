@@ -140,7 +140,7 @@ Worker root on PC: `%USERPROFILE%\Documents\atman-live`.
 
 | Interface | Wiring |
 |-----------|--------|
-| Relay chat UI | `GET` static + `POST /chat` on :18790; Tailscale bind if present (historically `100.114.96.84:18790`) |
+| Relay chat UI | `GET` static + `POST /chat` on :18790; Tailscale bind if present (historically `<relay-tailnet-ip>:18790`) |
 | Voice | `voice.py` + desktop record_start/stop; push-to-talk default |
 | Cockpit tools | `cockpit.py` tools allowlisted in config |
 | OpenClaw | Separate `~\.openclaw` agent/gateway; handoff file shared; **not** in MindLoop import graph |

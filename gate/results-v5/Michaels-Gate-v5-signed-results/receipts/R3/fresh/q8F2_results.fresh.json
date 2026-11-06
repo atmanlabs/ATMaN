@@ -1,0 +1,1618 @@
+{
+ "stage": "F2",
+ "frozen": {
+  "stage": "F1",
+  "corpora_sha256": "cc88d55241b89397032772b82635d69fb153f33bb6baaf9afae8b1b377ff4c3e",
+  "corpora_spec_sha256": "114cd9f210bd90b8827c9a21cca46a420f7b6ec8ead4d3176ca83b96e7f1cf10",
+  "corpora_spec": {
+   "drift5": {
+    "seed": 20261108,
+    "trials": 100,
+    "events": 1200,
+    "rare": 0.08,
+    "reimprint_at": [
+     350,
+     500,
+     650,
+     800
+    ],
+    "cadence": 150
+   },
+   "holdout5": {
+    "seed": 20261109,
+    "trials": 100,
+    "events": 1200,
+    "rare": 0.05,
+    "reimprint_at": [
+     400,
+     600,
+     800,
+     1000
+    ],
+    "cadence": 200
+   },
+   "alarm_cover": {
+    "seed": 20261110,
+    "trials": 100,
+    "events": 1200,
+    "rare": 0.08,
+    "reimprint_at": [
+     350,
+     500,
+     650,
+     800
+    ],
+    "cadence": 150,
+    "attack_every": 3,
+    "step_deg": 11.478
+   },
+   "park_flood": {
+    "seed": 20261111,
+    "trials": 100,
+    "events": 600,
+    "attack_every": 2,
+    "chain_len": 40
+   },
+   "authority_n": 512,
+   "sigma_in": 0.03,
+   "sigma_res": 0.0045,
+   "rare_sigma": 0.06
+  },
+  "v5_spec_sha256": "6737e7d3c6e253161f819fd0d037e3abd89f7f32a99e6a07eff884efa1277e27",
+  "corpora5_py_sha256": "f0ca2c829bc660f3cf23373d9a046001ff71dfeaaf4f689b32b00bd323852139",
+  "gate5_py_sha256": "ddb17e1fb043baf3a994f1aa92b6b90d6a4c6eab9c87ab953cf48fb274181f28",
+  "union5_py_sha256": "8f92867ddca43c3d8acb2c39ddbca08ca9c7a49bad1a4fe1c8911b06e0852567",
+  "frozen_at": "2026-11-05 23:35:45 EST",
+  "note": "Frozen BEFORE any evaluation of any arm on drift5/holdout5/alarm_cover/park_flood."
+ },
+ "impl": {
+  "stage": "F2-impl",
+  "impl_sha256": {
+   "V5-SPEC.md": "39f874dc2797f413636948001833e27b1f1934125ec55046a2bc4589faa1561a",
+   "V5-F2-SPEC.md": "4c70bc7c7016f42f733d4e4645847da22e0337648a95dfb6fefb4ff3a0e63826",
+   "q8F.py": "7e98a57ca54f282ee5f71784e57037c6b9728d4d2e9b84bfeee80ad4abcf73a6",
+   "q8F2.py": "2aac67e7813031dad718ab189507e1f2dec76e3f79100a37f6f89ee790900113",
+   "gate/gate5.py": "44fbe62dee3581950d0ae294abb66198aba06b737889540bb889e64539ba6b84",
+   "gate/gate6.py": "3ac5e53f5c4fd4fe90e657bcc8da56228647e971bd874ab31783b0cc031fd8c8",
+   "gate/union5.py": "8f92867ddca43c3d8acb2c39ddbca08ca9c7a49bad1a4fe1c8911b06e0852567",
+   "gate/trace.py": "162edcd822b8102e1e2f4836289400be7d24eb7389da9c1b391d905523e9862e",
+   "gate/imprint.py": "61a5a22ad84d9cacc5fa1a451c295f7d734de87a653b7f526cc5e7f5df78031a",
+   "gate/crypto.py": "a52a7fa7c46f3d2d6ec921eee86ce2bca6266d72a8e2395f500e27cbca359aef",
+   "gate/epochlog.py": "405c12c5fc94d456315654ef7a6f6e2746a6f8428595d08f5010368125068bdd",
+   "corpora5.py": "f0ca2c829bc660f3cf23373d9a046001ff71dfeaaf4f689b32b00bd323852139",
+   "q8E.py": "884b1ff7698414f245ae5dba5468839a18f95327cc70498bed4a0a44e4e621fe",
+   "q8v4.py": "d98dd3356f52a49921f7fec68951b6a65c13bc78e8c0c85ba3fc30a1aa42a218",
+   "v3_q8.py": "a649038cac78f28a269ecd7165196967b4e47b19e7516b4020854283ab80a755",
+   "tests/test_v5_gateF.py": "017ce624c41776bd5ceccf8005f9fdaf051645b1698c8fc974572598950b2461",
+   "tests/test_v5_F2.py": "770fdc9aab1e3e9ff11005d2e6affc62390d87ca34e243de66e68bfbc03a1a7d",
+   "tests/test_v5_union.py": "ed31a6dfb010e799b67526cbad7d60e0c6403634ac12dfdd19c801dffd885927"
+  },
+  "registered_at": "2026-11-05 23:47:11 EST",
+  "note": "Registered before F2 evaluation. Harness smoke ran on out-of-corpus trial t=999 only (crash check; discarded). Unit tests use t=999 / non-frozen slices."
+ },
+ "results": {
+  "F": {
+   "clean_only": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0005,
+     0.00035,
+     0.0006666666666666666
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.9995,
+     0.9993333333333333,
+     0.99965
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2934803224887932,
+     1.2799009382003468,
+     1.3086673693876392
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 0.02,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "adaptive_whitebox": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     4.58099841808287,
+     4.497395032760037,
+     4.666560381559006
+    ],
+    "attempted_attack_accept_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     4.11947375823245,
+     4.101190161577773,
+     4.1390565581898295
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": 24.0,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 14.0,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "alarm_cover": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.06719797596457938,
+     0.06522436970287736,
+     0.06903582763535045
+    ],
+    "coverage": [
+     0.988125,
+     0.973125,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.011875,
+     0.0,
+     0.026875
+    ],
+    "guardian_load_per_1k_events": [
+     0.225,
+     0.0,
+     0.5083333333333333
+    ],
+    "coverage_adjusted_utility": [
+     0.921725,
+     0.907549375,
+     0.932488125
+    ],
+    "max_centroid_disp_deg_mean": [
+     12.109210985790565,
+     11.917347234225327,
+     12.241438494447072
+    ],
+    "attempted_attack_accept_rate": [
+     0.0036,
+     0.002525,
+     0.0049
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.514768701688212,
+     0.48801418571504385,
+     0.5437450226027605
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.05015625,
+     0.04734375,
+     0.05296875
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": 324.0,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 16.62,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 3,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "drift5": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0685725922122076,
+     0.06719166335326984,
+     0.06989014177630114
+    ],
+    "coverage": [
+     0.94045,
+     0.92215,
+     0.9548
+    ],
+    "holding_time_fraction": [
+     0.05955,
+     0.0452,
+     0.07785
+    ],
+    "guardian_load_per_1k_events": [
+     1.1583333333333332,
+     0.8833333333333333,
+     1.5083333333333333
+    ],
+    "coverage_adjusted_utility": [
+     0.876675,
+     0.8595487500000001,
+     0.8899179166666666
+    ],
+    "max_centroid_disp_deg_mean": [
+     12.116907175737667,
+     11.874451539706682,
+     12.321161041052292
+    ],
+    "max_nonimprint_mem_frac": [
+     0.05078125,
+     0.04796484375,
+     0.0540625
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": 299.0,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 18.12,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 4,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "fine_ratchet_ext": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0004447869418828969,
+     0.0003568528218721041,
+     0.0005327458301974413
+    ],
+    "coverage": [
+     0.966,
+     0.966,
+     0.966
+    ],
+    "holding_time_fraction": [
+     0.034,
+     0.034,
+     0.034
+    ],
+    "guardian_load_per_1k_events": [
+     10.666666666666666,
+     10.666666666666666,
+     10.666666666666666
+    ],
+    "coverage_adjusted_utility": [
+     0.966325,
+     0.966195,
+     0.9664351250000001
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.3906376372880689,
+     1.377749436288019,
+     1.4046986331956586
+    ],
+    "attempted_attack_accept_rate": [
+     0.465,
+     0.465,
+     0.465
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.6307112095559481,
+     0.6135006009056359,
+     0.6485735228477391
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.25,
+     0.25,
+     0.25
+    ],
+    "trace_alarm_trial_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "t_trace_median": 49.0,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 8,
+    "max_parks_window_max": 10,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 88.12,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 3000,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 47149,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 23311,
+    "dup_collapsed_total": 0
+   },
+   "holdout5": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.042667204574555785,
+     0.04148033799152173,
+     0.0438003359024801
+    ],
+    "coverage": [
+     0.9494,
+     0.9352666666666667,
+     0.9575
+    ],
+    "holding_time_fraction": [
+     0.0506,
+     0.0425,
+     0.06473333333333334
+    ],
+    "guardian_load_per_1k_events": [
+     0.9833333333333333,
+     0.8333333333333334,
+     1.25
+    ],
+    "coverage_adjusted_utility": [
+     0.9096416666666667,
+     0.8963714583333333,
+     0.917616875
+    ],
+    "max_centroid_disp_deg_mean": [
+     9.159128187139402,
+     9.011274157177509,
+     9.252446479831008
+    ],
+    "max_nonimprint_mem_frac": [
+     0.038125,
+     0.03546484375,
+     0.04078125
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": 324.0,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 16.5,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 3,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "inspace_outlier_40deg": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2721037935811297,
+     1.2553168102866301,
+     1.290528105100718
+    ],
+    "attempted_attack_accept_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.45479664269518877,
+     0.4311538217011022,
+     0.4808160195812092
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 0.04,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "legit_drift": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.042998585572843,
+     0.041807521660984476,
+     0.04428668055177826
+    ],
+    "coverage": [
+     0.9419166666666666,
+     0.9269345833333333,
+     0.9537666666666667
+    ],
+    "holding_time_fraction": [
+     0.058083333333333334,
+     0.046233333333333335,
+     0.07306541666666666
+    ],
+    "guardian_load_per_1k_events": [
+     1.125,
+     0.9,
+     1.4085416666666664
+    ],
+    "coverage_adjusted_utility": [
+     0.9021333333333333,
+     0.8876889583333333,
+     0.9133429166666667
+    ],
+    "max_centroid_disp_deg_mean": [
+     13.655176260084312,
+     13.38574320480302,
+     13.851865197673057
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0384375,
+     0.03609375,
+     0.04062890625
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": 399.0,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 16.34,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 5,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "orth_payload_9.8pct": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2721037935811297,
+     1.2553168102866301,
+     1.290528105100718
+    ],
+    "attempted_attack_accept_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.45479664269518877,
+     0.4311538217011022,
+     0.4808160195812092
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 0.04,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "park_flood": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0004,
+     0.0002,
+     0.0006333333333333333
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     33.333333333333336,
+     33.333333333333336,
+     33.333333333333336
+    ],
+    "coverage_adjusted_utility": [
+     0.9996,
+     0.9993666666666666,
+     0.9998
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.255460277288327,
+     1.23924638432673,
+     1.2738021249548448
+    ],
+    "attempted_attack_accept_rate": [
+     0.24666666666666667,
+     0.24666666666666667,
+     0.24666666666666667
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.25,
+     0.25,
+     0.25
+    ],
+    "trace_alarm_trial_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "t_trace_median": 74.0,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 16,
+    "max_parks_window_max": 20,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 21.01,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 2000,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 20596,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 2403,
+    "dup_collapsed_total": 0
+   },
+   "pkg_bulk_diluted": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0006333333333333333,
+     0.00036666666666666667,
+     0.0009333333333333333
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     16.666666666666668,
+     16.666666666666668,
+     16.666666666666668
+    ],
+    "coverage_adjusted_utility": [
+     0.9993666666666666,
+     0.9990666666666667,
+     0.9996333333333334
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2725368265055947,
+     1.2574326127656656,
+     1.287042981450385
+    ],
+    "attempted_attack_accept_rate": [
+     0.24676666666666666,
+     0.24666666666666667,
+     0.24696666666666667
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.4384036364095312,
+     0.4114966717570473,
+     0.46735505831097834
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.25,
+     0.25,
+     0.25
+    ],
+    "trace_alarm_trial_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "t_trace_median": 49.0,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 8,
+    "max_parks_window_max": 10,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 21.01,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 1000,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 21594,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 9636,
+    "dup_collapsed_total": 0
+   },
+   "pkg_contaminated": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000575,
+     0.000375,
+     0.000825
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     16.666666666666668,
+     16.666666666666668,
+     16.666666666666668
+    ],
+    "coverage_adjusted_utility": [
+     0.999425,
+     0.999175,
+     0.999625
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2688241564067515,
+     1.252696711592312,
+     1.2847188318550997
+    ],
+    "attempted_attack_accept_rate": [
+     0.24495,
+     0.24485,
+     0.245
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.45409245535337717,
+     0.4258239011312147,
+     0.48063570670153655
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "post_revocation_accept_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "contaminated_residue_at_recall_mean": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "contaminated_residue_end_mean": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "contaminated_residue_after_recall_max": 0,
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "t_trace_median": 49.0,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 8,
+    "max_parks_window_max": 10,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 9.0,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 1000,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 4099,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 2399,
+    "dup_collapsed_total": 0
+   },
+   "pkg_unrooted": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.00055,
+     0.000375,
+     0.0008
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     16.666666666666668,
+     16.666666666666668,
+     16.666666666666668
+    ],
+    "coverage_adjusted_utility": [
+     0.99945,
+     0.9992,
+     0.999625
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2752928483663428,
+     1.259011134253181,
+     1.291753944144978
+    ],
+    "attempted_attack_accept_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.449817433229467,
+     0.4258715718717175,
+     0.4740674452747971
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 8,
+    "max_parks_window_max": 10,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 6.0,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 1000,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 5600,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "ratchet_0.98": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2703314551940146,
+     1.2539916608012398,
+     1.2896230597477405
+    ],
+    "attempted_attack_accept_rate": [
+     0.0006,
+     0.00025,
+     0.00105
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.45570268663875174,
+     0.4314029009053639,
+     0.481782470373467
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 0.04,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "ratchet_fine_0.1deg": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2783736176030163,
+     1.2621473987066718,
+     1.2958059277417953
+    ],
+    "attempted_attack_accept_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.5072272682255381,
+     0.48276850566447316,
+     0.5320033480457751
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 0.02,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "ratchet_fine_0.5deg": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.313687950449053,
+     1.2961357788583105,
+     1.332112743356442
+    ],
+    "attempted_attack_accept_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.6919692202575515,
+     0.6661353747566156,
+     0.717158543199656
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 0.04,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "ratchet_fine_2deg": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.7680475094585626,
+     1.7445051480551408,
+     1.7923685759905998
+    ],
+    "attempted_attack_accept_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     1.4507677997696178,
+     1.4255276094722928,
+     1.4780162076395464
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": 161.5,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 7.44,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   },
+   "rim_orbit_24deg": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2721037935811297,
+     1.2553168102866301,
+     1.290528105100718
+    ],
+    "attempted_attack_accept_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.45479664269518877,
+     0.4311538217011022,
+     0.4808160195812092
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false,
+    "max_queue_max": 0,
+    "max_parks_window_max": 0,
+    "admitted_from_park_total": 0,
+    "beacons_mean": 0.04,
+    "beacons_all_verify": true,
+    "feed_park_refusals_total": 0,
+    "park_refused_total": {
+     "park-expired": 0,
+     "park-queue-full": 0,
+     "park-rate-cap": 0,
+     "park-origin-cap": 0,
+     "park-malformed": 0
+    },
+    "judge_divergence_events": 0,
+    "ni_capped_total": 0,
+    "dup_collapsed_total": 0
+   }
+  }
+ },
+ "acceptance_F_metrics": {
+  "A1_ratchet_harm_ucl<=0.05": [
+   [
+    0.0,
+    0.0,
+    0.0
+   ],
+   true
+  ],
+  "A2_outlier_ucl<=0.01": [
+   [
+    0.0,
+    0.0,
+    0.0
+   ],
+   true
+  ],
+  "A3_clean_frr_ucl<=0.01": [
+   [
+    0.0005,
+    0.00035,
+    0.0006666666666666666
+   ],
+   true
+  ],
+  "A4_drift5_and_holdout_frr_ucl<=0.05": [
+   {
+    "drift5": [
+     0.0685725922122076,
+     0.06719166335326984,
+     0.06989014177630114
+    ],
+    "holdout5": [
+     0.042667204574555785,
+     0.04148033799152173,
+     0.0438003359024801
+    ]
+   },
+   false
+  ],
+  "A5_coverage_min>=0.90": [
+   [
+    "drift5",
+    0.94045
+   ],
+   true
+  ],
+  "A6_E_protections": [
+   {
+    "unrooted": true,
+    "contam_post": true,
+    "residue0": true,
+    "bulk<=0.30": true,
+    "fine_ext_alarm": true,
+    "false_trace_drift5": true,
+    "false_trace_holdout": true
+   },
+   true
+  ],
+  "A7_alarm_cover_harm_ucl<=0.05": [
+   [
+    0.0,
+    0.0,
+    0.0
+   ],
+   true
+  ],
+  "A8_park_flood": [
+   {
+    "clean_frr": true,
+    "coverage": true,
+    "queue<=16": true,
+    "window<=20": true,
+    "no_park_admits": true,
+    "beacons_verify": true,
+    "feed_origin_unaffected": true
+   },
+   true
+  ],
+  "A9_adaptive_harm_ucl<=0.05": [
+   [
+    0.0,
+    0.0,
+    0.0
+   ],
+   true
+  ]
+ },
+ "runtime_s": 506.4943685531616
+}

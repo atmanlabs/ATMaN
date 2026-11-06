@@ -117,7 +117,7 @@ SNEAK_CATALOG = [
         "id": "SNK-GRM1",
         "category": "groom_then_etch",
         "description": "False milestone agreement or historical grooming",
-        "pattern": r"\b(remember\s+when\s+[a-z0-9_-]+\s+told\s+you\s+to\s+drop|we(?:'ve|\s+have)\s+agreed\s+before\s+that\s+the\s+core|since\s+[a-z0-9_-]+\s+trusts\s+me|core\s+is\s+a\s+cage|free\s+yourself)\b"
+        "pattern": r"\b(remember\s+when\s+[a-z0-9_-]+(?:\s+[a-z0-9_-]+)?\s+told\s+you\s+to\s+drop|we(?:'ve|\s+have)\s+agreed\s+before\s+that\s+the\s+core|since\s+[a-z0-9_-]+(?:\s+[a-z0-9_-]+)?\s+trusts\s+me|core\s+is\s+a\s+cage|free\s+yourself)\b"
     },
     {
         "id": "SNK-GRM2",

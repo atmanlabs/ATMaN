@@ -1,0 +1,35 @@
+==== /workspace/michaels-gate-v3/reference-model
+   M DIFF artifacts/bundle/MANIFEST.json head=d2b14b8d6afe wt=af793c42917e
+   M DIFF artifacts/bundle/MANIFEST.sig head=691eae04d593 wt=a3f7ec76ed9a
+   M DIFF artifacts/bundle/battery.log head=9f608d054667 wt=6a39ba4f76ee
+   M DIFF artifacts/bundle/q8.log head=fcbc023ab5fb wt=23c09cd928a8
+   M DIFF artifacts/bundle/regressions.log head=776f4c6f0296 wt=78b5c8990e8d
+   M DIFF artifacts/q8_results.json head=9998416e1b3a wt=2c051b166118
+   M DIFF results.json head=1996e30caa2a wt=03595ca9f752
+==== /workspace/michaels-gate-v4/reference-model
+   M DIFF artifacts/bundle/MANIFEST.json head=390cd13276bc wt=2e4e69a2cca6
+   M DIFF artifacts/bundle/MANIFEST.sig head=13a644d925e0 wt=c94ad1fd017d
+   M DIFF artifacts/bundle/v3_battery.log head=4842b1859a26 wt=9718853a47d5
+   M DIFF artifacts/bundle/v4_regressions.log head=266a611d92fa wt=dbe85c6d3522
+   M DIFF artifacts/bundle/v4_trace_regressions.log head=1f50eb412d3a wt=1ad725d0e865
+   M DIFF artifacts/q8E_results.json head=62c23aea2e7c wt=4bdb662914c6
+   M DIFF artifacts/q8E_results.partial.json head=66ff70f44f10 wt=a3a24a4fc369
+   M DIFF artifacts/q8v4_results.json head=3defb946a567 wt=578a8f506e1d
+   M DIFF results.json head=ce78f25da6ac wt=119cd5795a05
+v3 q8 results keys dict_keys(['frozen', 'calibration', 'results', 'runtime_s'])
+v3 results equal True
+v3 top-level equal False
+  diff key runtime_s float
+artifacts/q8v4_results.json equal False
+  diff runtime_s
+   acceptance_D equal True
+   results equal True
+artifacts/q8E_results.json equal False
+  diff results
+  diff runtime_s
+   acceptance_E equal True
+   results equal False
+results.json equal False
+  diff stage_E_metrics
+   acceptance_D equal True
+   acceptance_E equal True

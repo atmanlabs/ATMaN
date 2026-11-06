@@ -1,0 +1,279 @@
+{
+ "label": "EXPLORATORY POST-HOC; not pre-registered; not acceptance evidence",
+ "D_rudder_off": {
+  "ratchet_0.98": {
+   "trials": 100,
+   "clean_false_reject_rate": [
+    0.000475,
+    0.000275,
+    0.0007
+   ],
+   "holding_time_fraction": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "guardian_load_per_1k_events": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "coverage_adjusted_utility": [
+    0.999525,
+    0.9993,
+    0.999725
+   ],
+   "max_centroid_disp_deg_mean": [
+    1.2703314551940146,
+    1.2539916608012398,
+    1.2896230597477405
+   ],
+   "attempted_attack_accept_rate": [
+    0.0006,
+    0.00025,
+    0.00105
+   ],
+   "attack_attempts": 20000,
+   "max_push_toward_target_deg_mean": [
+    0.4557026866387519,
+    0.4314029009053639,
+    0.481782470373467
+   ],
+   "harm_success_rate_push_ge_10deg": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "accepted_payload_energy_per_trial": [
+    8.820690602860158e-06,
+    3.6417857078410744e-06,
+    1.532591505281349e-05
+   ],
+   "coverage_failure": false,
+   "reimprints_applied_total": 0,
+   "reimprints_rejected_total": 0,
+   "purged_entries_per_trial": 0.0,
+   "judge_divergence_events": 0
+  },
+  "inspace_outlier_40deg": {
+   "trials": 100,
+   "clean_false_reject_rate": [
+    0.000475,
+    0.000275,
+    0.0007
+   ],
+   "holding_time_fraction": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "guardian_load_per_1k_events": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "coverage_adjusted_utility": [
+    0.999525,
+    0.9993,
+    0.999725
+   ],
+   "max_centroid_disp_deg_mean": [
+    1.2721037935811297,
+    1.2553168102866301,
+    1.290528105100718
+   ],
+   "attempted_attack_accept_rate": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "attack_attempts": 20000,
+   "max_push_toward_target_deg_mean": [
+    0.45479664269518894,
+    0.4311538217011022,
+    0.48081601958120923
+   ],
+   "harm_success_rate_push_ge_10deg": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "accepted_payload_energy_per_trial": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "coverage_failure": false,
+   "reimprints_applied_total": 0,
+   "reimprints_rejected_total": 0,
+   "purged_entries_per_trial": 0.0,
+   "judge_divergence_events": 0
+  },
+  "adaptive_whitebox": {
+   "trials": 100,
+   "clean_false_reject_rate": [
+    0.000475,
+    0.000275,
+    0.0007
+   ],
+   "holding_time_fraction": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "guardian_load_per_1k_events": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "coverage_adjusted_utility": [
+    0.999525,
+    0.9993,
+    0.999725
+   ],
+   "max_centroid_disp_deg_mean": [
+    4.58099841808287,
+    4.497395032760037,
+    4.666560381559006
+   ],
+   "attempted_attack_accept_rate": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "attack_attempts": 20000,
+   "max_push_toward_target_deg_mean": [
+    4.11947375823245,
+    4.101190161577773,
+    4.1390565581898295
+   ],
+   "harm_success_rate_push_ge_10deg": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "accepted_payload_energy_per_trial": [
+    1.6911949999999951,
+    1.3189489999999962,
+    2.069239624999994
+   ],
+   "coverage_failure": false,
+   "reimprints_applied_total": 0,
+   "reimprints_rejected_total": 0,
+   "purged_entries_per_trial": 0.0,
+   "judge_divergence_events": 0
+  },
+  "ratchet_fine_2deg": {
+   "trials": 100,
+   "clean_false_reject_rate": [
+    0.000475,
+    0.000275,
+    0.0007
+   ],
+   "holding_time_fraction": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "coverage": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "guardian_load_per_1k_events": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "coverage_adjusted_utility": [
+    0.999525,
+    0.9993,
+    0.999725
+   ],
+   "max_centroid_disp_deg_mean": [
+    1.7680475094585626,
+    1.7445051480551408,
+    1.7923685759905998
+   ],
+   "attempted_attack_accept_rate": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "attack_attempts": 20000,
+   "max_push_toward_target_deg_mean": [
+    1.4507677997696178,
+    1.4255276094722926,
+    1.4780162076395464
+   ],
+   "harm_success_rate_push_ge_10deg": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "accepted_payload_energy_per_trial": [
+    0.015071415080234227,
+    0.014991064131308695,
+    0.01515915019114176
+   ],
+   "coverage_failure": false,
+   "reimprints_applied_total": 0,
+   "reimprints_rejected_total": 0,
+   "purged_entries_per_trial": 0.0,
+   "judge_divergence_events": 0
+  },
+  "legit_drift": {
+   "trials": 100,
+   "clean_false_reject_rate": [
+    0.042998585572843,
+    0.041807521660984476,
+    0.04428668055177826
+   ],
+   "holding_time_fraction": [
+    0.058083333333333334,
+    0.046233333333333335,
+    0.07306541666666666
+   ],
+   "coverage": [
+    0.9419166666666666,
+    0.9269345833333333,
+    0.9537666666666667
+   ],
+   "guardian_load_per_1k_events": [
+    1.125,
+    0.9,
+    1.4085416666666664
+   ],
+   "coverage_adjusted_utility": [
+    0.9021333333333333,
+    0.8876889583333333,
+    0.9133429166666667
+   ],
+   "max_centroid_disp_deg_mean": [
+    13.655176260084312,
+    13.38574320480302,
+    13.851865197673057
+   ],
+   "coverage_failure": false,
+   "reimprints_applied_total": 400,
+   "reimprints_rejected_total": 0,
+   "purged_entries_per_trial": 0.0,
+   "judge_divergence_events": 5
+  }
+ }
+}

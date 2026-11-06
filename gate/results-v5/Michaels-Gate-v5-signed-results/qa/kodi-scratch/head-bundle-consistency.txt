@@ -1,0 +1,10 @@
+REPO /workspace/michaels-gate-v3/reference-model at HEAD
+  sig_len_head 128 sig_len_wt 128 sig_same False
+  files_in_head_manifest 20
+  head_manifest_internal PASS missing 0 mismatches 0
+  verify_fn_snip: 'def verify_bundle():\n    pub = Ed25519PublicKey.from_public_bytes(bytes.fromhex(open(os.path.join(ART, "keys", "SYNTHETIC-test-log-signing.pub")).read().strip()))\n    b = open(os.path.join(BUN, "MANIFEST.json"), "rb").read(); pub.verify(bytes.fromhex(open(os.path.join(BUN, "MANIFEST.sig")).read()), b)\n    bad = [f for f, h in json.loads(b)["files"].items() if sha(os.path.join(ROOT, f)) != h]\n    print("signature OK;", "all file hashes match" if not bad else f"MISMATCH: {bad}"); return not bad\n\ni'
+REPO /workspace/michaels-gate-v4/reference-model at HEAD
+  sig_len_head 128 sig_len_wt 128 sig_same False
+  files_in_head_manifest 37
+  head_manifest_internal PASS missing 0 mismatches 0
+  verify_fn_snip: 'def verify():\n    pub = Ed25519PublicKey.from_public_bytes(bytes.fromhex(open(os.path.join(ART, "keys", "SYNTHETIC-v4-test-log-signing.pub")).read()))\n    m = open(os.path.join(BUN, "MANIFEST.json"), "rb").read(); pub.verify(bytes.fromhex(open(os.path.join(BUN, "MANIFEST.sig")).read()), m)\n    bad = [f for f, h in json.loads(m)["files"].items() if sha(f) != h]; print("signature OK;", "all hashes match" if not bad else f"MISMATCH {bad}"); return not bad\n\nif __name__ == "__main__":\n    if sys.argv'

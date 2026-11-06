@@ -1,4 +1,4 @@
-# JARVIS / EXO Architecture Specification
+# ATMAN Architecture Specification
 **Release:** Public Scaffold Baseline (Stages 0–13)  
 **Author:** Authoritative Core Design Team  
 
@@ -6,12 +6,12 @@
 
 ## 1. Executive Summary & Vision
 
-JARVIS is designed as a **persistent personal operating intelligence**: *one brain, many interfaces*. Unlike traditional conversational chatbots that operate as stateless ephemeral windows, JARVIS maintains a unified, authoritative cognitive state across PC, mobile, ambient sensors, and virtual worlds (such as Minecraft).
+ATMAN is designed as a **persistent personal operating intelligence**: *one brain, many interfaces*. Unlike traditional conversational chatbots that operate as stateless ephemeral windows, ATMAN maintains a unified, authoritative cognitive state across PC, mobile, ambient sensors, and virtual worlds (such as Minecraft).
 
 The architecture enforces strict invariants:
 1. **Authoritative Core vs. Peripheral Adapters:** The central cognitive engine retains sole authority over reasoning, state persistence, and action evaluation. Domain adapters (desktop GUI, voice runtime, Minecraft bot) are thin sensors and executors—they never make unvetted autonomous decisions.
 2. **Immutable Soul (TSC) & Gated Memory (PSC):** Fundamental personhood and core ethical principles are structurally immutable at runtime. Learned preferences and operational memories are gated through a deterministic safety Judge before imprinting.
-3. **Continuous Passive Learning & Autonomous Initiative:** JARVIS observes human activity across interfaces without requiring explicit demonstration modes, segments actions into reusable skills, and exercises bounded initiative driven by standing goals.
+3. **Continuous Passive Learning & Autonomous Initiative:** ATMAN observes human activity across interfaces without requiring explicit demonstration modes, segments actions into reusable skills, and exercises bounded initiative driven by standing goals.
 
 ---
 
@@ -113,7 +113,7 @@ The Permanent Self Core records enduring preferences. A memory can ONLY be impri
 
 ## 5. Autonomous Initiative & Standing Drives
 
-JARVIS maintains four standing drives:
+ATMAN maintains four standing drives:
 1. `be_useful_to_operator`: Readiness to assist, organize supplies, and maintain operational health.
 2. `learn_the_world`: Curiosity driven by sensory novelty (unseen terrain, biomes, or structures).
 3. `keep_base_safe_and_tidy`: Perimeter security patrol, entrance monitoring, and inventory organization.
@@ -133,7 +133,7 @@ JARVIS maintains four standing drives:
            │
            │  Event Stream (Block Break, Block Place, Equip, Craft)
            ▼
-[ JarvisDemonstrations Plugin ] (HTTP Server on 127.0.0.1:18791)
+[ AtmanDemonstrations Plugin ] (HTTP Server on 127.0.0.1:18791)
            │
            │  JSON Payload
            ▼
@@ -165,9 +165,9 @@ JARVIS maintains four standing drives:
 | Variable | Default | Purpose |
 | :--- | :--- | :--- |
 | `JARVIS_AUTH_TOKEN` | *None* | Shared secret for Relay HTTP bridge authentication |
-| `JARVIS_CORE_PATH` / `EXO_CORE_PATH` | `../exo-private/tsc.exo.private.json` | Path to private True Self Core JSON |
-| `JARVIS_SEAL_PATH` / `EXO_SEAL_PATH` | `../exo-private/stage1-seal.json` | Path to cryptographic seal manifest |
-| `EXO_PRIVATE_DIR` | `../exo-private` | Directory containing private credentials and auth stores |
+| `JARVIS_CORE_PATH` / `EXO_CORE_PATH` | `../atman-private/tsc.atman.private.json` | Path to private True Self Core JSON |
+| `JARVIS_SEAL_PATH` / `EXO_SEAL_PATH` | `../atman-private/stage1-seal.json` | Path to cryptographic seal manifest |
+| `EXO_PRIVATE_DIR` | `../atman-private` | Directory containing private credentials and auth stores |
 | `OPERATOR_NAME` | `Operator` | Canonical operator display name |
 | `MINECRAFT_SERVER_HOST` | `127.0.0.1` | Minecraft Paper server host |
 | `MINECRAFT_SERVER_PORT` | `25565` | Minecraft Paper server port |

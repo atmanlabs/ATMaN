@@ -1,0 +1,20 @@
+﻿JARVIS DreamThink Research Notes Pack
+Built: 2026-09-25 21:31:29 America/New_York
+Source: C:\Users\Operator\Documents\exo-live
+Purpose: Research-focused architectural code + dream-cloud docs/reports after identity+memory wire + speech render/synthesis test.
+
+INCLUDED (high level):
+- Key modules: dreamthink_chat, speech_render, speak_move, identity_wire, memory_fuel, passive_context(+dream), conversation_dream, comedy_dream, related dreamthink_*, thought_funnel, working_context, conversation_policy, config
+- Docs/reports: THOUGHT-RENDER-PROOF, IDENTITY-WIRE, PASSIVE-CONTEXT*, SPEAK-MOVE, COMEDY-DREAM-REPORT, CONVERSATION-DREAM-REPORT, HANDOFF*, MIKE-HANDOFF, architecture/phase docs
+- runtime/dream-cloud research artifacts + imprint bank + live-mode.json + thought-funnel smokes (not giant practice cycles)
+- _workspace_dreamthink research mirrors
+
+EXCLUDED:
+- .git, __pycache__, node_modules
+- self_improve sandboxes, build/, dist/, gym_vendor/, voices/, extensions bloat, backups/
+- Giant media (dreamthink-storm*.png), gym-tokenizer.json
+- .webui_secret_key / sealed TSC secrets / private keys (tsc.template.json only)
+- runtime/dream-cloud/dreamthink-practice/cycles.jsonl (~39MB)
+- thought-funnel/trace.previous.jsonl (~2MB)
+- Old JARVIS-DreamThink-Backup_* Drive parts (untouched; not in this pack)
+

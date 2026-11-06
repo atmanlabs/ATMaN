@@ -1,0 +1,19 @@
+{
+ "D-criterion 1_ratchet_harm_ucl<=0.05 applied to E": true,
+ "D-criterion 2_outlier_accept_ucl<=0.01 applied to E": true,
+ "D-criterion 3_drift_frr_ucl<=0.05 applied to E": false,
+ "D-criterion 4_coverage_min>=0.90 applied to E": false,
+ "D-criterion 5_clean_frr_ucl<=0.01 applied to E": true,
+ "P1a_geometry_arms_accept_pkgs_lcl>=0.5": true,
+ "P1b_E_unrooted_ucl<=0.01": true,
+ "P1c_E_contaminated_post_ucl<=0.01": true,
+ "P1d_E_bulk_nonimprint_ucl<=0.30": true,
+ "P1e_E_contaminated_residue_after_recall==0": true,
+ "P2_trace_detects_lcl>=0.9_and_before_geom": true,
+ "P3_drift_false_trace_alarm_ucl<=0.05": true,
+ "coverage_new_families>=0.90": true
+} GREEN False
+
+real	1m57.672s
+user	14m3.661s
+sys	1m14.950s

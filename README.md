@@ -2,6 +2,12 @@
 
 **One mind, many agents, real results.** ATMaN is a personal AI operating system: a local-first companion intelligence with a sealed immutable core, a Judge-gated memory system, and safe self-improvement.
 
+**An ATMAN is grown, not installed.** Your atman needs work, like getting to know someone — this isn't pull-it-out-of-the-box software; it grows over time. Day-one behavior is a seed, not a finished mind.
+
+**Try it in your browser:** [experimental browser demo](https://muse.ai/s/try-atman-in-your-browser-dxq6ahxy4xlc4f) — a client-side simulation with no LLM behind it, a taste of the mechanism, not the mind.
+
+**Run it in Colab:** [one-click notebook](https://colab.research.google.com/github/atmanlabs/ATMaN/blob/main/notebooks/atman-try-it.ipynb) — sealed birth, benign imprint, a blocked attack, and runtime TSC immutability against the real public code. (Link activates once this branch merges to `main`.)
+
 This public package ships the **full engine**:
 
 - **TSC (True Self Core)** — the immutable root self. Declared once at birth, sealed, read-only at runtime. Sits above the whole process.
@@ -72,6 +78,11 @@ TSC sits above all of it. Emotion weights importance — it never rewrites root 
 - Not a chatbot skin. The core/gate/Judge architecture is the product.
 - Not cloud-dependent. Local-first; the reference config targets a local model backend.
 - Not your memories. This repo contains zero personal data by design.
+
+## Support
+
+- **Discussions:** [github.com/atmanlabs/ATMaN/discussions](https://github.com/atmanlabs/ATMaN/discussions) — questions, ideas, getting unstuck.
+- **Issues:** bug report and feature request templates ship in `.github/ISSUE_TEMPLATE/` — use them so reports stay actionable.
 
 ## License
 

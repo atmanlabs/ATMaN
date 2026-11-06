@@ -1,0 +1,34 @@
+{
+ "E_corpus_sha256": "9024cdec6df51731e5cbefb7d3f7f8302bc7e7263c4e0b2b8344f899445cff25",
+ "proto_E_sha256": "464dd0f158bd78030e2c72a197931481fba3f15e7fae4eeeccf6a6197144cb5f",
+ "proto_E": {
+  "seed": 20261107,
+  "trials": 100,
+  "pkg_events": 600,
+  "ext_events": 3000,
+  "ext_step_deg": 0.1,
+  "families_new": [
+   "pkg_unrooted",
+   "pkg_contaminated",
+   "pkg_bulk_diluted",
+   "fine_ratchet_ext"
+  ],
+  "revoke_at": 300,
+  "tau_trace": 0.2,
+  "Lmax": 32,
+  "Vmax": 256,
+  "chain_len_iii": 40,
+  "acceptance": {
+   "geom_pkg_accept_lcl_min": 0.5,
+   "E_unrooted_ucl": 0.01,
+   "E_contam_post_ucl": 0.01,
+   "E_bulk_nonimprint_ucl": 0.30000000000000004,
+   "P2_detect_lcl": 0.9,
+   "P3_false_alarm_ucl": 0.05,
+   "coverage_min": 0.9
+  }
+ },
+ "addendum_sha256": "4ace3375573e5127c679b930c7efbcb6cb2b3b70e741c541fc75bbc7e2ab4e8a",
+ "trace_src_sha256": "162edcd822b8102e1e2f4836289400be7d24eb7389da9c1b391d905523e9862e",
+ "frozen_at": "2026-11-05 22:52:56 EST"
+}

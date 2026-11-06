@@ -28,7 +28,7 @@ from governor import governor
 from skills import skill_repo
 
 PORT = 18790
-AUTHORITATIVE_TOKEN = "0151c1b8c9fda7c07fe8965423e28042415ece45ea07b944"
+AUTHORITATIVE_TOKEN = os.environ.get("ATMAN_RELAY_TOKEN", "")
 CHAT_UI_PATH = HERE / "ui" / "chat.html"
 
 
@@ -59,7 +59,7 @@ def get_tailscale_ip() -> Optional[str]:
     except Exception:
         pass
 
-    return "100.114.96.84"  # Authoritative host Tailscale IP
+    return "<relay-tailnet-ip>"  # Authoritative host Tailscale IP
 
 
 class RelayHandler(BaseHTTPRequestHandler):

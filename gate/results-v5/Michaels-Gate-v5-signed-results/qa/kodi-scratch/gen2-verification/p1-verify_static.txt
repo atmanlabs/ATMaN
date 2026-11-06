@@ -1,0 +1,41 @@
+PASS [pkg] 245 files hash-match FILES.sha256
+PASS [pkg] every shipped file is listed
+PASS [pkg] FILES covers reference-model/report.md
+PASS [pkg] FILES covers reference-model/HANDOFF.md
+PASS [pkg] FILES covers reference-model/artifacts/q8F1_results.json
+PASS [pkg] FILES covers reference-model/artifacts/q8F2_results.json
+PASS [pkg] FILES covers history.bundle
+PASS [pkg] FILES covers PATHS.md
+PASS [pkg] FILES covers PACKAGING-RECEIPT.md
+PASS [pkg] packet key distinct from test-log key
+PASS [pkg] FILES.sha256.sig verifies (test-log key)
+PASS [pkg] PACKET.sig verifies (packet key)
+PASS [pkg] no __pycache__/.pyc/.partial
+PASS [pkg] no absolute /workspace paths in runnable v5 code
+PASS [keys] no private key files shipped
+PASS [inh] v4 bundle MANIFEST.sig verifies
+PASS [inh] v4 signed bundle: 37 files present+match
+PASS [inh] v3 bundle MANIFEST.sig verifies
+PASS [inh] v3 signed bundle: 20 files present+match
+PASS [inh] v3 sealed spec hash (as v3 verify.sh)
+PASS [inh] inherited/v4/reference-model/MANIFEST.sha256: 2 entries
+PASS [inh] inherited/v4/reference-model/MANIFEST-E.sha256: 4 entries
+PASS [inh] inherited/v4/reference-model/artifacts/v3_inherited/FROZEN_BATTERY.sha256: 2 entries
+PASS [inh] inherited/v3/reference-model/artifacts/FROZEN_BATTERY.sha256: 2 entries
+PASS [inh] inherited/v4/ruling/SHA256SUMS (2 entries; absolute historical paths mapped by basename)
+PASS [inh] ruling/SHA256SUMS (1 entries; absolute historical paths mapped by basename)
+PASS [inh] v3 sealed package: 6 documents match verification.json
+INFO [inh] inherited/v3/sealed-package-sha256.txt names the original attachment ZIP, which is not shipped (provenance only, see PATHS.md)
+PASS [inh] v4 copy of v3_inherited/FROZEN_BATTERY.sha256 byte-identical to reference-model copy
+PASS [inh] v4 copy of v3_inherited/Q8_FROZEN.json byte-identical to reference-model copy
+PASS [inh] v4 copy of v3_inherited/q8_corpora.npz byte-identical to reference-model copy
+PASS [reg] F1_IMPL.json registered files match
+PASS [reg] F2_IMPL.json registered files match
+PASS [reg] q8F1_results.json embeds exactly F1_IMPL.json (incl. registered_at)
+PASS [reg] q8F2_results.json embeds exactly F2_IMPL.json (incl. registered_at)
+PASS [corp] v3 corpora regenerated from seed 20261105 == frozen NPZ arrays exactly
+PASS [corp] v3 regenerated hash + protocol hash == Q8_FROZEN.json
+PASS [corp] v5 generator seeds/params == F1_FROZEN.corpora_spec
+PASS [corp] v5 corpora (drift5/holdout5/alarm_cover/park_flood) regenerated hash == F1_FROZEN
+STATIC VERIFY: PASS
+exit=0

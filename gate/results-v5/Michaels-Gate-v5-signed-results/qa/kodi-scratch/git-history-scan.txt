@@ -1,0 +1,60 @@
+REPO /workspace/michaels-gate-v3/reference-model
+  commits: 7
+a3a33c0 final: regenerated results.json + re-signed bundle from verify run
+774c2f2 cycle 4: strengthened white-box attacker; run_battery, signed bundle, report, handoff, verify.sh
+a40b16d cycle 3b: Q8 perf (worker init, 1 BLAS thread); attacker payload-projection bug fixed (strengthens attack); corpora unchanged
+b7d4682 cycle 3: Q8 harness; corpora+protocol FROZEN before any run (artifacts/Q8_FROZEN.json)
+ddc7db4 cycle 2: reconnect thaw requires fresh Recovery-certified head attestation; regress
+  history_name_hits ['artifacts/keys/SYNTHETIC-test-log-signing.key', 'artifacts/keys/SYNTHETIC-test-log-signing.pub']
+  dirty_lines 7
+ M artifacts/bundle/MANIFEST.json
+ M artifacts/bundle/MANIFEST.sig
+ M artifacts/bundle/battery.log
+ M artifacts/bundle/q8.log
+ M artifacts/bundle/regressions.log
+ M artifacts/q8_results.json
+ M results.json
+
+  remotes: NONE
+REPO /workspace/michaels-gate-v4/reference-model
+  commits: 13
+c7ae83e report: exact commit ids
+f751799 final: verify run regenerated + re-signed bundle
+3e9bea3 verify.sh: exclude wall-clock resolve timing from exact-reproduction check
+1e43f09 v4 report, handoff, signed results (D wall, E wall)
+5ba3a16 Stage E run complete (E2): E fails inherited D criteria 3,4; trace predictions P1-P3 pass; packaging updated
+44602b9 Stage E: acceptance-aggregation crash fix (no results were produced by crashed run)
+b34595c Stage E cycle 1: crypto BODY_FOR_TYPE fix for root
+  history_name_hits ['artifacts/keys/SYNTHETIC-v4-test-log-signing.key', 'artifacts/keys/SYNTHETIC-v4-test-log-signing.pub']
+  dirty_lines 9
+ M artifacts/bundle/MANIFEST.json
+ M artifacts/bundle/MANIFEST.sig
+ M artifacts/bundle/v3_battery.log
+ M artifacts/bundle/v4_regressions.log
+ M artifacts/bundle/v4_trace_regressions.log
+ M artifacts/q8E_results.json
+ M artifacts/q8E_results.partial.json
+ M artifacts/q8v4_results.json
+ M results.json
+
+  remotes: NONE
+REPO /workspace/michaels-gate-v5/reference-model
+  commits: 0
+
+  history_name_hits []
+  dirty_lines 13
+?? MANIFEST-E.sha256
+?? MANIFEST.sha256
+?? OWNER-ORYN-TRACE.md
+?? OWNER-RULING.md
+?? V4-E-ADDENDUM.md
+?? V4-FROZEN-SPEC.md
+?? V5-SPEC.md
+?? artifacts/
+?? gate/
+?? q8E.py
+?? q8v4.py
+?? tests/
+?? v3_q8.py
+
+  remotes: NONE

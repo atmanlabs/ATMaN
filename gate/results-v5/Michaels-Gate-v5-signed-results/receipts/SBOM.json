@@ -1,0 +1,4 @@
+{"format":"minimal-sbom","python":"3.13.5","components":[
+ {"name":"numpy","version":"2.5.4","license_from_installed_metadata":"BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0"},
+ {"name":"cryptography","version":"43.0.0","license_from_installed_metadata":"Apache-2.0 OR BSD-3-Clause"}],
+ "note":"Read offline from importlib.metadata. No license is granted by this package for its own source, crew derivatives, or corpora."}

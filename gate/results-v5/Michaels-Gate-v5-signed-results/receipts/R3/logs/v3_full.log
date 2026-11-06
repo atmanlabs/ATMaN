@@ -1,0 +1,11 @@
+== sealed spec hash
+../michaels-gate-sealed-package-v3/01-v3-patch-spec.md: OK
+== frozen battery hashes
+tests/test_battery.py: OK
+tests/fixtures.py: OK
+== signed bundle (as committed)
+signature OK; all file hashes match
+== re-run frozen battery + regressions + Q8 (corpora/protocol hash-checked)
+{"battery": {"ran": 20, "failures": 0, "errors": 0, "ok": true}, "regressions": {"ran": 11, "failures": 0, "errors": 0, "ok": true}, "q8_exit": 0, "s": 27.3}
+Q8 results reproduced exactly
+signature OK; all file hashes match

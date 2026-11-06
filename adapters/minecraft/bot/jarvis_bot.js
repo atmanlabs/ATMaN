@@ -20,7 +20,7 @@ const SERVER_HOST = process.env.MINECRAFT_SERVER_HOST || '127.0.0.1';
 const SERVER_PORT = parseInt(process.env.MINECRAFT_SERVER_PORT || '25565', 10);
 const BOT_USERNAME = 'JARVIS';
 const RELAY_URL = process.env.JARVIS_RELAY_URL || 'http://127.0.0.1:18790/chat';
-const RELAY_TOKEN = process.env.JARVIS_AUTH_TOKEN || 'CHANGE_ME_TOKEN';
+const RELAY_TOKEN = process.env.JARVIS_RELAY_TOKEN || process.env.ATMAN_RELAY_TOKEN || '';
 
 // Recorded Home Base Sanctuary Coordinates (Step 3a)
 const HOME_BASE = { x: -2.5, y: 69.0, z: 8.5 };
@@ -496,7 +496,7 @@ function createBot() {
   // -------------------------------------------------------------
   // 3. CONTINUOUS OBSERVATION VIA SERVER-SIDE PLUGIN
   // -------------------------------------------------------------
-  // Server-side Bukkit plugin (JarvisDemonstrations) streams all player block place/break,
+  // Server-side Bukkit plugin (AtmanDemonstrations) streams all player block place/break,
   // equipment, and crafting directly to the Authoritative Core (exo-live) continuous observer.
   // Bot acts as a pure companion and skill executor.
 

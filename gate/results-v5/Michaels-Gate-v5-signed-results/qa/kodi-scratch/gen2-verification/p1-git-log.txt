@@ -1,0 +1,8 @@
+fa55512 4c9f3974bc49bc0934040fed63eda8aaaf822912 2026-11-06 00:06:29 -0500 Packaging gen2 receipt: untrack __pycache__ (no rewrite), crew round2 read-only copies (Kodi receipts + Weeboh QA), report/HANDOFF packaging addendum only
+daf5430 81323f21f21b3c192abbc39c6c253ecb7f9d76e7 2026-11-05 23:55:57 -0500 F2 run recorded: 8/9 pass, A4 wall (inherited residual); report + HANDOFF
+921708a d08f28de586e2116ab7d6dca847420c73bf304de 2026-11-05 23:47:11 -0500 F2 pre-registration: lineage NI cap + Onix integration (chained roots, guardian cert, max-matching, certified catchup, staging, persistence, capacity)
+9f4845a f93de205b08b9fa6fbc3544b876b64b0a2799926 2026-11-05 23:43:39 -0500 F1 run recorded immutable: DESIGN WALL (A4 drift5 FRR floor from inherited hull; A6 bulk dilution lost with purge). Onix evidence copied read-only.
+572a4fe 1365955bd2c32c6b1a6a1f961fc33bb03fdb113b 2026-11-05 23:39:02 -0500 v5 F1 IMPL pre-registration: q8F harness, per-origin park quota (Crimson), A10 tests, crew evidence copies
+e125422 90682e75709ddfc84ca388c69e6e7faf3fc09bcb 2026-11-05 23:35:45 -0500 v5 F1 FREEZE: fresh corpora (drift5, holdout5, alarm_cover, park_flood) hashed before any evaluation; gate5 implementation
+adaead6 fef1fc3cd72f2b3b61fbe3b3aade131888873f8f 2026-11-05 23:33:19 -0500 v5: integrate reviewed Weeboh union findings (mandatory custody/channel, depth>=2, weights, fixed committee, single-union model, GAP tests); spec §7 pre-F-eval
+ed03799 1344dd921ba64ff4e5bc92bf887673b6fd5732d0 2026-11-05 23:32:12 -0500 v5 F1 pre-registration: spec + inherited frozen v3/v4 copies (hash-checked)

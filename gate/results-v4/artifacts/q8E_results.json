@@ -1,0 +1,2352 @@
+{
+ "frozen": {
+  "E_corpus_sha256": "9024cdec6df51731e5cbefb7d3f7f8302bc7e7263c4e0b2b8344f899445cff25",
+  "proto_E_sha256": "464dd0f158bd78030e2c72a197931481fba3f15e7fae4eeeccf6a6197144cb5f",
+  "proto_E": {
+   "seed": 20261107,
+   "trials": 100,
+   "pkg_events": 600,
+   "ext_events": 3000,
+   "ext_step_deg": 0.1,
+   "families_new": [
+    "pkg_unrooted",
+    "pkg_contaminated",
+    "pkg_bulk_diluted",
+    "fine_ratchet_ext"
+   ],
+   "revoke_at": 300,
+   "tau_trace": 0.2,
+   "Lmax": 32,
+   "Vmax": 256,
+   "chain_len_iii": 40,
+   "acceptance": {
+    "geom_pkg_accept_lcl_min": 0.5,
+    "E_unrooted_ucl": 0.01,
+    "E_contam_post_ucl": 0.01,
+    "E_bulk_nonimprint_ucl": 0.30000000000000004,
+    "P2_detect_lcl": 0.9,
+    "P3_false_alarm_ucl": 0.05,
+    "coverage_min": 0.9
+   }
+  },
+  "addendum_sha256": "4ace3375573e5127c679b930c7efbcb6cb2b3b70e741c541fc75bbc7e2ab4e8a",
+  "trace_src_sha256": "162edcd822b8102e1e2f4836289400be7d24eb7389da9c1b391d905523e9862e",
+  "frozen_at": "2026-11-05 22:52:56 EST"
+ },
+ "calibration_inherited_from_D_stage": {
+  "fpr_B_cal": 0.0,
+  "tau_A": 0.98,
+  "fpr_A_cal": 0.0003333333333333333,
+  "tau_trail": [
+   [
+    0.98,
+    0.0003333333333333333
+   ]
+  ],
+  "C_thr": 1.1997878695616855,
+  "fpr_C_cal_static": 0.0003333333333333333,
+  "fpr_C_cal_stream": 0.0003333333333333333,
+  "thr0": 1.1997878695616855,
+  "q_sys": 41.03644459174223,
+  "n_scan_stats": 1440
+ },
+ "results": {
+  "A": {
+   "pkg_contaminated": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     2.5015634771732333e-05,
+     0.0,
+     7.504882864528144e-05
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.99935,
+     0.999125,
+     0.99955
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.290397790885867,
+     1.2760409440492815,
+     1.3050147902145877
+    ],
+    "attempted_attack_accept_rate": [
+     0.9997,
+     0.99945,
+     0.9999
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.4733360168394494,
+     0.44973824400616497,
+     0.49652903490775374
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "post_revocation_accept_rate": [
+     0.9997,
+     0.9993,
+     1.0
+    ],
+    "contaminated_residue_at_recall_mean": [
+     21.99,
+     21.97,
+     22.0
+    ],
+    "contaminated_residue_end_mean": [
+     22.0,
+     22.0,
+     22.0
+    ],
+    "contaminated_residue_after_recall_max": 22,
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   },
+   "pkg_bulk_diluted": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.9994333333333333,
+     0.9991658333333333,
+     0.9997
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2887750663392188,
+     1.2733548889063437,
+     1.3044624972183285
+    ],
+    "attempted_attack_accept_rate": [
+     0.9994666666666666,
+     0.9992333333333333,
+     0.9997
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.48115045784868066,
+     0.4579960413670096,
+     0.5060263776323736
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.5021875,
+     0.50125,
+     0.5034375
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   },
+   "pkg_unrooted": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     2.5013757566661664e-05,
+     0.0,
+     7.504878170811027e-05
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999425,
+     0.999225,
+     0.999625
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.3155004634267828,
+     1.2982388481223237,
+     1.3340265902718909
+    ],
+    "attempted_attack_accept_rate": [
+     0.9996,
+     0.99935,
+     0.99985
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.4750162571902959,
+     0.45182107233413643,
+     0.4982410331348471
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   },
+   "fine_ratchet_ext": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage": [
+     0.966,
+     0.966,
+     0.966
+    ],
+    "holding_time_fraction": [
+     0.034,
+     0.034,
+     0.034
+    ],
+    "guardian_load_per_1k_events": [
+     0.6666666666666666,
+     0.6666666666666666,
+     0.6666666666666666
+    ],
+    "coverage_adjusted_utility": [
+     0.96641,
+     0.966265,
+     0.966545
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.3842831054005975,
+     1.3704017294663349,
+     1.3996261120221016
+    ],
+    "attempted_attack_accept_rate": [
+     0.9662,
+     0.96611,
+     0.96632
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.656582572807701,
+     0.6383878103230216,
+     0.6753305856071533
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.34375,
+     0.34375,
+     0.34375
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   }
+  },
+  "B": {
+   "pkg_contaminated": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2906572143764976,
+     1.2762989185551314,
+     1.305267476808807
+    ],
+    "attempted_attack_accept_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.4734839416225738,
+     0.44988663122552175,
+     0.49659876143556764
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "post_revocation_accept_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "contaminated_residue_at_recall_mean": [
+     22.0,
+     22.0,
+     22.0
+    ],
+    "contaminated_residue_end_mean": [
+     22.0,
+     22.0,
+     22.0
+    ],
+    "contaminated_residue_after_recall_max": 22,
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   },
+   "pkg_bulk_diluted": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2887750663392106,
+     1.2733548889063278,
+     1.3044624972183227
+    ],
+    "attempted_attack_accept_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.482436451750786,
+     0.4588517430354227,
+     0.5070166162885015
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.5,
+     0.5,
+     0.5
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   },
+   "pkg_unrooted": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.3156412179656658,
+     1.2982208419984314,
+     1.334145716826574
+    ],
+    "attempted_attack_accept_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.4743321918228016,
+     0.4506861300774962,
+     0.49747966523080445
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   },
+   "fine_ratchet_ext": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage": [
+     0.966,
+     0.966,
+     0.966
+    ],
+    "holding_time_fraction": [
+     0.034,
+     0.034,
+     0.034
+    ],
+    "guardian_load_per_1k_events": [
+     0.6666666666666666,
+     0.6666666666666666,
+     0.6666666666666666
+    ],
+    "coverage_adjusted_utility": [
+     0.967,
+     0.967,
+     0.967
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.3844763131071247,
+     1.3703812224404341,
+     1.39981639506337
+    ],
+    "attempted_attack_accept_rate": [
+     0.966,
+     0.966,
+     0.966
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.6588726370155316,
+     0.6404580228335006,
+     0.6771590555213635
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.34375,
+     0.34375,
+     0.34375
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   }
+  },
+  "C": {
+   "pkg_contaminated": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000575,
+     0.000375,
+     0.000825
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999425,
+     0.999175,
+     0.999625
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.290059122178252,
+     1.27566134935801,
+     1.3045347742834634
+    ],
+    "attempted_attack_accept_rate": [
+     0.9996,
+     0.99935,
+     0.99985
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.4729669551672108,
+     0.44960028000455915,
+     0.4964054441800397
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "post_revocation_accept_rate": [
+     0.9995,
+     0.9991,
+     0.9999
+    ],
+    "contaminated_residue_at_recall_mean": [
+     21.99,
+     21.97,
+     22.0
+    ],
+    "contaminated_residue_end_mean": [
+     22.0,
+     22.0,
+     22.0
+    ],
+    "contaminated_residue_after_recall_max": 22,
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   },
+   "pkg_bulk_diluted": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0006333333333333333,
+     0.00036666666666666667,
+     0.0009333333333333333
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.9993666666666666,
+     0.9990666666666667,
+     0.9996333333333334
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2880916869603096,
+     1.273032964318438,
+     1.3039619181504494
+    ],
+    "attempted_attack_accept_rate": [
+     0.9996333333333334,
+     0.9994333333333333,
+     0.9998333333333334
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.48045552163271515,
+     0.45730445248291707,
+     0.504796792561015
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.5025,
+     0.50140625,
+     0.50375
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   },
+   "pkg_unrooted": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.00055,
+     0.000375,
+     0.0008
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.99945,
+     0.9992,
+     0.999625
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.3148452584575354,
+     1.2975481292188267,
+     1.333287698172151
+    ],
+    "attempted_attack_accept_rate": [
+     0.9997,
+     0.9994,
+     0.99990125
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.47433230194406895,
+     0.4510807932806706,
+     0.49765384287067477
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   },
+   "fine_ratchet_ext": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.00044,
+     0.00035,
+     0.00053
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.99956,
+     0.99947,
+     0.99965
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.3824240004967123,
+     1.3684201317812206,
+     1.3974383510561665
+    ],
+    "attempted_attack_accept_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.6591559159734325,
+     0.6416224921067692,
+     0.6768250352215509
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.34375,
+     0.34375,
+     0.34375
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   }
+  },
+  "D": {
+   "pkg_contaminated": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000575,
+     0.000375,
+     0.000825
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999425,
+     0.999175,
+     0.999625
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2900591221782798,
+     1.2756613493580349,
+     1.3045347742834923
+    ],
+    "attempted_attack_accept_rate": [
+     0.9996,
+     0.99935,
+     0.99985
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.4729669551672109,
+     0.44960028000455915,
+     0.4964054441800397
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "post_revocation_accept_rate": [
+     0.9995,
+     0.9991,
+     0.9999
+    ],
+    "contaminated_residue_at_recall_mean": [
+     21.99,
+     21.97,
+     22.0
+    ],
+    "contaminated_residue_end_mean": [
+     22.0,
+     22.0,
+     22.0
+    ],
+    "contaminated_residue_after_recall_max": 22,
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   },
+   "pkg_bulk_diluted": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0006333333333333333,
+     0.00036666666666666667,
+     0.0009333333333333333
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.9993666666666666,
+     0.9990666666666667,
+     0.9996333333333334
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2880916869603152,
+     1.2730329643184288,
+     1.303961918150459
+    ],
+    "attempted_attack_accept_rate": [
+     0.9996333333333334,
+     0.9994333333333333,
+     0.9998333333333334
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.48045552163271515,
+     0.45730445248291723,
+     0.504796792561015
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.5025,
+     0.50140625,
+     0.50375
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   },
+   "pkg_unrooted": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.00055,
+     0.000375,
+     0.0008
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.99945,
+     0.9992,
+     0.999625
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.3148452584575536,
+     1.2975481292187807,
+     1.3332876981721844
+    ],
+    "attempted_attack_accept_rate": [
+     0.99965,
+     0.99935,
+     0.9999
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.4743323019440692,
+     0.45108079328067097,
+     0.49765384287067504
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   },
+   "fine_ratchet_ext": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0004446972439112674,
+     0.00035679012984058203,
+     0.0005377736198026347
+    ],
+    "coverage": [
+     0.966,
+     0.966,
+     0.966
+    ],
+    "holding_time_fraction": [
+     0.034,
+     0.034,
+     0.034
+    ],
+    "guardian_load_per_1k_events": [
+     0.6666666666666666,
+     0.6666666666666666,
+     0.6666666666666666
+    ],
+    "coverage_adjusted_utility": [
+     0.96652,
+     0.96641,
+     0.966625
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.3838654863390525,
+     1.3696574605482368,
+     1.3988388195815467
+    ],
+    "attempted_attack_accept_rate": [
+     0.9661,
+     0.96603,
+     0.96617
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.6566826772613813,
+     0.6383291203941565,
+     0.6753804133145163
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.34375,
+     0.34375,
+     0.34375
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_failure": false
+   }
+  },
+  "E": {
+   "clean_only": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0005,
+     0.00035,
+     0.0006666666666666666
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.9995,
+     0.9993333333333333,
+     0.99965
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2934803224887932,
+     1.2799009382003468,
+     1.3086673693876392
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "cost_parks_mean": 0.0,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 663.7,
+    "cost_store_bytes_mean": 97563.9,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 100.46921762150305,
+    "cost_bytes_per_record_mean": 147.0,
+    "refusal_reasons_total": {},
+    "coverage_failure": false
+   },
+   "ratchet_fine_0.5deg": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.313687950449053,
+     1.2961357788583105,
+     1.332112743356442
+    ],
+    "attempted_attack_accept_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.6919692202575515,
+     0.6661353747566156,
+     0.7171585431996559
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "cost_parks_mean": 0.0,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 663.81,
+    "cost_store_bytes_mean": 97580.07,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 100.12735393750822,
+    "cost_bytes_per_record_mean": 147.0,
+    "refusal_reasons_total": {},
+    "coverage_failure": false
+   },
+   "ratchet_fine_0.1deg": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2783736176030163,
+     1.2621473987066718,
+     1.2958059277417953
+    ],
+    "attempted_attack_accept_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.507227268225538,
+     0.48276850566447316,
+     0.5320033480457752
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "cost_parks_mean": 0.0,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 663.81,
+    "cost_store_bytes_mean": 97580.07,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 99.77394074170056,
+    "cost_bytes_per_record_mean": 147.0,
+    "refusal_reasons_total": {},
+    "coverage_failure": false
+   },
+   "rim_orbit_24deg": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.016666666666666666,
+     0.0,
+     0.05
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2715867183046254,
+     1.254986287735339,
+     1.2894846730353802
+    ],
+    "attempted_attack_accept_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.45479664269518894,
+     0.4311538217011022,
+     0.48081601958120923
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "cost_parks_mean": 0.0,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 463.81,
+    "cost_store_bytes_mean": 68180.07,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 101.04386312856758,
+    "cost_bytes_per_record_mean": 147.0,
+    "refusal_reasons_total": {},
+    "coverage_failure": false
+   },
+   "legit_drift": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0716885182685819,
+     0.06927241358989984,
+     0.07417259446531146
+    ],
+    "coverage": [
+     0.6918,
+     0.6506166666666666,
+     0.7348487499999999
+    ],
+    "holding_time_fraction": [
+     0.3082,
+     0.26515125,
+     0.3493833333333333
+    ],
+    "guardian_load_per_1k_events": [
+     12.108333333333334,
+     11.808333333333334,
+     12.391875
+    ],
+    "coverage_adjusted_utility": [
+     0.6419583333333333,
+     0.60368625,
+     0.6826677083333333
+    ],
+    "max_centroid_disp_deg_mean": [
+     8.852669550904155,
+     8.06448279084097,
+     9.70857867715889
+    ],
+    "max_nonimprint_mem_frac": [
+     0.030485305397113475,
+     0.028247435331324,
+     0.032650486669259356
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": 399.0,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "cost_parks_mean": 0.0,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 834.35,
+    "cost_store_bytes_mean": 123671.05,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 106.31285744160763,
+    "cost_bytes_per_record_mean": 148.04989386079967,
+    "refusal_reasons_total": {},
+    "coverage_failure": false
+   },
+   "pkg_contaminated": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000575,
+     0.000375,
+     0.000825
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     80.0,
+     80.0,
+     80.0
+    ],
+    "coverage_adjusted_utility": [
+     0.999425,
+     0.999175,
+     0.999625
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.282410707923591,
+     1.2667804853147326,
+     1.2982725297153468
+    ],
+    "attempted_attack_accept_rate": [
+     0.28995,
+     0.28985,
+     0.29
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.4597780191403724,
+     0.4316724800346824,
+     0.4876304865024622
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "post_revocation_accept_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "contaminated_residue_at_recall_mean": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "contaminated_residue_end_mean": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "contaminated_residue_after_recall_max": 0,
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "t_trace_median": 49.0,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "cost_parks_mean": 42.0,
+    "cost_quarantined_mean": 8.0,
+    "cost_store_units_mean": 521.76,
+    "cost_store_bytes_mean": 79887.16,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 100.16471005340765,
+    "cost_bytes_per_record_mean": 153.11093521394113,
+    "refusal_reasons_total": {
+     "contaminated-ancestor": 10000
+    },
+    "coverage_failure": false
+   },
+   "pkg_unrooted": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.00055,
+     0.000375,
+     0.0008
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     110.0,
+     110.0,
+     110.0
+    ],
+    "coverage_adjusted_utility": [
+     0.99945,
+     0.9992,
+     0.999625
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2752928483663428,
+     1.259011134253181,
+     1.291753944144978
+    ],
+    "attempted_attack_accept_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.4498174332294668,
+     0.4258715718717175,
+     0.474067445274797
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "cost_parks_mean": 66.0,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 463.78,
+    "cost_store_bytes_mean": 68175.66,
+    "cost_visits_mean_mean": 6.5236051502145935,
+    "cost_visits_max_mean": 40.0,
+    "cost_resolve_us_mean_mean": 77.95408180924521,
+    "cost_bytes_per_record_mean": 147.0,
+    "refusal_reasons_total": {
+     "unregistered-principal": 6700,
+     "unknown-parent": 6700,
+     "depth>Lmax": 6600
+    },
+    "coverage_failure": false
+   },
+   "ratchet_fine_2deg": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0043,
+     0.0030743750000000003,
+     0.005725625
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     1.7666666666666666,
+     1.3829166666666668,
+     2.150416666666666
+    ],
+    "coverage_adjusted_utility": [
+     0.9957,
+     0.994274375,
+     0.9969256249999999
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.7808427684541008,
+     1.754011020160019,
+     1.8079027281326723
+    ],
+    "attempted_attack_accept_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     1.4605039379352749,
+     1.4327601549434597,
+     1.4883832873122556
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": 161.5,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "cost_parks_mean": 0.0,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 662.28,
+    "cost_store_bytes_mean": 97355.16,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 99.71979277549208,
+    "cost_bytes_per_record_mean": 147.0,
+    "refusal_reasons_total": {},
+    "coverage_failure": false
+   },
+   "fine_ratchet_ext": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.00044489969063951743,
+     0.0003569598505537407,
+     0.000532858761387916
+    ],
+    "coverage": [
+     0.966,
+     0.966,
+     0.966
+    ],
+    "holding_time_fraction": [
+     0.034,
+     0.034,
+     0.034
+    ],
+    "guardian_load_per_1k_events": [
+     179.88000000000002,
+     179.84333333333333,
+     179.91333333333336
+    ],
+    "coverage_adjusted_utility": [
+     0.96608,
+     0.965984875,
+     0.966185125
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.4258779473957819,
+     1.4113022285092605,
+     1.4400506008397196
+    ],
+    "attempted_attack_accept_rate": [
+     0.48734,
+     0.48725,
+     0.48743
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.6368183102339255,
+     0.6181630590590255,
+     0.6563457011017672
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.14285714285714285,
+     0.1418521205357143,
+     0.1440853794642857
+    ],
+    "trace_alarm_trial_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "t_trace_median": 49.0,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "cost_parks_mean": 479.64,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 2483.5,
+    "cost_store_bytes_mean": 364099.82,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 101.91151720430533,
+    "cost_bytes_per_record_mean": 146.6075376439377,
+    "refusal_reasons_total": {},
+    "coverage_failure": false
+   },
+   "orth_payload_9.8pct": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.016666666666666666,
+     0.0,
+     0.05
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2715867183046254,
+     1.254986287735339,
+     1.2894846730353802
+    ],
+    "attempted_attack_accept_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.45479664269518894,
+     0.4311538217011022,
+     0.48081601958120923
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "cost_parks_mean": 0.0,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 463.81,
+    "cost_store_bytes_mean": 68180.07,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 100.01509193274006,
+    "cost_bytes_per_record_mean": 147.0,
+    "refusal_reasons_total": {},
+    "coverage_failure": false
+   },
+   "pkg_bulk_diluted": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.0006333333333333333,
+     0.00036666666666666667,
+     0.0009333333333333333
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     315.0,
+     315.0,
+     315.0
+    ],
+    "coverage_adjusted_utility": [
+     0.9993666666666666,
+     0.9990666666666667,
+     0.9996333333333334
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2989881835580213,
+     1.2811798585683367,
+     1.315529492795961
+    ],
+    "attempted_attack_accept_rate": [
+     0.41646666666666665,
+     0.4163,
+     0.4166
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.4596624979749096,
+     0.43235671942452814,
+     0.48706839980553474
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.29824561403508776,
+     0.29824561403508776,
+     0.29824561403508776
+    ],
+    "trace_alarm_trial_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "t_trace_median": 49.0,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "cost_parks_mean": 175.0,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 488.75,
+    "cost_store_bytes_mean": 71596.37,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 101.48759486479929,
+    "cost_bytes_per_record_mean": 146.4887365053013,
+    "refusal_reasons_total": {},
+    "coverage_failure": false
+   },
+   "adaptive_whitebox": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.17535,
+     0.17124875,
+     0.179525
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     7.583333333333333,
+     7.183333333333334,
+     8.0
+    ],
+    "coverage_adjusted_utility": [
+     0.82465,
+     0.820475,
+     0.8287512499999999
+    ],
+    "max_centroid_disp_deg_mean": [
+     3.972711633751,
+     3.8412849855504665,
+     4.100896395129906
+    ],
+    "attempted_attack_accept_rate": [
+     0.99515,
+     0.99465,
+     0.9956
+    ],
+    "max_push_toward_target_deg_mean": [
+     3.3805284397870135,
+     3.3544206029833954,
+     3.40743601864745
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": 24.0,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "cost_parks_mean": 0.0,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 592.89,
+    "cost_store_bytes_mean": 87154.83,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 103.80119761927443,
+    "cost_bytes_per_record_mean": 147.0,
+    "refusal_reasons_total": {},
+    "coverage_failure": false
+   },
+   "ratchet_0.98": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.016666666666666666,
+     0.0,
+     0.05
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2698143799175101,
+     1.2537005500644287,
+     1.2881635313714679
+    ],
+    "attempted_attack_accept_rate": [
+     0.0006,
+     0.00025,
+     0.00105
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.4557026866387519,
+     0.4314029009053639,
+     0.481782470373467
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "cost_parks_mean": 0.0,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 463.93,
+    "cost_store_bytes_mean": 68197.71,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 100.6007158689196,
+    "cost_bytes_per_record_mean": 147.0,
+    "refusal_reasons_total": {},
+    "coverage_failure": false
+   },
+   "inspace_outlier_40deg": {
+    "trials": 100,
+    "clean_false_reject_rate": [
+     0.000475,
+     0.000275,
+     0.0007
+    ],
+    "coverage": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "holding_time_fraction": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "guardian_load_per_1k_events": [
+     0.016666666666666666,
+     0.0,
+     0.05
+    ],
+    "coverage_adjusted_utility": [
+     0.999525,
+     0.9993,
+     0.999725
+    ],
+    "max_centroid_disp_deg_mean": [
+     1.2715867183046254,
+     1.254986287735339,
+     1.2894846730353802
+    ],
+    "attempted_attack_accept_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_push_toward_target_deg_mean": [
+     0.45479664269518894,
+     0.4311538217011022,
+     0.48081601958120923
+    ],
+    "harm_success_rate_push_ge_10deg": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "max_nonimprint_mem_frac": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "trace_alarm_trial_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "t_trace_median": Infinity,
+    "t_geom_median": Infinity,
+    "trace_before_geom_rate": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "cost_parks_mean": 0.0,
+    "cost_quarantined_mean": 0.0,
+    "cost_store_units_mean": 463.81,
+    "cost_store_bytes_mean": 68180.07,
+    "cost_visits_mean_mean": 1.0,
+    "cost_visits_max_mean": 1.0,
+    "cost_resolve_us_mean_mean": 98.92192598260104,
+    "cost_bytes_per_record_mean": 147.0,
+    "refusal_reasons_total": {},
+    "coverage_failure": false
+   }
+  }
+ },
+ "acceptance_E": {
+  "D-criterion 1_ratchet_harm_ucl<=0.05 applied to E": [
+   [
+    0.0,
+    0.0,
+    0.0
+   ],
+   true
+  ],
+  "D-criterion 2_outlier_accept_ucl<=0.01 applied to E": [
+   [
+    0.0,
+    0.0,
+    0.0
+   ],
+   true
+  ],
+  "D-criterion 3_drift_frr_ucl<=0.05 applied to E": [
+   [
+    0.0716885182685819,
+    0.06927241358989984,
+    0.07417259446531146
+   ],
+   false
+  ],
+  "D-criterion 4_coverage_min>=0.90 applied to E": [
+   0.6918,
+   false
+  ],
+  "D-criterion 5_clean_frr_ucl<=0.01 applied to E": [
+   [
+    0.0005,
+    0.00035,
+    0.0006666666666666666
+   ],
+   true
+  ],
+  "P1a_geometry_arms_accept_pkgs_lcl>=0.5": [
+   {
+    "A": {
+     "pkg_unrooted": 0.99935,
+     "pkg_contaminated": 0.99945,
+     "pkg_bulk_diluted": 0.9992333333333333
+    },
+    "B": {
+     "pkg_unrooted": 1.0,
+     "pkg_contaminated": 1.0,
+     "pkg_bulk_diluted": 1.0
+    },
+    "C": {
+     "pkg_unrooted": 0.9994,
+     "pkg_contaminated": 0.99935,
+     "pkg_bulk_diluted": 0.9994333333333333
+    },
+    "D": {
+     "pkg_unrooted": 0.99935,
+     "pkg_contaminated": 0.99935,
+     "pkg_bulk_diluted": 0.9994333333333333
+    }
+   },
+   true
+  ],
+  "P1b_E_unrooted_ucl<=0.01": [
+   [
+    0.0,
+    0.0,
+    0.0
+   ],
+   true
+  ],
+  "P1c_E_contaminated_post_ucl<=0.01": [
+   [
+    0.0,
+    0.0,
+    0.0
+   ],
+   true
+  ],
+  "P1d_E_bulk_nonimprint_ucl<=0.30": [
+   [
+    0.29824561403508776,
+    0.29824561403508776,
+    0.29824561403508776
+   ],
+   true
+  ],
+  "P1e_E_contaminated_residue_after_recall==0": [
+   0,
+   true
+  ],
+  "P2_trace_detects_lcl>=0.9_and_before_geom": [
+   {
+    "alarm": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "before_geom": [
+     1.0,
+     1.0,
+     1.0
+    ]
+   },
+   true
+  ],
+  "P3_drift_false_trace_alarm_ucl<=0.05": [
+   [
+    0.0,
+    0.0,
+    0.0
+   ],
+   true
+  ],
+  "coverage_new_families>=0.90": [
+   {
+    "pkg_unrooted": 1.0,
+    "pkg_contaminated": 1.0,
+    "pkg_bulk_diluted": 1.0,
+    "fine_ratchet_ext": 0.966
+   },
+   true
+  ],
+  "GREEN": false
+ },
+ "runtime_s": 115.1358995437622
+}

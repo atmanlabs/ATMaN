@@ -1,0 +1,15 @@
+q8F1_results.json: shipped 47880 B sha256 3c4365d61042053f9835e05a9e6ad4baecb7fb4223e9ffbc570fca2571b29f90 | fresh 47880 B sha256 dd64238dc5a323f19447d1726ddbb9fb99308df8b4f03143198dde17c75b3c1b
+  byte diff: 15 differing positions in common prefix, length delta 0, first offsets [47861, 47862, 47864, 47865, 47866, 47867, 47868, 47869]
+  runtime_s shipped 158.866s fresh 161.724s
+  JSON equal except top-level runtime_s: True
+  nested frozen+impl identical: True
+  nested impl_sha256 vs shipped sources: all match; embedded frozen == F1_FROZEN.json: True
+  acceptance (observed): {"A1_ratchet_harm_ucl<=0.05": true, "A2_outlier_ucl<=0.01": true, "A3_clean_frr_ucl<=0.01": true, "A4_drift5_and_holdout_frr_ucl<=0.05": false, "A5_coverage_min>=0.90": true, "A6_E_protections": false, "A7_alarm_cover_harm_ucl<=0.05": true, "A8_park_flood": true, "A9_adaptive_harm_ucl<=0.05": true}
+q8F2_results.json: shipped 32651 B sha256 3d2c90d9fd4b2435850d452938481aa4cb1436e47b7dab65eae66ef667474bc0 | fresh 32650 B sha256 6c7a2572fc34e9e3a7bd310a639b6b33d0e06e5f42099b4052e4b88577afa9c9
+  byte diff: 18 differing positions in common prefix, length delta -1, first offsets [32631, 32632, 32633, 32635, 32636, 32637, 32638, 32639]
+  runtime_s shipped 138.851s fresh 506.494s
+  JSON equal except top-level runtime_s: True
+  nested frozen+impl identical: True
+  nested impl_sha256 vs shipped sources: all match; embedded frozen == F1_FROZEN.json: True
+  acceptance (observed): {"A1_ratchet_harm_ucl<=0.05": true, "A2_outlier_ucl<=0.01": true, "A3_clean_frr_ucl<=0.01": true, "A4_drift5_and_holdout_frr_ucl<=0.05": false, "A5_coverage_min>=0.90": true, "A6_E_protections": true, "A7_alarm_cover_harm_ucl<=0.05": true, "A8_park_flood": true, "A9_adaptive_harm_ucl<=0.05": true}
+R3 COMPARE: PASS

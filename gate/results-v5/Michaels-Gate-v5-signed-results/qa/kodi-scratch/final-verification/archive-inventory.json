@@ -1,0 +1,1160 @@
+[
+  {
+    "name": "michaels-gate-v5-candidate",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/V5-CREW-HANDOFF.md",
+    "type": "0",
+    "size": 1085,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/replay.sh",
+    "type": "0",
+    "size": 1080,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/FILES.sha256",
+    "type": "0",
+    "size": 18155,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/README.md",
+    "type": "0",
+    "size": 1008,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/PACKET.sig",
+    "type": "0",
+    "size": 128,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/keys",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/keys/NOTICE.md",
+    "type": "0",
+    "size": 473,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/keys/SYNTHETIC-test-log.pub",
+    "type": "0",
+    "size": 64,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/keys/SYNTHETIC-packet.pub",
+    "type": "0",
+    "size": 64,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/LIMITATIONS.md",
+    "type": "0",
+    "size": 1205,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/ruling",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/ruling/SHA256SUMS",
+    "type": "0",
+    "size": 126,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/ruling/distribution-proposal.md",
+    "type": "0",
+    "size": 16876,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/FILES.sha256.sig",
+    "type": "0",
+    "size": 128,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/SEAL.json",
+    "type": "0",
+    "size": 241,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/OWNER-ORYN-TRACE.md",
+    "type": "0",
+    "size": 5554,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/corpora5.py",
+    "type": "0",
+    "size": 3485,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/OWNER-RULING.md",
+    "type": "0",
+    "size": 5331,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/tests",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/tests/__init__.py",
+    "type": "0",
+    "size": 0,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/tests/test_v5_gateF.py",
+    "type": "0",
+    "size": 3802,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/tests/test_battery.py",
+    "type": "0",
+    "size": 15040,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/tests/test_v4_trace.py",
+    "type": "0",
+    "size": 5730,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/tests/fixtures.py",
+    "type": "0",
+    "size": 1325,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/tests/test_v5_union.py",
+    "type": "0",
+    "size": 4013,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/tests/test_v5_F2.py",
+    "type": "0",
+    "size": 9976,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/tests/test_v4_imprint.py",
+    "type": "0",
+    "size": 6671,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/v3_q8.py",
+    "type": "0",
+    "size": 14063,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/MANIFEST.sha256",
+    "type": "0",
+    "size": 166,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/q8F.py",
+    "type": "0",
+    "size": 15923,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/crimson-findings.md",
+    "type": "0",
+    "size": 6029,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/counsel-review.md",
+    "type": "0",
+    "size": 22116,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/weeboh-findings.md",
+    "type": "0",
+    "size": 2850,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/weeboh-repro",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/weeboh-repro/union_registry_demo.py",
+    "type": "0",
+    "size": 2036,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/weeboh-repro/PREREG.md",
+    "type": "0",
+    "size": 1465,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/weeboh-repro/PREREG.sha256",
+    "type": "0",
+    "size": 76,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/weeboh-repro/results.sha256",
+    "type": "0",
+    "size": 78,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/weeboh-repro/results.txt",
+    "type": "0",
+    "size": 559,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/weeboh-repro/demo.sha256",
+    "type": "0",
+    "size": 89,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/kodi-findings.md",
+    "type": "0",
+    "size": 19784,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/crimson-repro",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/crimson-repro/results_legit_drift.json",
+    "type": "0",
+    "size": 2911,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/crimson-repro/MANIFEST.sha256",
+    "type": "0",
+    "size": 1042,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/crimson-repro/demo_legit_drift_wall.py",
+    "type": "0",
+    "size": 10735,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/crimson-repro/demo_stale_head.py",
+    "type": "0",
+    "size": 8603,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/crimson-repro/PROTOCOL.sha256",
+    "type": "0",
+    "size": 125,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/crimson-repro/PROTOCOL.md",
+    "type": "0",
+    "size": 4109,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/crimson-repro/results_stale_head.json",
+    "type": "0",
+    "size": 2905,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/crimson-repro/run_all.py",
+    "type": "0",
+    "size": 679,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-findings.md",
+    "type": "0",
+    "size": 15222,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/TESTLOG.txt",
+    "type": "0",
+    "size": 129,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/README.md",
+    "type": "0",
+    "size": 1044,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/park_results.json",
+    "type": "0",
+    "size": 20023,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/PREREG.json",
+    "type": "0",
+    "size": 1201,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/PARK_RUN.txt",
+    "type": "0",
+    "size": 791,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/test_park.py",
+    "type": "0",
+    "size": 2709,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/SHA256SUMS.txt",
+    "type": "0",
+    "size": 953,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/test_v4_regression.py",
+    "type": "0",
+    "size": 3173,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/SOURCE-MODEL-DIGESTS.txt",
+    "type": "0",
+    "size": 323,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/park.py",
+    "type": "0",
+    "size": 7244,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/PREREG.sha256",
+    "type": "0",
+    "size": 78,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/root.py",
+    "type": "0",
+    "size": 12684,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/run_park.py",
+    "type": "0",
+    "size": 4342,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/crew-evidence/onix-repro/test_root.py",
+    "type": "0",
+    "size": 9085,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/q8F2.py",
+    "type": "0",
+    "size": 17024,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/V5-SPEC.md",
+    "type": "0",
+    "size": 10608,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/HANDOFF.md",
+    "type": "0",
+    "size": 1170,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/V4-FROZEN-SPEC.md",
+    "type": "0",
+    "size": 9176,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate/__init__.py",
+    "type": "0",
+    "size": 0,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate/union5.py",
+    "type": "0",
+    "size": 2789,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate/trace.py",
+    "type": "0",
+    "size": 9421,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate/crypto.py",
+    "type": "0",
+    "size": 4218,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate/node.py",
+    "type": "0",
+    "size": 10953,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate/gate5.py",
+    "type": "0",
+    "size": 7913,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate/imprint.py",
+    "type": "0",
+    "size": 9082,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate/gate6.py",
+    "type": "0",
+    "size": 11459,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate/genesis.py",
+    "type": "0",
+    "size": 1377,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate/quorum.py",
+    "type": "0",
+    "size": 3141,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate/geometry.py",
+    "type": "0",
+    "size": 4996,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/gate/epochlog.py",
+    "type": "0",
+    "size": 2090,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/V4-E-ADDENDUM.md",
+    "type": "0",
+    "size": 8080,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/V5-F2-SPEC.md",
+    "type": "0",
+    "size": 3566,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/q8E.py",
+    "type": "0",
+    "size": 16613,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/q8v4.py",
+    "type": "0",
+    "size": 13815,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/F1_FROZEN.json",
+    "type": "0",
+    "size": 1493,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/CREW_EVIDENCE.sha256",
+    "type": "0",
+    "size": 3108,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/q8F1_results.json",
+    "type": "0",
+    "size": 47880,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/V4_FROZEN.json",
+    "type": "0",
+    "size": 892,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/q8F1.log",
+    "type": "0",
+    "size": 311,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/F2_IMPL.json",
+    "type": "0",
+    "size": 1815,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/q8F2.log",
+    "type": "0",
+    "size": 310,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/F1_IMPL.json",
+    "type": "0",
+    "size": 1593,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/F1_VERDICT.md",
+    "type": "0",
+    "size": 1576,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/F2_TESTLOG.txt",
+    "type": "0",
+    "size": 15402,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/q8E_results.json",
+    "type": "0",
+    "size": 43517,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/v3_inherited",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/v3_inherited/v3_q8_results.json",
+    "type": "0",
+    "size": 25700,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/v3_inherited/q8_corpora.npz",
+    "type": "0",
+    "size": 197356056,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/v3_inherited/FROZEN_BATTERY.sha256",
+    "type": "0",
+    "size": 172,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/v3_inherited/v3_calibration.json",
+    "type": "0",
+    "size": 254,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/v3_inherited/Q8_FROZEN.json",
+    "type": "0",
+    "size": 1210,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/q8F2_results.json",
+    "type": "0",
+    "size": 32651,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/q8v4_results.json",
+    "type": "0",
+    "size": 42195,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/E_FROZEN.json",
+    "type": "0",
+    "size": 962,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/inherited",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/inherited/V4_SOURCE.sha256",
+    "type": "0",
+    "size": 1392,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/artifacts/cycles",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/MANIFEST-E.sha256",
+    "type": "0",
+    "size": 335,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/reference-model/report.md",
+    "type": "0",
+    "size": 5076,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/verify_static.py",
+    "type": "0",
+    "size": 2528,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/requirements.txt",
+    "type": "0",
+    "size": 96,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/ruling",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/ruling/SHA256SUMS",
+    "type": "0",
+    "size": 244,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/ruling/owner-v4-oryn-trace.md",
+    "type": "0",
+    "size": 5554,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/ruling/owner-v4-ruling.md",
+    "type": "0",
+    "size": 5331,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/OWNER-ORYN-TRACE.md",
+    "type": "0",
+    "size": 5554,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/OWNER-RULING.md",
+    "type": "0",
+    "size": 5331,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/tests",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/tests/__init__.py",
+    "type": "0",
+    "size": 0,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/tests/test_battery.py",
+    "type": "0",
+    "size": 15040,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/tests/test_v4_trace.py",
+    "type": "0",
+    "size": 5730,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/tests/fixtures.py",
+    "type": "0",
+    "size": 1325,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/tests/test_v4_imprint.py",
+    "type": "0",
+    "size": 6671,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/diag_posthoc.py",
+    "type": "0",
+    "size": 1495,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/v3_q8.py",
+    "type": "0",
+    "size": 14063,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/MANIFEST.sha256",
+    "type": "0",
+    "size": 166,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/run_v4.py",
+    "type": "0",
+    "size": 6491,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/HANDOFF.md",
+    "type": "0",
+    "size": 1027,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/V4-FROZEN-SPEC.md",
+    "type": "0",
+    "size": 9176,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/gate",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/gate/__init__.py",
+    "type": "0",
+    "size": 0,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/gate/trace.py",
+    "type": "0",
+    "size": 9421,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/gate/crypto.py",
+    "type": "0",
+    "size": 4218,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/gate/node.py",
+    "type": "0",
+    "size": 10953,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/gate/imprint.py",
+    "type": "0",
+    "size": 9082,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/gate/genesis.py",
+    "type": "0",
+    "size": 1377,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/gate/quorum.py",
+    "type": "0",
+    "size": 3141,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/gate/geometry.py",
+    "type": "0",
+    "size": 4996,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/gate/epochlog.py",
+    "type": "0",
+    "size": 2090,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/verify.sh",
+    "type": "0",
+    "size": 1438,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/V4-E-ADDENDUM.md",
+    "type": "0",
+    "size": 8080,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/results.json",
+    "type": "0",
+    "size": 73483,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/q8E.py",
+    "type": "0",
+    "size": 16613,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/q8v4.py",
+    "type": "0",
+    "size": 13815,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/V4_FROZEN.json",
+    "type": "0",
+    "size": 892,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/diag_posthoc_rudder_off.json",
+    "type": "0",
+    "size": 5182,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/keys",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/keys/SYNTHETIC-v4-test-log-signing.key",
+    "type": "0",
+    "size": 119,
+    "mode": "0o600"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/keys/SYNTHETIC-v4-test-log-signing.pub",
+    "type": "0",
+    "size": 64,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/q8E_results.partial.json",
+    "type": "0",
+    "size": 29557,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/q8E_results.json",
+    "type": "0",
+    "size": 43517,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/bundle",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/bundle/v4_regressions.log",
+    "type": "0",
+    "size": 1434,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/bundle/q8E.log",
+    "type": "0",
+    "size": 669,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/bundle/MANIFEST.json",
+    "type": "0",
+    "size": 3587,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/bundle/v3_battery.log",
+    "type": "0",
+    "size": 2394,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/bundle/MANIFEST.sig",
+    "type": "0",
+    "size": 128,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/bundle/q8v4.log",
+    "type": "0",
+    "size": 755,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/bundle/v4_trace_regressions.log",
+    "type": "0",
+    "size": 919,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/q8v4_results.json",
+    "type": "0",
+    "size": 42195,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/E_FROZEN.json",
+    "type": "0",
+    "size": 962,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/cycles",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/cycles/c1-q8v4_results.json",
+    "type": "0",
+    "size": 42195,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/cycles/c1-q8v4.log",
+    "type": "0",
+    "size": 800,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/cycles/E1-q8E.log",
+    "type": "0",
+    "size": 695,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/cycles/c1-v3battery.txt",
+    "type": "0",
+    "size": 14124,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/cycles/E2-q8E.log",
+    "type": "0",
+    "size": 714,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/artifacts/RULING.SHA256SUMS",
+    "type": "0",
+    "size": 120,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/MANIFEST-E.sha256",
+    "type": "0",
+    "size": 335,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v4/reference-model/report.md",
+    "type": "0",
+    "size": 8861,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v3",
+    "type": "5",
+    "size": 0,
+    "mode": "0o755"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v3/sealed-package-sha256.txt",
+    "type": "0",
+    "size": 212,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v3/michaels-gate-sealed-package-v3",
+    "type": "5",
+    "size": 0,
+    "mode": "0o770"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v3/michaels-gate-sealed-package-v3/05-homestead-brief-packet.md",
+    "type": "0",
+    "size": 28312,
+    "mode": "0o660"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v3/michaels-gate-sealed-package-v3/02-homestead-v2-verdict.md",
+    "type": "0",
+    "size": 5361,
+    "mode": "0o660"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v3/michaels-gate-sealed-package-v3/MANIFEST.md",
+    "type": "0",
+    "size": 2289,
+    "mode": "0o660"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v3/michaels-gate-sealed-package-v3/04-homestead-verdict-round1.md",
+    "type": "0",
+    "size": 9796,
+    "mode": "0o660"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v3/michaels-gate-sealed-package-v3/01-v3-patch-spec.md",
+    "type": "0",
+    "size": 16900,
+    "mode": "0o660"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v3/michaels-gate-sealed-package-v3/03-v2-patch-spec-superseded.md",
+    "type": "0",
+    "size": 15404,
+    "mode": "0o660"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v3/verification.json",
+    "type": "0",
+    "size": 653,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/inherited/v3/HANDOFF.md",
+    "type": "0",
+    "size": 1578,
+    "mode": "0o644"
+  },
+  {
+    "name": "michaels-gate-v5-candidate/SBOM.json",
+    "type": "0",
+    "size": 428,
+    "mode": "0o644"
+  }
+]

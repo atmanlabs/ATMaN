@@ -25,7 +25,7 @@ class TestOperatorAuth(unittest.TestCase):
         self.events_file = self.temp_path / "test_events.json"
         self.config = Config(HERE / "config.yaml")
         self.tsc = TSC()
-        self.secret_passphrase = "michael-secure-passphrase-2026-xyz!"
+        self.secret_passphrase = "operator-secure-passphrase-2026-xyz!"
 
     def test_correct_passphrase_authenticates(self):
         """Test 1: Correct passphrase successfully enrolls and authenticates."""
@@ -109,7 +109,7 @@ class TestOperatorAuth(unittest.TestCase):
 
     def test_passphrase_appears_nowhere_in_memory_or_logs(self):
         """Test 4: Secret passphrase appears nowhere in events, WFC, PSC, or logs."""
-        super_secret = "Alpha-7-Echo-Whiskey-998822!!"
+        super_secret = "test-fixture-super-secret-not-real"
         operator_auth.enroll(super_secret, auth_path=self.auth_file)
         self.assertTrue(operator_auth.verify_passphrase(super_secret, auth_path=self.auth_file))
 
@@ -147,7 +147,7 @@ class TestOperatorAuth(unittest.TestCase):
 
     def test_enrollment_stores_salted_hash_never_plaintext(self):
         """Test 5: Enrollment stores salted PBKDF2 hash only; never plaintext."""
-        secret = "StrictlyConfidentialPassphrase#2026"
+        secret = "test-fixture-secret-not-real"
         enrolled = operator_auth.enroll(secret, auth_path=self.auth_file)
         self.assertTrue(enrolled)
 

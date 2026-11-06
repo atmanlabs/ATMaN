@@ -1,0 +1,25 @@
+{
+ "files": {
+  "artifacts/FROZEN_BATTERY.sha256": "73b318e612b0424905ffb2dccbb39f804f40fa8e55577f163c628e4cb93e63a5",
+  "artifacts/Q8_FROZEN.json": "d271ed9edfaeb6c204ea8ec0c46b6e5aca56fce8c87c9846c69b3cef1fdef397",
+  "artifacts/bundle/battery.log": "6a39ba4f76eecf36764c757a1f7f967cb26d1c63a2cc3389c9c1255d0fe7b923",
+  "artifacts/bundle/q8.log": "23c09cd928a8fa8181af628f7175d650f4f684c24da1cc5c32d0a41ac01853e6",
+  "artifacts/bundle/regressions.log": "78b5c8990e8d5b15f3d0d9da980e743f58a522908487fbc527084062c91c8c18",
+  "artifacts/q8_corpora.npz": "823d07b920c67fb429cdd7583f95a927f401b7c67ae2b943f2b1ee4bdc38ed59",
+  "artifacts/q8_results.json": "2c051b16611879baf7cf0455483ce129f088ccb7f4fa803c66848961db7d7c80",
+  "gate/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "gate/crypto.py": "8cb62c1042c0f8d3a98daf816b30657edca43363b30aa7aa949e3f5ef723786d",
+  "gate/epochlog.py": "405c12c5fc94d456315654ef7a6f6e2746a6f8428595d08f5010368125068bdd",
+  "gate/genesis.py": "c039894b068761a2b5cf66a649b9c758ef330f02c889784ea9c176f2cf5d97f2",
+  "gate/geometry.py": "98862dc6e8dabfe3cfeac29599dc7c3d09c26059999f2048f5a1b3944ec0fcf2",
+  "gate/node.py": "e64b4b1c4ce9e974f0b7022191ef0cf5964bdbd15df744c3b033e56bc1f3b7f7",
+  "gate/quorum.py": "7e755865074c000d19a79c409783f07487267559f58de60b223ddaddf4472949",
+  "q8.py": "a649038cac78f28a269ecd7165196967b4e47b19e7516b4020854283ab80a755",
+  "results.json": "03595ca9f7529dbdb8aaf273099c1fb6b597bb835ad8ec3453e265d5736424b3",
+  "run_battery.py": "043b911e4f5679f0d267c009679dfcbdc72948ab04652e16a4babf1cd5a87616",
+  "tests/fixtures.py": "33b296b67d4e803f8dcd2633b1dcbe44941b1ec608def1b3c8ed9a9c72b6fa22",
+  "tests/test_battery.py": "3b2817bbe165563e9c02541a576b601a15c82a81094829a435acb6bb5e6f617b",
+  "tests/test_regressions.py": "653b683fc853c682a6374889759c8658cba3fa353041cc89ba9bfddddabd225c"
+ },
+ "note": "SYNTHETIC test-log signature; not production crypto"
+}

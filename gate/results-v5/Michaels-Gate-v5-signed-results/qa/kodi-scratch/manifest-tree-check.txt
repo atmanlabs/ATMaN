@@ -1,0 +1,9 @@
+ROOT /workspace/michaels-gate-v3/reference-model
+ OK 20 MISSING 0 MISMATCH 0
+ KEYS_ON_DISK ['SYNTHETIC-test-log-signing.key', 'SYNTHETIC-test-log-signing.pub'] IN_MANIFEST []
+ MANIFEST_NOTE SYNTHETIC test-log signature; not production crypto
+ROOT /workspace/michaels-gate-v4/reference-model
+ OK 37 MISSING 0 MISMATCH 0
+ KEYS_ON_DISK ['SYNTHETIC-v4-test-log-signing.key', 'SYNTHETIC-v4-test-log-signing.pub'] IN_MANIFEST []
+ MANIFEST_NOTE SYNTHETIC test-log signature; not production crypto
+V5 bundle exists? False

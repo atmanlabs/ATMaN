@@ -1,0 +1,80 @@
+Fri Nov  6 00:21:11 EST 2026
+1
+== static (read-only, on the package itself)
+PASS [pkg] 245 files hash-match FILES.sha256
+PASS [pkg] every shipped file is listed
+PASS [pkg] FILES covers reference-model/report.md
+PASS [pkg] FILES covers reference-model/HANDOFF.md
+PASS [pkg] FILES covers reference-model/artifacts/q8F1_results.json
+PASS [pkg] FILES covers reference-model/artifacts/q8F2_results.json
+PASS [pkg] FILES covers history.bundle
+PASS [pkg] FILES covers PATHS.md
+PASS [pkg] FILES covers PACKAGING-RECEIPT.md
+PASS [pkg] packet key distinct from test-log key
+PASS [pkg] FILES.sha256.sig verifies (test-log key)
+PASS [pkg] PACKET.sig verifies (packet key)
+PASS [pkg] no __pycache__/.pyc/.partial
+PASS [pkg] no absolute /workspace paths in runnable v5 code
+PASS [keys] no private key files shipped
+PASS [inh] v4 bundle MANIFEST.sig verifies
+PASS [inh] v4 signed bundle: 37 files present+match
+PASS [inh] v3 bundle MANIFEST.sig verifies
+PASS [inh] v3 signed bundle: 20 files present+match
+PASS [inh] v3 sealed spec hash (as v3 verify.sh)
+PASS [inh] inherited/v4/reference-model/MANIFEST.sha256: 2 entries
+PASS [inh] inherited/v4/reference-model/MANIFEST-E.sha256: 4 entries
+PASS [inh] inherited/v4/reference-model/artifacts/v3_inherited/FROZEN_BATTERY.sha256: 2 entries
+PASS [inh] inherited/v3/reference-model/artifacts/FROZEN_BATTERY.sha256: 2 entries
+PASS [inh] inherited/v4/ruling/SHA256SUMS (2 entries; absolute historical paths mapped by basename)
+PASS [inh] ruling/SHA256SUMS (1 entries; absolute historical paths mapped by basename)
+PASS [inh] v3 sealed package: 6 documents match verification.json
+INFO [inh] inherited/v3/sealed-package-sha256.txt names the original attachment ZIP, which is not shipped (provenance only, see PATHS.md)
+PASS [inh] v4 copy of v3_inherited/FROZEN_BATTERY.sha256 byte-identical to reference-model copy
+PASS [inh] v4 copy of v3_inherited/Q8_FROZEN.json byte-identical to reference-model copy
+PASS [inh] v4 copy of v3_inherited/q8_corpora.npz byte-identical to reference-model copy
+PASS [reg] F1_IMPL.json registered files match
+PASS [reg] F2_IMPL.json registered files match
+PASS [reg] q8F1_results.json embeds exactly F1_IMPL.json (incl. registered_at)
+PASS [reg] q8F2_results.json embeds exactly F2_IMPL.json (incl. registered_at)
+PASS [corp] v3 corpora regenerated from seed 20261105 == frozen NPZ arrays exactly
+PASS [corp] v3 regenerated hash + protocol hash == Q8_FROZEN.json
+PASS [corp] v5 generator seeds/params == F1_FROZEN.corpora_spec
+PASS [corp] v5 corpora (drift5/holdout5/alarm_cover/park_flood) regenerated hash == F1_FROZEN
+STATIC VERIFY: PASS
+== history (bundle ancestry/locks)
+PASS history.bundle clones (git verifies pack integrity)
+PASS v5 prereg spec + inherited copies (ed03799) is ancestor of F1 corpus+spec FREEZE (e125422)
+PASS F1 corpus+spec FREEZE (e125422) is ancestor of F1 implementation registration (572a4fe)
+PASS F1 implementation registration (572a4fe) is ancestor of F1 evaluation recorded (9f4845a)
+PASS F1 evaluation recorded (9f4845a) is ancestor of F2 implementation registration (921708a)
+PASS F2 implementation registration (921708a) is ancestor of F2 evaluation recorded (daf5430)
+PASS F2 evaluation commit is ancestor of tip fa55512
+PASS F1_FROZEN absent before freeze commit
+PASS F1_FROZEN.v5_spec_sha256 == V5-SPEC.md in freeze tree
+PASS F1_FROZEN.corpora5_py_sha256 == corpora5.py in freeze tree
+PASS F1_FROZEN.gate5_py_sha256 == gate/gate5.py in freeze tree
+PASS F1_FROZEN.union5_py_sha256 == gate/union5.py in freeze tree
+PASS F1_IMPL.json hashes == tree of its registration commit 572a4fe
+PASS F2_IMPL.json hashes == tree of its registration commit 921708a
+PASS q8F1_results.json absent at its lock commit 572a4fe
+PASS q8F1_results.json at 9f4845a == shipped bytes
+PASS q8F2_results.json absent at its lock commit 921708a
+PASS q8F2_results.json at daf5430 == shipped bytes
+INFO files changed between F1 FREEZE and F1 IMPL (pre-evaluation, covered by F1_IMPL): ['V5-SPEC.md', '__pycache__/corpora5.cpython-313.pyc', '__pycache__/v3_q8.cpython-313.pyc', 'artifacts/CREW_EVIDENCE.sha256', 'artifacts/F1_IMPL.json', 'crew-evidence/counsel-review.md', 'crew-evidence/crimson-findings.md', 'crew-evidence/crimson-repro/MANIFEST.sha256', 'crew-evidence/crimson-repro/PROTOCOL.md', 'crew-evidence/crimson-repro/PROTOCOL.sha256', 'crew-evidence/crimson-repro/demo_legit_drift_wall.py', 'crew-evidence/crimson-repro/demo_stale_head.py', 'crew-evidence/crimson-repro/results_legit_drift.json', 'crew-evidence/crimson-repro/results_stale_head.json', 'crew-evidence/crimson-repro/run_all.py', 'crew-evidence/kodi-findings.md', 'crew-evidence/weeboh-findings.md', 'crew-evidence/weeboh-repro/PREREG.md', 'crew-evidence/weeboh-repro/PREREG.sha256', 'crew-evidence/weeboh-repro/demo.sha256', 'crew-evidence/weeboh-repro/results.sha256', 'crew-evidence/weeboh-repro/results.txt', 'crew-evidence/weeboh-repro/union_registry_demo.py', 'gate/__pycache__/__init__.cpython-313.pyc', 'gate/__pycache__/crypto.cpython-313.pyc', 'gate/__pycache__/epochlog.cpython-313.pyc', 'gate/__pycache__/gate5.cpython-313.pyc', 'gate/__pycache__/geometry.cpython-313.pyc', 'gate/__pycache__/imprint.cpython-313.pyc', 'gate/__pycache__/trace.cpython-313.pyc', 'gate/__pycache__/union5.cpython-313.pyc', 'gate/gate5.py', 'q8F.py', 'tests/__pycache__/__init__.cpython-313.pyc', 'tests/__pycache__/test_v5_union.cpython-313.pyc', 'tests/test_v5_gateF.py']
+PASS shipped reference-model/ == bundle tip tree (124 blobs)
+HISTORY VERIFY: PASS
+== inherited v4 signed bundle (copy)
+signature OK; all hashes match
+== inherited v3 signed bundle (copy)
+signature OK; all file hashes match
+== full test suite
+Ran 79 tests in 107.936s
+
+OK
+== F1 rerun
+REPLAY: q8F1_results.json reproduced exactly (all fields incl. registered_at; runtime_s excluded)
+== F2 rerun
+REPLAY: q8F2_results.json reproduced exactly (all fields incl. registered_at; runtime_s excluded)
+REPLAY: ALL PASS
+exit=0
+Fri Nov  6 00:39:26 EST 2026

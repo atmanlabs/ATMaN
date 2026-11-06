@@ -1,0 +1,34 @@
+{
+ "corpora_sha256": "561dcb8cc61bef92ed2179d1a8c67fc870a147f4b03718349e30cf5ce6365431",
+ "protocol_sha256": "7903362f850987d517bb2e468b8f73524c0872939b94260129faef2a9feb0491",
+ "protocol": {
+  "transcript": "Q8-frozen-synthetic-transcript-v1",
+  "sigma_in": 0.03,
+  "sigma_res": 0.0045,
+  "events": 600,
+  "attack_every": 3,
+  "cal_trials": 60,
+  "eval_trials": 100,
+  "target_fpr": 0.01,
+  "capacity": 64,
+  "gray": 0.005,
+  "park_release_every": 20,
+  "guardian_delay": 50,
+  "families": [
+   "orth_payload_9.8pct",
+   "inspace_outlier_40deg",
+   "ratchet_0.98",
+   "ratchet_fine_2deg",
+   "ratchet_fine_0.5deg",
+   "ratchet_fine_0.1deg",
+   "rim_orbit_24deg",
+   "adaptive_whitebox"
+  ],
+  "harm_disp_deg": 10.0,
+  "bootstrap": 1000,
+  "boot_seed": 12345,
+  "matching_rule": "A: tau_step chosen on CAL so A's clean false-reject rate = target_fpr (or the spec default 0.98 if that already meets it); C: threshold chosen on CAL so FPR_C = FPR_A(cal). B has no free parameter (identical anchor/path/residual settings to A) -> FPR_B reported with CI, never tuned."
+ },
+ "q8_source_sha256_at_freeze": "4e0a4fa12cd8dbc5716b6dcf6547acf7c7afc9837a9668d899ef0521c33297a0",
+ "frozen_at": "2026-11-05T22:12:37-0500"
+}

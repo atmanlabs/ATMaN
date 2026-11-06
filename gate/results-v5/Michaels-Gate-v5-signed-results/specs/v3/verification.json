@@ -1,0 +1,11 @@
+{
+  "manifest": "MANIFEST.md",
+  "documents": {
+    "01-v3-patch-spec.md": "5eb18c2bfa92abfd73b09a44d62c8161ec39598ebbae8c053ac0d0d260c6ad5d",
+    "02-homestead-v2-verdict.md": "8c0097d55340f1a4378f7597f4b71bff103bd9437e4244bff1695acf041c52b4",
+    "03-v2-patch-spec-superseded.md": "cbd3c95585dc2c91ff2cabaeb26c1548f482520163abbe46b82dc1f751db36b2",
+    "04-homestead-verdict-round1.md": "c92a16ada33b3dd752e6bfb799029ea1e6727cd9f71e29889782c96d22d5fea8",
+    "05-homestead-brief-packet.md": "8f7570b4fa686dbd8283c4b6cf90738cac3c644c689daefd088c816a89b4feb7",
+    "MANIFEST.md": "bb092e0b8c55394df34e27bba0f968fb9daafb009ee32ecc9d5fe77880ed0925"
+  }
+}

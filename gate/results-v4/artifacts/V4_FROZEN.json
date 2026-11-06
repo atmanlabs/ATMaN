@@ -1,0 +1,36 @@
+{
+ "drift_corpus_sha256": "19229dd9c06f30bc89831a5f378edfb120e70f917dcff82ee5dd7a319ea82f60",
+ "proto4_sha256": "87b59fcb95b00120aed9bdf6b0caee5f0d202735363a0220743b846f9f5e6b26",
+ "proto4": {
+  "drift_seed": 20261106,
+  "drift_trials": 100,
+  "drift_events": 1200,
+  "ramp": [
+   300,
+   900,
+   12.0
+  ],
+  "undeclared_to": 14.0,
+  "rare_frac": 0.05,
+  "rare_sigma": 0.06,
+  "reimprint_at": [
+   450,
+   600,
+   750,
+   900
+  ],
+  "authority_n": 512,
+  "thr0_fpr": 0.0003333333333333333,
+  "qsys_quantile": 0.999,
+  "acceptance": {
+   "ratchet_harm_ucl": 0.05,
+   "outlier_accept_ucl": 0.01,
+   "drift_frr_ucl": 0.05,
+   "coverage_min": 0.9,
+   "clean_frr_ucl": 0.01
+  }
+ },
+ "spec_sha256": "fee23ddffea745e0445d330d7b4b26a048ea218069e1d51275d4ccf1bb887711",
+ "v3_corpora_sha256": "561dcb8cc61bef92ed2179d1a8c67fc870a147f4b03718349e30cf5ce6365431",
+ "frozen_at": "2026-11-05 22:41:30 EST"
+}

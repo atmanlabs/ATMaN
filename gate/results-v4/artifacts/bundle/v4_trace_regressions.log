@@ -1,0 +1,12 @@
+test_recall_enumerates_descendants_quarantines_no_blanket_freeze (tests.test_v4_trace.LineageRecall.test_recall_enumerates_descendants_quarantines_no_blanket_freeze) ... ok
+test_canonical_id_and_tamper (tests.test_v4_trace.Resolution.test_canonical_id_and_tamper) ... ok
+test_depth_bound_parks (tests.test_v4_trace.Resolution.test_depth_bound_parks) ... ok
+test_root_admission_and_revoke_need_right_bodies (tests.test_v4_trace.Resolution.test_root_admission_and_revoke_need_right_bodies) ... ok
+test_signed_but_unrooted_refused (tests.test_v4_trace.Resolution.test_signed_but_unrooted_refused) ... ok
+test_d_trace_arithmetic_and_composition_guard (tests.test_v4_trace.TraceMass.test_d_trace_arithmetic_and_composition_guard) ... ok
+test_no_lineage_no_write (tests.test_v4_trace.TraceMass.test_no_lineage_no_write) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.040s
+
+OK

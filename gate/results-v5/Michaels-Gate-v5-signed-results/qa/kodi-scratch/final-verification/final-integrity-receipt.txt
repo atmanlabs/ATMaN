@@ -1,0 +1,7 @@
+COMMAND: python3 -B final-integrity inline (source recorded in verdict); CWD /workspace
+post-all files 167 tree_digest bb90c9d8762868ea92f25689d63daa1b56afdbe1b843e673b66d7a66971fe611 bytes 198553975 unsafe []
+PRE_POST_TREE_IDENTICAL True
+PRE_POST_METADATA_IDENTICAL True
+ARCHIVE_POST_SHA256 a181ae513df3b8ca9bc81fa6524e6f2988b32d2fdefb81cee8f493f747e7f1d4
+DATE 2026-11-06 00:01:47 EST-0500
+EXIT 0

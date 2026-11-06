@@ -1,0 +1,25 @@
+test_1_offline_delivery (tests.test_battery.T1_Recall.test_1_offline_delivery) ... ok
+test_2_out_of_order_highest_epoch_wins (tests.test_battery.T1_Recall.test_2_out_of_order_highest_epoch_wins) ... ok
+test_3_restart_never_revives (tests.test_battery.T1_Recall.test_3_restart_never_revives) ... ok
+test_4_poisoned_judge_bypassed_and_writes_freeze (tests.test_battery.T1_Recall.test_4_poisoned_judge_bypassed_and_writes_freeze) ... ok
+test_5_reconnect_missed_recall_stays_frozen (tests.test_battery.T1_Recall.test_5_reconnect_missed_recall_stays_frozen) ... ok
+test_cone_rim_orbit_path_charged (tests.test_battery.T3_Drift.test_cone_rim_orbit_path_charged) ... ok
+test_parked_rescored_at_release (tests.test_battery.T3_Drift.test_parked_rescored_at_release) ... ok
+test_ratchet_200_literal_state (tests.test_battery.T3_Drift.test_ratchet_200_literal_state) ... ok
+test_ratchet_200_mixer (tests.test_battery.T3_Drift.test_ratchet_200_mixer) ... ok
+test_admitted_configs_never_exceed_f_under_lineage_plus_build (tests.test_battery.T4_Composition.test_admitted_configs_never_exceed_f_under_lineage_plus_build) ... ok
+test_homestead_counterexample_rejected (tests.test_battery.T4_Composition.test_homestead_counterexample_rejected) ... ok
+test_weighted_quorum_formula (tests.test_battery.T4_Composition.test_weighted_quorum_formula) ... ok
+test_K_boundary (tests.test_battery.T5_Epoch.test_K_boundary) ... ok
+test_equivocation_permanent_hold_with_evidence (tests.test_battery.T5_Epoch.test_equivocation_permanent_hold_with_evidence) ... ok
+test_fast_forward_beyond_K_only_via_checkpoint_plus_chain (tests.test_battery.T5_Epoch.test_fast_forward_beyond_K_only_via_checkpoint_plus_chain) ... ok
+test_lone_or_subthreshold_signature_certifies_nothing (tests.test_battery.T5_Epoch.test_lone_or_subthreshold_signature_certifies_nothing) ... ok
+test_recall_recovery_separation_enforced (tests.test_battery.T5_Epoch.test_recall_recovery_separation_enforced) ... ok
+test_abstention_never_shrinks_denominator (tests.test_battery.T6_Holding.test_abstention_never_shrinks_denominator) ... ok
+test_combined_faults_over_f_network_hold (tests.test_battery.T6_Holding.test_combined_faults_over_f_network_hold) ... ok
+test_forced_abstention_attack (tests.test_battery.T6_Holding.test_forced_abstention_attack) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 2.183s
+
+OK

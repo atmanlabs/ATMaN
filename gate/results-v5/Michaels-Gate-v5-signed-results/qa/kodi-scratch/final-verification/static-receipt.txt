@@ -1,0 +1,33 @@
+DATE 2026-11-06 00:00:12 EST-0500
+ENV Linux-6.12.94+-x86_64-with-glibc2.41 3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]
+COMMAND ["python3", "-c", "import numpy,cryptography; print(\"numpy\",numpy.__version__,\"cryptography\",cryptography.__version__)"] CWD /workspace/michaels-gate-v5-candidate
+numpy 2.5.4 cryptography 43.0.0
+EXIT 0
+pre files 167 tree_digest bb90c9d8762868ea92f25689d63daa1b56afdbe1b843e673b66d7a66971fe611 bytes 198553975 unsafe []
+ARCHIVE 198707200 a181ae513df3b8ca9bc81fa6524e6f2988b32d2fdefb81cee8f493f747e7f1d4
+UNSIGNED_FILES ['FILES.sha256', 'FILES.sha256.sig', 'PACKET.sig']
+MISSING_FILES []
+MANIFEST_MISMATCH []
+ARCHIVE_UNSAFE []
+ARCHIVE_MATCHES_TREE True file_count 167
+ARCHIVE_ONLY []
+TREE_ONLY []
+ARCHIVE_CHANGED []
+ARCHIVE_MODE_MISMATCH []
+PRIVATE_KEY_METADATA_ONLY [('inherited/v4/reference-model/artifacts/keys/SYNTHETIC-v4-test-log-signing.key', '0o600')]
+NO_PRIVATE_KEY_CONTENT_PRINTED
+COMMAND ["python3", "-B", "verify_static.py"] CWD /workspace/michaels-gate-v5-candidate
+PASS 164 files hash-match FILES.sha256
+PASS FILES covers reference-model/report.md
+PASS FILES covers reference-model/artifacts/q8F2_results.json
+PASS FILES covers reference-model/HANDOFF.md
+PASS FILES covers reference-model/artifacts/q8F1_results.json
+PASS packet key distinct from test-log key
+PASS FILES.sha256.sig verifies
+PASS PACKET.sig verifies
+PASS no absolute /workspace paths in runnable v5 code
+PASS F1_IMPL.json registered files match
+PASS F2_IMPL.json registered files match
+STATIC VERIFY: PASS
+EXIT 0
+post-static files 167 tree_digest bb90c9d8762868ea92f25689d63daa1b56afdbe1b843e673b66d7a66971fe611 bytes 198553975 unsafe []

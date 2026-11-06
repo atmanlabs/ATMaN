@@ -1,0 +1,14 @@
+OWNER-RULING.md: OK
+V4-FROZEN-SPEC.md: OK
+OWNER-RULING.md: OK
+OWNER-ORYN-TRACE.md: OK
+V4-FROZEN-SPEC.md: OK
+V4-E-ADDENDUM.md: OK
+tests/test_battery.py: OK
+tests/fixtures.py: OK
+../ruling/owner-v4-ruling.md: OK
+../ruling/owner-v4-oryn-trace.md: OK
+signature OK; all hashes match
+{"verdict": {"D": "DESIGN WALL", "E": "DESIGN WALL"}, "v3_battery_on_v4_tree": {"ran": 20, "failures": 0, "errors": 0, "ok": true}, "v4_regressions": {"ran": 12, "failures": 0, "errors": 0, "ok": true}, "v4_trace_regressions": {"ran": 7, "failures": 0, "errors": 0, "ok": true}, "ABC_reproduce_v3_exactly": true, "q8_exit": 0, "qE_exit": 0}
+D and E stages reproduced exactly; GREEN D = False GREEN E = False
+signature OK; all hashes match

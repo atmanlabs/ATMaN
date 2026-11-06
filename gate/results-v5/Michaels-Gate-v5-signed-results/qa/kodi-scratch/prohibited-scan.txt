@@ -1,0 +1,15 @@
+SCANNED_FILES 152
+NAME_HITS 0
+CONTENT_HITS 9
+ HIT memory_snapshot /workspace/michaels-gate-v3/michaels-gate-sealed-package-v3/05-homestead-brief-packet.md
+ HIT memory_snapshot /workspace/michaels-gate-v3/michaels-gate-sealed-package-v3/02-homestead-v2-verdict.md
+ HIT memory_snapshot /workspace/michaels-gate-v3/michaels-gate-sealed-package-v3/MANIFEST.md
+ HIT memory_snapshot /workspace/michaels-gate-v3/michaels-gate-sealed-package-v3/01-v3-patch-spec.md
+ HIT memory_snapshot /workspace/michaels-gate-v3/michaels-gate-sealed-package-v3/03-v2-patch-spec-superseded.md
+ HIT PRIVATE_KEY_IN_PACKAGE_SYNTHETIC_LABELED /workspace/michaels-gate-v3/reference-model/artifacts/keys/SYNTHETIC-test-log-signing.key
+ HIT PRIVATE_KEY_IN_PACKAGE_SYNTHETIC_LABELED /workspace/michaels-gate-v4/reference-model/artifacts/keys/SYNTHETIC-v4-test-log-signing.key
+ HIT memory_snapshot /workspace/michaels-gate-v5/HANDOFF.md
+ HIT memory_snapshot /workspace/michaels-gate-v5/ruling/distribution-proposal.md
+ABS_PATH_REF_FILES 1
+ ABS /workspace/michaels-gate-v3/sealed-package-sha256.txt
+SYMLINKS []

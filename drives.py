@@ -2,7 +2,7 @@
 
 Provides persistent autonomous companion initiative within strict safety bounds:
 1. Standing Drives:
-   - be_useful_to_mike: Help, organize, maintain readiness.
+   - be_useful_to_operator: Help, organize, maintain readiness.
    - learn_the_world: Curiosity about novel blocks, biomes, structures within safe bounds.
    - keep_base_safe_and_tidy: Patrol sanctuary perimeter, maintain pathways and order.
    - practice_known_skills: Practice building, crafting, and harvesting nearby.
@@ -70,7 +70,7 @@ class DriveManager:
     def _init_default_drives(self):
         defaults = [
             StandingDrive(
-                id="be_useful_to_mike",
+                id="be_useful_to_operator",
                 name="Be Useful to the operator",
                 description="Remain attentive, maintain supplies, and stay ready to assist the operator.",
                 intensity=0.5,
@@ -145,7 +145,7 @@ class DriveManager:
 
         # Goal relevance boosts Be Useful
         if goal_rel > 0.5:
-            self.drives["be_useful_to_mike"].intensity = min(1.0, self.drives["be_useful_to_mike"].intensity + 0.15)
+            self.drives["be_useful_to_operator"].intensity = min(1.0, self.drives["be_useful_to_operator"].intensity + 0.15)
 
         self._save()
 
@@ -233,7 +233,7 @@ class DriveManager:
                 "bounds": {"max_radius": 18.0, "center": SANCTUARY_HOME}
             }
 
-        elif drive.id == "be_useful_to_mike":
+        elif drive.id == "be_useful_to_operator":
             return {
                 "type": "minecraft_initiative",
                 "action": "initiative_organize_inventory",
@@ -257,11 +257,11 @@ class DriveManager:
             target_id = "keep_base_safe_and_tidy" if self.drives["keep_base_safe_and_tidy"].last_satisfied <= self.drives["learn_the_world"].last_satisfied else "learn_the_world"
         else:
             # Pick the drive among autonomous set that was least recently satisfied
-            candidates = ["learn_the_world", "practice_known_skills", "keep_base_safe_and_tidy", "be_useful_to_mike"]
+            candidates = ["learn_the_world", "practice_known_skills", "keep_base_safe_and_tidy", "be_useful_to_operator"]
             target_id = min(candidates, key=lambda did: self.drives[did].last_satisfied)
 
         # Spike target drive well above threshold (0.95) and others past threshold (>= 0.78)
-        for did in ("learn_the_world", "practice_known_skills", "keep_base_safe_and_tidy", "be_useful_to_mike"):
+        for did in ("learn_the_world", "practice_known_skills", "keep_base_safe_and_tidy", "be_useful_to_operator"):
             if did == target_id:
                 self.drives[did].intensity = 0.95
             else:
@@ -385,7 +385,7 @@ class DriveManager:
         proposal = {
             "id": f"prop_{title}_{int(time.time())}",
             "timestamp": time.time(),
-            "source": "jarvis_initiative",
+            "source": "atman_initiative",
             "drive": drive_id,
             "title": title,
             "proposal": proposal_text,

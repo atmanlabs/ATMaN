@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspace/michaels-gate-v4/reference-model/q8E.py", line 231, in <module>
+    {"freeze": lambda: print(json.dumps(freeze(), indent=1)), "run": run}[sys.argv[1]]()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/workspace/michaels-gate-v4/reference-model/q8E.py", line 225, in run
+    acc = acceptance(out, d4)
+  File "/workspace/michaels-gate-v4/reference-model/q8E.py", line 197, in acceptance
+    for k, (val, ok) in Q4.acceptance({**d4, **{f: E[f] for f in E if f in d4}}).items():
+           ^^^^^^^^^
+TypeError: cannot unpack non-iterable bool object
+
+real	2m9.718s
+user	14m24.882s
+sys	2m11.459s
